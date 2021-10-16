@@ -1,0 +1,16 @@
+D:\GitHub\LikeFly\LikeFly\LikeFly\bin\Debug\netstandard2.0\LikeFly.deps.json
+D:\GitHub\LikeFly\LikeFly\LikeFly\bin\Debug\netstandard2.0\LikeFly.dll
+D:\GitHub\LikeFly\LikeFly\LikeFly\bin\Debug\netstandard2.0\ref\LikeFly.dll
+D:\GitHub\LikeFly\LikeFly\LikeFly\bin\Debug\netstandard2.0\LikeFly.pdb
+D:\GitHub\LikeFly\LikeFly\LikeFly\obj\Debug\netstandard2.0\LikeFly.csproj.AssemblyReference.cache
+D:\GitHub\LikeFly\LikeFly\LikeFly\obj\Debug\netstandard2.0\App.xaml.g.cs
+D:\GitHub\LikeFly\LikeFly\LikeFly\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+D:\GitHub\LikeFly\LikeFly\LikeFly\obj\Debug\netstandard2.0\View\HomeView.xaml.g.cs
+D:\GitHub\LikeFly\LikeFly\LikeFly\obj\Debug\netstandard2.0\View\UserView.xaml.g.cs
+D:\GitHub\LikeFly\LikeFly\LikeFly\obj\Debug\netstandard2.0\LikeFly.AssemblyInfoInputs.cache
+D:\GitHub\LikeFly\LikeFly\LikeFly\obj\Debug\netstandard2.0\LikeFly.AssemblyInfo.cs
+D:\GitHub\LikeFly\LikeFly\LikeFly\obj\Debug\netstandard2.0\LikeFly.csproj.CoreCompileInputs.cache
+D:\GitHub\LikeFly\LikeFly\LikeFly\obj\Debug\netstandard2.0\XamlC.stamp
+D:\GitHub\LikeFly\LikeFly\LikeFly\obj\Debug\netstandard2.0\LikeFly.dll
+D:\GitHub\LikeFly\LikeFly\LikeFly\obj\Debug\netstandard2.0\ref\LikeFly.dll
+D:\GitHub\LikeFly\LikeFly\LikeFly\obj\Debug\netstandard2.0\LikeFly.pdb

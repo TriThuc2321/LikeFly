@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="LikeFly.MainPage"
+       FlyoutHeaderBehavior="Scroll"
+       xmlns:views="clr-namespace:LikeFly.View"
+       >
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="White" /> 
+                <Setter Property="Shell.TitleColor" Value="Blue" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.IconImageSource" Value="menuIcon.png"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <Shell.FlyoutHeader>
+        <StackLayout>
+            <Image Source="https://image.freepik.com/free-vector/cloud-background_91008-382.jpg"
+                   Aspect="AspectFill"/>
+        </StackLayout>
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="Home Page">
+        <ShellContent Route="HomePage" ContentTemplate="{DataTemplate views:HomeView}" Style="{DynamicResource BaseStyle}"/>
+    </FlyoutItem>
+    
+    <FlyoutItem Title="User view">
+        <ShellContent Route="User" ContentTemplate="{DataTemplate views:UserView}" Style="{DynamicResource BaseStyle}"/>
+    </FlyoutItem>
+
+    <Shell.TitleView>
+        <StackLayout>
+            <Image Source="menuIcon.png"
+           HorizontalOptions="Center"
+           VerticalOptions="Center" />
+            <Label Text="sdhhf"/>
+        </StackLayout>
+        
+    </Shell.TitleView>
+</Shell>

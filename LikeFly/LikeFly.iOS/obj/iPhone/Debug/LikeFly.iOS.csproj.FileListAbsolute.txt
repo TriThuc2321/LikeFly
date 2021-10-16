@@ -1,0 +1,8 @@
+D:\GitHub\LikeFly\LikeFly\LikeFly.iOS\obj\iPhone\Debug\actool\_PartialAppManifest.items
+D:\GitHub\LikeFly\LikeFly\LikeFly.iOS\obj\iPhone\Debug\actool\_BundleResourceWithLogicalName.items
+D:\GitHub\LikeFly\LikeFly\LikeFly.iOS\obj\iPhone\Debug\ibtool\_BundleResourceWithLogicalName.items
+D:\GitHub\LikeFly\LikeFly\LikeFly.iOS\obj\iPhone\Debug\coremlc\_PartialAppManifest.items
+D:\GitHub\LikeFly\LikeFly\LikeFly.iOS\obj\iPhone\Debug\coremlc\_BundleResourceWithLogicalName.items
+D:\GitHub\LikeFly\LikeFly\LikeFly.iOS\obj\iPhone\Debug\optimized\
+D:\GitHub\LikeFly\LikeFly\LikeFly.iOS\obj\iPhone\Debug\LikeFly.iOS.csproj.AssemblyReference.cache
+D:\GitHub\LikeFly\LikeFly\LikeFly.iOS\obj\iPhone\Debug\LikeFly.iOS.csproj.CoreCompileInputs.cache
