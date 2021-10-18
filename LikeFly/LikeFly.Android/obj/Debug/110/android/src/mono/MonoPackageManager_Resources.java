@@ -3,8 +3,14 @@ public class MonoPackageManager_Resources {
 	public static String[] Assemblies = new String[]{
 		/* We need to ensure that "LikeFly.Android.dll" comes first in this list. */
 		"LikeFly.Android.dll",
+		"Firebase.dll",
+		"Firebase.Storage.dll",
 		"FormsViewGroup.dll",
 		"LikeFly.dll",
+		"LiteDB.dll",
+		"Newtonsoft.Json.dll",
+		"Plugin.Media.dll",
+		"System.Reactive.dll",
 		"Xamarin.AndroidX.Activity.dll",
 		"Xamarin.AndroidX.Annotation.dll",
 		"Xamarin.AndroidX.Annotation.Experimental.dll",
