@@ -9,7 +9,6 @@ namespace LikeFly
         public App()
         {
             InitializeComponent();
-
             MainPage = new MainPage();
         }
 

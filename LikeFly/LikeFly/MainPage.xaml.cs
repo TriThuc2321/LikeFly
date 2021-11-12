@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LikeFly.Database;
+using LikeFly.View;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +15,14 @@ namespace LikeFly
         public MainPage()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(RegisterView), typeof(RegisterView));
+            Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));
+            Routing.RegisterRoute(nameof(ResetPasswordView), typeof(ResetPasswordView));
+            Routing.RegisterRoute(nameof(ConfirmEmailView), typeof(ConfirmEmailView));
+            Routing.RegisterRoute(nameof(UserView), typeof(UserView));
+            //Routing.RegisterRoute(nameof(ManagerView), typeof(ManagerView));
+            //Routing.RegisterRoute(nameof(ConfirmInvoiceView), typeof(ConfirmInvoiceView));
+            this.BindingContext = DataManager.Ins;
         }
     }
 }
