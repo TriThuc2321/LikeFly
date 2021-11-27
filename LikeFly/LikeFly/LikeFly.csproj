@@ -20,12 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="xNet">
-      <HintPath>C:\Users\trith\Downloads\xNet\xNet.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="View\ConfirmEmailView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

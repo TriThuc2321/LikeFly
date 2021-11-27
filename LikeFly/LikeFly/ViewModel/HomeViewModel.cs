@@ -26,13 +26,7 @@ namespace LikeFly.ViewModel
         {
             this.navigation = navigation;
 
-            /*MenuCommand = new Command(openMenu);
-            NotificaitonCommand = new Command(openNotifi);
-            ToursCommand = new Command(openTours);
-            FavoriteCommand = new Command(openFavorite);
-            MyTourCommand = new Command(openMyTour);  */      
-
-            Places = DataManager.Ins.ListPlace;
+          
         }
         #region open view
         /*private void openMenu(object obj)
@@ -58,15 +52,6 @@ namespace LikeFly.ViewModel
         #endregion
         
 
-        private ObservableCollection<Place> _places;
-        public ObservableCollection<Place> Places
-        {
-            get { return _places; }
-            set
-            {
-                _places = value;
-                OnPropertyChanged("Places");
-            }
-        }
+      
     }
 }

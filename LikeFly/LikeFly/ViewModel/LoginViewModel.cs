@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using xNet;
 
 namespace LikeFly.ViewModel
 {
@@ -84,21 +83,7 @@ namespace LikeFly.ViewModel
             await curentShell.GoToAsync($"{nameof(RegisterView)}");
         }
 
-        void GetCurrency()
-        {
-            HttpRequest http = new HttpRequest();
-            string html = http.Get("https://vi.coinmill.com/USD_VND.html").ToString();
-            string substr = "1.00";
-            int index = html.IndexOf(substr);
-            string filter = html.Substring(index + 5, 30);
-            string result = "";
-            foreach (char ite in filter)
-            {
-                if ((ite >= 48 && ite <= 57) || ite == 44)
-                    result = result + ite;
-            }
-            DataManager.Ins.USDCurrency = result;
-        }
+    
         async void loginHandleAsync(object obj)
         {
             int i = 0;
@@ -114,7 +99,6 @@ namespace LikeFly.ViewModel
                     if (DataManager.Ins.ListUser[i].password == DataManager.Ins.UsersServices.Encode(Password))
                     {
                         DataManager.Ins.CurrentUser = DataManager.Ins.ListUser[i];
-                        GetCurrency(); // lay ngoai te
                         DependencyService.Get<IToast>().ShortToast("Login successfully");
 
                         if (RememberAccount)

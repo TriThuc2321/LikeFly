@@ -25,10 +25,10 @@ namespace LikeFly.Database
         public List<User> usersTemp;
         private DataManager()
         {
-            PlacesServices = new PlacesServices();
+            FlightsServices = new FlightServices();
             UsersServices = new UsersServices();
 
-            ListPlace = new ObservableCollection<Place>();
+            ListFlights = new ObservableCollection<Flight>();
             ListUser = new ObservableCollection<User>();
 
             CurrentUser = new User();
@@ -36,24 +36,29 @@ namespace LikeFly.Database
         }
         async Task getAllList()
         {
-            //await firebaseHelper.AddPlace("3", "VietName", "VN ne", "https://i.pinimg.com/564x/5a/41/04/5a41046452cc2481693ce2df3c93fbc4.jpg");
-
-            List<Place> temp = await PlacesServices.GetAllPlaces();
-            foreach (Place p in temp)
+            getFlightList();
+        }
+        #region Get List Func
+        async Task getFlightList()
+        {
+            List<Flight> temp = await FlightsServices.GetAllFlights();
+            foreach (Flight p in temp)
             {
-                ListPlace.Add(p);
+                ListFlights.Add(p);
             }
-
+            
         }
 
-        private PlacesServices placesServices;
-        public PlacesServices PlacesServices
+        #endregion 
+
+        private FlightServices flightsServices;
+        public FlightServices FlightsServices
         {
             get
             {
-                return placesServices;
+                return flightsServices;
             }
-            set { placesServices = value; }
+            set { flightsServices = value; }
         }
         private UsersServices usersServices;
         public UsersServices UsersServices
@@ -65,13 +70,13 @@ namespace LikeFly.Database
             set { usersServices = value; }
         }
        
-        private ObservableCollection<Place> _places;
-        public ObservableCollection<Place> ListPlace
+        private ObservableCollection<Flight> _flights;
+        public ObservableCollection<Flight> ListFlights
         {
-            get { return _places; }
+            get { return _flights; }
             set
             {
-                _places = value;
+                _flights = value;
             }
         }
         private ObservableCollection<User> _users;
