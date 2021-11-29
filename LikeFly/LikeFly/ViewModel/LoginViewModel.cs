@@ -82,12 +82,11 @@ namespace LikeFly.ViewModel
             //navigation.PushAsync(new RegisterView());
             await curentShell.GoToAsync($"{nameof(RegisterView)}");
         }
-
     
         async void loginHandleAsync(object obj)
         {
             int i = 0;
-            if (Account == null || Account == "" || !DataManager.Ins.UsersServices.checkEmail(Account))
+            if (Account == null || Account == "" || !DataManager.Ins.UsersServices.checkEmail(Account) || Password == null || Password == "")
             {
                 DependencyService.Get<IToast>().ShortToast("Email invalid");
                 return;
@@ -130,6 +129,8 @@ namespace LikeFly.ViewModel
                 DependencyService.Get<IToast>().ShortToast("Email is not registered");
             }
 
+
+
         }
         async void forgotHandle(object obj)
         {
@@ -137,7 +138,7 @@ namespace LikeFly.ViewModel
             {
                 DependencyService.Get<IToast>().ShortToast("Enter your email to continue");
             }
-            else if (!DataManager.Ins.UsersServices.ExistEmail(Account, DataManager.Ins.usersTemp))
+            else if (!DataManager.Ins.UsersServices.ExistEmail(Account, DataManager.Ins.users))
             {
                 DependencyService.Get<IToast>().ShortToast("Email is not registed");
             }
@@ -160,7 +161,7 @@ namespace LikeFly.ViewModel
                     rank = 3
                 };
 
-                await SendEmail("VERIFY CODE", "Thank you for using GoTour, this is your verify code: " + randomCode, Account);
+                await SendEmail("VERIFY CODE", "Thank you for using LikeFly, this is your verify code: " + randomCode, Account);
                 DependencyService.Get<IToast>().ShortToast("Verify code has been sent to your email");
                 //navigation.PushAsync(new ResetPassword());
                 await curentShell.GoToAsync($"{nameof(ResetPasswordView)}");
@@ -244,6 +245,6 @@ namespace LikeFly.ViewModel
                 OnPropertyChanged("RememberAccount");
             }
         }
-    
+
     }
 }

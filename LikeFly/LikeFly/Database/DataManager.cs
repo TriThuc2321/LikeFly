@@ -22,6 +22,7 @@ namespace LikeFly.Database
         }
 
         public bool LoadData = true;
+        public List<User> users;
         public List<User> usersTemp;
         private DataManager()
         {
@@ -34,9 +35,15 @@ namespace LikeFly.Database
             CurrentUser = new User();
             getAllList();
         }
-        async Task getAllList()
+        async Task GetUsers()
         {
-            getFlightList();
+             users = await UsersServices.GetAllUsers();
+            List<User> temp = await UsersServices.GetAllUsers();
+            foreach (User p in temp)
+            {
+                ListUser.Add(p);
+            }
+            
         }
         #region Get List Func
         async Task getFlightList()
@@ -47,6 +54,12 @@ namespace LikeFly.Database
                 ListFlights.Add(p);
             }
             
+           
+        }
+        async Task getAllList()
+        {
+            await GetUsers();    
+            await getFlightList();       
         }
 
         #endregion 

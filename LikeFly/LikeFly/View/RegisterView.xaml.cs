@@ -17,7 +17,6 @@ namespace LikeFly.View
         {
             InitializeComponent();
             this.BindingContext = new RegisterViewModel(Navigation, Shell.Current);
-
         }
     }
 }
