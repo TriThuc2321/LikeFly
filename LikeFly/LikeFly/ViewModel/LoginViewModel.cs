@@ -10,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using xNet;
 
 namespace LikeFly.ViewModel
 {
@@ -84,25 +83,11 @@ namespace LikeFly.ViewModel
             await curentShell.GoToAsync($"{nameof(RegisterView)}");
         }
 
-        void GetCurrency()
-        {
-            HttpRequest http = new HttpRequest();
-            string html = http.Get("https://vi.coinmill.com/USD_VND.html").ToString();
-            string substr = "1.00";
-            int index = html.IndexOf(substr);
-            string filter = html.Substring(index + 5, 30);
-            string result = "";
-            foreach (char ite in filter)
-            {
-                if ((ite >= 48 && ite <= 57) || ite == 44)
-                    result = result + ite;
-            }
-            DataManager.Ins.USDCurrency = result;
-        }
+        
         async void loginHandleAsync(object obj)
         {
             int i = 0;
-            if (Account == null || Account == "" || !DataManager.Ins.UsersServices.checkEmail(Account))
+            if (Account == null || Account == "" || !DataManager.Ins.UsersServices.checkEmail(Account) || Password == null || Password == "")
             {
                 DependencyService.Get<IToast>().ShortToast("Email invalid");
                 return;
@@ -114,7 +99,6 @@ namespace LikeFly.ViewModel
                     if (DataManager.Ins.ListUser[i].password == DataManager.Ins.UsersServices.Encode(Password))
                     {
                         DataManager.Ins.CurrentUser = DataManager.Ins.ListUser[i];
-                        GetCurrency(); // lay ngoai te
                         DependencyService.Get<IToast>().ShortToast("Login successfully");
 
                         if (RememberAccount)
@@ -146,6 +130,8 @@ namespace LikeFly.ViewModel
                 DependencyService.Get<IToast>().ShortToast("Email is not registered");
             }
 
+
+
         }
         async void forgotHandle(object obj)
         {
@@ -153,7 +139,7 @@ namespace LikeFly.ViewModel
             {
                 DependencyService.Get<IToast>().ShortToast("Enter your email to continue");
             }
-            else if (!DataManager.Ins.UsersServices.ExistEmail(Account, DataManager.Ins.usersTemp))
+            else if (!DataManager.Ins.UsersServices.ExistEmail(Account, DataManager.Ins.users))
             {
                 DependencyService.Get<IToast>().ShortToast("Email is not registed");
             }
@@ -176,7 +162,7 @@ namespace LikeFly.ViewModel
                     rank = 3
                 };
 
-                await SendEmail("VERIFY CODE", "Thank you for using GoTour, this is your verify code: " + randomCode, Account);
+                await SendEmail("VERIFY CODE", "Thank you for using LikeFly, this is your verify code: " + randomCode, Account);
                 DependencyService.Get<IToast>().ShortToast("Verify code has been sent to your email");
                 //navigation.PushAsync(new ResetPassword());
                 await curentShell.GoToAsync($"{nameof(ResetPasswordView)}");
@@ -260,6 +246,6 @@ namespace LikeFly.ViewModel
                 OnPropertyChanged("RememberAccount");
             }
         }
-    
+
     }
 }

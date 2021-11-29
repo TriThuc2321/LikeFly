@@ -22,6 +22,7 @@ namespace LikeFly.Database
         }
 
         public bool LoadData = true;
+        public List<User> users;
         public List<User> usersTemp;
         private DataManager()
         {
@@ -34,16 +35,18 @@ namespace LikeFly.Database
             CurrentUser = new User();
             getAllList();
         }
+        async Task GetUsers()
+        {
+            users = await UsersServices.GetAllUsers();
+            List<User> temp = await UsersServices.GetAllUsers();
+            foreach (User p in temp)
+            {
+                ListUser.Add(p);
+            }
+        }
         async Task getAllList()
         {
-            //await firebaseHelper.AddPlace("3", "VietName", "VN ne", "https://i.pinimg.com/564x/5a/41/04/5a41046452cc2481693ce2df3c93fbc4.jpg");
-
-            List<Place> temp = await PlacesServices.GetAllPlaces();
-            foreach (Place p in temp)
-            {
-                ListPlace.Add(p);
-            }
-
+            await GetUsers();           
         }
 
         private PlacesServices placesServices;

@@ -16,7 +16,7 @@ namespace LikeFly.View
         public ConfirmEmailView()
         {
             InitializeComponent();
-           
+            this.BindingContext = new ConfirmEmailViewModel(Navigation, Shell.Current);
         }
     }
 }
