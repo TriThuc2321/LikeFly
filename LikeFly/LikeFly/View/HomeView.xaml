@@ -5,12 +5,81 @@
              BackgroundColor="White"
              xmlns:vm="clr-namespace:LikeFly.ViewModel"
              NavigationPage.HasNavigationBar="false"
+              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              >
     <ContentPage.BindingContext>
         <vm:HomeViewModel/>
     </ContentPage.BindingContext>
 
-    <Grid BackgroundColor="White">
+    <StackLayout BackgroundColor="White">
         
-    </Grid>
+        <Grid Margin="0,5,0,0" Padding="25,15,25,20" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+                <Frame      
+                    Grid.Column="1"
+                   HorizontalOptions="End"
+                   HasShadow="False"
+                   CornerRadius="8"
+                   Margin="0, 0, 0, 0"
+                   Padding="0"
+                   VerticalOptions="Center"
+                    >
+                    <ImageButton                        
+                        Source="{Binding ProfilePic}"
+                        Aspect="AspectFill"
+                        HeightRequest="40"
+                        WidthRequest="40"    
+                        BackgroundColor="Transparent"
+                    />
+                </Frame> 
+            <ImageButton
+                HeightRequest="45"
+                WidthRequest="45"
+                HorizontalOptions="Start"
+                VerticalOptions="End"
+                Source="menuIcon.png"
+                Margin="0, -10, 0, 0"
+                Grid.Column="0"
+                BackgroundColor="Transparent"
+                Command="{Binding MenuCommand}"
+            />
+            </Grid>
+        <Label
+            x:Name="testLb"
+            Text="Find flights that&#x0a;suit your timing!"
+            TextColor="Black"
+            FontSize="35"
+            FontAttributes="Bold"
+            Margin="25, 0,0,10"
+            Grid.Row="1"
+            />
+        <pancake:PancakeView CornerRadius="15,15,0,0" BackgroundColor="#CFCFCF" Margin="25,0,25,0" Padding="20,10,20,10">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="departures.png" HeightRequest="25" Aspect="AspectFit"/>
+                <Entry Placeholder="Từ..." HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            
+            
+        </pancake:PancakeView>
+        <pancake:PancakeView CornerRadius="0,0,15,15" BackgroundColor="#CFCFCF" Margin="25,-5,25,0" Padding="20,10,20,10">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="departures.png" HeightRequest="25" Aspect="AspectFit"/>
+                <Entry Placeholder="Đến..." HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+        </pancake:PancakeView>
+
+        <Button BackgroundColor="#272727"
+                TextColor="White"
+                Text="Tiếp tục"
+                Margin="20,10,20,0"
+                CornerRadius="10"
+                />
+        <Label Text="Best tour" TextColor="Black"
+            FontSize="25"
+            FontAttributes="Bold"
+            Margin="25, 0,0,10"/>
+    </StackLayout>
 </ContentPage>

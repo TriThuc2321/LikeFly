@@ -14,44 +14,34 @@ namespace LikeFly.ViewModel
     class HomeViewModel: ObservableObject
     {       
         INavigation navigation;
+        Shell currentShell;
 
         public Command MenuCommand { get; }
-        public Command NotificaitonCommand { get; }
-        public Command ToursCommand { get; }
-        public Command FavoriteCommand { get; }
-        public Command MyTourCommand { get; }
 
         public HomeViewModel() { }
-        public HomeViewModel(INavigation navigation)
+        public HomeViewModel(INavigation navigation, Shell currentShell)
         {
             this.navigation = navigation;
+            this.currentShell = currentShell;
+            MenuCommand = new Command(openMenu);
 
-          
+            ProfilePic = DataManager.Ins.CurrentUser.profilePic;
         }
-        #region open view
-        /*private void openMenu(object obj)
+        private void openMenu(object obj)
         {
-            navigation.PushAsync(new MenuView());
+            currentShell.FlyoutIsPresented = !currentShell.FlyoutIsPresented;
         }
-        private void openNotifi(object obj)
-        {
-            navigation.PushAsync(new NotificationView());
-        }
-        private void openTours(object obj)
-        {
-            navigation.PushAsync(new ToursView());
-        }
-        private void openFavorite(object obj)
-        {
-            navigation.PushAsync(new FavoriteView());
-        }
-        private void openMyTour(object obj)
-        {
-            navigation.PushAsync(new MyTourView());
-        }*/
-        #endregion
-        
 
-      
+
+        private string profilePic;
+        public string ProfilePic
+        {
+            get { return profilePic; }
+            set
+            {
+                profilePic = value;
+                OnPropertyChanged("ProfilePic");
+            }
+        }
     }
 }

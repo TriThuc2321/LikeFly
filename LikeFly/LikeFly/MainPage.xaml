@@ -71,11 +71,23 @@
         <ShellContent Icon="homeIcon.png" Route="HomeView" ContentTemplate="{DataTemplate views:HomeView}" Style="{DynamicResource Base1Style}" />
         <ShellContent Icon="bookIcon.png" Route="UserView" ContentTemplate="{DataTemplate views:UserView}" Style="{DynamicResource Base1Style}" />
     </FlyoutItem>
+    
+    <FlyoutItem Title="Favorite" Icon="heartOutlineIcon.png">
+        <ShellContent Route="FavoriteView" ContentTemplate="{DataTemplate views:FavoriteView}" Style="{DynamicResource Base1Style}" />
+    </FlyoutItem>
 
+    <FlyoutItem Title="User Information" Icon="userOutlineIcon.png">
+        <ShellContent Route="UserView" ContentTemplate="{DataTemplate views:UserView}" Style="{DynamicResource Base1Style}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Manager" Icon="manager.png">
+        <ShellContent Route="ManagerView" ContentTemplate="{DataTemplate views:ManagerView}" Style="{DynamicResource Base1Style}" />
+    </FlyoutItem>
+    
     <Shell.FlyoutHeader >
         <Grid HeightRequest="190">
             <Image 
-                Source="https://i.pinimg.com/564x/60/75/61/607561e3f12062a5beb71210a60b3b06.jpg"
+                Source="https://www.teahub.io/photos/full/1-12617_adobe-illustrator-art-landscape.jpg"
                 Aspect="AspectFill"
                 Opacity="1"/>
 
@@ -108,13 +120,14 @@
 
     <Shell.FlyoutFooter>
         <StackLayout>
-            <Label Text="Go Tour"
+            <!--<Label Text="Like Fly"
                TextColor="#777777"
                FontAttributes="Bold"
-               HorizontalOptions="Center" />
+               HorizontalOptions="Center" /> -->
             <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:MM/dd/yyyy H:mm }'}"                  
                TextColor="#cfcfcf"
-               HorizontalOptions="Center" />
+               HorizontalOptions="Center" 
+                   Margin="5"/>
         </StackLayout>
     </Shell.FlyoutFooter>
 </Shell>

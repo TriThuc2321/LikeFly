@@ -12,7 +12,7 @@ namespace LikeFly.Database
     public class FlightServices
     {
         FirebaseClient firebase = new FirebaseClient("https://likefly-5ec61-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        FirebaseClient storage = new FirebaseClient("gs://likefly-5ec61.appspot.com");
+        FirebaseClient storage = new FirebaseClient("likefly-5ec61.appspot.com");
 
         public List<Flight> places;
         public FlightServices() { }
