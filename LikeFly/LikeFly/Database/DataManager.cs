@@ -28,23 +28,17 @@ namespace LikeFly.Database
         {
             FlightsServices = new FlightServices();
             UsersServices = new UsersServices();
+            notiServices = new NotificationServices();
+
 
             ListFlights = new ObservableCollection<Flight>();
             ListUser = new ObservableCollection<User>();
+            ListNotification = new ObservableCollection<Notification>();
 
             CurrentUser = new User();
             getAllList();
         }
-        async Task GetUsers()
-        {
-             users = await UsersServices.GetAllUsers();
-            List<User> temp = await UsersServices.GetAllUsers();
-            foreach (User p in temp)
-            {
-                ListUser.Add(p);
-            }
-            
-        }
+        
         #region Get List Func
         async Task getFlightList()
         {
@@ -56,10 +50,29 @@ namespace LikeFly.Database
             
            
         }
+        async Task GetUsers()
+        {
+            users = await UsersServices.GetAllUsers();
+            List<User> temp = await UsersServices.GetAllUsers();
+            foreach (User p in temp)
+            {
+                ListUser.Add(p);
+            }
+
+        }
+        async Task GetNotifications()
+        {
+            List<Notification> notifications = await NotiServices.GetAllNotification();
+            foreach (Notification p in notifications)
+            {
+                ListNotification.Add(p);
+            }
+        }
         async Task getAllList()
         {
             await GetUsers();    
             await getFlightList();       
+            await GetNotifications();       
         }
 
         #endregion 
@@ -72,6 +85,15 @@ namespace LikeFly.Database
                 return flightsServices;
             }
             set { flightsServices = value; }
+        }
+        private NotificationServices notiServices;
+        public NotificationServices NotiServices
+        {
+            get
+            {
+                return notiServices;
+            }
+            set { notiServices = value; }
         }
         private UsersServices usersServices;
         public UsersServices UsersServices
@@ -101,6 +123,15 @@ namespace LikeFly.Database
                 _users = value;
             }
         }
+        private ObservableCollection<Notification> _notifications;
+        public ObservableCollection<Notification> ListNotification
+        {
+            get { return _notifications; }
+            set
+            {
+                _notifications = value;
+            }
+        }
         private User currentUser;
         public User CurrentUser
         {
@@ -118,6 +149,16 @@ namespace LikeFly.Database
                 {
                     IsManager = false;
                 }
+            }
+        }
+        private Notification currentNoti;
+        public Notification CurrentNoti
+        {
+            get { return currentNoti; }
+            set
+            {
+                currentNoti = value;
+                OnPropertyChanged("CurrentNoti");
             }
         }
         private string profilePic;

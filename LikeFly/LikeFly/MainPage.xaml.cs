@@ -22,6 +22,7 @@ namespace LikeFly
             Routing.RegisterRoute(nameof(UserView), typeof(UserView));
             Routing.RegisterRoute(nameof(ManagerView), typeof(ManagerView));
             Routing.RegisterRoute(nameof(FavoriteView), typeof(FavoriteView));
+            Routing.RegisterRoute(nameof(NotificationView), typeof(NotificationView));
             this.BindingContext = DataManager.Ins;
         }
     }

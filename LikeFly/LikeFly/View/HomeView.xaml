@@ -76,6 +76,7 @@
                 Text="Tiếp tục"
                 Margin="20,10,20,0"
                 CornerRadius="10"
+                Command="{Binding AddNotification}"
                 />
         <Label Text="Best tour" TextColor="Black"
             FontSize="25"

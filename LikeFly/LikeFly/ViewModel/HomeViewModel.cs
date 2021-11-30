@@ -17,6 +17,7 @@ namespace LikeFly.ViewModel
         Shell currentShell;
 
         public Command MenuCommand { get; }
+        public Command AddNotification { get; }
 
         public HomeViewModel() { }
         public HomeViewModel(INavigation navigation, Shell currentShell)
@@ -24,9 +25,16 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = currentShell;
             MenuCommand = new Command(openMenu);
+            AddNotification = new Command(addNoti);
 
             ProfilePic = DataManager.Ins.CurrentUser.profilePic;
         }
+
+        private void addNoti(object obj)
+        {
+            DataManager.Ins.NotiServices.SendNoti("11", "19522321@gm.uit.edu.vn", "Thuc khung fa", "Thuc love hue", "HN001");
+        }
+
         private void openMenu(object obj)
         {
             currentShell.FlyoutIsPresented = !currentShell.FlyoutIsPresented;
