@@ -1,14 +1,236 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:LikeFly" 
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:vm="clr-namespace:LikeFly.ViewModel"
              x:Class="LikeFly.View.UserView"
              BackgroundColor="White"
              >
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="User View"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <ContentPage.BindingContext>
+        <vm:UserViewModel/>
+    </ContentPage.BindingContext>
+
+    <RefreshView Command="{Binding RefreshCommand}"
+                 IsRefreshing="{Binding IsRefreshing}" 
+                 RefreshColor="Black">
+        <ScrollView>
+            <StackLayout>
+                <!--AVATAR ANF CHANGE AVATAR-->
+                <!--<Image Source="{Binding ProfilePic}"
+                             Aspect="AspectFill" HeightRequest="320"
+                              Visual="Material"/>-->
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton Command="{Binding MenuCommand}" 
+                                 Source="menuIcon.png" 
+                                 HeightRequest="35" 
+                                 WidthRequest="50"
+                                 CornerRadius="10" 
+                                 HorizontalOptions="StartAndExpand" 
+                                 VerticalOptions="StartAndExpand"
+                                 BackgroundColor="Transparent" 
+                                 Margin="10, 10 , 0, 0">
+                    </ImageButton>
+                    <Label Text="Thông tin cá nhân" 
+                           FontSize="23" 
+                           HorizontalTextAlignment="Center"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           Margin="10,10,100,0"/>
+                </StackLayout>
+               
+                    <Image Source="{Binding ProfilePic}"
+                                 Aspect="AspectFill"                 
+                                 HeightRequest="340"
+                                 IsEnabled="{Binding EnableImageBtn}"/>
+            
+
+                <Frame Padding="10" HasShadow="False" 
+                       CornerRadius="40" Margin="0,-50,0,0" 
+                       VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                    <StackLayout>
+                        <StackLayout >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition  Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <!--Save V button-->
+                                <ImageButton
+                                CornerRadius="10"
+                                Grid.Column="0"
+                                IsVisible="{Binding VisibleSaveBtn}"
+                                WidthRequest="40" HeightRequest="35"                             
+                                Source="tickok.png"
+                                BackgroundColor="White"                                   
+                                Margin="250,10,0,0"
+                                Command="{Binding UpdateUserInfo}"/>
+                                
+                                <!--Camera button-->
+                                <ImageButton HeightRequest="35"
+                                     Grid.Column="1"
+                                     WidthRequest="40"
+                                     CornerRadius="10"
+                                     IsVisible="{Binding VisibleSaveBtn}"
+                                     Source="camera.png"
+                                     Aspect="AspectFill"
+                                     Margin="0,10,0,0"
+                                     BackgroundColor="White"
+                                     Command="{Binding AddImageCommand}" />
+                            </Grid>
+                        </StackLayout>
+
+                        <Grid RowDefinitions="Auto ,Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+                           Padding="25" ColumnDefinitions="*, *, *">
+
+                        <!--NAME-->
+                        <Frame Margin="10,-20,10,0" WidthRequest="200" 
+                               HeightRequest="7" CornerRadius="10"
+                               Grid.Row="1" Grid.Column="0" 
+                               BackgroundColor="WhiteSmoke" 
+                               Grid.ColumnSpan="3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <ImageButton Source="{Binding IconSource}" 
+                                             Command="{Binding EditTextCommand}" 
+                                             Grid.Column="0"
+                                             Margin="-10,-10,0,-17" BackgroundColor="Transparent" 
+                                             HeightRequest="30" WidthRequest="30" Aspect="AspectFit" />
+                                <local:CustomEntry x:Name="txtUserName" 
+                                                   Grid.Column="2" Margin="15,-15,0,-15" Keyboard="Text"
+                                                   HeightRequest="40" Text="{Binding Name}" 
+                                                   BackgroundColor="WhiteSmoke" IsEnabled="{Binding IsEdit}" 
+                                                   FontSize="17" FontAttributes="Bold" TextColor="Gray"  />
+                            </Grid>
+                        </Frame>
+
+                        <!--EMAIL-->
+                        <Frame Margin="10,10,10,0" 
+                               BackgroundColor="#ded9e2" 
+                               HeightRequest="7" CornerRadius="10" 
+                               BorderColor="White"
+                               Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" >
+                            <local:CustomEntry x:Name="txtEmail"  
+                                               BackgroundColor="#ded9e2" Margin="0,-15,0,-15" 
+                                               HeightRequest="30" IsEnabled="False" 
+                                               Text="{Binding Email}" FontSize="17" 
+                                               FontAttributes="Bold"  />
+                        </Frame>
+
+
+                        <!--ID CARD-->
+                        <!--Lable-->
+                        <Label Margin="10,10,0,0"  
+                               Grid.Row="4" Grid.Column="0" 
+                               Text="CMND số:" VerticalOptions="Center" 
+                               TextColor="Gray" 
+                               FontSize="17" FontAttributes="Bold"  />
+
+                        <!--Entry-->
+                        <Frame Margin="100,10,10,0" WidthRequest="200" 
+                               HeightRequest="7" CornerRadius="10"
+                               Grid.Row="4" Grid.Column="0" 
+                               BackgroundColor="WhiteSmoke" 
+                               Grid.ColumnSpan="3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <local:CustomEntry Grid.Column="2" Margin="25,-15,0,-15" Keyboard="Text"
+                                                   HeightRequest="40" Text="{Binding CMND}" 
+                                                   BackgroundColor="WhiteSmoke" IsEnabled="{Binding IsEdit}" 
+                                                   FontSize="17" FontAttributes="Bold" TextColor="Gray"  />
+                            </Grid>
+                        </Frame>
+
+
+                        <!--CONTACT-->
+                        <!--Label-->
+                        <Label Margin="10,10,0,0"  
+                               Grid.Row="5" Grid.Column="0" 
+                               Text="Điện thoại:" VerticalOptions="Center" 
+                               TextColor="Gray" FontSize="17" 
+                               FontAttributes="Bold"  />
+
+                        <!--Entry-->
+                        <Frame Margin="100,10,10,0" WidthRequest="200" 
+                               HeightRequest="7" CornerRadius="10"
+                               Grid.Row="5" Grid.Column="0" 
+                               BackgroundColor="WhiteSmoke" 
+                               Grid.ColumnSpan="3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <local:CustomEntry Grid.Column="2" Margin="25,-15,0,-15" Keyboard="Telephone"
+                                                   HeightRequest="40" Text="{Binding Contact}" 
+                                                   BackgroundColor="WhiteSmoke" IsEnabled="{Binding IsEdit}" 
+                                                   FontSize="17" FontAttributes="Bold" TextColor="Gray"  />
+                            </Grid>
+                        </Frame>
+
+
+                        <!--BIRTHDAY-->
+                        <!--Label-->
+                        <Label Margin="10,10,0,0"  
+                               Grid.Row="6" Grid.Column="0" 
+                               Text="Ngày sinh:" VerticalOptions="Center" 
+                               TextColor="Gray" FontSize="17" 
+                               FontAttributes="Bold"  />
+
+                        <!--DatePicker-->
+                        <Frame Margin="100,10,10,0" WidthRequest="200" 
+                               HeightRequest="7" CornerRadius="10"
+                               Grid.Row="6" Grid.Column="0" 
+                               BackgroundColor="WhiteSmoke" 
+                               Grid.ColumnSpan="3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <DatePicker Grid.Column="2" Margin="-15,-15,0,-16"
+                                                   HeightRequest="40" Date="{Binding Birthday}" 
+                                                   BackgroundColor="WhiteSmoke" IsEnabled="{Binding IsEdit}" 
+                                                   FontSize="17" FontAttributes="Bold" TextColor="Gray"
+                                                    HorizontalOptions="Center" Format="d" />
+                            </Grid>
+                        </Frame>
+
+                        <!--ADDRESS-->
+                        <!--Label-->
+                        <Label Margin="10,10,0,0"  
+                               Grid.Row="7" Grid.Column="0" 
+                               Text="Địa chỉ:" VerticalOptions="Center" 
+                               TextColor="Gray" FontSize="17" 
+                               FontAttributes="Bold"  />
+
+                        <!--Entry-->
+                            <Frame Margin="100,10,10,0" WidthRequest="200" 
+                               HeightRequest="7" CornerRadius="10"
+                               Grid.Row="7" Grid.Column="0" 
+                               BackgroundColor="WhiteSmoke" 
+                               Grid.ColumnSpan="3">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <local:CustomEntry Grid.Column="2" Margin="15,-15,0,-10" Keyboard="Text"
+                                                   HeightRequest="40" Text="{Binding Address}" 
+                                                   BackgroundColor="WhiteSmoke" IsEnabled="{Binding IsEdit}" 
+                                                   FontSize="17" FontAttributes="Bold" TextColor="Gray"  />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>
