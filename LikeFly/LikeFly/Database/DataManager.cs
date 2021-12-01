@@ -64,14 +64,15 @@ namespace LikeFly.Database
                 ListAirports.Add(p);
             }
         }
-   
+
         async Task GetNotifications()
         {
             List<Notification> notifications = await NotiServices.GetAllNotification();
             foreach (Notification p in notifications)
             {
                 ListNotification.Add(p);
-            }        
+            }
+        }
         async Task getAllList()
         {
             await GetUsers();    
@@ -97,6 +98,7 @@ namespace LikeFly.Database
                 return notiServices;
             }
             set { notiServices = value; }
+        }
         private AirportServices airportServices;
         public AirportServices AirportServices
         {

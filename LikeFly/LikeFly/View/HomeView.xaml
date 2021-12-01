@@ -39,7 +39,7 @@
                         HeightRequest="25"
                         WidthRequest="25"   
                         BackgroundColor="Transparent"
-                        Command="{Binding MenuCommand}"
+                        Command="{Binding NotificaitonCommand}"
                     />
                 </Frame>
                 <ImageButton

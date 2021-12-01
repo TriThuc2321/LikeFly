@@ -22,7 +22,7 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = currentShell;
             ListNotification = new ObservableCollection<Notification>();
-            NavigationBack = new Command(() => currentShell.FlyoutIsPresented = !currentShell.FlyoutIsPresented);
+            NavigationBack = new Command(() => navigation.PopAsync());
             InitList();
         }
 
