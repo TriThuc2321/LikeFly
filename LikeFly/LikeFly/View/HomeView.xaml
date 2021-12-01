@@ -16,7 +16,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Image Source="https://i.pinimg.com/564x/e1/c4/ef/e1c4ef856ac9decdf21eebe298a40f6e.jpg" Aspect="AspectFill" Margin="0,0,0,30"/>
-        
+        <Image BackgroundColor="CadetBlue"/>
         <StackLayout>            
             <Grid Margin="0,5,0,0" Padding="15,15,15,0" VerticalOptions="Start">
                 <Grid.ColumnDefinitions>
@@ -31,17 +31,18 @@
                    Margin="0, 0, 0, 0"
                    Padding="10"
                    VerticalOptions="Center"
-                    BackgroundColor="White"
+                    BackgroundColor="Transparent"
                     >
                     <ImageButton    
                         Source="bellIcon.png"
                         Aspect="AspectFill"
-                        HeightRequest="25"
-                        WidthRequest="25"   
+                        HeightRequest="30"
+                        WidthRequest="30"   
                         BackgroundColor="Transparent"
                         Command="{Binding NotificaitonCommand}"
                     />
                 </Frame>
+                
                 <ImageButton
                 HeightRequest="45"
                 WidthRequest="45"
