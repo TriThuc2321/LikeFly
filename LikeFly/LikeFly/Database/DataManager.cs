@@ -36,6 +36,17 @@ namespace LikeFly.Database
             ListNotification = new ObservableCollection<Notification>();
 
             CurrentUser = new User();
+
+            ListDiscount = new ObservableCollection<Discount>();
+            DiscountsServices = new DiscountsService();
+            ListBookedTickets = new ObservableCollection<BookedTicket>();
+            BookedTicketsServices = new BookedTicketServices();
+            ListInvoice = new ObservableCollection<Invoice>();
+            InvoicesServices = new InvoicesService();
+
+            CurrentDiscount = new Discount();
+            CurrentInvoice = new Invoice();
+            CurrentBookedTicket = new BookedTicket();
             getAllList();
         }
         
@@ -72,12 +83,47 @@ namespace LikeFly.Database
         {
             await GetUsers();    
             await getFlightList();       
-            await GetNotifications();       
+            await GetNotifications();
+            await GetAllDiscounts();
+            await GetAllInvoices();
+            await GetAllBookedTicket();
         }
 
-        #endregion 
+        async Task GetAllDiscounts() {
+            List<Discount> discountsList = await DiscountsServices.GetAllDiscounts();
+            foreach (Discount discount in discountsList)
+            {
+                ListDiscount.Add(discount);
+            }
+        }
 
-        private FlightServices flightsServices;
+        async Task GetAllBookedTicket()
+        {
+            List<BookedTicket> bookedTicketsList = await BookedTicketsServices.GetAllBookedTicket();
+            foreach (BookedTicket booked in bookedTicketsList)
+            {
+               // booked.flight = tourList.Find(e => (e.id == booked.tour.id));
+              //  booked.invoice = invoicesList.Find(e => (e.id == booked.invoice.id));
+                ListBookedTickets.Add(booked);
+
+            }
+        }
+
+        async Task GetAllInvoices()
+        {
+            List<Discount> discountsList = await DiscountsServices.GetAllDiscounts();
+            List<Invoice> invoicesList = await InvoicesServices.GetAllInvoice();
+            foreach (Invoice invoice in invoicesList)
+            {
+                if (invoice.discount != null)
+                    invoice.discount = discountsList.Find(e => (e.id == invoice.discount.id));
+                ListInvoice.Add(invoice);
+            }
+        }
+
+#endregion
+
+private FlightServices flightsServices;
         public FlightServices FlightsServices
         {
             get
@@ -209,5 +255,106 @@ namespace LikeFly.Database
                 verifyCode = value;
             }
         }
+
+        private ObservableCollection<Discount> discountList;
+        public ObservableCollection<Discount> ListDiscount
+        {
+            get { return discountList; }
+            set
+            {
+                discountList = value;
+                OnPropertyChanged("ListDiscount");
+            }
+        }
+
+
+        private DiscountsService discountServices;
+        public DiscountsService DiscountsServices
+        {
+            get
+            {
+                return discountServices;
+            }
+            set { discountServices = value; }
+        }
+
+        private ObservableCollection<Invoice> invoiceList;
+        public ObservableCollection<Invoice> ListInvoice
+        {
+            get { return invoiceList; }
+            set
+            {
+                invoiceList = value;
+                OnPropertyChanged("ListInvoice");
+            }
+        }
+
+
+        private InvoicesService invoiceServices;
+        public InvoicesService InvoicesServices
+        {
+            get
+            {
+                return invoiceServices;
+            }
+            set { invoiceServices = value; }
+        }
+
+        private BookedTicket currentBookedTicket;
+        public BookedTicket CurrentBookedTicket
+        {
+            get { return currentBookedTicket; }
+            set
+            {
+                currentBookedTicket = value;
+                OnPropertyChanged("CurrentBookedTicket");
+            }
+        }
+
+        private Invoice currentInvoice;
+        public Invoice CurrentInvoice
+        {
+            get { return currentInvoice; }
+            set
+            {
+                currentInvoice = value;
+                OnPropertyChanged("CurrentInvoice");
+            }
+        }
+
+
+        private ObservableCollection<BookedTicket> bookedTicketList;
+        public ObservableCollection<BookedTicket> ListBookedTickets
+        {
+            get { return bookedTicketList; }
+            set
+            {
+                bookedTicketList = value;
+                OnPropertyChanged("ListBookedTickets");
+            }
+        }
+
+
+        private BookedTicketServices bookedTicketServices;
+        public BookedTicketServices BookedTicketsServices
+        {
+            get
+            {
+                return bookedTicketServices;
+            }
+            set { bookedTicketServices = value; }
+        }
+
+        private Discount currentDiscount;
+        public Discount CurrentDiscount
+        {
+            get { return currentDiscount; }
+            set
+            {
+                currentDiscount = value;
+
+            }
+        }
+
     }
 }
