@@ -14529,6 +14529,7 @@ namespace LikeFly.Droid
 			
 			// aapt resource value: 0x7F07005E
 			public const int backbutton = 2131165278;
+			public const int bellIcon = 2131165278;
 			
 			// aapt resource value: 0x7F07005F
 			public const int bookIcon = 2131165279;

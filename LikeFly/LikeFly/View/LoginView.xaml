@@ -11,7 +11,7 @@
         <vm:LoginViewModel/>
     </ContentPage.BindingContext>
 
-    <Grid BackgroundColor="#272727">
+    <Grid BackgroundColor="LightSeaGreen">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="3*"/>
@@ -95,7 +95,7 @@
                     CornerRadius="20" 
                     Margin="25,20,25,0"
                     Padding="5"  
-                    BackgroundColor="#272727" 
+                    BackgroundColor="LightSeaGreen" 
                     VerticalOptions="Center"
                     HeightRequest="45"
                     Text="LOGIN"
@@ -113,7 +113,7 @@
                                     <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
                                 </Span.GestureRecognizers>
                             </Span>
-                            <Span Text=" Sign Up" TextColor="#272727" FontAttributes="Bold">
+                            <Span Text=" Sign Up" TextColor="LightSeaGreen" FontAttributes="Bold">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
                                 </Span.GestureRecognizers>

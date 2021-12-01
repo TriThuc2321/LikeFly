@@ -54,11 +54,11 @@ namespace LikeFly.ViewModel
             string email = Preferences.Get("email_key", "");
             if (Preferences.Get("remeber_login_key", "") == "true")
             {
-                for (int i = 0; i < DataManager.Ins.ListUser.Count; i++)
+                for (int i = 0; i < DataManager.Ins.ListUsers.Count; i++)
                 {
-                    if (DataManager.Ins.ListUser[i].email == email)
+                    if (DataManager.Ins.ListUsers[i].email == email)
                     {
-                        DataManager.Ins.CurrentUser = DataManager.Ins.ListUser[i];
+                        DataManager.Ins.CurrentUser = DataManager.Ins.ListUsers[i];
                         curentShell.GoToAsync($"//{nameof(HomeView)}");
                     }
                 }
@@ -91,13 +91,13 @@ namespace LikeFly.ViewModel
                 DependencyService.Get<IToast>().ShortToast("Email invalid");
                 return;
             }
-            for (i = 0; i < DataManager.Ins.ListUser.Count(); i++)
+            for (i = 0; i < DataManager.Ins.ListUsers.Count(); i++)
             {
-                if (DataManager.Ins.ListUser[i].email == Account)
+                if (DataManager.Ins.ListUsers[i].email == Account)
                 {
-                    if (DataManager.Ins.ListUser[i].password == DataManager.Ins.UsersServices.Encode(Password))
+                    if (DataManager.Ins.ListUsers[i].password == DataManager.Ins.UsersServices.Encode(Password))
                     {
-                        DataManager.Ins.CurrentUser = DataManager.Ins.ListUser[i];
+                        DataManager.Ins.CurrentUser = DataManager.Ins.ListUsers[i];
                         DependencyService.Get<IToast>().ShortToast("Login successfully");
 
                         if (RememberAccount)
@@ -124,7 +124,7 @@ namespace LikeFly.ViewModel
 
                 }
             }
-            if (i == (DataManager.Ins.ListUser.Count()))
+            if (i == (DataManager.Ins.ListUsers.Count()))
             {
                 DependencyService.Get<IToast>().ShortToast("Email is not registered");
             }
