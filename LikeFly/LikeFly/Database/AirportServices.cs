@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace LikeFly.Database
 {
-    public class AirportService
+    public class AirportServices
     {
         FirebaseClient firebase = new FirebaseClient("https://likefly-5ec61-default-rtdb.asia-southeast1.firebasedatabase.app/");
         FirebaseStorage storage = new FirebaseStorage("likefly-5ec61.appspot.com");
 
         public List<Airport> places;
-        public AirportService()
+        public AirportServices()
         {
         }
         public async Task<List<Airport>> GetAllAirport()
