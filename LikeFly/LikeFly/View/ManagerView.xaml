@@ -1,12 +1,147 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LikeFly.View.ManagerView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             x:Class="LikeFly.View.ManagerView"
+             xmlns:vm="clr-namespace:LikeFly.ViewModel"
+             NavigationPage.HasNavigationBar="False"
+             >
+
+    <ContentPage.BindingContext>
+        <vm:ManagerViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Image Source="https://i.pinimg.com/564x/e1/c4/ef/e1c4ef856ac9decdf21eebe298a40f6e.jpg" Aspect="AspectFill"/>
+
+        <StackLayout >
+            <Label Text="Quản lí" Margin="0,30,0,0" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="White"/>
         </StackLayout>
-    </ContentPage.Content>
+
+        <ImageButton
+                HeightRequest="40"
+                WidthRequest="40"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Source="menuIcon.png"
+                Margin="20, 15, 0, 0"
+                Grid.Column="0"
+                BackgroundColor="Transparent"
+                Command="{Binding MenuCommand}"
+            />
+
+        <Frame Grid.RowSpan="2" Margin="30,70,30,30" CornerRadius="20">
+            <StackLayout>
+
+                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Quản lí sân bay" TextColor="Gray" FontSize="15">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding AirportCommand}"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Stay Places Manager" TextColor="Gray" FontSize="15">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding StayPlaceCommand}"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+
+                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Tours Manager" TextColor="Gray" FontSize="15">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding TourCommand}"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+
+                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10" IsVisible="{Binding IsAdmin}">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Staff Manager" TextColor="Gray" FontSize="15">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding StaffCommand}"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+
+                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Discount Manager" TextColor="Gray" FontSize="15">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding DiscountCommand}"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+
+                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10" IsVisible="{Binding IsAdmin}">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Revenue Manager" TextColor="Gray" FontSize="15">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RevenueCommand}"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+
+                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Rule Manager" TextColor="Gray" FontSize="15">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding RuleCommand}"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+
+            </StackLayout>
+        </Frame>
+    </Grid>
 </ContentPage>

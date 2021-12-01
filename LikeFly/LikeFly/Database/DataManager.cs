@@ -20,26 +20,26 @@ namespace LikeFly.Database
             }
             set { _ins = value; }
         }
-
+        
         public bool LoadData = true;
         public List<User> users;
-        public List<User> usersTemp;
+        public List<Airport> airports;
+
         private DataManager()
         {
             FlightsServices = new FlightServices();
             UsersServices = new UsersServices();
+            AirportServices = new AirportServices();
             notiServices = new NotificationServices();
 
-
-            ListFlights = new ObservableCollection<Flight>();
-            ListUser = new ObservableCollection<User>();
             ListNotification = new ObservableCollection<Notification>();
+            ListFlights = new ObservableCollection<Flight>();
+            ListUsers = new ObservableCollection<User>();
+            ListAirports = new ObservableCollection<Airport>();
 
             CurrentUser = new User();
             getAllList();
         }
-        
-        #region Get List Func
         async Task getFlightList()
         {
             List<Flight> temp = await FlightsServices.GetAllFlights();
@@ -47,35 +47,38 @@ namespace LikeFly.Database
             {
                 ListFlights.Add(p);
             }
-            
-           
         }
         async Task GetUsers()
         {
             users = await UsersServices.GetAllUsers();
-            List<User> temp = await UsersServices.GetAllUsers();
-            foreach (User p in temp)
+            foreach (User p in users)
             {
-                ListUser.Add(p);
+                ListUsers.Add(p);
             }
-
         }
+        async Task GetAirports()
+        {
+            airports = await AirportServices.GetAllAirport();
+            foreach (Airport p in airports)
+            {
+                ListAirports.Add(p);
+            }
+        }
+   
         async Task GetNotifications()
         {
             List<Notification> notifications = await NotiServices.GetAllNotification();
             foreach (Notification p in notifications)
             {
                 ListNotification.Add(p);
-            }
-        }
+            }        
         async Task getAllList()
         {
             await GetUsers();    
             await getFlightList();       
             await GetNotifications();       
+            await GetAirports();
         }
-
-        #endregion 
 
         private FlightServices flightsServices;
         public FlightServices FlightsServices
@@ -94,6 +97,14 @@ namespace LikeFly.Database
                 return notiServices;
             }
             set { notiServices = value; }
+        private AirportServices airportServices;
+        public AirportServices AirportServices
+        {
+            get
+            {
+                return airportServices;
+            }
+            set { airportServices = value; }
         }
         private UsersServices usersServices;
         public UsersServices UsersServices
@@ -114,13 +125,22 @@ namespace LikeFly.Database
                 _flights = value;
             }
         }
-        private ObservableCollection<User> _users;
-        public ObservableCollection<User> ListUser
+        private ObservableCollection<User> listUsers;
+        public ObservableCollection<User> ListUsers
         {
-            get { return _users; }
+            get { return listUsers; }
             set
             {
-                _users = value;
+                listUsers = value;
+            }
+        }
+        private ObservableCollection<Airport> listAirports;
+        public ObservableCollection<Airport> ListAirports
+        {
+            get { return listAirports; }
+            set
+            {
+                listAirports = value;
             }
         }
         private ObservableCollection<Notification> _notifications;
@@ -149,6 +169,17 @@ namespace LikeFly.Database
                 {
                     IsManager = false;
                 }
+                OnPropertyChanged("CurrentUser");
+            }
+        }
+        private Airport currentAirport;
+        public Airport CurrentAirport
+        {
+            get { return currentAirport; }
+            set
+            {
+                currentAirport = value;
+                OnPropertyChanged("CurrentAirport");
             }
         }
         private Notification currentNoti;

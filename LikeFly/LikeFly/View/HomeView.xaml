@@ -9,13 +9,13 @@
     <ContentPage.BindingContext>
         <vm:HomeViewModel/>
     </ContentPage.BindingContext>
-
+   
     <Grid>        
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Image Source="https://i.pinimg.com/564x/b6/f0/eb/b6f0eb7fb012e0ac983e1811fae9cc2e.jpg" Aspect="AspectFill"/>
+        <Image Source="https://i.pinimg.com/564x/e1/c4/ef/e1c4ef856ac9decdf21eebe298a40f6e.jpg" Aspect="AspectFill" Margin="0,0,0,30"/>
         
         <StackLayout>            
             <Grid Margin="0,5,0,0" Padding="15,15,15,0" VerticalOptions="Start">
@@ -29,15 +29,15 @@
                    HasShadow="False"
                    CornerRadius="8"
                    Margin="0, 0, 0, 0"
-                   Padding="0"
+                   Padding="10"
                    VerticalOptions="Center"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="White"
                     >
                     <ImageButton    
                         Source="bellIcon.png"
                         Aspect="AspectFill"
-                        HeightRequest="35"
-                        WidthRequest="35"   
+                        HeightRequest="25"
+                        WidthRequest="25"   
                         BackgroundColor="Transparent"
                         Command="{Binding MenuCommand}"
                     />
@@ -46,7 +46,7 @@
                 HeightRequest="45"
                 WidthRequest="45"
                 HorizontalOptions="Start"
-                VerticalOptions="End"
+                VerticalOptions="Start"
                 Source="menuIcon.png"
                 Margin="0, -10, 0, 0"
                 Grid.Column="0"
@@ -54,52 +54,103 @@
                 Command="{Binding MenuCommand}"
             />
             </Grid>
-            <Label Text="Let's Like Fly!" FontSize="20" Margin="10,0,0,0" FontAttributes="Bold" TextColor="White"/>
-        </StackLayout>         
-
-        <Frame Margin="10, 110,10,0" Grid.RowSpan="2" BackgroundColor="White" CornerRadius="25" Padding="10" VerticalOptions="Start">
-            <StackLayout>
-                <Frame Margin="15,20,15,0" CornerRadius="15" Padding="20,10,20,10">
+            <Label Text="Let's Like Fly!" FontSize="20" Margin="10,-15,0,0" FontAttributes="Bold" TextColor="White"/>
+        </StackLayout>
+        <ScrollView Grid.RowSpan="2" VerticalOptions="Start" Margin="0,90,0,0" >
+            <StackLayout VerticalOptions="Start" >
+                <Frame Margin="10, 0,10,0"  BackgroundColor="White" CornerRadius="25" Padding="10" VerticalOptions="Start">
                     <StackLayout>
-                        <Label Text="Từ" FontSize="18"/>
-                        <Picker Margin="0,-20,0,0"/>
-                    </StackLayout>
-                </Frame>
-                <Frame Margin="15,10,15,0" CornerRadius="15" Padding="20,10,20,10"> 
-                    <StackLayout>
-                        <Label Text="Đến" FontSize="18"/>
-                        <Picker Margin="0,-20,0,0"/>
-                    </StackLayout>
-                </Frame>
-                <Grid Margin="15,00,15,0" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                        <Frame Margin="10,10,10,0" CornerRadius="15" Padding="20,10,20,10">
+                            <StackLayout>
+                                <Label Text="Từ" FontSize="18"/>
+                                <Picker Margin="0,-20,0,0"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame Margin="10,10,10,0" CornerRadius="15" Padding="20,10,20,10">
+                            <StackLayout>
+                                <Label Text="Đến" FontSize="18"/>
+                                <Picker Margin="0,-20,0,0"/>
+                            </StackLayout>
+                        </Frame>
+                        <Grid Margin="10,0,10,0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
 
-                    <Frame Margin="0,10,0,0" CornerRadius="15" Padding="20,10,20,10">
-                        <StackLayout>
-                            <Label Text="Ngày đi" FontSize="18"/>
-                            <Picker Margin="0,-20,0,0"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame Grid.Column="1" Margin="0,10,0,0" CornerRadius="15" Padding="20,10,20,10">
-                        <StackLayout>
-                            <Label Text="Ngày đến" FontSize="18"/>
-                            <Picker Margin="0,-20,0,0"/>
-                        </StackLayout>
-                    </Frame>
-                </Grid>
-                <Button 
+                            <Frame Margin="0,10,0,0" CornerRadius="15" Padding="20,10,20,10">
+                                <StackLayout>
+                                    <Label Text="Ngày đi" FontSize="18"/>
+                                    <Picker Margin="0,-20,0,0"/>
+                                </StackLayout>
+                            </Frame>
+                            <Frame Grid.Column="1" Margin="0,10,0,0" CornerRadius="15" Padding="20,10,20,10">
+                                <StackLayout>
+                                    <Label Text="Ngày đến" FontSize="18"/>
+                                    <Picker Margin="0,-20,0,0"/>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                        <Button 
                     BackgroundColor="#272727"
                     TextColor="White"
                     Text="Tiếp tục"
                     Margin="20,10,20,10"
                     CornerRadius="10"
-                />               
-            </StackLayout>
-        </Frame>       
+                />
+                    </StackLayout>
+                </Frame>
 
+                <CollectionView 
+                    VerticalOptions="Start"
+                            x:Name="clview"
+                            ItemsSource="{Binding Airports}" 
+                            SelectionMode="Single" 
+                            SelectedItem="{Binding SelectedAirport}"
+                            SelectionChangedCommand="{Binding SelectedCommand}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clview}}"
+                    HeightRequest="230"
+                            >
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout VerticalOptions="Start" >
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Frame
+                                    BackgroundColor="White"
+                                    Margin="10"
+                                    CornerRadius="10"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Start"
+                                    Padding="0"                                  
+                                    >
+                                    <StackLayout VerticalOptions="Start">
+                                        <Image Source="{Binding imgSource[0]}" Aspect="AspectFill" HeightRequest="150" WidthRequest="300"/>
+                                        <StackLayout Orientation="Horizontal" Padding="15,5,15,10">
+                                            <Label Text="{Binding name}" FontAttributes="Bold" TextColor="#272727"/>
+                                            <Label Text="{Binding title}"  HorizontalOptions="EndAndExpand"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>        
+        </ScrollView>
     </Grid>
     
 </ContentPage>
