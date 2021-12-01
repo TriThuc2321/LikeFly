@@ -20,30 +20,40 @@ namespace LikeFly.Database
             }
             set { _ins = value; }
         }
-
+        
         public bool LoadData = true;
         public List<User> users;
-        public List<User> usersTemp;
+        public List<Airport> airports;
+
         private DataManager()
         {
             FlightsServices = new FlightServices();
             UsersServices = new UsersServices();
+            AirportServices = new AirportServices();
 
             ListFlights = new ObservableCollection<Flight>();
-            ListUser = new ObservableCollection<User>();
+            ListUsers = new ObservableCollection<User>();
+            ListAirports = new ObservableCollection<Airport>();
 
             CurrentUser = new User();
             getAllList();
         }
         async Task GetUsers()
         {
-             users = await UsersServices.GetAllUsers();
-            List<User> temp = await UsersServices.GetAllUsers();
-            foreach (User p in temp)
+            users = await UsersServices.GetAllUsers();
+            foreach (User p in users)
             {
-                ListUser.Add(p);
+                ListUsers.Add(p);
             }
             
+        }
+        async Task GetAirports()
+        {
+            airports = await AirportServices.GetAllAirport();
+            foreach (Airport p in airports)
+            {
+                ListAirports.Add(p);
+            }
         }
         #region Get List Func
         async Task getFlightList()
@@ -52,14 +62,14 @@ namespace LikeFly.Database
             foreach (Flight p in temp)
             {
                 ListFlights.Add(p);
-            }
-            
+            }           
            
         }
         async Task getAllList()
         {
             await GetUsers();    
-            await getFlightList();       
+            await getFlightList();
+            await GetAirports();
         }
 
         #endregion 
@@ -72,6 +82,15 @@ namespace LikeFly.Database
                 return flightsServices;
             }
             set { flightsServices = value; }
+        }
+        private AirportServices airportServices;
+        public AirportServices AirportServices
+        {
+            get
+            {
+                return airportServices;
+            }
+            set { airportServices = value; }
         }
         private UsersServices usersServices;
         public UsersServices UsersServices
@@ -92,13 +111,22 @@ namespace LikeFly.Database
                 _flights = value;
             }
         }
-        private ObservableCollection<User> _users;
-        public ObservableCollection<User> ListUser
+        private ObservableCollection<User> listUsers;
+        public ObservableCollection<User> ListUsers
         {
-            get { return _users; }
+            get { return listUsers; }
             set
             {
-                _users = value;
+                listUsers = value;
+            }
+        }
+        private ObservableCollection<Airport> listAirports;
+        public ObservableCollection<Airport> ListAirports
+        {
+            get { return listAirports; }
+            set
+            {
+                listAirports = value;
             }
         }
         private User currentUser;
@@ -118,6 +146,17 @@ namespace LikeFly.Database
                 {
                     IsManager = false;
                 }
+                OnPropertyChanged("CurrentUser");
+            }
+        }
+        private Airport currentAirport;
+        public Airport CurrentAirport
+        {
+            get { return currentAirport; }
+            set
+            {
+                currentAirport = value;
+                OnPropertyChanged("CurrentAirport");
             }
         }
         private string profilePic;
