@@ -15,6 +15,7 @@ namespace LikeFly.ViewModel
         Shell currentShell;
 
         public Command SaveCommand { get; }
+        public Command NavigationBack { get; }
 
         public NewAirportViewModel() { }
         public NewAirportViewModel(INavigation navigation, Shell currentShell)
@@ -23,6 +24,7 @@ namespace LikeFly.ViewModel
             this.currentShell = currentShell;
 
             SaveCommand = new Command(saveHandleAsync);
+            NavigationBack = new Command(() => navigation.PopAsync());
         }
 
         private async void saveHandleAsync(object obj)

@@ -10,5 +10,5 @@
         <vm:NewAirportViewModel/>
     </ContentPage.BindingContext>
 
-    <Button Command="{Binding SaveCommand}"/>
+    <Button Command="{Binding NavigationBack}"/>
 </ContentPage>
