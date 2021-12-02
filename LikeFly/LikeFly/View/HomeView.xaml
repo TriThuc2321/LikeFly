@@ -23,17 +23,15 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Frame      
-                    Grid.Column="1"
-                   HorizontalOptions="End"
-                   HasShadow="False"
-                   CornerRadius="8"
-                   Margin="0, 0, 0, 0"
-                   Padding="10"
-                   VerticalOptions="Center"
+                <StackLayout Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center" Orientation="Horizontal">
+                    <Frame                        
+                        HasShadow="False"
+                        CornerRadius="8"
+                        Margin="0, 0, 5, 0"
+                        Padding="0"                   
                     BackgroundColor="Transparent"
                     >
-                    <ImageButton    
+                        <ImageButton    
                         Source="bellIcon.png"
                         Aspect="AspectFill"
                         HeightRequest="30"
@@ -41,7 +39,26 @@
                         BackgroundColor="Transparent"
                         Command="{Binding NotificaitonCommand}"
                     />
-                </Frame>
+                    </Frame>
+
+                    <Frame                        
+                        HasShadow="False"
+                        CornerRadius="8"
+                        Margin="0, 0, 5, 0"
+                        Padding="0"                   
+                        BackgroundColor="Transparent"
+                    >
+                        <ImageButton    
+                        Source="{Binding ProfilePic}"
+                        Aspect="AspectFill"
+                        HeightRequest="25"
+                        WidthRequest="25"   
+                        BackgroundColor="Transparent"
+                        Command="{Binding NotificaitonCommand}"
+                    />
+                    </Frame>
+                </StackLayout>
+                
                 
                 <ImageButton
                 HeightRequest="45"
@@ -55,9 +72,9 @@
                 Command="{Binding MenuCommand}"
             />
             </Grid>
-            <Label Text="Let's Like Fly!" FontSize="20" Margin="10,-15,0,0" FontAttributes="Bold" TextColor="White"/>
+            
         </StackLayout>
-        <ScrollView Grid.RowSpan="2" VerticalOptions="Start" Margin="0,90,0,0" >
+        <ScrollView Grid.RowSpan="2" VerticalOptions="Start" Margin="0,75,0,0" >
             <StackLayout VerticalOptions="Start" >
                 <Frame Margin="10, 0,10,0"  BackgroundColor="White" CornerRadius="25" Padding="10" VerticalOptions="Start">
                     <StackLayout>

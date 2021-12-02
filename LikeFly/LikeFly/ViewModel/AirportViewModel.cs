@@ -3,16 +3,16 @@ using LikeFly.View;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace LikeFly.ViewModel
 {
     class AirportViewModel : ObservableObject
     {
-        INavigation navigation;
-        Shell currentShell;
+        public INavigation navigation;
+        public Shell currentShell;
 
-        public Command NewAirportCommand { get; }
         public Command NotificaitonCommand { get; }
 
         public AirportViewModel() { }
@@ -21,12 +21,12 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = currentShell;
 
-            NewAirportCommand = new Command(newAirportHandle);
+           
         }
-
-        private void newAirportHandle(object obj)
+        public ICommand NewAirportCommand => new Command<object>(async (obj) =>
         {
-            navigation.PushAsync(new NewAirportView());
-        }
+            //await currentShell.GoToAsync($"{nameof(NewAirportView)}");
+            await navigation.PushAsync(new NewAirportView());
+        });
     }
 }

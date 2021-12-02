@@ -13,13 +13,18 @@ namespace LikeFly.ViewModel
         INavigation navigation;
 
         public Command BackCommand { get; }
+        public Command SaveCommand { get; }
+        public Command NavigationBack { get; }
 
         public NewAirportViewModel() { }
         public NewAirportViewModel(INavigation _navigation)
         {
             this.navigation = _navigation;
             SelectedAirport = DataManager.Ins.CurrentAirport;
+
             BackCommand = new Command(() =>  navigation.PopAsync());
+            SaveCommand = new Command(saveHandleAsync);
+            NavigationBack = new Command(() => navigation.PopAsync());
         }
 
         private Airport selectedAirport;
