@@ -51,6 +51,8 @@ namespace LikeFly.Database
             CurrentBookedTicket = new BookedTicket();
             getAllList();
         }
+
+        #region get all func
         async Task getFlightList()
         {
             List<Flight> temp = await FlightsServices.GetAllFlights();

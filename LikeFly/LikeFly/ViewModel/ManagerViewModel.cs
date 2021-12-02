@@ -26,12 +26,18 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = curentShell;
 
-            AirportCommand = new Command(staffHandle); 
+            AirportCommand = new Command(staffHandle);
+            DiscountCommand = new Command(discountHandle);
             
         }
         private void staffHandle(object obj)
         {
             navigation.PushAsync(new AirportView());
+        }
+
+        void discountHandle(object obj)
+        {
+            navigation.PushAsync(new DiscountManagerView());
         }
     }
 }

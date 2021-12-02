@@ -26,37 +26,12 @@ namespace LikeFly.ViewModel
             Refresh = new Command(RefreshView);
             NewDiscountCommand = new Command(addNew);
             NavigationBack = new Command(() => navigation.PopAsync());
-            DeleteCommand = new Command(delete);
 
             SetInformation();
 
         }
 
-        async void delete(object obj)
-        {
-            Discount result = obj as Discount;
-
-            if (result != null && result.isUsed != "0")
-            {
-                DependencyService.Get<IToast>().ShortToast("Cannot delete this discount!");
-                return;
-            }
-            else if (result != null)
-            {
-                Discount tmp = await DataManager.Ins.DiscountsServices.FindDiscountById(result.id);
-                if (tmp != null)
-                {
-                    if (tmp.isUsed != "0")
-                    {
-                        DependencyService.Get<IToast>().ShortToast("Cannot delete this discount! Someone used this account");
-                        return;
-                    }
-                }
-                DiscountList.Remove(result);
-                DataManager.Ins.ListDiscount.Remove(result);
-                await DataManager.Ins.DiscountsServices.DeleteDiscount(result.id);
-            }
-        }
+       
         void addNew(object obj)
         {
             navigation.PushAsync(new NewDiscountView());

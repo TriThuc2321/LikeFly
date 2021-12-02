@@ -10,16 +10,15 @@
         <vm:ManagerViewModel/>
     </ContentPage.BindingContext>
 
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Image Source="https://i.pinimg.com/564x/e1/c4/ef/e1c4ef856ac9decdf21eebe298a40f6e.jpg" Aspect="AspectFill"/>
+        <StackLayout BackgroundColor="CadetBlue"/>
 
         <StackLayout >
-            <Label Text="Quản lí" Margin="0,30,0,0" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="White"/>
+            <Label Text="Quản lí dữ liệu" Margin="0,20,25,0" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="End" TextColor="White"/>
         </StackLayout>
 
         <ImageButton
@@ -34,111 +33,115 @@
                 Command="{Binding MenuCommand}"
             />
 
-        <Frame Grid.RowSpan="2" Margin="30,70,30,30" CornerRadius="20">
-            <StackLayout>
+        <Frame Grid.RowSpan="2" Margin="25,70,25,30" CornerRadius="20">
+            <StackLayout >
 
-                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Quản lí sân bay" TextColor="Gray" FontSize="15">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding AirportCommand}"/>
-                                    </Span.GestureRecognizers>
-                                </Span>
-
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </Frame>
-                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Stay Places Manager" TextColor="Gray" FontSize="15">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding StayPlaceCommand}"/>
-                                    </Span.GestureRecognizers>
-                                </Span>
-
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" >
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout BackgroundColor="White" WidthRequest="2"/>
+                        <Label Margin="3,0,0,0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Quản lí sân bay" TextColor="White" FontSize="15" FontAttributes="Bold">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding AirportCommand}"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                    </StackLayout>
                 </Frame>
 
-                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Tours Manager" TextColor="Gray" FontSize="15">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding TourCommand}"/>
-                                    </Span.GestureRecognizers>
-                                </Span>
-
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" >
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout BackgroundColor="White" WidthRequest="2"/>
+                        <Label Margin="3,0,0,0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Quản lí chuyến bay" TextColor="White" FontSize="15" FontAttributes="Bold">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding AirportCommand}"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                    </StackLayout>
                 </Frame>
 
-                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10" IsVisible="{Binding IsAdmin}">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Staff Manager" TextColor="Gray" FontSize="15">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding StaffCommand}"/>
-                                    </Span.GestureRecognizers>
-                                </Span>
-
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" >
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout BackgroundColor="White" WidthRequest="2"/>
+                        <Label Margin="3,0,0,0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Quản lí nhân viên" TextColor="White" FontSize="15" FontAttributes="Bold">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding AirportCommand}"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                    </StackLayout>
                 </Frame>
 
-                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Discount Manager" TextColor="Gray" FontSize="15">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding DiscountCommand}"/>
-                                    </Span.GestureRecognizers>
-                                </Span>
-
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" >
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout BackgroundColor="White" WidthRequest="2"/>
+                        <Label Margin="3,0,0,0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Quản lí phiếu giảm giá" TextColor="White" FontSize="15" FontAttributes="Bold">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DiscountCommand}"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                    </StackLayout>
                 </Frame>
 
-                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10" IsVisible="{Binding IsAdmin}">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Revenue Manager" TextColor="Gray" FontSize="15">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding RevenueCommand}"/>
-                                    </Span.GestureRecognizers>
-                                </Span>
-
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" >
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout BackgroundColor="White" WidthRequest="2"/>
+                        <Label Margin="3,0,0,0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Doanh thu" TextColor="White" FontSize="15" FontAttributes="Bold">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding AirportCommand}"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                    </StackLayout>
                 </Frame>
 
-                <Frame HasShadow="False" BorderColor="Gray" Margin="0, 10,0,0" CornerRadius="10">
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Rule Manager" TextColor="Gray" FontSize="15">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding RuleCommand}"/>
-                                    </Span.GestureRecognizers>
-                                </Span>
-
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" >
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout BackgroundColor="White" WidthRequest="2"/>
+                        <Label Margin="3,0,0,0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Tham số quy định" TextColor="White" FontSize="15" FontAttributes="Bold">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding AirportCommand}"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                    </StackLayout>
                 </Frame>
 
             </StackLayout>

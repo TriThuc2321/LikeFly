@@ -10,8 +10,8 @@ namespace LikeFly
         public App()
         {
             InitializeComponent();
-            // MainPage = new MainPage();
-            MainPage = new NavigationPage(new DiscountManagerView());
+             MainPage = new MainPage();
+            //MainPage = new NavigationPage(new DiscountManagerView());
         }
 
         protected override void OnStart()

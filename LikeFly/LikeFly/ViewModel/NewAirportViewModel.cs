@@ -23,7 +23,7 @@ namespace LikeFly.ViewModel
             SelectedAirport = DataManager.Ins.CurrentAirport;
 
             BackCommand = new Command(() =>  navigation.PopAsync());
-            SaveCommand = new Command(saveHandleAsync);
+          //  SaveCommand = new Command(saveHandleAsync);
             NavigationBack = new Command(() => navigation.PopAsync());
         }
 

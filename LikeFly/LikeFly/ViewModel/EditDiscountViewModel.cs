@@ -20,7 +20,7 @@ namespace LikeFly.ViewModel
             this.currentShell = current;
 
             NavigationBack = new Command(() => navigation.PopAsync());
-
+            DeleteCommand = new Command(delete);
             EditCommand = new Command(Edit);
 
             Notice = "";
@@ -35,6 +35,33 @@ namespace LikeFly.ViewModel
 
         public Command NavigationBack { get; }
         public Command EditCommand { get; }
+
+        public Command DeleteCommand { get; }
+
+        async void delete(object obj)
+        {
+            //Discount result = obj as Discount;
+
+            //if (result != null && result.isUsed != "0")
+            //{
+            //    DependencyService.Get<IToast>().ShortToast("Cannot delete this discount!");
+            //    return;
+            //}
+            //else if (result != null)
+            //{
+            //    Discount tmp = await DataManager.Ins.DiscountsServices.FindDiscountById(result.id);
+            //    if (tmp != null)
+            //    {
+            //        if (tmp.isUsed != "0")
+            //        {
+            //            DependencyService.Get<IToast>().ShortToast("Cannot delete this discount! Someone used this account");
+            //            return;
+            //        }
+            //    }
+            //    DiscountList.Remove(result);
+            //    DataManager.Ins.ListDiscount.Remove(result);
+            //    await DataManager.Ins.DiscountsServices.DeleteDiscount(result.id);
+            }
 
         void SetInformation()
         {
