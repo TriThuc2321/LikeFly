@@ -4,7 +4,7 @@
        x:Class="LikeFly.MainPage"
        FlyoutHeaderBehavior="Scroll"
        xmlns:views="clr-namespace:LikeFly.View"
-       xmlns:local="clr-namespace:LikeFly.View"
+       
        FlyoutIcon="menuIcon.png"
        Shell.NavBarIsVisible="False"
        xmlns:sys="clr-namespace:System;assembly=mscorlib"

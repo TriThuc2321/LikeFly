@@ -11,12 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace LikeFly.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewAirportView : ContentPage
+    public partial class AirportManagerView : ContentPage
     {
-        public NewAirportView()
+        public AirportManagerView()
         {
             InitializeComponent();
-            this.BindingContext = new NewAirportViewModel(Navigation);
+            this.BindingContext = new AirportManagerViewModel(Navigation, Shell.Current);
 
         }
     }

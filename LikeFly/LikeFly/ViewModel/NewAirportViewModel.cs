@@ -4,34 +4,35 @@ using LikeFly.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace LikeFly.ViewModel
 {
-    class NewAirportViewModel : ObservableObject
+    public class NewAirportViewModel :ObservableObject
     {
         INavigation navigation;
-        Shell currentShell;
 
-        public Command SaveCommand { get; }
+        public Command BackCommand { get; }
 
         public NewAirportViewModel() { }
-        public NewAirportViewModel(INavigation navigation, Shell currentShell)
+        public NewAirportViewModel(INavigation _navigation)
         {
-            this.navigation = navigation;
-            this.currentShell = currentShell;
-
-            SaveCommand = new Command(saveHandleAsync);
+            this.navigation = _navigation;
+            SelectedAirport = DataManager.Ins.CurrentAirport;
+            BackCommand = new Command(() =>  navigation.PopAsync());
         }
 
-        private async void saveHandleAsync(object obj)
+        private Airport selectedAirport;
+        public Airport SelectedAirport
         {
-            List<string> temp = new List<string>();
-            temp.Add("11");
-            temp.Add("12");
-            Airport airport = new Airport("A01", "11", "11", temp);
-            await DataManager.Ins.AirportServices.AddAirport(airport);
+            get { return selectedAirport; }
+            set
+            {
+                selectedAirport = value;
+                OnPropertyChanged("SelectedAirport");
+
+            }
         }
+
     }
 }

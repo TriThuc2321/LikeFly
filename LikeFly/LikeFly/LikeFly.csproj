@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="View\AirportView.xaml">
+    <EmbeddedResource Update="View\AirportManagerView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\ConfirmEmailView.xaml">
@@ -58,6 +58,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="View\NewAirportView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\NotificationView.xaml">
+    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\RegisterView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
