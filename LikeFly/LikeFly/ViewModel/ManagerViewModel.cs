@@ -26,8 +26,12 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = curentShell;
 
-            AirportCommand = new Command(() => navigation.PushAsync(new AirportView())); 
+            AirportCommand = new Command(staffHandle); 
             
+        }
+        private void staffHandle(object obj)
+        {
+            navigation.PushAsync(new AirportView());
         }
     }
 }
