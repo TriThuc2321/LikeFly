@@ -22,10 +22,10 @@ namespace LikeFly.ViewModel
 
             foreach (Notification ite in DataManager.Ins.ListNotification)
             {
-                if (ite.id == selectedNoti.id)
+                if (ite.id == SelectedNoti.id)
                 {
-                    ite.isChecked = "True";
-                    selectedNoti.isChecked = "True";
+                    ite.IsChecked = "true";
+                    SelectedNoti.isChecked = "true";
                     break;
                 }
             }
