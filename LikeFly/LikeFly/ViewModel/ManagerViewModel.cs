@@ -12,7 +12,7 @@ namespace LikeFly.ViewModel
         public Shell currentShell;
 
         public Command AirportCommand { get; }
-        public Command StayPlaceCommand { get; }
+        public Command FlightCommand { get; }
         public Command TourCommand { get; }
         public Command MenuCommand { get; }
         public Command StaffCommand { get; }
@@ -26,12 +26,9 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = curentShell;
 
-            AirportCommand = new Command(staffHandle); 
-            
-        }
-        private void staffHandle(object obj)
-        {
-            navigation.PushAsync(new AirportManagerView());
+            AirportCommand = new Command(() => navigation.PushAsync(new AirportManagerView()));
+            FlightCommand = new Command(() => navigation.PushAsync(new FlightManagerView()));
+
         }
     }
 }
