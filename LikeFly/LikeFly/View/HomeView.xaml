@@ -155,10 +155,10 @@
                                     Padding="0"                                  
                                     >
                                     <StackLayout VerticalOptions="Start">
-                                        <Image Source="{Binding imgSource}" Aspect="AspectFill" HeightRequest="150" WidthRequest="300"/>
+                                        <Image Source="{Binding ImgSource}" Aspect="AspectFill" HeightRequest="150" WidthRequest="300"/>
                                         <StackLayout Orientation="Horizontal" Padding="15,5,15,10">
-                                            <Label Text="{Binding name}" FontAttributes="Bold" TextColor="#272727"/>
-                                            <Label Text="{Binding title}"  HorizontalOptions="EndAndExpand"/>
+                                            <Label Text="{Binding Name}" FontAttributes="Bold" TextColor="#272727"/>
+                                            <Label Text="{Binding Province}"  HorizontalOptions="EndAndExpand"/>
                                         </StackLayout>
                                     </StackLayout>
                                 </Frame>

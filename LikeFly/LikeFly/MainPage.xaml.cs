@@ -19,8 +19,9 @@ namespace LikeFly
             Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));
             Routing.RegisterRoute(nameof(ResetPasswordView), typeof(ResetPasswordView));
             Routing.RegisterRoute(nameof(ConfirmEmailView), typeof(ConfirmEmailView));
-            Routing.RegisterRoute(nameof(HomeView), typeof(HomeView));
-            
+            /*Routing.RegisterRoute(nameof(HomeView), typeof(HomeView));
+            Routing.RegisterRoute(nameof(UserView), typeof(UserView));*/
+
             this.BindingContext = DataManager.Ins;
         }
     }

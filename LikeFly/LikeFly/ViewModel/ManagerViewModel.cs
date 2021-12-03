@@ -26,6 +26,8 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = curentShell;
 
+            MenuCommand = new Command(() => currentShell.FlyoutIsPresented = !currentShell.FlyoutIsPresented);
+
             AirportCommand = new Command(() => navigation.PushAsync(new AirportManagerView()));
             FlightCommand = new Command(() => navigation.PushAsync(new FlightManagerView()));
 
