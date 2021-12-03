@@ -26,10 +26,10 @@ namespace LikeFly.Database
               .Child("Airports")
               .OnceAsync<Airport>()).Select(item => new Airport
               {
-                  id = item.Object.id,
-                  name = item.Object.name,
-                  imgSource = item.Object.imgSource,
-                  title = item.Object.title,
+                  Id = item.Object.Id,
+                  Name = item.Object.Name,
+                  ImgSource = item.Object.ImgSource,
+                  Province = item.Object.Province,
               }).ToList();
         }
         public async Task AddAirport(Airport airport)
@@ -38,27 +38,27 @@ namespace LikeFly.Database
               .Child("Airports")
               .PostAsync(new Airport()
               {
-                  id = airport.id,
-                  name = airport.name,
-                  imgSource = airport.imgSource,
-                  title = airport.title,
+                  Id = airport.Id,
+                  Name = airport.Name,
+                  ImgSource = airport.ImgSource,
+                  Province = airport.Province,
               });
         }
         public async Task UpdateAirport(Airport airport)
         {
             var toUpdatePlace = (await firebase
               .Child("Airports")
-              .OnceAsync<Airport>()).Where(a => a.Object.id == airport.id).FirstOrDefault();
+              .OnceAsync<Airport>()).Where(a => a.Object.Id == airport.Id).FirstOrDefault();
 
             await firebase
               .Child("Airports")
               .Child(toUpdatePlace.Key)
               .PutAsync(new Airport
               {
-                  id = airport.id,
-                  name = airport.name,
-                  imgSource = airport.imgSource,
-                  title = airport.title,
+                  Id = airport.Id,
+                  Name = airport.Name,
+                  ImgSource = airport.ImgSource,
+                  Province = airport.Province,
               });
         }
         async public Task<string> saveImage(Stream imgStream, string airportId, int id)
@@ -96,18 +96,12 @@ namespace LikeFly.Database
         public async Task DeleteAirport(Airport airport)
         {
             var toDeleted = (await firebase
-               .Child("Airports").OnceAsync<Airport>()).FirstOrDefault(p => p.Object.id == airport.id);
+               .Child("Airports").OnceAsync<Airport>()).FirstOrDefault(p => p.Object.Id == airport.Id);
 
             await firebase.Child("Airports").Child(toDeleted.Key).DeleteAsync();
 
-            for (int i = 0; i < airport.imgSource.Count; i++)
-            {
-                await DeleteFile(airport.id, i);
-            }
-
-
-
-
+                await DeleteFile(airport.ImgSource,0);
+            
         }
     }
 }

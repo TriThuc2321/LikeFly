@@ -41,14 +41,15 @@
                             <Frame Padding="0" HasShadow="True" Margin="10,5,10,5" BackgroundColor="White" >
 
                                 <StackLayout Padding="20" Orientation="Horizontal">
-                                    <!--<Image Source="{Binding imgSource[0]}" HeightRequest="50"></Image>-->
-                                    <Label Text="{Binding name}" FontAttributes="Bold"  TextColor="Black" FontSize="17" VerticalTextAlignment="Center"></Label>
+                                    <Image Source="{Binding ImgSource}" HeightRequest="50"></Image>
+                                    <Label Text="{Binding Name}" FontAttributes="Bold"  TextColor="Black" FontSize="17" VerticalTextAlignment="Center"></Label>
                                 </StackLayout>
                             </Frame>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Button Command="{Binding BackCommand2}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

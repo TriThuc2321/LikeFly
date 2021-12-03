@@ -31,7 +31,7 @@ namespace LikeFly.ViewModel
         }
         private void staffHandle(object obj)
         {
-            navigation.PushAsync(new AirportView());
+            navigation.PushAsync(new AirportManagerView());
         }
     }
 }

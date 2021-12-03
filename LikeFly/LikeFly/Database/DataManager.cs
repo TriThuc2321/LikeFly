@@ -75,10 +75,11 @@ namespace LikeFly.Database
         }
         async Task getAllList()
         {
-            await GetUsers();    
+            await GetUsers();
+            await GetAirports();
             await getFlightList();       
             await GetNotifications();       
-            await GetAirports();
+            
         }
 
         private FlightServices flightsServices;

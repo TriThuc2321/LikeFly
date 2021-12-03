@@ -9,6 +9,13 @@
     <ContentPage.BindingContext>
         <vm:NewAirportViewModel/>
     </ContentPage.BindingContext>
-
+    <StackLayout>
     <Button Command="{Binding NavigationBack}"/>
+
+        <Image Source="{Binding Img}"></Image>
+        <Button Text="Add New Image" Command="{Binding AddImageCommand}"/>
+        <Entry Placeholder="{Binding SelectedAirport.Name}" Text="{Binding NewAirportName}"></Entry>
+        <Picker ItemsSource="{Binding ProvinceList}" SelectedItem="{Binding SelectedProvince}"></Picker>
+        <Button Text="Add" Command="{Binding AddCommand}"/>
+    </StackLayout>
 </ContentPage>

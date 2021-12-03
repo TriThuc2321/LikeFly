@@ -16,7 +16,6 @@ namespace LikeFly.ViewModel
         INavigation navigation;
         Shell currentShell;
 
-        public Command NotificaitonCommand { get; }
 
         public AirportManagerViewModel() { }
         public AirportManagerViewModel(INavigation navigation, Shell currentShell)
@@ -28,12 +27,20 @@ namespace LikeFly.ViewModel
 
         private void InitList()
         {
-            ListAirport = new ObservableCollection<Airport>();
-            foreach (Airport ite in DataManager.Ins.ListAirports)
-                ListAirport.Add(ite);
+            ListAirport = DataManager.Ins.ListAirports;
         }
+        public ICommand BackCommand => new Command<object>(async (obj) =>
+        {
+            //await currentShell.GoToAsync($"{nameof(NewAirportView)}");
+            await navigation.PopAsync();
+        });
+        public ICommand BackCommand2 => new Command<object>(async (obj) =>
+        {
+            navigation.PushAsync(new NewAirportView());
+        });
 
-       
+        
+
         private ObservableCollection<Airport> listAirport;
         public ObservableCollection<Airport> ListAirport
         {
