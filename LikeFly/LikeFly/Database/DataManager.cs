@@ -38,6 +38,7 @@ namespace LikeFly.Database
             ListAirports = new ObservableCollection<Airport>();
 
             CurrentUser = new User();
+            CurrentFlight = new Flight();
             getAllList();
         }
         async Task getFlightList()
@@ -182,6 +183,16 @@ namespace LikeFly.Database
             {
                 currentAirport = value;
                 OnPropertyChanged("CurrentAirport");
+            }
+        }
+        private Flight currentFlight;
+        public Flight CurrentFlight
+        {
+            get { return currentFlight; }
+            set
+            {
+                currentFlight = value;
+                OnPropertyChanged("CurrentFlight");
             }
         }
         private Notification currentNoti;

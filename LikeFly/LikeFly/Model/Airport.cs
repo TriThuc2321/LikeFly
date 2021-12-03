@@ -12,14 +12,14 @@ namespace LikeFly.Model
 
         public string id { get; set; }
         public string name { get; set; }
-        public string title { get; set; }
-        public List<string> imgSource { get; set; }
+        public string province { get; set; }
+        public string imgSource { get; set; }
 
-        public Airport(string id, string name, string title, List<string> imgSource)
+        public Airport(string id, string name, string province, string imgSource)
         {
             this.id = id;
             this.name = name;
-            this.title = title;
+            this.province = province;
             this.imgSource = imgSource;
         }
     }

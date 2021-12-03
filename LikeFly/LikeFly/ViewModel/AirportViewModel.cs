@@ -19,9 +19,7 @@ namespace LikeFly.ViewModel
         public AirportViewModel(INavigation navigation, Shell currentShell)
         {
             this.navigation = navigation;
-            this.currentShell = currentShell;
-
-           
+            this.currentShell = currentShell;           
         }
         public ICommand NewAirportCommand => new Command<object>(async (obj) =>
         {

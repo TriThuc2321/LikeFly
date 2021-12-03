@@ -12,7 +12,6 @@ namespace LikeFly.ViewModel
     {
         INavigation navigation;
 
-        public Command BackCommand { get; }
         public Command SaveCommand { get; }
         public Command NavigationBack { get; }
 
@@ -21,9 +20,7 @@ namespace LikeFly.ViewModel
         {
             this.navigation = _navigation;
             SelectedAirport = DataManager.Ins.CurrentAirport;
-
-            BackCommand = new Command(() =>  navigation.PopAsync());
-            SaveCommand = new Command(saveHandleAsync);
+            
             NavigationBack = new Command(() => navigation.PopAsync());
         }
 

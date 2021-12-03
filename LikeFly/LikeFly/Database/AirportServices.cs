@@ -29,7 +29,7 @@ namespace LikeFly.Database
                   id = item.Object.id,
                   name = item.Object.name,
                   imgSource = item.Object.imgSource,
-                  title = item.Object.title,
+                  province = item.Object.province,
               }).ToList();
         }
         public async Task AddAirport(Airport airport)
@@ -41,7 +41,7 @@ namespace LikeFly.Database
                   id = airport.id,
                   name = airport.name,
                   imgSource = airport.imgSource,
-                  title = airport.title,
+                  province = airport.province,
               });
         }
         public async Task UpdateAirport(Airport airport)
@@ -58,7 +58,7 @@ namespace LikeFly.Database
                   id = airport.id,
                   name = airport.name,
                   imgSource = airport.imgSource,
-                  title = airport.title,
+                  province = airport.province,
               });
         }
         async public Task<string> saveImage(Stream imgStream, string airportId, int id)
@@ -100,13 +100,7 @@ namespace LikeFly.Database
 
             await firebase.Child("Airports").Child(toDeleted.Key).DeleteAsync();
 
-            for (int i = 0; i < airport.imgSource.Count; i++)
-            {
-                await DeleteFile(airport.id, i);
-            }
-
-
-
+            await DeleteFile(airport.id, 0);
 
         }
     }
