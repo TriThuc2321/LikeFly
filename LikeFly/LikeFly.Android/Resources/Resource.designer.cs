@@ -14586,6 +14586,37 @@ namespace LikeFly.Droid
 			
 			// aapt resource value: 0x7F070071
 			public const int design_snackbar_background = 2131165297;
+			public const int camera = 2131165287;
+			
+			// aapt resource value: 0x7F070068
+			public const int defaultUser = 2131165288;
+			
+			// aapt resource value: 0x7F070069
+			public const int delete = 2131165289;
+			
+			// aapt resource value: 0x7F07006A
+			public const int departures = 2131165290;
+			
+			// aapt resource value: 0x7F07006B
+			public const int design_bottom_navigation_item_background = 2131165291;
+			
+			// aapt resource value: 0x7F07006C
+			public const int design_fab_background = 2131165292;
+			
+			// aapt resource value: 0x7F07006D
+			public const int design_ic_visibility = 2131165293;
+			
+			// aapt resource value: 0x7F07006E
+			public const int design_ic_visibility_off = 2131165294;
+			
+			// aapt resource value: 0x7F07006F
+			public const int design_password_eye = 2131165295;
+			
+			// aapt resource value: 0x7F070070
+			public const int design_snackbar_background = 2131165296;
+			
+			// aapt resource value: 0x7F070071
+			public const int editIcon = 2131165297;
 			
 			// aapt resource value: 0x7F070072
 			public const int eyeIcon = 2131165298;
@@ -14733,6 +14764,58 @@ namespace LikeFly.Droid
 			
 			// aapt resource value: 0x7F0700A2
 			public const int userOutlineIcon = 2131165346;
+			public const int notification_action_background = 2131165328;
+			
+			// aapt resource value: 0x7F070091
+			public const int notification_bg = 2131165329;
+			
+			// aapt resource value: 0x7F070092
+			public const int notification_bg_low = 2131165330;
+			
+			// aapt resource value: 0x7F070093
+			public const int notification_bg_low_normal = 2131165331;
+			
+			// aapt resource value: 0x7F070094
+			public const int notification_bg_low_pressed = 2131165332;
+			
+			// aapt resource value: 0x7F070095
+			public const int notification_bg_normal = 2131165333;
+			
+			// aapt resource value: 0x7F070096
+			public const int notification_bg_normal_pressed = 2131165334;
+			
+			// aapt resource value: 0x7F070097
+			public const int notification_icon_background = 2131165335;
+			
+			// aapt resource value: 0x7F070098
+			public const int notification_template_icon_bg = 2131165336;
+			
+			// aapt resource value: 0x7F070099
+			public const int notification_template_icon_low_bg = 2131165337;
+			
+			// aapt resource value: 0x7F07009A
+			public const int notification_tile_bg = 2131165338;
+			
+			// aapt resource value: 0x7F07009B
+			public const int notify_panel_notification_icon_bg = 2131165339;
+			
+			// aapt resource value: 0x7F07009C
+			public const int test_custom_background = 2131165340;
+			
+			// aapt resource value: 0x7F07009D
+			public const int tickok = 2131165341;
+			
+			// aapt resource value: 0x7F07009E
+			public const int tooltip_frame_dark = 2131165342;
+			
+			// aapt resource value: 0x7F07009F
+			public const int tooltip_frame_light = 2131165343;
+			
+			// aapt resource value: 0x7F0700A0
+			public const int userIcon = 2131165344;
+			
+			// aapt resource value: 0x7F0700A1
+			public const int userOutlineIcon = 2131165345;
 			
 			static Drawable()
 			{

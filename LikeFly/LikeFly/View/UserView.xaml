@@ -1,14 +1,233 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:LikeFly" 
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:vm="clr-namespace:LikeFly.ViewModel"
              x:Class="LikeFly.View.UserView"
              BackgroundColor="White"
              >
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="User View"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <ContentPage.BindingContext>
+        <vm:UserViewModel/>
+    </ContentPage.BindingContext>
+
+    <RefreshView Command="{Binding RefreshCommand}"
+                 IsRefreshing="{Binding IsRefreshing}" 
+                 RefreshColor="Black">
+        <ScrollView>
+            <StackLayout>
+                <!--AVATAR ANF CHANGE AVATAR-->
+                <StackLayout Orientation="Horizontal">
+                    <ImageButton Command="{Binding MenuCommand}" 
+                                 Source="menuIcon.png" 
+                                 HeightRequest="35" 
+                                 WidthRequest="50"
+                                 CornerRadius="10" 
+                                 HorizontalOptions="StartAndExpand" 
+                                 VerticalOptions="StartAndExpand"
+                                 BackgroundColor="Transparent" 
+                                 Margin="10, 10 , 0, 0">
+                    </ImageButton>
+                    <Label Text="Thông tin cá nhân" 
+                           FontSize="23" 
+                           HorizontalTextAlignment="Center"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           Margin="10,10,100,0"/>
+                </StackLayout>
+               
+                    <Image Source="{Binding ProfilePic}"
+                                 Aspect="AspectFill"                 
+                                 HeightRequest="340"
+                                 IsEnabled="{Binding EnableImageBtn}"/>
+            
+
+                <Frame Padding="10" HasShadow="False" 
+                       CornerRadius="40" Margin="0,-50,0,0" 
+                       VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                    <StackLayout>
+                        <StackLayout >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition  Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <!--Save V button-->
+                                <ImageButton
+                                CornerRadius="10"
+                                Grid.Column="0"
+                                IsVisible="{Binding VisibleSaveBtn}"
+                                WidthRequest="40" HeightRequest="35"                             
+                                Source="tickok.png"
+                                BackgroundColor="White"                                   
+                                Margin="250,10,0,0"
+                                Command="{Binding UpdateUserInfo}"/>
+                                
+                                <!--Camera button-->
+                                <ImageButton HeightRequest="35"
+                                     Grid.Column="1"
+                                     WidthRequest="40"
+                                     CornerRadius="10"
+                                     IsVisible="{Binding VisibleSaveBtn}"
+                                     Source="camera.png"
+                                     Aspect="AspectFill"
+                                     Margin="0,10,0,0"
+                                     BackgroundColor="White"
+                                     Command="{Binding AddImageCommand}" />
+                            </Grid>
+                        </StackLayout>
+
+                        <Grid RowDefinitions="Auto ,Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+                           Padding="25" ColumnDefinitions="*, *, *">
+
+                        <!--NAME-->
+                            <pancake:PancakeView 
+                                CornerRadius="15,15,0,0" 
+                                BackgroundColor="#CFCFCF"
+                                HeightRequest="50"
+                                Margin="10,-20,10,0"                               
+                                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                            >
+                                <StackLayout Orientation="Horizontal">
+                                    <ImageButton Source="{Binding IconSource}" 
+                                                 Command="{Binding EditTextCommand}"  
+                                                 Aspect="AspectFit"
+                                                 HeightRequest="30" WidthRequest="30"
+                                                  Margin="10,-10,0,-7"
+                                                  BackgroundColor="Transparent" />
+                                    <Entry x:Name="txtUserName" Keyboard="Text" 
+                                           FontAttributes="Bold" 
+                                           TextColor="Gray" FontSize="17" 
+                                           IsEnabled="{Binding IsEdit}"
+                                            Margin="0,10,0,0"
+                                           Text="{Binding Name}"  
+                                           HorizontalOptions="FillAndExpand"/>
+                                </StackLayout>
+                            </pancake:PancakeView>
+
+                        <!--EMAIL-->
+                            <pancake:PancakeView 
+                                CornerRadius="15,15,0,0" 
+                                BackgroundColor="#CFCFCF"
+                                HeightRequest="50"
+                                Margin="10,10,10,0"                               
+                                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
+                            >
+                                <StackLayout Orientation="Horizontal">
+                                    <local:CustomEntry x:Name="txtEmail"
+                                           FontAttributes="Bold" 
+                                           TextColor="Gray" FontSize="17" 
+                                           IsEnabled="False"
+                                            Margin="0,10,0,0"
+                                           Text="{Binding Email}"  
+                                           HorizontalOptions="FillAndExpand"/>
+                                </StackLayout>
+                            </pancake:PancakeView>
+
+                            <!--ID CARD-->                      
+                            <pancake:PancakeView 
+                                CornerRadius="15,15,0,0" 
+                                BackgroundColor="#CFCFCF"
+                                HeightRequest="50"
+                                Margin="10,10,10,0"                               
+                                Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                            >
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Margin="10,10,0,0"  
+                                        Grid.Row="4" Grid.Column="0" 
+                                        Text="CMND số:" VerticalOptions="Center" 
+                                        TextColor="Gray" 
+                                        FontSize="17" FontAttributes="Bold"  />
+
+                                    <Entry Keyboard="Text" 
+                                           FontAttributes="Bold"
+                                            Margin="0,10,0,0"
+                                           TextColor="Gray" FontSize="17" 
+                                           IsEnabled="{Binding IsEdit}" 
+                                           Text="{Binding CMND}"  
+                                           HorizontalOptions="FillAndExpand"/>
+                                </StackLayout>
+                            </pancake:PancakeView>
+
+                            <!--CONTACT-->                      
+                            <pancake:PancakeView 
+                                CornerRadius="15,15,0,0" 
+                                BackgroundColor="#CFCFCF"
+                                HeightRequest="50"
+                                Margin="10,10,10,0"                               
+                                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"
+                            >
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Margin="10,10,0,0"  
+                                        Grid.Row="4" Grid.Column="0" 
+                                        Text="Điện thoại:" VerticalOptions="Center" 
+                                        TextColor="Gray" 
+                                        FontSize="17" FontAttributes="Bold"  />
+
+                                    <Entry Keyboard="Text"
+                                            Margin="0,10,0,0"
+                                           FontAttributes="Bold" 
+                                           TextColor="Gray" FontSize="17" 
+                                           IsEnabled="{Binding IsEdit}" 
+                                           Text="{Binding Contact}"  
+                                           HorizontalOptions="FillAndExpand"/>
+                                </StackLayout>
+                            </pancake:PancakeView>
+
+
+                            <!--BIRTHDAY-->                       
+                            <pancake:PancakeView 
+                                CornerRadius="15,15,0,0" 
+                                BackgroundColor="#CFCFCF"
+                                HeightRequest="50"
+                                Margin="10,10,10,0"                               
+                                Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"
+                            >
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Margin="10,10,0,0"  
+                                        Grid.Row="4" Grid.Column="0" 
+                                        Text="Ngày sinh:" VerticalOptions="Center" 
+                                        TextColor="Gray" 
+                                        FontSize="17" FontAttributes="Bold"  />
+
+                                    <DatePicker 
+                                           FontAttributes="Bold" 
+                                           TextColor="Gray" FontSize="17" 
+                                           IsEnabled="{Binding IsEdit}" 
+                                           Date="{Binding Birthday}"
+                                            Margin="0,10,0,0"
+                                           HorizontalOptions="FillAndExpand"/>
+                                </StackLayout>
+                            </pancake:PancakeView>
+
+                        <!--ADDRESS-->                      
+                            <pancake:PancakeView 
+                                CornerRadius="0,0,15,15" 
+                                BackgroundColor="#CFCFCF"
+                                HeightRequest="50"
+                                Margin="10,10,10,0"                               
+                                Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3"
+                            >
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Margin="10,10,0,0"  
+                                        Grid.Row="4" Grid.Column="0" 
+                                        Text="Địa chỉ:" VerticalOptions="Center" 
+                                        TextColor="Gray" 
+                                        FontSize="17" FontAttributes="Bold"  />
+
+                                    <Entry Keyboard="Text" 
+                                           FontAttributes="Bold" 
+                                           TextColor="Gray" FontSize="17" 
+                                           IsEnabled="{Binding IsEdit}" 
+                                           Text="{Binding Address}"
+                                           Margin="0,10,0,0"
+                                           HorizontalOptions="FillAndExpand"/>
+                                </StackLayout>
+                            </pancake:PancakeView>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>
