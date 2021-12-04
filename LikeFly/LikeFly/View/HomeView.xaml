@@ -54,7 +54,7 @@
                         HeightRequest="25"
                         WidthRequest="25"   
                         BackgroundColor="Transparent"
-                        Command="{Binding NotificaitonCommand}"
+                        
                     />
                     </Frame>
                 </StackLayout>

@@ -28,9 +28,19 @@ namespace LikeFly.ViewModel
         });
         public ICommand SaveCommand => new Command<object>(async (obj) =>
         {
-            Flight temp = new Flight("01", "01", "01", "01", "01", "01", "01", "01",false, "01");
+            List<IntermediaryAirport> intermediary = new List<IntermediaryAirport>();
+            intermediary.Add(new IntermediaryAirport(new Airport(), "2h30", "A03"));
+            intermediary.Add(new IntermediaryAirport(new Airport(), "2h30", "A03"));
 
-            await DataManager.Ins.FlightsServices.AddFlight(temp);
+            List<string> ticketIds = new List<string>();
+            ticketIds.Add("TT01");
+            ticketIds.Add("TT02");
+            ticketIds.Add("TT03");
+            ticketIds.Add("TT04");
+
+
+            Flight temp = new Flight("01", "HN-TSN", "5h", "8:30","30/12/2021","01","Hà Nội - TP Hồ Chí Minh",100,false,2000000,"A01","A02", intermediary, ticketIds);
+            await DataManager.Ins.FlightService.AddFlight(temp);
         });
 
     }

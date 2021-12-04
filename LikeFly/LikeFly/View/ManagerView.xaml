@@ -78,6 +78,24 @@
                         <Label Margin="3,0,0,0">
                             <Label.FormattedText>
                                 <FormattedString>
+                                    <Span Text="Quản lí loại hạng ghế" TextColor="White" FontSize="15" FontAttributes="Bold">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding TicketTypeCommand}"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" >
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout BackgroundColor="White" WidthRequest="2"/>
+                        <Label Margin="3,0,0,0">
+                            <Label.FormattedText>
+                                <FormattedString>
                                     <Span Text="Quản lí nhân viên" TextColor="White" FontSize="15" FontAttributes="Bold">
                                         <Span.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding StaffCommand}"/>

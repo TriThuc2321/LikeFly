@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LikeFly.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace LikeFly.View
         public FlightView()
         {
             InitializeComponent();
+            this.BindingContext = new FlightViewModel(Navigation, Shell.Current);
         }
     }
 }
