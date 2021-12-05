@@ -1,6 +1,7 @@
 ﻿using LikeFly.Core;
 using LikeFly.Database;
 using LikeFly.Model;
+using LikeFly.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -56,8 +57,8 @@ namespace LikeFly.ViewModel
             if (result != null)
             {
                 DataManager.Ins.CurrentFlight = result;
-                //navigation.PushAsync(new FlightView());
-                //SelectedAirport = null;
+                navigation.PushAsync(new DetailFlightView());
+                SelectedFlight = null;
             }
         });
 

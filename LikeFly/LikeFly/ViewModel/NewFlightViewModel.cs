@@ -3,6 +3,7 @@ using LikeFly.Database;
 using LikeFly.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -28,7 +29,7 @@ namespace LikeFly.ViewModel
         });
         public ICommand SaveCommand => new Command<object>(async (obj) =>
         {
-            List<IntermediaryAirport> intermediary = new List<IntermediaryAirport>();
+            ObservableCollection<IntermediaryAirport> intermediary = new ObservableCollection<IntermediaryAirport>();
             intermediary.Add(new IntermediaryAirport(new Airport(), "2h30", "A03"));
             intermediary.Add(new IntermediaryAirport(new Airport(), "2h30", "A03"));
 

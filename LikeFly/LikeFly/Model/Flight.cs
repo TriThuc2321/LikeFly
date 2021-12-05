@@ -153,8 +153,8 @@ namespace LikeFly.Model
             }
         }
 
-        private List<IntermediaryAirport> intermediaryAirportList;
-        public List<IntermediaryAirport> IntermediaryAirportList
+        private ObservableCollection<IntermediaryAirport> intermediaryAirportList;
+        public ObservableCollection<IntermediaryAirport> IntermediaryAirportList
         {
             get { return intermediaryAirportList; }
             set
@@ -186,7 +186,7 @@ namespace LikeFly.Model
             }
         }
 
-        public Flight(string id, string name, string duration, string startTime, string startDate, string imgSource, string description, int passengerNumber, bool isOccured, int price, string airportStartId, string airportEndId, List<IntermediaryAirport> intermediaryAirportList, List<string> ticketTypeIds)
+        public Flight(string id, string name, string duration, string startTime, string startDate, string imgSource, string description, int passengerNumber, bool isOccured, int price, string airportStartId, string airportEndId, ObservableCollection<IntermediaryAirport> intermediaryAirportList, List<string> ticketTypeIds)
         {
             Id = id;
             Name = name;
