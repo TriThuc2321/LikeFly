@@ -196,7 +196,7 @@ namespace LikeFly.ViewModel
             IsEdit = false;
             VisibleSaveBtn = false;
             EnableImageBtn = false;
-            IconSource = "editIcon.png";
+            IconSource = "pencilIcon.png";
             MenuCommand = new Command(() => curentShell.FlyoutIsPresented = !curentShell.FlyoutIsPresented);
             EditTextCommand = new Command(editTextHandle);
             UpdateUserInfo = new Command(updateUser);
@@ -220,7 +220,7 @@ namespace LikeFly.ViewModel
                 }
                 else
                 {
-                    IconSource = "editIcon.png";
+                    IconSource = "pencilIcon.png";
                     IsEdit = !IsEdit;
                 }
             }
@@ -277,7 +277,7 @@ namespace LikeFly.ViewModel
             IsEdit = false;
             VisibleSaveBtn = false;
             EnableImageBtn = false;
-            IconSource = "editIcon.png";
+            IconSource = "pencilIcon.png";
             IsRefreshing = false;
         }
 
@@ -329,7 +329,7 @@ namespace LikeFly.ViewModel
                             IsEdit = false;
                             VisibleSaveBtn = false;
                             EnableImageBtn = false;
-                            IconSource = "editIcon.png";
+                            IconSource = "pencilIcon.png";
                         }
                         else
                         {
@@ -359,7 +359,7 @@ namespace LikeFly.ViewModel
                             IsEdit = false;
                             VisibleSaveBtn = false;
                             EnableImageBtn = false;
-                            IconSource = "editIcon.png";
+                            IconSource = "pencilIcon.png";
                         }
                     }
                 }
