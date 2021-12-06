@@ -1,6 +1,7 @@
 ﻿using LikeFly.Core;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace LikeFly.Model
@@ -81,8 +82,8 @@ namespace LikeFly.Model
                 OnPropertyChanged("Description");
             }
         }
-        private string passengerNumber { get; set; }
-        public string PassengerNumber
+        private int passengerNumber { get; set; }
+        public int PassengerNumber
         {
             get { return passengerNumber; }
             set
@@ -101,8 +102,8 @@ namespace LikeFly.Model
                 OnPropertyChanged("IsOccured");
             }
         }
-        private string price { get; set; }
-        public string Price
+        private int price { get; set; }
+        public int Price
         {
             get { return price; }
             set
@@ -111,19 +112,96 @@ namespace LikeFly.Model
                 OnPropertyChanged("Price");
             }
         }
-
-        public Flight(string id, string name, string duration, string startTime, string startDate, string imgSource, string description, string passengerNumber, bool isOccured, string price)
+        private string airportStartId;
+        public string AirportStartId
         {
-            this.id = id;
-            this.name = name;
-            this.duration = duration;
-            this.startTime = startTime;
-            this.startDate = startDate;
-            this.imgSource = imgSource;
-            this.description = description;
-            this.passengerNumber = passengerNumber;
-            this.isOccured = isOccured;
-            this.price = price;
+            get { return airportStartId; }
+            set
+            {
+                airportStartId = value;
+                OnPropertyChanged("AirportStartId");
+            }
+        }
+        private Airport airportStart;
+        public Airport AirportStart
+        {
+            get { return airportStart; }
+            set
+            {
+                airportStart = value;
+                OnPropertyChanged("AirportStart");
+            }
+        }
+        private string airportEndId;
+        public string AirportEndId
+        {
+            get { return airportEndId; }
+            set
+            {
+                airportEndId = value;
+                OnPropertyChanged("AirportEnd");
+            }
+        }
+        private Airport airportEnd;
+        public Airport AirportEnd
+        {
+            get { return airportEnd; }
+            set
+            {
+                airportEnd = value;
+                OnPropertyChanged("AirportEnd");
+            }
+        }
+
+        private ObservableCollection<IntermediaryAirport> intermediaryAirportList;
+        public ObservableCollection<IntermediaryAirport> IntermediaryAirportList
+        {
+            get { return intermediaryAirportList; }
+            set
+            {
+                intermediaryAirportList = value;
+                OnPropertyChanged("IntermediaryAirportList");
+            }
+        }
+
+
+        private List<string> ticketTypeIds;
+        public List<string> TicketTypeIds
+        {
+            get { return ticketTypeIds; }
+            set
+            {
+                ticketTypeIds = value;
+                OnPropertyChanged("TicketTypeIds");
+            }
+        }
+        private ObservableCollection<TicketType> ticketTypes;
+        public ObservableCollection<TicketType> TicketTypes
+        {
+            get { return ticketTypes; }
+            set
+            {
+                ticketTypes = value;
+                OnPropertyChanged("TicketTypes");
+            }
+        }
+
+        public Flight(string id, string name, string duration, string startTime, string startDate, string imgSource, string description, int passengerNumber, bool isOccured, int price, string airportStartId, string airportEndId, ObservableCollection<IntermediaryAirport> intermediaryAirportList, List<string> ticketTypeIds)
+        {
+            Id = id;
+            Name = name;
+            Duration = duration;
+            StartTime = startTime;
+            StartDate = startDate;
+            ImgSource = imgSource;
+            Description = description;
+            PassengerNumber = passengerNumber;
+            IsOccured = isOccured;
+            Price = price;
+            AirportStartId = airportStartId;
+            AirportEndId = airportEndId;
+            IntermediaryAirportList = intermediaryAirportList;
+            TicketTypeIds = ticketTypeIds;
         }
     }
 }

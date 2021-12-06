@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         
         <StackLayout Orientation="Horizontal">
-            <ImageButton Command="{Binding NavigationBack}" 
+            <ImageButton Command="{Binding SaveCommand}" 
                                  Source="backbutton.png" 
                                  HeightRequest="30" 
                                  WidthRequest="30"

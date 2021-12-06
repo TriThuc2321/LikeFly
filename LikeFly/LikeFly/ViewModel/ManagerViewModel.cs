@@ -1,4 +1,5 @@
-﻿using LikeFly.View;
+﻿using LikeFly.Database;
+using LikeFly.View;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace LikeFly.ViewModel
 
         public Command AirportCommand { get; }
         public Command FlightCommand { get; }
-        public Command TourCommand { get; }
+        public Command TicketTypeCommand { get; }
         public Command MenuCommand { get; }
         public Command StaffCommand { get; }
         public Command RevenueCommand { get; }
@@ -26,9 +27,11 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = curentShell;
 
+            MenuCommand = new Command(() => currentShell.FlyoutIsPresented = !currentShell.FlyoutIsPresented);
+
             AirportCommand = new Command(() => navigation.PushAsync(new AirportManagerView()));
             FlightCommand = new Command(() => navigation.PushAsync(new FlightManagerView()));
-
+            TicketTypeCommand = new Command(() =>  DataManager.Ins.TicketTypeService.AddTicket(new Model.TicketType("TT01", "Phổ thông", 1, true)));
         }
     }
 }

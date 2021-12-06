@@ -16,10 +16,9 @@ namespace LikeFly.Database
         FirebaseClient firebase = new FirebaseClient("https://likefly-5ec61-default-rtdb.asia-southeast1.firebasedatabase.app/");
         FirebaseClient storage = new FirebaseClient("likefly-5ec61.appspot.com");
 
-        public List<Flight> places;
         public FlightServices() { }
         public async Task<List<Flight>> GetAllFlights()
-        {
+        {            
             return (await firebase
               .Child("Flights")
               .OnceAsync<Flight>()).Select(item => new Flight
@@ -34,6 +33,11 @@ namespace LikeFly.Database
                   PassengerNumber = item.Object.PassengerNumber,
                   IsOccured = item.Object.IsOccured,
                   Price = item.Object.Price,
+                  IntermediaryAirportList = item.Object.IntermediaryAirportList,
+                  AirportStartId = item.Object.AirportStartId,
+                  AirportEndId = item.Object.AirportEndId,
+                  TicketTypeIds = item.Object.TicketTypeIds,
+                  
               }).ToList();
         }
         public async Task AddFlight(Flight flight)
@@ -52,7 +56,14 @@ namespace LikeFly.Database
                     PassengerNumber = flight.PassengerNumber,
                     IsOccured = flight.IsOccured,
                     Price = flight.Price,
-                });
+                    IntermediaryAirportList = flight.IntermediaryAirportList,
+                    AirportStartId = flight.AirportStartId,
+                    AirportEndId = flight.AirportEndId,
+                    TicketTypeIds = flight.TicketTypeIds,
+                    AirportEnd = null,
+                    AirportStart = null,
+                    TicketTypes = null
+              });
         }
 
         public async Task UpdateFlight(Flight flight)
@@ -76,6 +87,9 @@ namespace LikeFly.Database
                   PassengerNumber = flight.PassengerNumber,
                   IsOccured = flight.IsOccured,
                   Price = flight.Price,
+                  IntermediaryAirportList = flight.IntermediaryAirportList,
+                  AirportStartId = flight.AirportStartId,
+                  AirportEndId = flight.AirportEndId
               });
         }
         async public Task<string> saveImage(Stream imgStream, string airportId, int id)

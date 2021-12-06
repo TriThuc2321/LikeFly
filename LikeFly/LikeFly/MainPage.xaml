@@ -69,7 +69,7 @@
 
     <FlyoutItem Title="Trang chủ" Icon="homeOutlineIcon.png">
         <ShellContent Icon="homeIcon.png" Route="HomeView" ContentTemplate="{DataTemplate views:HomeView}" Style="{DynamicResource Base1Style}" />
-        <ShellContent Icon="bookIcon.png" Route="UserView" ContentTemplate="{DataTemplate views:UserView}" Style="{DynamicResource Base1Style}" />
+        <ShellContent Icon="bookIcon.png" Route="FlightView" ContentTemplate="{DataTemplate views:FlightView}" Style="{DynamicResource Base1Style}" />
     </FlyoutItem>
     
     <FlyoutItem Title="Yêu thích" Icon="heartOutlineIcon.png">
@@ -85,37 +85,27 @@
     </FlyoutItem>
 
     <Shell.FlyoutHeader >
-        <Grid HeightRequest="190">
-            <Image 
-                Source="https://www.teahub.io/photos/full/1-12617_adobe-illustrator-art-landscape.jpg"
-                Aspect="AspectFill"
-                Opacity="1"/>
-
-            <StackLayout Orientation="Horizontal" BackgroundColor="White" VerticalOptions="End" Opacity="1" Padding="0,8,0,4" Margin="0,0,0,0">
-                <Frame                                         
+        <StackLayout >
+            <Frame                                         
                    HorizontalOptions="Start"                   
                    HasShadow="False"
-                   CornerRadius="8"
-                   Margin="20, 0, 0, 0"
+                   CornerRadius="35"
+                   Margin="20, 20, 0, 0"
                    Padding="0"
                    VerticalOptions="Center"
                     >
                     <ImageButton                        
                         Source="{Binding ProfilePic}"
                         Aspect="AspectFill"
-                        HeightRequest="50"
-                        WidthRequest="50"    
+                        HeightRequest="70"
+                        WidthRequest="70"    
                         BackgroundColor="Transparent"                           
                     />
-                </Frame>
-                <StackLayout VerticalOptions="Center" Margin="0,25,0,0" HorizontalOptions="StartAndExpand" >
-                    <Label Text="Xin chào," TextColor="Black" VerticalOptions="Center" FontSize="15" />
-                    <Label Text="{Binding CurrentName}" TextColor="Black" VerticalOptions="Center" FontAttributes="Bold" FontSize="20"  Margin="0,-10,0,10"/>
-                </StackLayout>
+            </Frame>
+            <Label Text="{Binding CurrentName}" TextColor="Black" VerticalOptions="Center" FontAttributes="Bold" FontSize="25"  Margin="20,5, 0, 0"/>
 
-            </StackLayout>
-            <StackLayout BackgroundColor="Black" HeightRequest="1" VerticalOptions="End"/>
-        </Grid>
+            <StackLayout Margin="15,0,15,0" BackgroundColor="Black" HeightRequest="0.2" VerticalOptions="End"/>
+        </StackLayout>
     </Shell.FlyoutHeader>
 
     <Shell.FlyoutFooter>
