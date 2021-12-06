@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LikeFly.View.DetailFlightView"
+             xmlns:vm="clr-namespace:LikeFly.ViewModel"
+             NavigationPage.HasNavigationBar="false"
+              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             >
+    <ContentPage.BindingContext>
+        <vm:DetailFlightViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid>
+        
+        <Image Source="https://i.pinimg.com/564x/e1/c4/ef/e1c4ef856ac9decdf21eebe298a40f6e.jpg" Aspect="AspectFill" Margin="0,0,0,30"/>
+
+        <pancake:PancakeView Margin="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40" CornerRadius="25" Padding="0" BackgroundColor="#272727" >
+            <ImageButton Margin="10" BackgroundColor="Transparent" Source="backIcon2.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </pancake:PancakeView>        
+        
+        <ScrollView>
+            <Grid>
+                <pancake:PancakeView Margin="0,100,0,0" CornerRadius="30, 30,0,0" Padding="30" BackgroundColor="White">
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Chi tiết chuyến bay" FontSize="25" FontAttributes="Bold"/>
+                            <Frame Padding="0" HorizontalOptions="EndAndExpand" CornerRadius="15" BackgroundColor="LightSeaGreen">
+                                <Grid>
+                                    <Button Margin="0,0,8,0" HeightRequest="40" TextColor="White" FontAttributes="Bold" Text="Đặt vé" BackgroundColor="LightSeaGreen" />
+                                    <ImageButton Source="nextIcon.png" BackgroundColor="Transparent" HeightRequest="15" WidthRequest="15" Aspect="AspectFill" Margin="0,0,8,0" HorizontalOptions="End" VerticalOptions="Center"/>
+                                </Grid>
+                                
+                            </Frame>
+                            
+                        </StackLayout>
+                        
+                        <Frame Margin="1,20,1,0" VerticalOptions="Start" CornerRadius="20">
+                            <StackLayout>
+                                <Label Text="Điểm đầu - cuối"/>
+                                <Grid>
+                                    <Label FontAttributes="Bold" FontSize="17" VerticalOptions="Center" Text="{Binding Flight.AirportStart.Name}" Grid.ColumnSpan="4" />
+                                    <Label TextColor="LightSeaGreen" FontAttributes="Bold" FontSize="17" Text="{Binding Flight.Duration}" VerticalOptions="Center" Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center"/>
+                                    <Label FontAttributes="Bold" FontSize="17" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding Flight.AirportEnd.Name}" Grid.Column="7"  Grid.ColumnSpan="6" />
+
+                                    <Frame Grid.Row="1"  Padding="0" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="8" WidthRequest="8" CornerRadius="4" BackgroundColor="LightSeaGreen"/>
+                                    <Frame Grid.Row="1" Grid.Column="1" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="LightSeaGreen"/>
+                                    <Frame Grid.Row="1" Grid.Column="2" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="LightSeaGreen"/>
+                                    <Frame Grid.Row="1" Grid.Column="3" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="LightSeaGreen"/>
+                                    <Frame Grid.Row="1" Grid.Column="4" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="LightSeaGreen"/>
+                                    <Frame Grid.Row="1" Grid.Column="5" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="LightSeaGreen"/>
+                                    <Image Grid.Row="1" Grid.Column="6" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Transparent" Source="airplane.png"/>
+                                    <Frame Grid.Row="1" Grid.Column="7" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                                    <Frame Grid.Row="1" Grid.Column="8" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                                    <Frame Grid.Row="1" Grid.Column="9" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                                    <Frame Grid.Row="1" Grid.Column="10" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                                    <Frame Grid.Row="1" Grid.Column="11" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                                    <Frame Grid.Row="1" Grid.Column="12" Padding="0" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="8" WidthRequest="8" CornerRadius="4" BackgroundColor="#272727"/>
+
+                                    <Label Text="{Binding Flight.AirportStart.Province}" VerticalOptions="Center" Grid.ColumnSpan="4" Grid.Row="2"/>
+                                    <Label HorizontalTextAlignment="End" VerticalOptions="Center" Text="{Binding Flight.AirportEnd.Province}" Grid.Column="7"  Grid.ColumnSpan="6" Grid.Row="2"/>
+
+                                    <Label FontAttributes="Bold" FontSize="17" VerticalOptions="Center" Text="{Binding Flight.StartTime}" Grid.ColumnSpan="4" Grid.Row="3"/>
+                                    <Label FontAttributes="Bold" FontSize="17" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding EndTime}" Grid.Column="7"  Grid.ColumnSpan="6" Grid.Row="3"/>
+
+                                    <Label VerticalOptions="Center" Text="{Binding Flight.StartDate}" Grid.ColumnSpan="4" Grid.Row="4"/>
+                                    <Label VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding EndDate}" Grid.Column="7"  Grid.ColumnSpan="6" Grid.Row="4"/>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                        
+                        <Label Margin="0,15,0,0" Text="Sân bay trung gian" FontSize="25" FontAttributes="Bold"/>
+
+                        <CollectionView x:Name="clview" 
+                            ItemsSource="{Binding Flight.IntermediaryAirportList}" 
+                            SelectionMode="None" 
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clview}}"     
+                                  HeightRequest="120"
+                                    >
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout VerticalOptions="Start" >
+
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup Name="CommonStates">
+                                                <VisualState Name="Selected">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+
+                                        <Frame
+                                    BackgroundColor="White"
+                                    Margin="10"
+                                    CornerRadius="10"
+                                    Padding="0"                                  
+                                    >
+                                            <StackLayout  Orientation="Horizontal" WidthRequest="300">
+                                                <Image Source="{Binding Airport.ImgSource}" Aspect="AspectFill" HeightRequest="80" WidthRequest="80"/>
+                                                <Grid Margin="5,0,0,0" HorizontalOptions="FillAndExpand" >
+                                                    <Label Margin="0,10,0,0" VerticalOptions="Start" Text="{Binding Airport.Name}" FontAttributes="Bold" TextColor="#272727"/>
+                                                    <Label Margin="0,0,0,10" VerticalOptions="End" Text="{Binding Airport.Province}"  />
+                                                    <Label Text="{Binding StopTime}" HorizontalOptions="End" Margin="0,10,10,0"/>
+                                                </Grid>
+                                            </StackLayout>
+                                        </Frame>
+                                    </StackLayout>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                    
+                </pancake:PancakeView>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

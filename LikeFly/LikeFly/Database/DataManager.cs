@@ -20,46 +20,86 @@ namespace LikeFly.Database
             }
             set { _ins = value; }
         }
-
+        
         public bool LoadData = true;
         public List<User> users;
-        public List<User> usersTemp;
+        public List<Airport> airports;
+        public List<Flight> flights;
+        public List<TicketType> ticketTypes;
+
         private DataManager()
         {
-            FlightsServices = new FlightServices();
+            FlightService = new FlightServices();
             UsersServices = new UsersServices();
+            AirportServices = new AirportServices();
             notiServices = new NotificationServices();
+            TicketTypeService = new TicketTypeServices();
 
-
-            ListFlights = new ObservableCollection<Flight>();
-            ListUser = new ObservableCollection<User>();
             ListNotification = new ObservableCollection<Notification>();
+            ListFlights = new ObservableCollection<Flight>();
+            ListUsers = new ObservableCollection<User>();
+            ListAirports = new ObservableCollection<Airport>();
+            ListTicketTypes = new ObservableCollection<TicketType>();
 
             CurrentUser = new User();
+            CurrentFlight = new Flight();
             getAllList();
         }
         
-        #region Get List Func
-        async Task getFlightList()
-        {
-            List<Flight> temp = await FlightsServices.GetAllFlights();
-            foreach (Flight p in temp)
-            {
-                ListFlights.Add(p);
-            }
-            
-           
-        }
         async Task GetUsers()
         {
             users = await UsersServices.GetAllUsers();
-            List<User> temp = await UsersServices.GetAllUsers();
-            foreach (User p in temp)
+            foreach (User p in users)
             {
-                ListUser.Add(p);
+                ListUsers.Add(p);
+            }
+        }
+        async Task GetAirports()
+        {
+            airports = await AirportServices.GetAllAirport();
+            foreach (Airport p in airports)
+            {
+                ListAirports.Add(p);
+            }
+        }
+        async Task GetTicketTypes()
+        {
+            int a = 7;
+            ticketTypes = await TicketTypeService.GetAllTickets();
+            foreach (TicketType p in ticketTypes)
+            {
+                ListTicketTypes.Add(p);
+            }
+        }
+        async Task GetFlights()
+        {
+            flights = await FlightService.GetAllFlights();
+
+            for(int i =0; i< flights.Count; i++)
+            {
+                flights[i].AirportStart = GetAirportById(flights[i].AirportStartId);
+                flights[i].AirportEnd = GetAirportById(flights[i].AirportEndId);
+
+                flights[i].TicketTypes = new ObservableCollection<TicketType>();
+                for (int k = 0; k< flights[i].TicketTypeIds.Count; k++)
+                {
+                    flights[i].TicketTypes.Add(GetTicketTypeById(flights[i].TicketTypeIds[k]));
+                }
+               
+
+                for (int k =0; k< flights[i].IntermediaryAirportList.Count; k++)
+                {
+                    flights[i].IntermediaryAirportList[k].Airport = GetAirportById(flights[i].IntermediaryAirportList[k].AirportId);
+                }
+                
             }
 
+            foreach (Flight p in flights)
+            {
+                ListFlights.Add(p);
+            }
         }
+        
         async Task GetNotifications()
         {
             List<Notification> notifications = await NotiServices.GetAllNotification();
@@ -69,23 +109,30 @@ namespace LikeFly.Database
             }
         }
         async Task getAllList()
-        {
-            await GetUsers();    
-            await getFlightList();       
-            await GetNotifications();       
+        {            
+            await GetUsers();
+            await GetAirports();
+            await GetTicketTypes();
+            await GetFlights();
+            await GetNotifications();
         }
-
-        #endregion 
-
-        private FlightServices flightsServices;
-        public FlightServices FlightsServices
+        public Airport GetAirportById(string id)
         {
-            get
+            foreach(Airport a in airports)
             {
-                return flightsServices;
+                if (a.Id == id) return a; 
             }
-            set { flightsServices = value; }
+            return null;
         }
+        public TicketType GetTicketTypeById(string id)
+        {
+            foreach (TicketType a in ticketTypes)
+            {
+                if (a.Id == id) return a;
+            }
+            return null;
+        }
+       
         private NotificationServices notiServices;
         public NotificationServices NotiServices
         {
@@ -94,6 +141,15 @@ namespace LikeFly.Database
                 return notiServices;
             }
             set { notiServices = value; }
+        }
+        private AirportServices airportServices;
+        public AirportServices AirportServices
+        {
+            get
+            {
+                return airportServices;
+            }
+            set { airportServices = value; }
         }
         private UsersServices usersServices;
         public UsersServices UsersServices
@@ -104,7 +160,25 @@ namespace LikeFly.Database
             }
             set { usersServices = value; }
         }
-       
+        private FlightServices flightService;
+        public FlightServices FlightService
+        {
+            get
+            {
+                return flightService;
+            }
+            set { flightService = value; }
+        }
+        private TicketTypeServices ticketTypeService;
+        public TicketTypeServices TicketTypeService
+        {
+            get
+            {
+                return ticketTypeService;
+            }
+            set { ticketTypeService = value; }
+        }
+
         private ObservableCollection<Flight> _flights;
         public ObservableCollection<Flight> ListFlights
         {
@@ -114,13 +188,31 @@ namespace LikeFly.Database
                 _flights = value;
             }
         }
-        private ObservableCollection<User> _users;
-        public ObservableCollection<User> ListUser
+        private ObservableCollection<User> listUsers;
+        public ObservableCollection<User> ListUsers
         {
-            get { return _users; }
+            get { return listUsers; }
             set
             {
-                _users = value;
+                listUsers = value;
+            }
+        }
+        private ObservableCollection<Airport> listAirports;
+        public ObservableCollection<Airport> ListAirports
+        {
+            get { return listAirports; }
+            set
+            {
+                listAirports = value;
+            }
+        }
+        private ObservableCollection<TicketType> listTicketTypes;
+        public ObservableCollection<TicketType> ListTicketTypes
+        {
+            get { return listTicketTypes; }
+            set
+            {
+                listTicketTypes = value;
             }
         }
         private ObservableCollection<Notification> _notifications;
@@ -149,6 +241,27 @@ namespace LikeFly.Database
                 {
                     IsManager = false;
                 }
+                OnPropertyChanged("CurrentUser");
+            }
+        }
+        private Airport currentAirport;
+        public Airport CurrentAirport
+        {
+            get { return currentAirport; }
+            set
+            {
+                currentAirport = value;
+                OnPropertyChanged("CurrentAirport");
+            }
+        }
+        private Flight currentFlight;
+        public Flight CurrentFlight
+        {
+            get { return currentFlight; }
+            set
+            {
+                currentFlight = value;
+                OnPropertyChanged("CurrentFlight");
             }
         }
         private Notification currentNoti;

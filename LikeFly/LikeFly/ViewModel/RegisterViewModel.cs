@@ -82,7 +82,7 @@ namespace LikeFly.ViewModel
                 await SendEmail("VERIFY CODE", "Thank you for using LikeFly, this is your verify code: " + randomCode, Account);
                 DependencyService.Get<IToast>().ShortToast("Verify code has been sent to your email");
                 DataManager.Ins.users.Add(DataManager.Ins.CurrentUser);
-                DataManager.Ins.ListUser.Add(DataManager.Ins.CurrentUser);
+                DataManager.Ins.ListUsers.Add(DataManager.Ins.CurrentUser);
                 //navigation.PushAsync(new ConfirmEmailView());
                 await currentShell.GoToAsync($"{nameof(ConfirmEmailView)}");
             }

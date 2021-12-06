@@ -55,7 +55,7 @@ namespace LikeFly.ViewModel
                     if (DataManager.Ins.users[i].email == DataManager.Ins.CurrentUser.email)
                     {
                         DataManager.Ins.users[i].password = DataManager.Ins.UsersServices.Encode(Password);
-                        DataManager.Ins.ListUser[i].password = DataManager.Ins.UsersServices.Encode(Password);
+                        DataManager.Ins.ListUsers[i].password = DataManager.Ins.UsersServices.Encode(Password);
                         await DataManager.Ins.UsersServices.UpdateUser(DataManager.Ins.users[i]);
                         break;
                     }

@@ -22,7 +22,7 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = currentShell;
             ListNotification = new ObservableCollection<Notification>();
-            NavigationBack = new Command(() => currentShell.FlyoutIsPresented = !currentShell.FlyoutIsPresented);
+            NavigationBack = new Command(() => navigation.PopAsync());
             InitList();
         }
 
@@ -58,9 +58,7 @@ namespace LikeFly.ViewModel
                     ListNotification.Remove(selected);
                     break;
                 }
-
-            }
-           
+            }           
         });
         public ICommand SelectedCommand => new Command<object>(async (obj) =>
         {
@@ -76,7 +74,7 @@ namespace LikeFly.ViewModel
                 DataManager.Ins.CurrentNoti = selected;
 
                 /*OnPropertyChanged("ListNotification");*/
-                navigation.PushAsync(new DetailNotificationView());
+                await navigation.PushAsync(new DetailNotificationView());
                 SelectedNoti = null;
             }
         });
