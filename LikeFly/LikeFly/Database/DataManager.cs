@@ -34,6 +34,7 @@ namespace LikeFly.Database
             AirportServices = new AirportServices();
             notiServices = new NotificationServices();
             TicketTypeService = new TicketTypeServices();
+            Search = new SearchService();
 
             ListNotification = new ObservableCollection<Notification>();
             ListFlights = new ObservableCollection<Flight>();
@@ -132,7 +133,17 @@ namespace LikeFly.Database
             }
             return null;
         }
-       
+
+        private SearchService search;
+        public SearchService Search
+        {
+            get { return search; }
+            set
+            {
+                search = value;
+            }
+        }
+
         private NotificationServices notiServices;
         public NotificationServices NotiServices
         {

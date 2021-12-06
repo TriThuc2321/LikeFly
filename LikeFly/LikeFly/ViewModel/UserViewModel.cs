@@ -286,19 +286,19 @@ namespace LikeFly.ViewModel
         {
             if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Contact) || string.IsNullOrWhiteSpace(Address) || string.IsNullOrWhiteSpace(Birthday) || string.IsNullOrWhiteSpace(CMND))
             {
-                DependencyService.Get<IToast>().ShortToast("Please fill out your information");
+                DependencyService.Get<IToast>().ShortToast("Hãy điền đầy đủ thông tin");
             }
             else
             {
                 if (ContactValidation(Contact) == false)
                 {
-                    DependencyService.Get<IToast>().ShortToast("Your contact should have ten numerics and start with number 0");
+                    DependencyService.Get<IToast>().ShortToast("Số điện thoại cần có 10 chữ số và bắt đầu bằng 0");
                 }
                 else
                 {
                     if (IDCardValidation(CMND) == false)
                     {
-                        DependencyService.Get<IToast>().ShortToast("Identify card number should have 9 or 12 numerics");
+                        DependencyService.Get<IToast>().ShortToast("CMND hay CCCD cần có 9 chữ số hoặc 12 chữ số");
                     }
                     else
                     {
@@ -325,7 +325,7 @@ namespace LikeFly.ViewModel
                                   score = user.score,
                                   rank = user.rank
                               });
-                            DependencyService.Get<IToast>().ShortToast("Saved your profile successfully");
+                            DependencyService.Get<IToast>().ShortToast("Lưu hồ sơ thành công");
                             IsEdit = false;
                             VisibleSaveBtn = false;
                             EnableImageBtn = false;
@@ -355,7 +355,7 @@ namespace LikeFly.ViewModel
                                   score = user.score,
                                   rank = user.rank
                               });
-                            DependencyService.Get<IToast>().ShortToast("Saved your profile successfully");
+                            DependencyService.Get<IToast>().ShortToast("Lưu hồ sơ thành công");
                             IsEdit = false;
                             VisibleSaveBtn = false;
                             EnableImageBtn = false;
@@ -369,7 +369,7 @@ namespace LikeFly.ViewModel
         //CONTACT VALIDDATION
         private bool ContactValidation(string contact)
         {
-            if (contact.Length == 10 && contact[0].ToString() == "0")
+            if (contact.Length == 10 && contact[0].ToString() == "0" && contact.All(char.IsDigit))
             {
                 return true;
             }
@@ -380,28 +380,35 @@ namespace LikeFly.ViewModel
         private bool IDCardValidation(string vcmnd)
         {
             bool ex;
-            if (vcmnd.Length < 9)
+            if(!vcmnd.All(char.IsDigit))
             {
                 ex = false;
             }
-            else if (vcmnd.Length > 9)
+            else
             {
-                if (vcmnd.Length < 12)
+                if (vcmnd.Length < 9)
                 {
                     ex = false;
                 }
-                else if (vcmnd.Length > 12)
+                else if (vcmnd.Length > 9)
                 {
-                    ex = false;
+                    if (vcmnd.Length < 12)
+                    {
+                        ex = false;
+                    }
+                    else if (vcmnd.Length > 12)
+                    {
+                        ex = false;
+                    }
+                    else
+                    {
+                        ex = true;
+                    }
                 }
                 else
                 {
                     ex = true;
                 }
-            }
-            else
-            {
-                ex = true;
             }
             return ex;
         }
