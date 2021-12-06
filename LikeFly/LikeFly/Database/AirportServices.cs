@@ -100,7 +100,7 @@ namespace LikeFly.Database
 
             await firebase.Child("Airports").Child(toDeleted.Key).DeleteAsync();
 
-            await DeleteFile(airport.id, 0);
+            await DeleteFile(airport.Id, 0);
 
         }
     }
