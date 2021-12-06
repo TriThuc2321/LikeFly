@@ -11,158 +11,170 @@
         <ScrollView>
             <Grid BackgroundColor="WhiteSmoke">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="1.2*"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
                 </Grid.RowDefinitions>
-
-                <Image Source="https://i.pinimg.com/564x/27/e8/6d/27e86de3736367dad62dda526f8ae1f5.jpg" 
-                                   HorizontalOptions="FillAndExpand"
-                                   VerticalOptions="FillAndExpand"
-                                   Aspect="AspectFill"                           
-                           />
                 <ImageButton Command="{Binding NavigationBack}" 
+                             BackgroundColor="White"
                                  Source="backbutton.png" 
+                                 Grid.Row="0"
                                  HeightRequest="30" 
                                  WidthRequest="50"
                                  CornerRadius="10" 
                                  HorizontalOptions="StartAndExpand" 
-                                 VerticalOptions="StartAndExpand"
-                                 BackgroundColor="White" 
+                                 VerticalOptions="Start"
                                  Margin="10, 10 , 0, 0"/>
-                <Frame
-                CornerRadius="10"                                  
-                    HorizontalOptions="End"                                  
-                    VerticalOptions="StartAndExpand"                                 
-                    BackgroundColor="White"                                  
-                    Margin="0, 10 , 10, 0"
-                Padding="5"
-                >
 
+                <Label HorizontalOptions="EndAndExpand"
+                           Margin="10,10,10,0"
+                                   Text="Thêm mới phiếu giảm giá"
+                                   TextColor="CadetBlue" 
+                                   FontSize="25"
+                                   FontAttributes="Bold" 
+                                   VerticalOptions="Center"/>
 
-                </Frame>
-
-
-                <pancake:PancakeView Grid.Row="1" 
-                                     CornerRadius="40,40,0,0" 
-                                     Margin="0,-60,0,0"
-                                     BackgroundColor="WhiteSmoke" 
-                                     Padding="10">
-                    <StackLayout Grid.Row="1" Padding="20,20,20,10">
-                        <StackLayout Orientation="Horizontal">
-
-                            <Entry HorizontalOptions="FillAndExpand"
-                                   Text="{Binding Id}"
-                                   TextColor="SteelBlue"
-                                   FontSize="25" 
-                                   FontAttributes="Bold"
-                                   Placeholder="Discount ID..."/>
-                        </StackLayout>
-
-                        <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Start" Margin="0,2,0,0">
-                        <ImageButton HeightRequest="25" Aspect="AspectFill" Source="scoreIcon.png" CornerRadius="20" BackgroundColor="Transparent"/>
-                        <Label Text="{Binding SelectedTour.starNumber}" 
-                               VerticalOptions="CenterAndExpand"
-                               TextColor="Black"
-                               FontAttributes="Bold"
-                               FontSize="Small"/>
-                    </StackLayout> -->
-
-                        <StackLayout Orientation="Horizontal"
-                                     HorizontalOptions="Center" 
-                                     Margin="0,2,0,0">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Label Text="Total: "
-                                       Grid.Column="0"
-                                   Margin="0, 20, 20, 20"
-                                   TextColor="Black" 
-                                       HorizontalOptions="StartAndExpand"
-                                   FontSize="Large"
-                                   FontAttributes="Bold"/>
-
-                                <StackLayout Orientation="Horizontal"
-                                             Grid.Column="1">
-                                    <Entry VerticalOptions="Start" 
+                <StackLayout Orientation="Vertical"
+                             Grid.Row="1">
+                    <Label Text="Nhập thông tin phiếu giảm giá: "
+                           TextColor="Black"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           Margin="20, 30,20,20"/>
+                    <!--<StackLayout Orientation="Horizontal"
+                                 Margin="0,20,0,0"
+                                 Grid.Column="1"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Entry VerticalOptions="Center" 
                                    Keyboard="Numeric"
-                                   WidthRequest="90" 
-                                   FontSize="30"
-                                   TextColor="DarkBlue"
+                                   WidthRequest="100" 
+                                   FontSize="50"
+                                   TextColor="CadetBlue"
                                    FontAttributes="Bold"
-                                   Text="{Binding Total}" 
-                                   />
-
-                                    <Image HeightRequest="25"
-                                         WidthRequest="25"
-                                   Margin="10,0,0,0"
-                                         Aspect="AspectFit"
-                                         Source="passengerIcon.png"
-                                         BackgroundColor="Transparent"/>
-                                </StackLayout>
-
-                            </Grid>
-
-                        </StackLayout>
-
-                        <StackLayout Orientation="Horizontal"
-                                     HorizontalOptions="Center" 
-                                     Margin="0,2,0,0">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Label Text="Percent: "
-                                       Grid.Column="0"
-                                   Margin="0, 20, 20, 20"
-                                   TextColor="Black" 
-                                       HorizontalOptions="StartAndExpand"
-                                   FontSize="Large"
-                                   FontAttributes="Bold"/>
-
-                                <StackLayout Orientation="Horizontal"
-                                             Grid.Column="1">
-                                    <Entry VerticalOptions="Center" 
-                                   Keyboard="Numeric"
-                                   WidthRequest="90" 
-                                   FontSize="30"
-                                   TextColor="DarkBlue"
-                                   FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
                                    Text="{Binding Percent}" 
                                    />
 
-                                    <Image HeightRequest="25"
-                                         WidthRequest="25"
-                                   Margin="10,0,0,0"
+                        <Image HeightRequest="40"
+                                         WidthRequest="40"
+                                   Margin="10,25,0,0"
                                          Aspect="AspectFit"
                                          Source="percentIcon.png"
                                          BackgroundColor="Transparent"/>
-                                </StackLayout>
+                    </StackLayout>-->
 
-                            </Grid>
-
-                        </StackLayout>
-
-                        <Label Text="{Binding Notice}"
-                               IsVisible="{Binding NoticeVisible}"
-                               TextColor="DarkRed"
-                               FontAttributes="Italic"
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="20, 10, 20,10">
+                        <Label Text="Phần trăm giảm giá: "
+                               TextColor="Black"
                                FontSize="15"
-                               Margin="20"/>
+                               FontAttributes="Italic"/>
+                        <Entry   
+                                   Keyboard="Numeric"
+                                   WidthRequest="100" 
+                                   FontSize="20"
+                                   TextColor="CadetBlue"
+                                   FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                                   Margin="85,-15,10,0"
+                                   Text="{Binding Percent}" 
+                                   />
 
-                        <Button 
-                                Text="Add Discount" 
-                                BackgroundColor="SteelBlue"
-                            Command="{Binding AddCommand}" 
-                            TextColor="White"
-                            FontSize="20" 
-                            Margin="30, 30, 30, 0"
-                            HorizontalOptions="CenterAndExpand"/>
-
+                        <Image Source="percentIcon.png"
+                               WidthRequest="25"
+                               HeightRequest="20"
+                               Aspect="AspectFill"
+                               BackgroundColor="Transparent"/>
                     </StackLayout>
-                </pancake:PancakeView>
+
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="20,10,20,10">
+                        <Label Text="Nhập mã giảm giá 
+                               
+                               (tối đa 8 kí tự bao gồm chữ, số): "
+                               TextColor="Black"
+                               FontSize="15"
+                               FontAttributes="Italic"/>
+                        <Entry   
+                                   Keyboard="Numeric"
+                                   WidthRequest="150" 
+                                   FontSize="20"
+                                   TextColor="CadetBlue"
+                                   FontAttributes="Bold"
+                                   Text="{Binding Id}" 
+                            HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                   />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="20,10,20,10">
+                        <Label Text="Số lượt giảm giá: "
+                               TextColor="Black"
+                               FontSize="15"
+                               FontAttributes="Italic"/>
+                        <Entry   
+                                   Keyboard="Numeric"
+                                   WidthRequest="100" 
+                                   FontSize="20"
+                                   TextColor="CadetBlue"
+                                   FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                                   Margin="105,-15,0,0"
+                                   Text="{Binding Total}" 
+                                   />
+
+                        <Label Text="lượt"
+                               TextColor="Black"
+                               FontSize="20"
+                               FontAttributes="Bold"/>
+                    </StackLayout>
+
+                    <Frame Margin="20"
+                           IsVisible="{Binding NoticeVisible}"
+                           CornerRadius="20">
+                        <StackLayout Padding="0"
+                                     Orientation="Vertical"
+                                     >
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="https://img.icons8.com/color/452/cancel--v1.png"
+                                       WidthRequest="20"
+                                       Aspect="AspectFill"/>
+                                <Label Text=" Lỗi: "
+                                   TextColor="DarkRed"
+                                   FontAttributes="Bold"
+                                   FontSize="18"/>
+                            </StackLayout>
+                            
+                            <Label Text="{Binding Notice}"
+                                       TextColor="Black"
+                                       FontAttributes="Italic"
+                                       FontSize="15"
+                                       Margin="20"/>
+                        </StackLayout>
+                     </Frame>
+
+
+
+                <Button 
+                        CornerRadius="20" 
+                        Margin="35,20,35,0"
+                        Padding="5"  
+                        BackgroundColor="LightSeaGreen" 
+                        VerticalOptions="Center"
+                        HeightRequest="45"
+                        Text="Thêm phiếu giảm giá"
+                        TextColor="White"
+                        FontSize="15"
+                        FontAttributes="Bold"
+                        Command="{Binding AddCommand}"
+                    />
+
+
+                </StackLayout>
+              
 
 
             </Grid>

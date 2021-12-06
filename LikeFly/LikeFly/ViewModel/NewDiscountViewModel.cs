@@ -46,7 +46,7 @@ namespace LikeFly.ViewModel
                 await DataManager.Ins.DiscountsServices.addDiscount(discount);
                 DataManager.Ins.ListDiscount.Add(discount);
 
-                DependencyService.Get<IToast>().ShortToast("Adding discount successfully");
+                DependencyService.Get<IToast>().ShortToast("Thêm mã giảm giá thành công!");
 
 
                 await navigation.PopAsync();
@@ -61,28 +61,28 @@ namespace LikeFly.ViewModel
 
             if (Id == "")
             {
-                Notice += "Please enter discount ID. ";
+                Notice += "Mã giảm giá bị trống. Xin hãy bổ sung!";
                 NoticeVisible = true;
                 return false;
             }
 
             if (Percent == "")
             {
-                Notice += "Please enter percent. ";
+                Notice += "Phần trăm giảm giá còn trống. Xin hãy bổ sung! ";
                 NoticeVisible = true;
                 return false;
             }
 
             if (Total == "")
             {
-                Notice += "Please enter total. ";
+                Notice += "Số lượt giảm giá còn trống. Xin hãy bổ sung!";
                 NoticeVisible = true;
                 return false;
             }
 
-            if (Id.Length > 10)
+            if (Id.Length > 8)
             {
-                Notice += "Discount ID length is less than 10. ";
+                Notice += "Mã giảm giá có số kí tự tối đa là 8. Xin hãy kiểm tra lại!";
                 NoticeVisible = true;
                 return false;
             }
@@ -90,14 +90,14 @@ namespace LikeFly.ViewModel
             Discount tmp = await DataManager.Ins.DiscountsServices.FindDiscountById(Id);
             if (tmp != null)
             {
-                Notice += "This iscount ID is existing. Please change the new one.";
+                Notice += "Mã giảm giá đã tồn tại. Hãy nhập một mã khác!";
                 NoticeVisible = true;
                 return false;
             }
 
             if (int.Parse(Percent) > 100)
             {
-                Notice += "Percent must be less than 100. ";
+                Notice += "Phần trăm giảm giá tối đa là 100%. Hãy thử lại ";
                 NoticeVisible = true;
                 return false;
             }
@@ -105,14 +105,14 @@ namespace LikeFly.ViewModel
 
             if (Percent.Contains(".") || Percent.Contains(","))
             {
-                Notice += "Please enter an interger number for percent. ";
+                Notice += "Phần trăm giảm giá là một số nguyên. Hãy thử lại!";
                 NoticeVisible = true;
                 return false;
             }
 
             if (Total.Contains(".") || Total.Contains(","))
             {
-                Notice += "Please enter an interger number for total. ";
+                Notice += "Số lượt giảm giá là số nguyên. Hãy thử lại!";
                 NoticeVisible = true;
                 return false;
             }
