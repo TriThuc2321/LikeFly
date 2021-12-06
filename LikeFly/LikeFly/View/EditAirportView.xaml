@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:LikeFly.ViewModel"
+             x:Class="LikeFly.View.EditAirportView">
+    <ContentPage.BindingContext>
+        <vm:EditAirportViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+            <ImageButton Source="{Binding Img}" Opacity="0.5" HeightRequest="300" WidthRequest="400" Command="{Binding OpenLibrary}"></ImageButton>
+            <Label Grid.Row="0" Text="Nhấn để thay đổi" FontSize="Large" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+            </Grid>
+            <Entry Placeholder="{Binding SelectedAirport.Name}" Text="{Binding NewAirportName}"></Entry>
+            <Picker ItemsSource="{Binding ProvinceList}" SelectedItem="{Binding SelectedProvince}"></Picker>
+            <Button Text="Lưu" Command="{Binding SaveCommand}"></Button>
+            <Button Text="Lưu" Command="{Binding DeleteCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
