@@ -21,7 +21,7 @@ namespace LikeFly.ViewModel
 
             NavigationBack = new Command(() => navigation.PopAsync());
             DeleteCommand = new Command(delete);
-            EditCommand = new Command(Edit);
+            EditCommand = new Command(edit);
 
             Notice = "";
             NoticeVisible = false;
@@ -29,6 +29,8 @@ namespace LikeFly.ViewModel
             Percent = Total = "";
 
             PercentEnable = TotalEnable = true;
+
+            EditNoticeEnable = false;
 
             SetInformation();
         }
@@ -40,28 +42,25 @@ namespace LikeFly.ViewModel
 
         async void delete(object obj)
         {
-            //Discount result = obj as Discount;
+            Discount result = DataManager.Ins.CurrentDiscount;
 
-            //if (result != null && result.isUsed != "0")
-            //{
-            //    DependencyService.Get<IToast>().ShortToast("Cannot delete this discount!");
-            //    return;
-            //}
-            //else if (result != null)
-            //{
-            //    Discount tmp = await DataManager.Ins.DiscountsServices.FindDiscountById(result.id);
-            //    if (tmp != null)
-            //    {
-            //        if (tmp.isUsed != "0")
-            //        {
-            //            DependencyService.Get<IToast>().ShortToast("Cannot delete this discount! Someone used this account");
-            //            return;
-            //        }
-            //    }
-            //    DiscountList.Remove(result);
-            //    DataManager.Ins.ListDiscount.Remove(result);
-            //    await DataManager.Ins.DiscountsServices.DeleteDiscount(result.id);
+            if (result != null)
+            {
+                Discount tmp = await DataManager.Ins.DiscountsServices.FindDiscountById(result.id);
+                if (tmp != null)
+                {
+                    if (tmp.isUsed != "0")
+                    {
+                        DependencyService.Get<IToast>().ShortToast("Đã có khách hàng vừa áp dụng phiếu giảm giá này, không thể xoá!");
+                        return;
+                    }
+                }
+                DataManager.Ins.ListDiscount.Remove(result);
+                await DataManager.Ins.DiscountsServices.DeleteDiscount(result.id);
+                DependencyService.Get<IToast>().ShortToast("Xoá phiếu giảm giá thành công!");
+
             }
+        }
 
         void SetInformation()
         {
@@ -73,11 +72,13 @@ namespace LikeFly.ViewModel
             if (discount.isUsed != "0")
             {
                 TotalEnable = PercentEnable = false;
-                Notice = "Cannot edit this discount since this was used.";
-                NoticeVisible = true;
+                EditNoticeEnable = true;
+                //Notice = "Cannot edit this discount since this was used.";
+                //NoticeVisible = true;
             }
         }
-        async void Edit(object obj)
+
+        async void edit(object obj)
         {
             if (await checkValid())
             {
@@ -99,7 +100,7 @@ namespace LikeFly.ViewModel
                         DataManager.Ins.ListDiscount[i] = discount;
                     }
                 }
-                DependencyService.Get<IToast>().ShortToast("Editing discount successfully!");
+                DependencyService.Get<IToast>().ShortToast("Cập nhật phiếu giảm giá thành công!");
 
                 await navigation.PopAsync();
 
@@ -118,23 +119,30 @@ namespace LikeFly.ViewModel
             //    return false;
             //}
 
+            if (Id == "")
+            {
+                Notice += "Mã giảm giá bị trống. Xin hãy bổ sung!";
+                NoticeVisible = true;
+                return false;
+            }
+
             if (Percent == "")
             {
-                Notice += "Please enter percent. ";
+                Notice += "Phần trăm giảm giá còn trống. Xin hãy bổ sung! ";
                 NoticeVisible = true;
                 return false;
             }
 
             if (Total == "")
             {
-                Notice += "Please enter total. ";
+                Notice += "Số lượt giảm giá còn trống. Xin hãy bổ sung!";
                 NoticeVisible = true;
                 return false;
             }
 
-            if (Id.Length > 10)
+            if (Id.Length > 8)
             {
-                Notice += "Discount ID length is less than 10. ";
+                Notice += "Mã giảm giá có số kí tự tối đa là 8. Xin hãy kiểm tra lại!";
                 NoticeVisible = true;
                 return false;
             }
@@ -142,14 +150,14 @@ namespace LikeFly.ViewModel
             Discount tmp = await DataManager.Ins.DiscountsServices.FindDiscountById(Id);
             if (tmp != null && tmp.isUsed != "0")
             {
-                Notice += "This discount is used. Cannot edit";
+                Notice += "Đã có khách hàng vừa áp dụng phiếu giảm giá này, không thể cập nhật!";
                 NoticeVisible = true;
                 return false;
             }
 
             if (int.Parse(Percent) > 100)
             {
-                Notice += "Percent must be less than 100. ";
+                Notice += "Phần trăm giảm giá tối đa là 100%. Hãy thử lại ";
                 NoticeVisible = true;
                 return false;
             }
@@ -157,14 +165,14 @@ namespace LikeFly.ViewModel
 
             if (Percent.Contains(".") || Percent.Contains(","))
             {
-                Notice += "Please enter an interger number for percent. ";
+                Notice += "Phần trăm giảm giá là một số nguyên. Hãy thử lại!";
                 NoticeVisible = true;
                 return false;
             }
 
             if (Total.Contains(".") || Total.Contains(","))
             {
-                Notice += "Please enter an interger number for total. ";
+                Notice += "Số lượt giảm giá là số nguyên. Hãy thử lại!";
                 NoticeVisible = true;
                 return false;
             }
@@ -252,6 +260,18 @@ namespace LikeFly.ViewModel
             {
                 _percentEnable = value;
                 OnPropertyChanged("PercentEnable");
+
+            }
+        }
+
+        private bool _editNoticeEnable;
+        public bool EditNoticeEnable
+        {
+            get { return _editNoticeEnable; }
+            set
+            {
+                _editNoticeEnable = value;
+                OnPropertyChanged("EditNoticeEnable");
 
             }
         }

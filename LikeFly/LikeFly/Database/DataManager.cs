@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LikeFly.Database
 {
-    public class DataManager: ObservableObject
+    public class DataManager : ObservableObject
     {
         private static DataManager _ins;
         public static DataManager Ins
@@ -20,10 +20,14 @@ namespace LikeFly.Database
             }
             set { _ins = value; }
         }
-        
+
         public bool LoadData = true;
         public List<User> users;
         public List<Airport> airports;
+        public List<FavouriteFlight> favouriteFlights;
+        public List<Discount> discountsList;
+        public List<BookedTicket> bookedTicketsList;
+        public List<Invoice> invoicesList;
 
         private DataManager()
         {
@@ -45,6 +49,9 @@ namespace LikeFly.Database
             BookedTicketsServices = new BookedTicketServices();
             ListInvoice = new ObservableCollection<Invoice>();
             InvoicesServices = new InvoicesService();
+            ListFavouriteFlights = new ObservableCollection<FavouriteFlight>();
+            FavoritesServices = new FavouriteFlightsServices();
+
 
             CurrentDiscount = new Discount();
             CurrentInvoice = new Invoice();
@@ -88,30 +95,43 @@ namespace LikeFly.Database
         }
         async Task getAllList()
         {
-            await GetUsers();    
-            await getFlightList();       
+            await GetUsers();
+            await getFlightList();
             await GetNotifications();
             await GetAllDiscounts();
             await GetAllInvoices();
             await GetAllBookedTicket();
-             await GetAirports();
+            await GetAirports();
+            await GetAllFavourites();
         }
 
-        async Task GetAllDiscounts() {
-            List<Discount> discountsList = await DiscountsServices.GetAllDiscounts();
+        async Task GetAllDiscounts()
+        {
+            discountsList = await DiscountsServices.GetAllDiscounts();
             foreach (Discount discount in discountsList)
             {
                 ListDiscount.Add(discount);
             }
         }
 
+        async Task GetAllFavourites()
+        {
+
+            favouriteFlights = await FavoritesServices.GetAllFavourite();
+            foreach (FavouriteFlight favourite in favouriteFlights)
+            {
+                // favourite.flight = ListFlights.Find(e => (e.id == favourite.tour.id));
+                ListFavouriteFlights.Add(favourite);
+            }
+        }
+
         async Task GetAllBookedTicket()
         {
-            List<BookedTicket> bookedTicketsList = await BookedTicketsServices.GetAllBookedTicket();
+            bookedTicketsList = await BookedTicketsServices.GetAllBookedTicket();
             foreach (BookedTicket booked in bookedTicketsList)
             {
-               // booked.flight = tourList.Find(e => (e.id == booked.tour.id));
-              //  booked.invoice = invoicesList.Find(e => (e.id == booked.invoice.id));
+                // booked.flight = tourList.Find(e => (e.id == booked.tour.id));
+                //  booked.invoice = invoicesList.Find(e => (e.id == booked.invoice.id));
                 ListBookedTickets.Add(booked);
 
             }
@@ -119,8 +139,7 @@ namespace LikeFly.Database
 
         async Task GetAllInvoices()
         {
-            List<Discount> discountsList = await DiscountsServices.GetAllDiscounts();
-            List<Invoice> invoicesList = await InvoicesServices.GetAllInvoice();
+            invoicesList = await InvoicesServices.GetAllInvoice();
             foreach (Invoice invoice in invoicesList)
             {
                 if (invoice.discount != null)
@@ -129,9 +148,9 @@ namespace LikeFly.Database
             }
         }
 
-#endregion
+        #endregion
 
-private FlightServices flightsServices;
+        private FlightServices flightsServices;
         public FlightServices FlightsServices
         {
             get
@@ -167,7 +186,7 @@ private FlightServices flightsServices;
             }
             set { usersServices = value; }
         }
-       
+
         private ObservableCollection<Flight> _flights;
         public ObservableCollection<Flight> ListFlights
         {
@@ -359,6 +378,17 @@ private FlightServices flightsServices;
             }
         }
 
+        private Flight currentFlight;
+        public Flight CurrentFlight
+        {
+            get { return currentFlight; }
+            set
+            {
+                currentFlight = value;
+                OnPropertyChanged("CurrentFlight");
+            }
+        }
+
 
         private ObservableCollection<BookedTicket> bookedTicketList;
         public ObservableCollection<BookedTicket> ListBookedTickets
@@ -369,6 +399,27 @@ private FlightServices flightsServices;
                 bookedTicketList = value;
                 OnPropertyChanged("ListBookedTickets");
             }
+        }
+
+        private ObservableCollection<FavouriteFlight> listFavouriteFlights;
+        public ObservableCollection<FavouriteFlight> ListFavouriteFlights
+        {
+            get { return listFavouriteFlights; }
+            set
+            {
+                listFavouriteFlights = value;
+                OnPropertyChanged("ListFavouriteFlights");
+            }
+        }
+
+        private FavouriteFlightsServices favoritesServices;
+        public FavouriteFlightsServices FavoritesServices
+        {
+            get
+            {
+                return favoritesServices;
+            }
+            set { favoritesServices = value; }
         }
 
 
