@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LikeFly.View;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,7 +10,8 @@ namespace LikeFly
         public App()
         {
             InitializeComponent();
-            MainPage = new MainPage();
+             MainPage = new MainPage();
+            //MainPage = new NavigationPage(new DiscountManagerView());
         }
 
         protected override void OnStart()
