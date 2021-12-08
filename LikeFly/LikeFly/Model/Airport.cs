@@ -11,6 +11,15 @@ namespace LikeFly.Model
         {
         }
 
+        public Airport(string id, string name, string province, string imgSource, bool enable)
+        {
+            Id = id;
+            Name = name;
+            Province = province;
+            ImgSource = imgSource;
+            Enable = enable;
+        }
+
         private string id { get; set; }
         public string Id
         {
@@ -51,12 +60,18 @@ namespace LikeFly.Model
             }
         }
 
-        public Airport(string id, string name, string province, string imgSource)
+        private bool enable { get; set; }
+        public bool Enable
         {
-            this.id = id;
-            this.name = name;
-            this.province = province;
-            this.imgSource = imgSource;
+            get { return enable; }
+            set
+            {
+                enable = value;
+                OnPropertyChanged("Enable");
+            }
         }
+
+
+        
     }
 }

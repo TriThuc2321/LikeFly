@@ -70,6 +70,7 @@ namespace LikeFly.Database
             airports = await AirportServices.GetAllAirport();
             foreach (Airport p in airports)
             {
+                if (p.Enable == true)
                 ListAirports.Add(p);
             }
         }

@@ -44,6 +44,9 @@
     <EmbeddedResource Update="View\DetailNotificationView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\EditAirportView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\EditFlightView.xaml">
      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

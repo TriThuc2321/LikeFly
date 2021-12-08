@@ -30,6 +30,7 @@ namespace LikeFly.Database
                   Name = item.Object.Name,
                   ImgSource = item.Object.ImgSource,
                   Province = item.Object.Province,
+                  Enable = item.Object.Enable
               }).ToList();
         }
         public async Task AddAirport(Airport airport)
@@ -42,6 +43,7 @@ namespace LikeFly.Database
                   Name = airport.Name,
                   ImgSource = airport.ImgSource,
                   Province = airport.Province,
+                  Enable = airport.Enable
               });
         }
         public async Task UpdateAirport(Airport airport)
@@ -59,6 +61,7 @@ namespace LikeFly.Database
                   Name = airport.Name,
                   ImgSource = airport.ImgSource,
                   Province = airport.Province,
+                  Enable = airport.Enable,
               });
         }
         async public Task<string> saveImage(Stream imgStream, string airportId, int id)

@@ -5,28 +5,31 @@ using Plugin.Media;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace LikeFly.ViewModel
 {
-    public class NewAirportViewModel :ObservableObject
+    public class EditAirportViewModel :ObservableObject
     {
-        INavigation navigation;
+        public INavigation navigation;
+        public Shell currentShell;
 
-        public Command BackCommand { get; }
-        public Command AddImageCommand { get; }
+        public Command OpenLibrary { get; }
 
-        public NewAirportViewModel() { }
-        public NewAirportViewModel(INavigation _navigation)
+        public EditAirportViewModel() { }
+        public EditAirportViewModel(INavigation navigation, Shell currentShell)
         {
-            this.navigation = _navigation;
-            SelectedAirport = DataManager.Ins.CurrentAirport;
+            this.navigation = navigation;
+            this.currentShell = currentShell;
             InitProvinceList();
-            BackCommand = new Command(() =>  navigation.PopAsync());
-            AddImageCommand = new Command(addHandleAsync);
+            SelectedAirport = DataManager.Ins.CurrentAirport;
+            SelectedProvince = SelectedAirport.Province;
+            NewAirportName = SelectedAirport.Name;
+            Img = SelectedAirport.ImgSource;
+            OpenLibrary = new Command(addHandleAsync);
+
 
         }
         #region Add
@@ -53,67 +56,59 @@ namespace LikeFly.ViewModel
             }
 
         }
-        public ICommand AddCommand => new Command<object>(async (obj) =>
+        public ICommand SaveCommand => new Command<object>(async (obj) =>
         {
-            if (imgTemp != null && NewAirportName != "" && selectedProvince != null)
+            if (NewAirportName != "" && NewAirportName != null && selectedProvince != null)
             {
+                DataManager.Ins.CurrentAirport.Name = NewAirportName;
+                DataManager.Ins.CurrentAirport.Province = SelectedProvince;
+                string url = SelectedAirport.ImgSource;
                 DependencyService.Get<IToast>().ShortToast("Hệ thống đang xử lý vui lòng chờ");
-                string AirPortId = GenerateId(10);
-                string url = await DataManager.Ins.AirportServices.saveImage(imgTemp, AirPortId, 0);
-                Airport newAirport = new Airport(AirPortId, NewAirportName, selectedProvince, url,true);
-                await DataManager.Ins.AirportServices.AddAirport(newAirport);
-                DataManager.Ins.ListAirports.Add(newAirport);
-                DependencyService.Get<IToast>().ShortToast("Thêm thành công sân bay");
+
+                if (imgTemp != null)
+                {
+                 url =  await DataManager.Ins.AirportServices.saveImage(imgTemp, SelectedAirport.Id, 0);
+                DataManager.Ins.CurrentAirport.ImgSource = url;
+                }
+                SelectedAirport = DataManager.Ins.CurrentAirport;
+                await DataManager.Ins.AirportServices.UpdateAirport(DataManager.Ins.CurrentAirport);
+                UpdateList();
+                DependencyService.Get<IToast>().ShortToast("Sửa thành công sân bay");
                 await navigation.PopAsync();
             }
-            else if (imgTemp == null)
-            {
-                DependencyService.Get<IToast>().ShortToast("Vui lòng thêm hình ảnh cho sân bay");
-            }
-            else if (NewAirportName == "" || selectedProvince == null)
+            else if (NewAirportName == "" || NewAirportName == null || selectedProvince == null)
             {
                 DependencyService.Get<IToast>().ShortToast("Vui lòng điền đầy đủ thông tin sân bay");
-
             }
-
-
+        }); 
+        public ICommand DeleteCommand => new Command<object>(async (obj) =>
+        {
+            DependencyService.Get<IToast>().ShortToast("Hệ thống đang xử lý vui lòng chờ");
+            DataManager.Ins.CurrentAirport.Enable = false;
+            SelectedAirport.Enable = false;
+            UpdateList();
+            await DataManager.Ins.AirportServices.UpdateAirport(DataManager.Ins.CurrentAirport);
+            DependencyService.Get<IToast>().ShortToast("Xóa thành công sân bay");
+            await navigation.PopAsync();
+          
         });
-        #endregion
-        public string GenerateId(int length = 10)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-            var random = new Random();
-            var randomString = new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
-            return randomString;
-        }
-        public List<string> provinceList;
-        public List<string> ProvinceList
+        private void UpdateList()
         {
-            get { return provinceList; }
-            set
+            for (int i = 0; i < DataManager.Ins.ListAirports.Count; i++)
             {
-                provinceList = value;
+                if (DataManager.Ins.ListAirports[i].Id == SelectedAirport.Id)
+                {
+                    if (SelectedAirport.Enable == false)
+                    {
+                        DataManager.Ins.ListAirports.RemoveAt(i);
+                        break;
+                    }
+                    DataManager.Ins.ListAirports[i] = SelectedAirport;
+                }
             }
         }
-        public string selectedProvince;
-        public string SelectedProvince
-        {
-            get { return selectedProvince; }
-            set
-            {
-                selectedProvince = value;
-            }
-        }
-        public string newAirportName;
-        public string NewAirportName
-        {
-            get { return newAirportName; }
-            set
-            {
-                newAirportName = value;
-            }
-        }
+        #endregion
         #region Init Province List
         private void InitProvinceList()
         {
@@ -182,8 +177,16 @@ namespace LikeFly.ViewModel
             ProvinceList.Add("Vĩnh Phúc");
             ProvinceList.Add("Yên Bái");
         }
+        public List<string> provinceList;
+        public List<string> ProvinceList
+        {
+            get { return provinceList; }
+            set
+            {
+                provinceList = value;
+            }
+        }
         #endregion
-
         private Airport selectedAirport;
         public Airport SelectedAirport
         {
@@ -195,6 +198,23 @@ namespace LikeFly.ViewModel
 
             }
         }
-
+        public string selectedProvince;
+        public string SelectedProvince
+        {
+            get { return selectedProvince; }
+            set
+            {
+                selectedProvince = value;
+            }
+        }
+        public string newAirportName;
+        public string NewAirportName
+        {
+            get { return newAirportName; }
+            set
+            {
+                newAirportName = value;
+            }
+        }
     }
 }
