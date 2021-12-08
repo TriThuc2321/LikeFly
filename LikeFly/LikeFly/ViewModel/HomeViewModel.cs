@@ -19,6 +19,8 @@ namespace LikeFly.ViewModel
 
         public Command MenuCommand { get; }
         public Command NotificaitonCommand { get; }
+        public Command SearchHandler { get; }
+
 
         public HomeViewModel() { }
         public HomeViewModel(INavigation navigation, Shell currentShell)
@@ -27,6 +29,7 @@ namespace LikeFly.ViewModel
             this.currentShell = currentShell;
             MenuCommand = new Command(openMenu);
             NotificaitonCommand = new Command(openNotifi);
+            SearchHandler = new Command(SearchHandle);
 
             ProfilePic = DataManager.Ins.CurrentUser.profilePic;
             Airports = DataManager.Ins.ListAirports;
@@ -61,6 +64,34 @@ namespace LikeFly.ViewModel
             navigation.PushAsync(new NotificationView());
         }
 
+        private void SearchHandle()
+        {
+            if(String.IsNullOrWhiteSpace(FromPlaceText) || String.IsNullOrWhiteSpace(ToPlaceText))
+            {
+                DependencyService.Get<IToast>().ShortToast("Bạn muốn tìm chuyến bay nào ?");
+                return;
+            }
+            else
+            {
+                DataManager.Ins.Search.RefreshDataSearch();
+                DataManager.Ins.Search.FromPlaceText = FromPlaceText;
+                DataManager.Ins.Search.ToPlaceText = ToPlaceText;
+                DataManager.Ins.Search.StartDate = StartDate.ToString("d");
+                DataManager.Ins.Search.GetSearchResult();
+                if (DataManager.Ins.Search.ResultList.Count > 0)
+                {
+                    navigation.PushAsync(new SearchResultView());
+                    //DependencyService.Get<IToast>().ShortToast(DataManager.Ins.Search.ResultList.Count.ToString());
+                }
+                else
+                {
+                    DependencyService.Get<IToast>().ShortToast("Xin lỗi ! Hiện tại chưa có chuyến bay bạn cần tìm");
+                    return;
+                }
+
+            }
+        }
+
         private string profilePic;
         public string ProfilePic
         {
@@ -69,6 +100,38 @@ namespace LikeFly.ViewModel
             {
                 profilePic = value;
                 OnPropertyChanged("ProfilePic");
+            }
+        }
+
+        private string fromPlaceText;
+        public string FromPlaceText
+        {
+            get { return fromPlaceText; }
+            set
+            {
+                fromPlaceText = value;
+                OnPropertyChanged("FromPlaceText");
+            }
+        }
+        private string toPlaceText;
+        public string ToPlaceText
+        {
+            get { return toPlaceText; }
+            set
+            {
+                toPlaceText = value;
+                OnPropertyChanged("ToPlaceText");
+            }
+        }
+
+        private DateTime startDate;
+        public DateTime StartDate
+        {
+            get { return startDate; }
+            set
+            {
+                startDate = value;
+                OnPropertyChanged("StartDate");
             }
         }
         private ObservableCollection<Airport> airports;

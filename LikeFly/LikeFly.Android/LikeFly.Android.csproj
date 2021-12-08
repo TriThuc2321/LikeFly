@@ -170,6 +170,7 @@
     <AndroidResource Include="Resources\drawable\camera.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pencilIcon.png" />
     <AndroidResource Include="Resources\drawable\airplaneIcon.png" />
   </ItemGroup>
   <ItemGroup>
