@@ -40,7 +40,7 @@ namespace LikeFly.Database
         }
         public async Task AddBookedTicket(BookedTicket bookedTicket)
         {
-            await firebase
+            /*await firebase
               .Child("BookedTickets")
               .PostAsync(new BookedTicket()
               {
@@ -55,13 +55,13 @@ namespace LikeFly.Database
                   bookTime = bookedTicket.bookTime,
                   invoice = bookedTicket.invoice,
                   isCancel = bookedTicket.isCancel
-              });
+              });*/
         }
 
 
         public async Task UpdateBookedTicket(BookedTicket bookedTicket)
         {
-            var toUpdateTour = (await firebase
+            /*var toUpdateTour = (await firebase
                  .Child("BookedTickets")
                  .OnceAsync<BookedTicket>()).Where(a => a.Object.id == bookedTicket.id).FirstOrDefault();
 
@@ -81,7 +81,7 @@ namespace LikeFly.Database
                   bookTime = bookedTicket.bookTime,
                   invoice = bookedTicket.invoice,
                   isCancel = bookedTicket.isCancel
-              });
+              });*/
 
         }
         public async Task DeleteBookedTicket(string id)

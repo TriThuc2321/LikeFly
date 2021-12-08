@@ -57,7 +57,8 @@ namespace LikeFly.Database
             CurrentDiscount = new Discount();
             CurrentInvoice = new Invoice();
             CurrentBookedTicket = new BookedTicket();
-
+            getAllList();
+        }
         async Task GetUsers()
         {
             users = await UsersServices.GetAllUsers();
@@ -182,7 +183,7 @@ namespace LikeFly.Database
             }
             return null;
         }
-
+            
         private SearchService search;
         public SearchService Search
         {
@@ -449,16 +450,7 @@ namespace LikeFly.Database
             }
         }
 
-        private Flight currentFlight;
-        public Flight CurrentFlight
-        {
-            get { return currentFlight; }
-            set
-            {
-                currentFlight = value;
-                OnPropertyChanged("CurrentFlight");
-            }
-        }
+        
 
 
         private ObservableCollection<BookedTicket> bookedTicketList;
@@ -481,19 +473,7 @@ namespace LikeFly.Database
                 listFavouriteFlights = value;
                 OnPropertyChanged("ListFavouriteFlights");
             }
-        }
-
-        private FavouriteFlightsServices favoritesServices;
-        public FavouriteFlightsServices FavoritesServices
-        {
-            get
-            {
-                return favoritesServices;
-            }
-            set { favoritesServices = value; }
-        }
-
-
+        }   
         private BookedTicketServices bookedTicketServices;
         public BookedTicketServices BookedTicketsServices
         {
