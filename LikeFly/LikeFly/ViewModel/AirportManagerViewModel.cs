@@ -69,7 +69,7 @@ namespace LikeFly.ViewModel
             if (result != null)
             {
                 DataManager.Ins.CurrentAirport = result;
-                navigation.PushAsync(new NewAirportView());
+                navigation.PushAsync(new EditAirportView());
                 SelectedAirport = null;
             }
         });

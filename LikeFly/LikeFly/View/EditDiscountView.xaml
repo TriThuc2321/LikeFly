@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LikeFly.View.EditDiscountView"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:vm="clr-namespace:LikeFly.ViewModel"
+             >
+    <ContentPage.BindingContext>
+        <vm:EditDiscountViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid BackgroundColor="WhiteSmoke">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <ImageButton Command="{Binding NavigationBack}" 
+                             BackgroundColor="White"
+                                 Source="backbutton.png" 
+                                 Grid.Row="0"
+                                 HeightRequest="30" 
+                                 WidthRequest="50"
+                                 CornerRadius="10" 
+                                 HorizontalOptions="StartAndExpand" 
+                                 VerticalOptions="Start"
+                                 Margin="10, 10 , 0, 0"/>
+
+                <Label HorizontalOptions="EndAndExpand"
+                           Margin="10,10,10,0"
+                                   Text="Chi tiết phiếu giảm giá"
+                                   TextColor="CadetBlue" 
+                                   FontSize="25"
+                       Grid.Row="0"
+                                   FontAttributes="Bold" />
+
+
+                <StackLayout Grid.Row="1" 
+                             Orientation="Vertical">
+                    <Label Text="Thông tin phiếu giảm giá: "
+                           TextColor="Black"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           Margin="20, 30,20,20"/>
+                    
+                    <Label Text="(Không thể cập nhật/ xoá thông tin phiếu giảm giá này vì phiếu đã được khách hàng áp dụng!)"
+                           TextColor="Maroon"
+                           FontSize="15"
+                           FontAttributes="Italic"
+                           Margin="20, 5,20,20"
+                           IsVisible="{Binding EditNoticeEnable}"/>
+                    
+                    <StackLayout Orientation="Horizontal"
+                                 Grid.Column="1"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Entry VerticalOptions="Center" 
+                                   Keyboard="Numeric"
+                                   WidthRequest="100" 
+                                   FontSize="50"
+                                   TextColor="CadetBlue"
+                                   FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                               IsEnabled="{Binding PercentEnable}"
+                                   Text="{Binding Percent}" 
+                                   />
+
+                        <Image HeightRequest="40"
+                                         WidthRequest="40"
+                                   Margin="10,25,0,0"
+                                         Aspect="AspectFit"
+                                         Source="percentIcon.png"
+                                         BackgroundColor="Transparent"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="20,10,20,10">
+                        <Label Text="Mã giảm giá 
+                               
+                               (tối đa 8 kí tự bao gồm chữ, số): "
+                               TextColor="Black"
+                               FontSize="15"
+                               FontAttributes="Italic"/>
+                        <Entry   
+                                   Keyboard="Numeric"
+                                   WidthRequest="150" 
+                                   FontSize="20"
+                                   TextColor="CadetBlue"
+                                   FontAttributes="Bold"
+                                   Text="{Binding Id}" 
+                            IsEnabled="False"
+                            HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                   />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="20,10,20,10">
+                        <Label Text="Số lượt giảm giá: "
+                               TextColor="Black"
+                               FontSize="15"
+                               FontAttributes="Italic"/>
+                        <Entry   
+                                   Keyboard="Numeric"
+                                   WidthRequest="100" 
+                                   FontSize="20"
+                                   TextColor="CadetBlue"
+                                   FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                                   Margin="105,-15,0,0"
+                                   Text="{Binding Total}" 
+                            IsEnabled="{Binding TotalEnable}"
+                                   />
+
+                        <Label Text="lượt"
+                               TextColor="Black"
+                               FontSize="20"
+                               FontAttributes="Bold"/>
+                    </StackLayout>
+
+                    <Frame Margin="20"
+                           IsVisible="{Binding NoticeVisible}"
+                           CornerRadius="20">
+                        <StackLayout Padding="0"
+                                     Orientation="Vertical"
+                                     >
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="https://img.icons8.com/color/452/cancel--v1.png"
+                                       WidthRequest="20"
+                                       Aspect="AspectFill"/>
+                                <Label Text=" Lỗi: "
+                                   TextColor="DarkRed"
+                                   FontAttributes="Bold"
+                                   FontSize="18"/>
+                            </StackLayout>
+
+                            <Label Text="{Binding Notice}"
+                                       TextColor="Black"
+                                       FontAttributes="Italic"
+                                       FontSize="15"
+                                       Margin="20"/>
+                        </StackLayout>
+                    </Frame>
+
+
+
+                    <Button 
+                        CornerRadius="20" 
+                        Margin="35,20,35,0"
+                        Padding="5"  
+                        BackgroundColor="LightSeaGreen" 
+                        VerticalOptions="Center"
+                        HeightRequest="45"
+                        Text="Cập nhật phiếu giảm giá"
+                        TextColor="White"
+                        FontSize="15"
+                        FontAttributes="Bold"
+                        Command="{Binding EditCommand}"
+                        IsVisible="{Binding TotalEnable}"
+                    />
+
+                    <Button 
+                        CornerRadius="20" 
+                        Margin="35,20,35,0"
+                        Padding="5"  
+                        BackgroundColor="Maroon" 
+                        VerticalOptions="Center"
+                        HeightRequest="45"
+                        Text="Xoá phiếu giảm giá"
+                        TextColor="White"
+                        FontSize="15"
+                        FontAttributes="Bold"
+                        Command="{Binding DeleteCommand}"
+                        IsVisible="{Binding TotalEnable}"
+                    />
+
+
+
+                </StackLayout>
+
+
+            </Grid>
+
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

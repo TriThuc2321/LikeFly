@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LikeFly.Database
 {
-    public class DataManager: ObservableObject
+    public class DataManager : ObservableObject
     {
         private static DataManager _ins;
         public static DataManager Ins
@@ -20,12 +20,15 @@ namespace LikeFly.Database
             }
             set { _ins = value; }
         }
-        
+
         public bool LoadData = true;
         public List<User> users;
         public List<Airport> airports;
         public List<Flight> flights;
-        public List<TicketType> ticketTypes;
+        public List<TicketType> ticketTypes;        
+        public List<Discount> discountsList;
+        public List<BookedTicket> bookedTicketsList;
+        public List<Invoice> invoicesList;
 
         private DataManager()
         {
@@ -34,6 +37,7 @@ namespace LikeFly.Database
             AirportServices = new AirportServices();
             notiServices = new NotificationServices();
             TicketTypeService = new TicketTypeServices();
+            Search = new SearchService();
 
             ListNotification = new ObservableCollection<Notification>();
             ListFlights = new ObservableCollection<Flight>();
@@ -43,9 +47,18 @@ namespace LikeFly.Database
 
             CurrentUser = new User();
             CurrentFlight = new Flight();
+            ListDiscount = new ObservableCollection<Discount>();
+            DiscountsServices = new DiscountsService();
+            ListBookedTickets = new ObservableCollection<BookedTicket>();
+            BookedTicketsServices = new BookedTicketServices();
+            ListInvoice = new ObservableCollection<Invoice>();
+            InvoicesServices = new InvoicesService();
+
+            CurrentDiscount = new Discount();
+            CurrentInvoice = new Invoice();
+            CurrentBookedTicket = new BookedTicket();
             getAllList();
         }
-        
         async Task GetUsers()
         {
             users = await UsersServices.GetAllUsers();
@@ -59,6 +72,7 @@ namespace LikeFly.Database
             airports = await AirportServices.GetAllAirport();
             foreach (Airport p in airports)
             {
+                if (p.Enable == true)
                 ListAirports.Add(p);
             }
         }
@@ -115,6 +129,9 @@ namespace LikeFly.Database
             await GetTicketTypes();
             await GetFlights();
             await GetNotifications();
+            await GetAllDiscounts();
+            await GetAllInvoices();
+            await GetAllBookedTicket();
         }
         public Airport GetAirportById(string id)
         {
@@ -124,6 +141,40 @@ namespace LikeFly.Database
             }
             return null;
         }
+       
+
+        async Task GetAllDiscounts()
+        {
+            discountsList = await DiscountsServices.GetAllDiscounts();
+            foreach (Discount discount in discountsList)
+            {
+                ListDiscount.Add(discount);
+            }
+        }
+
+        async Task GetAllBookedTicket()
+        {
+            bookedTicketsList = await BookedTicketsServices.GetAllBookedTicket();
+            foreach (BookedTicket booked in bookedTicketsList)
+            {
+                // booked.flight = tourList.Find(e => (e.id == booked.tour.id));
+                //  booked.invoice = invoicesList.Find(e => (e.id == booked.invoice.id));
+                ListBookedTickets.Add(booked);
+
+            }
+        }
+
+        async Task GetAllInvoices()
+        {
+            invoicesList = await InvoicesServices.GetAllInvoice();
+            foreach (Invoice invoice in invoicesList)
+            {
+                if (invoice.discount != null)
+                    invoice.discount = discountsList.Find(e => (e.id == invoice.discount.id));
+                ListInvoice.Add(invoice);
+            }
+        }
+
         public TicketType GetTicketTypeById(string id)
         {
             foreach (TicketType a in ticketTypes)
@@ -132,7 +183,17 @@ namespace LikeFly.Database
             }
             return null;
         }
-       
+            
+        private SearchService search;
+        public SearchService Search
+        {
+            get { return search; }
+            set
+            {
+                search = value;
+            }
+        }
+
         private NotificationServices notiServices;
         public NotificationServices NotiServices
         {
@@ -322,5 +383,117 @@ namespace LikeFly.Database
                 verifyCode = value;
             }
         }
+
+        private ObservableCollection<Discount> discountList;
+        public ObservableCollection<Discount> ListDiscount
+        {
+            get { return discountList; }
+            set
+            {
+                discountList = value;
+                OnPropertyChanged("ListDiscount");
+            }
+        }
+
+
+        private DiscountsService discountServices;
+        public DiscountsService DiscountsServices
+        {
+            get
+            {
+                return discountServices;
+            }
+            set { discountServices = value; }
+        }
+
+        private ObservableCollection<Invoice> invoiceList;
+        public ObservableCollection<Invoice> ListInvoice
+        {
+            get { return invoiceList; }
+            set
+            {
+                invoiceList = value;
+                OnPropertyChanged("ListInvoice");
+            }
+        }
+
+
+        private InvoicesService invoiceServices;
+        public InvoicesService InvoicesServices
+        {
+            get
+            {
+                return invoiceServices;
+            }
+            set { invoiceServices = value; }
+        }
+
+        private BookedTicket currentBookedTicket;
+        public BookedTicket CurrentBookedTicket
+        {
+            get { return currentBookedTicket; }
+            set
+            {
+                currentBookedTicket = value;
+                OnPropertyChanged("CurrentBookedTicket");
+            }
+        }
+
+        private Invoice currentInvoice;
+        public Invoice CurrentInvoice
+        {
+            get { return currentInvoice; }
+            set
+            {
+                currentInvoice = value;
+                OnPropertyChanged("CurrentInvoice");
+            }
+        }
+
+        
+
+
+        private ObservableCollection<BookedTicket> bookedTicketList;
+        public ObservableCollection<BookedTicket> ListBookedTickets
+        {
+            get { return bookedTicketList; }
+            set
+            {
+                bookedTicketList = value;
+                OnPropertyChanged("ListBookedTickets");
+            }
+        }
+
+        private ObservableCollection<FavouriteFlight> listFavouriteFlights;
+        public ObservableCollection<FavouriteFlight> ListFavouriteFlights
+        {
+            get { return listFavouriteFlights; }
+            set
+            {
+                listFavouriteFlights = value;
+                OnPropertyChanged("ListFavouriteFlights");
+            }
+        }   
+        private BookedTicketServices bookedTicketServices;
+        public BookedTicketServices BookedTicketsServices
+        {
+            get
+            {
+                return bookedTicketServices;
+            }
+            set { bookedTicketServices = value; }
+        }
+
+        private Discount currentDiscount;
+        public Discount CurrentDiscount
+        {
+            get { return currentDiscount; }
+            set
+            {
+                currentDiscount = value;
+
+            }
+        }
+
     }
 }

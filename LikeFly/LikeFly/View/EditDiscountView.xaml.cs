@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LikeFly.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace LikeFly.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FavoriteView : ContentPage
+    public partial class EditDiscountView : ContentPage
     {
-        public FavoriteView()
+        public EditDiscountView()
         {
             InitializeComponent();
+            this.BindingContext = new EditDiscountViewModel(Navigation, Shell.Current);
         }
     }
 }

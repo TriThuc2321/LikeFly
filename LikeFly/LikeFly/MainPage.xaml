@@ -70,11 +70,7 @@
     <FlyoutItem Title="Trang chủ" Icon="homeOutlineIcon.png">
         <ShellContent Icon="homeIcon.png" Route="HomeView" ContentTemplate="{DataTemplate views:HomeView}" Style="{DynamicResource Base1Style}" />
         <ShellContent Icon="bookIcon.png" Route="FlightView" ContentTemplate="{DataTemplate views:FlightView}" Style="{DynamicResource Base1Style}" />
-    </FlyoutItem>
-    
-    <FlyoutItem Title="Yêu thích" Icon="heartOutlineIcon.png">
-        <ShellContent Route="FavoriteView" ContentTemplate="{DataTemplate views:FavoriteView}" Style="{DynamicResource Base1Style}" />
-    </FlyoutItem>
+    </FlyoutItem> 
 
     <FlyoutItem Title="Thông tin cá nhân" Icon="userOutlineIcon.png">
         <ShellContent Route="UserView" ContentTemplate="{DataTemplate views:UserView}" Style="{DynamicResource Base1Style}" />
