@@ -494,6 +494,16 @@ namespace LikeFly.Database
 
             }
         }
+        private TicketType currentTicketType;
+        public TicketType CurrentTicketType
+        {
+            get { return currentTicketType; }
+            set
+            {
+                currentTicketType = value;
+
+            }
+        }
 
     }
 }

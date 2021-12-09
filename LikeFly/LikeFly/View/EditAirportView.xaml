@@ -8,8 +8,8 @@
     <ContentPage.Content>
         <StackLayout>
             <Grid>
-            <ImageButton Source="{Binding Img}" Opacity="0.5" HeightRequest="300" WidthRequest="400" Command="{Binding OpenLibrary}"></ImageButton>
-            <Label Grid.Row="0" Text="Nhấn để thay đổi" FontSize="Large" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                <ImageButton Source="{Binding Img}" Opacity="0.5" HeightRequest="300" WidthRequest="400" Command="{Binding OpenLibrary}"></ImageButton>
+                <Label Grid.Row="0" Text="Nhấn để thay đổi" FontSize="Large" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Center"></Label>
 
             </Grid>
             <Entry Placeholder="{Binding SelectedAirport.Name}" Text="{Binding NewAirportName}"></Entry>
