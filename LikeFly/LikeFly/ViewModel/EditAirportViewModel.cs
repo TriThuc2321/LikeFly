@@ -67,7 +67,7 @@ namespace LikeFly.ViewModel
 
                 if (imgTemp != null)
                 {
-                 url =  await DataManager.Ins.AirportServices.saveImage(imgTemp, SelectedAirport.Id, 0);
+                 url =  await DataManager.Ins.AirportServices.saveImage(imgTemp, SelectedAirport.Id);
                 DataManager.Ins.CurrentAirport.ImgSource = url;
                 }
                 SelectedAirport = DataManager.Ins.CurrentAirport;

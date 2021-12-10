@@ -58,6 +58,8 @@ namespace LikeFly.Database
             CurrentInvoice = new Invoice();
             CurrentBookedTicket = new BookedTicket();
             getAllList();
+
+           
         }
         async Task GetUsers()
         {
@@ -78,7 +80,6 @@ namespace LikeFly.Database
         }
         async Task GetTicketTypes()
         {
-            int a = 7;
             ticketTypes = await TicketTypeService.GetAllTickets();
             foreach (TicketType p in ticketTypes)
             {
@@ -88,26 +89,6 @@ namespace LikeFly.Database
         async Task GetFlights()
         {
             flights = await FlightService.GetAllFlights();
-
-            for(int i =0; i< flights.Count; i++)
-            {
-                flights[i].AirportStart = GetAirportById(flights[i].AirportStartId);
-                flights[i].AirportEnd = GetAirportById(flights[i].AirportEndId);
-
-                flights[i].TicketTypes = new ObservableCollection<TicketType>();
-                for (int k = 0; k< flights[i].TicketTypeIds.Count; k++)
-                {
-                    flights[i].TicketTypes.Add(GetTicketTypeById(flights[i].TicketTypeIds[k]));
-                }
-               
-
-                for (int k =0; k< flights[i].IntermediaryAirportList.Count; k++)
-                {
-                    flights[i].IntermediaryAirportList[k].Airport = GetAirportById(flights[i].IntermediaryAirportList[k].AirportId);
-                }
-                
-            }
-
             foreach (Flight p in flights)
             {
                 ListFlights.Add(p);
@@ -132,6 +113,17 @@ namespace LikeFly.Database
             await GetAllDiscounts();
             await GetAllInvoices();
             await GetAllBookedTicket();
+
+            /*foreach (var f in ListFlights)
+            {
+                f.TicketTypes = new ObservableCollection<DetailTicketType>();
+                f.TicketTypes.Add(new DetailTicketType(new TicketType("TT01", "Phổ thông", 1, true), 100, 100));
+                f.TicketTypes.Add(new DetailTicketType(new TicketType("TT02", "Phổ thông đặc biệt", (float)1.2, true), 100, 100));
+                f.TicketTypes.Add(new DetailTicketType(new TicketType("TT03", "Thương gia", (float)1.3, true), 100, 100));
+                f.TicketTypes.Add(new DetailTicketType(new TicketType("TT04", "Hạng nhất", (float)1.5, true), 100, 100));
+
+                await FlightService.UpdateFlight(f);
+            }*/
         }
         public Airport GetAirportById(string id)
         {
@@ -140,8 +132,7 @@ namespace LikeFly.Database
                 if (a.Id == id) return a; 
             }
             return null;
-        }
-       
+        }       
 
         async Task GetAllDiscounts()
         {
@@ -160,7 +151,6 @@ namespace LikeFly.Database
                 // booked.flight = tourList.Find(e => (e.id == booked.tour.id));
                 //  booked.invoice = invoicesList.Find(e => (e.id == booked.invoice.id));
                 ListBookedTickets.Add(booked);
-
             }
         }
 
@@ -169,8 +159,8 @@ namespace LikeFly.Database
             invoicesList = await InvoicesServices.GetAllInvoice();
             foreach (Invoice invoice in invoicesList)
             {
-                if (invoice.discount != null)
-                    invoice.discount = discountsList.Find(e => (e.id == invoice.discount.id));
+                if (invoice.Discount != null)
+                    invoice.Discount = discountsList.Find(e => (e.id == invoice.Discount.id));
                 ListInvoice.Add(invoice);
             }
         }

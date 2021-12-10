@@ -112,7 +112,7 @@ namespace LikeFly.Model
                 OnPropertyChanged("Price");
             }
         }
-        private string airportStartId;
+        /*private string airportStartId;
         public string AirportStartId
         {
             get { return airportStartId; }
@@ -121,7 +121,7 @@ namespace LikeFly.Model
                 airportStartId = value;
                 OnPropertyChanged("AirportStartId");
             }
-        }
+        }*/
         private Airport airportStart;
         public Airport AirportStart
         {
@@ -132,7 +132,7 @@ namespace LikeFly.Model
                 OnPropertyChanged("AirportStart");
             }
         }
-        private string airportEndId;
+        /*private string airportEndId;
         public string AirportEndId
         {
             get { return airportEndId; }
@@ -141,7 +141,7 @@ namespace LikeFly.Model
                 airportEndId = value;
                 OnPropertyChanged("AirportEnd");
             }
-        }
+        }*/
         private Airport airportEnd;
         public Airport AirportEnd
         {
@@ -165,7 +165,7 @@ namespace LikeFly.Model
         }
 
 
-        private List<string> ticketTypeIds;
+        /*private List<string> ticketTypeIds;
         public List<string> TicketTypeIds
         {
             get { return ticketTypeIds; }
@@ -174,9 +174,9 @@ namespace LikeFly.Model
                 ticketTypeIds = value;
                 OnPropertyChanged("TicketTypeIds");
             }
-        }
-        private ObservableCollection<TicketType> ticketTypes;
-        public ObservableCollection<TicketType> TicketTypes
+        }*/
+        private ObservableCollection<DetailTicketType> ticketTypes;
+        public ObservableCollection<DetailTicketType> TicketTypes
         {
             get { return ticketTypes; }
             set
@@ -186,7 +186,7 @@ namespace LikeFly.Model
             }
         }
 
-        public Flight(string id, string name, string duration, string startTime, string startDate, string imgSource, string description, int passengerNumber, bool isOccured, int price, string airportStartId, string airportEndId, ObservableCollection<IntermediaryAirport> intermediaryAirportList, List<string> ticketTypeIds)
+        public Flight(string id, string name, string duration, string startTime, string startDate, string imgSource, string description, int passengerNumber, bool isOccured, int price, Airport airportStart, Airport airportEnd, ObservableCollection<IntermediaryAirport> intermediaryAirportList, ObservableCollection<DetailTicketType> ticketTypes)
         {
             Id = id;
             Name = name;
@@ -198,10 +198,10 @@ namespace LikeFly.Model
             PassengerNumber = passengerNumber;
             IsOccured = isOccured;
             Price = price;
-            AirportStartId = airportStartId;
-            AirportEndId = airportEndId;
+            AirportStart = airportStart;
+            AirportEnd = airportEnd;
             IntermediaryAirportList = intermediaryAirportList;
-            TicketTypeIds = ticketTypeIds;
+            TicketTypes = ticketTypes;
         }
     }
 }

@@ -15,8 +15,8 @@
         <Image Source="https://i.pinimg.com/564x/e1/c4/ef/e1c4ef856ac9decdf21eebe298a40f6e.jpg" Aspect="AspectFill" Margin="0,0,0,30"/>
 
         <pancake:PancakeView Margin="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40" CornerRadius="25" Padding="0" BackgroundColor="#272727" >
-            <ImageButton Margin="10" BackgroundColor="Transparent" Source="backIcon2.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-        </pancake:PancakeView>        
+            <ImageButton Command="{Binding NavigationBack}" Margin="10" BackgroundColor="Transparent" Source="backIcon2.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </pancake:PancakeView>
         
         <ScrollView>
             <Grid>
@@ -26,8 +26,8 @@
                             <Label Text="Chi tiết chuyến bay" FontSize="25" FontAttributes="Bold"/>
                             <Frame Padding="0" HorizontalOptions="EndAndExpand" CornerRadius="15" BackgroundColor="LightSeaGreen">
                                 <Grid>
-                                    <Button Margin="0,0,8,0" HeightRequest="40" TextColor="White" FontAttributes="Bold" Text="Đặt vé" BackgroundColor="LightSeaGreen" />
-                                    <ImageButton Source="nextIcon.png" BackgroundColor="Transparent" HeightRequest="15" WidthRequest="15" Aspect="AspectFill" Margin="0,0,8,0" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    <Button Command="{Binding BookCommand}" Margin="0,0,8,0" HeightRequest="40" TextColor="White" FontAttributes="Bold" Text="Đặt vé" BackgroundColor="LightSeaGreen" HorizontalOptions="Fill"/>
+                                    <ImageButton Command="{Binding BookCommand}" Source="nextIcon.png" BackgroundColor="Transparent" HeightRequest="15" WidthRequest="15" Aspect="AspectFill" Margin="0,0,8,0" HorizontalOptions="End" VerticalOptions="Center"/>
                                 </Grid>
                                 
                             </Frame>
