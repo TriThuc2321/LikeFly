@@ -4,6 +4,7 @@ using Firebase.Storage;
 using LikeFly.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,37 +26,38 @@ namespace LikeFly.Database
               .Child("Invoices")
               .OnceAsync<Invoice>()).Select(item => new Invoice
               {
-                  id = item.Object.id,
-                  discount = item.Object.discount,
-                  discountMoney = item.Object.discountMoney,
-                  price = item.Object.price,
-                  isPaid = item.Object.isPaid,
-                  payingTime = item.Object.payingTime,
-                  amount = item.Object.amount,
-                  method = item.Object.method,
-                  total = item.Object.total,
-                  photoMomo = item.Object.photoMomo,
-                  momoVnd = item.Object.momoVnd
+                  Id = item.Object.Id,
+                  DiscountId = item.Object.DiscountId,
+                  DiscountMoney = item.Object.DiscountMoney,
+                  Price = item.Object.Price,
+                  IsPaid = item.Object.IsPaid,
+                  PayingTime = item.Object.PayingTime,
+                  Amount = item.Object.Amount,
+                  Method = item.Object.Method,
+                  Total = item.Object.Total,
+                  PhotoMomo = item.Object.PhotoMomo,
+                  MomoVnd = item.Object.MomoVnd,
+                  
               }).ToList();
-
         }
+
         public async Task AddInvoice(Invoice invoice)
         {
             await firebase
               .Child("Invoices")
               .PostAsync(new Invoice()
               {
-                  id = invoice.id,
-                  discount = invoice.discount,
-                  discountMoney = invoice.discountMoney,
-                  price = invoice.price,
-                  isPaid = invoice.isPaid,
-                  payingTime = invoice.payingTime,
-                  amount = invoice.amount,
-                  method = invoice.method,
-                  total = invoice.total,
-                  photoMomo = invoice.photoMomo,
-                  momoVnd = invoice.momoVnd
+                  Id = invoice.Id,
+                  DiscountId = invoice.DiscountId,
+                  DiscountMoney = invoice.DiscountMoney,
+                  Price = invoice.Price,
+                  IsPaid = invoice.IsPaid,
+                  PayingTime = invoice.PayingTime,
+                  Amount = invoice.Amount,
+                  Method = invoice.Method,
+                  Total = invoice.Total,
+                  PhotoMomo = invoice.PhotoMomo,
+                  MomoVnd = invoice.MomoVnd
               });
         }
 
@@ -63,7 +65,7 @@ namespace LikeFly.Database
         {
             var toDelete = (await firebase
               .Child("Invoices")
-              .OnceAsync<Invoice>()).Where(a => a.Object.id == id).FirstOrDefault();
+              .OnceAsync<Invoice>()).Where(a => a.Object.Id == id).FirstOrDefault();
             await firebase.Child("Invoices").Child(toDelete.Key).DeleteAsync();
         }
 
@@ -71,24 +73,24 @@ namespace LikeFly.Database
         {
             var toUpdateInvoice = (await firebase
                  .Child("Invoices")
-                 .OnceAsync<Invoice>()).Where(a => a.Object.id == invoice.id).FirstOrDefault();
+                 .OnceAsync<Invoice>()).Where(a => a.Object.Id == invoice.Id).FirstOrDefault();
 
             await firebase
               .Child("Invoices")
               .Child(toUpdateInvoice.Key)
               .PutAsync(new Invoice
               {
-                  id = invoice.id,
-                  discount = invoice.discount,
-                  discountMoney = invoice.discountMoney,
-                  price = invoice.price,
-                  isPaid = invoice.isPaid,
-                  payingTime = invoice.payingTime,
-                  amount = invoice.amount,
-                  method = invoice.method,
-                  total = invoice.total,
-                  photoMomo = invoice.photoMomo,
-                  momoVnd = invoice.momoVnd
+                  Id = invoice.Id,
+                  DiscountId = invoice.DiscountId,
+                  DiscountMoney = invoice.DiscountMoney,
+                  Price = invoice.Price,
+                  IsPaid = invoice.IsPaid,
+                  PayingTime = invoice.PayingTime,
+                  Amount = invoice.Amount,
+                  Method = invoice.Method,
+                  Total = invoice.Total,
+                  PhotoMomo = invoice.PhotoMomo,
+                  MomoVnd = invoice.MomoVnd
               });
 
         }
@@ -115,7 +117,7 @@ namespace LikeFly.Database
             int i = 0;
             while (i < List.Count())
             {
-                if (List[i].id == randomString)
+                if (List[i].Id == randomString)
                 {
                     i = -1;
                     randomString = new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
@@ -126,7 +128,19 @@ namespace LikeFly.Database
         }
         public string FormatMoney(string money)
         {
-            return String.Format("{0:#,##0.##}", int.Parse(money));
+            if(money != null)
+            {
+                try
+                {
+                    double value = double.Parse(money);
+                    value /= 1000;
+                    value *= 1000;
+                    return string.Format(new CultureInfo("vi-VN"), "{0:#,##0}", value);
+                }
+                catch { return ""; }                
+            }
+            
+            return "";
         }
 
         public string RoundMoney(int money)

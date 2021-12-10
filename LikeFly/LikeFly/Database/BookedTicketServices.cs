@@ -24,77 +24,76 @@ namespace LikeFly.Database
               //   .OrderBy("bookTime")
               .OnceAsync<BookedTicket>()).Select(item => new BookedTicket
               {
-                  id = item.Object.id,
-                  flight = item.Object.flight,
-                  name = item.Object.name,
-                  birthday = item.Object.birthday,
-                  contact = item.Object.contact,
-                  email = item.Object.email,
-                  cmnd = item.Object.cmnd,
-                  address = item.Object.address,
-                  bookTime = item.Object.bookTime,
-                  invoice = item.Object.invoice,
-                  isCancel = item.Object.isCancel
-
+                  Id = item.Object.Id,
+                  FlightId = item.Object.FlightId,
+                  Name = item.Object.Name,
+                  Birthday = item.Object.Birthday,
+                  Contact = item.Object.Contact,
+                  Email = item.Object.Email,
+                  Cmnd = item.Object.Cmnd,
+                  Address = item.Object.Address,
+                  BookTime = item.Object.BookTime,
+                  Invoice = item.Object.Invoice,
+                  IsCancel = item.Object.IsCancel,
+                  
               }).ToList();
         }
         public async Task AddBookedTicket(BookedTicket bookedTicket)
         {
-            /*await firebase
+            await firebase
               .Child("BookedTickets")
               .PostAsync(new BookedTicket()
               {
-                  id = bookedTicket.id,
-                  flight = new Flight() { id = bookedTicket.flight.id },
-                  name = bookedTicket.name,
-                  birthday = bookedTicket.birthday,
-                  contact = bookedTicket.contact,
-                  email = bookedTicket.email,
-                  cmnd = bookedTicket.cmnd,
-                  address = bookedTicket.address,
-                  bookTime = bookedTicket.bookTime,
-                  invoice = bookedTicket.invoice,
-                  isCancel = bookedTicket.isCancel
-              });*/
+                  Id = bookedTicket.Id,
+                  FlightId = bookedTicket.FlightId,
+                  Name = bookedTicket.Name,
+                  Birthday = bookedTicket.Birthday,
+                  Contact = bookedTicket.Contact,
+                  Email = bookedTicket.Email,
+                  Cmnd = bookedTicket.Cmnd,
+                  Address = bookedTicket.Address,
+                  BookTime = bookedTicket.BookTime,
+                  Invoice = bookedTicket.Invoice,
+                  IsCancel = bookedTicket.IsCancel,
+                  
+              });
         }
-
 
         public async Task UpdateBookedTicket(BookedTicket bookedTicket)
         {
-            /*var toUpdateTour = (await firebase
+            var toUpdateTour = (await firebase
                  .Child("BookedTickets")
-                 .OnceAsync<BookedTicket>()).Where(a => a.Object.id == bookedTicket.id).FirstOrDefault();
+                 .OnceAsync<BookedTicket>()).Where(a => a.Object.Id == bookedTicket.Id).FirstOrDefault();
 
             await firebase
               .Child("BookedTickets")
               .Child(toUpdateTour.Key)
               .PutAsync(new BookedTicket
               {
-                  id = bookedTicket.id,
-                  flight = new Flight() { id = bookedTicket.flight.id },
-                  name = bookedTicket.name,
-                  birthday = bookedTicket.birthday,
-                  contact = bookedTicket.contact,
-                  email = bookedTicket.email,
-                  cmnd = bookedTicket.cmnd,
-                  address = bookedTicket.address,
-                  bookTime = bookedTicket.bookTime,
-                  invoice = bookedTicket.invoice,
-                  isCancel = bookedTicket.isCancel
-              });*/
+                  Id = bookedTicket.Id,
+                  FlightId = bookedTicket.FlightId,
+                  Name = bookedTicket.Name,
+                  Birthday = bookedTicket.Birthday,
+                  Contact = bookedTicket.Contact,
+                  Email = bookedTicket.Email,
+                  Cmnd = bookedTicket.Cmnd,
+                  Address = bookedTicket.Address,
+                  BookTime = bookedTicket.BookTime,
+                  Invoice = bookedTicket.Invoice,
+                  IsCancel = bookedTicket.IsCancel,
+              });
 
         }
         public async Task DeleteBookedTicket(string id)
         {
             var toDelete = (await firebase
               .Child("BookedTickets")
-              .OnceAsync<BookedTicket>()).Where(a => a.Object.id == id).FirstOrDefault();
+              .OnceAsync<BookedTicket>()).Where(a => a.Object.Id == id).FirstOrDefault();
             await firebase.Child("BookedTickets").Child(toDelete.Key).DeleteAsync();
         }
 
-        public string GenerateTicketId()
-        {
-            int length = 15;
+        public string GenerateTicketId(int length = 10)
+        {            
             var List = DataManager.Ins.ListBookedTickets;
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -104,7 +103,7 @@ namespace LikeFly.Database
             int i = 0;
             while (i < List.Count())
             {
-                if (List[i].id == randomString)
+                if (List[i].Id == randomString)
                 {
                     i = -1;
                     randomString = new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
@@ -114,23 +113,22 @@ namespace LikeFly.Database
             return randomString;
         }
 
+        public double countBookTourRegulation(Flight flight)
+        {
+            string[] tourStartTime = flight.StartTime.Split('/');
 
-        //public double countBookTourRegulation(Flight flight)
-        //{
-        //    string[] tourStartTime = flight.startTime.Split('/');
+            string[] splitYear = tourStartTime[2].Split(' ');
+            DateTime time = new DateTime(
+                int.Parse(splitYear[0]),
+                int.Parse(tourStartTime[0]),
+                int.Parse(tourStartTime[1])
+                );
 
-        //    string[] splitYear = tourStartTime[2].Split(' ');
-        //    DateTime time = new DateTime(
-        //        int.Parse(splitYear[0]),
-        //        int.Parse(tourStartTime[0]),
-        //        int.Parse(tourStartTime[1])
-        //        );
-
-        //    DateTime currentTime = DateTime.Now.AddDays(0);
-        //    TimeSpan interval = time.Subtract(currentTime);
-        //    double count = interval.Days;
-        //    return count;
-        //}
+            DateTime currentTime = DateTime.Now.AddDays(0);
+            TimeSpan interval = time.Subtract(currentTime);
+            double count = interval.Days;
+            return count;
+        }
     }
 }
 

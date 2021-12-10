@@ -117,7 +117,7 @@ namespace LikeFly.Database
             {
                 foreach(Airport y in Fromresulttemp1)
                 {
-                    if(x.AirportStartId == y.Id)
+                    if(x.AirportStart.Id == y.Id)
                     {
                         FlightsHasFrom.Add(x);
                     }
@@ -129,7 +129,7 @@ namespace LikeFly.Database
             {
                 foreach (Airport y in Toresulttemp3)
                 {
-                    if (x.AirportEndId == y.Id)
+                    if (x.AirportEnd.Id == y.Id)
                     {
                         FlightsHasTo.Add(x);
                     }
