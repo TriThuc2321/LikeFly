@@ -99,8 +99,8 @@ namespace LikeFly.ViewModel
         }
         void openPayingMethodView(object obj)
         {
-            checkValidation();
-            /*var ticketServices = DataManager.Ins.BookedTicketsServices;
+           // checkValidation();
+            var ticketServices = DataManager.Ins.BookedTicketsServices;
             var invoiceServices = DataManager.Ins.InvoicesServices;
 
             if (checkValidation())
@@ -112,11 +112,11 @@ namespace LikeFly.ViewModel
                 {
                     Id = invoiceServices.GenerateInvoiceId(),
                     Discount = new Discount { id = DiscountId },
-                    DiscountMoney = DiscountMoney,
+                    DiscountMoney = this.DiscountMoney.ToString(),
                     IsPaid = false,
-                    Amount = Amount.ToString(),
-                    Total = Total,
-                    Price = TourPrice
+                    Amount = "1",
+                    Total = this.Total.ToString(),
+                    Price = SelectedFlight.Price.ToString()
                 };
 
                 DataManager.Ins.CurrentBookedTicket = new BookedTicket()
@@ -136,8 +136,8 @@ namespace LikeFly.ViewModel
                     }
                 };
 
-                navigation.PushAsync(new PayingMethodView());
-            }*/
+              //  navigation.PushAsync(new PayingMethodView());
+            }
         }
 
         void checkDiscount(object obj)
