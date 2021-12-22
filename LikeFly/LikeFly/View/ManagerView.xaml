@@ -116,7 +116,7 @@
                                 <FormattedString>
                                     <Span Text="Quản lí phiếu giảm giá" TextColor="White" FontSize="15" FontAttributes="Bold">
                                         <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding AirportCommand}"/>
+                                            <TapGestureRecognizer Command="{Binding DiscountCommand}"/>
                                         </Span.GestureRecognizers>
                                     </Span>
                                 </FormattedString>

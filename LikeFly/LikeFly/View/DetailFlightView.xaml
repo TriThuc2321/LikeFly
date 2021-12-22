@@ -12,11 +12,7 @@
 
     <Grid>
         
-        <Image Source="https://i.pinimg.com/564x/e1/c4/ef/e1c4ef856ac9decdf21eebe298a40f6e.jpg" Aspect="AspectFill" Margin="0,0,0,30"/>
-
-        <pancake:PancakeView Margin="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40" CornerRadius="25" Padding="0" BackgroundColor="#272727" >
-            <ImageButton Command="{Binding NavigationBack}" Margin="10" BackgroundColor="Transparent" Source="backIcon2.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-        </pancake:PancakeView>
+        <Image Source="https://i.pinimg.com/564x/e1/c4/ef/e1c4ef856ac9decdf21eebe298a40f6e.jpg" Aspect="AspectFill" Margin="0,0,0,30"/>       
         
         <ScrollView>
             <Grid>
@@ -118,5 +114,9 @@
                 </pancake:PancakeView>
             </Grid>
         </ScrollView>
+
+        <pancake:PancakeView Margin="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40" CornerRadius="25" Padding="0" BackgroundColor="#272727" >
+            <ImageButton Command="{Binding NavigationBack}" Margin="10" BackgroundColor="Transparent" Source="backIcon2.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </pancake:PancakeView>
     </Grid>
 </ContentPage>
