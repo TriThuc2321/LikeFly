@@ -15,7 +15,7 @@
             <StackLayout BackgroundColor="CadetBlue"/>
 
             <StackLayout Orientation="Horizontal" Margin="15,15,15,0">
-                <ImageButton  HeightRequest="23" WidthRequest="23" Command="{Binding NavigationBack}"  BackgroundColor="Transparent" Source="backIcon2Black.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Start"/>
+                <ImageButton  HeightRequest="23" WidthRequest="23" Command="{Binding BackCommand}"  BackgroundColor="Transparent" Source="backIcon2Black.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Start"/>
                 <Label Text="Chi tiết sân bay" VerticalOptions="Start" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#272727" FontSize="23"/>
             </StackLayout>
 
@@ -36,8 +36,7 @@
                         </StackLayout>
                         
                     </StackLayout>
-                </ScrollView>
-                
+                </ScrollView>                
             </Frame>
             
         </Grid>

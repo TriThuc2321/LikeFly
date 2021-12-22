@@ -9,13 +9,30 @@
     <ContentPage.BindingContext>
         <vm:NewAirportViewModel/>
     </ContentPage.BindingContext>
-    <StackLayout>
-    <Button Command="{Binding NavigationBack}"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="CadetBlue"/>
 
-        <Image Source="{Binding Img}"></Image>
-        <Button Text="Add New Image" Command="{Binding AddImageCommand}"/>
-        <Entry Placeholder="{Binding SelectedAirport.Name}" Text="{Binding NewAirportName}"></Entry>
-        <Picker ItemsSource="{Binding ProvinceList}" SelectedItem="{Binding SelectedProvince}"></Picker>
-        <Button Text="Add" Command="{Binding AddCommand}"/>
-    </StackLayout>
+        <StackLayout Orientation="Horizontal" Margin="15,15,15,0">
+            <ImageButton  HeightRequest="23" WidthRequest="23" Command="{Binding BackCommand}"  BackgroundColor="Transparent" Source="backIcon2Black.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Start"/>
+            <Label Text="Chi tiết sân bay" VerticalOptions="Start" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#272727" FontSize="23"/>
+        </StackLayout>
+
+        <Frame Grid.RowSpan="2" Margin="20,60,20,20" CornerRadius="20">
+            <ScrollView>
+                <StackLayout>
+                    <Image Source="{Binding Img}" Aspect="AspectFill"/>
+                    <Button BackgroundColor="#272727" TextColor="White" Text="Thêm hình ảnh" Margin="0,10,10,10" CornerRadius="10" Command="{Binding AddImageCommand}"/>
+                    <Label Text="Tên sân bay" Margin="0,10,0,-8"/>
+                    <Entry Placeholder="{Binding SelectedAirport.Name}" Text="{Binding NewAirportName}"/>
+                    <Label Text="Tỉnh thành"  Margin="0,10,0,-8"/>
+                    <Picker ItemsSource="{Binding ProvinceList}" SelectedItem="{Binding SelectedProvince}"/>
+                    <Button BackgroundColor="#272727" TextColor="White" Text="Lưu" Margin="0,10,10,10" CornerRadius="10" Command="{Binding AddCommand}"/>
+                </StackLayout>
+            </ScrollView>
+        </Frame>
+    </Grid>
 </ContentPage>

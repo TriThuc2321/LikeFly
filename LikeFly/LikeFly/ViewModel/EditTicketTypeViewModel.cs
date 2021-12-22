@@ -26,6 +26,11 @@ namespace LikeFly.ViewModel
             NewTicketTypePercent = SelectedTicketType.Percent.ToString();
 
         }
+        public ICommand BackCommand => new Command<object>(async (obj) =>
+        {
+            //await currentShell.GoToAsync($"{nameof(NewAirportView)}");
+            await navigation.PopAsync();
+        });
         private TicketType selectedTicketType;
         public TicketType SelectedTicketType
         {
