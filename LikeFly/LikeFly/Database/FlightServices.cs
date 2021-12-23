@@ -151,5 +151,14 @@ namespace LikeFly.Database
             
 
         }
+
+        public async Task<Flight> FindFlightById(string id)
+        {
+            var all = await GetAllFlights();
+            await firebase
+                .Child("Flights")
+                .OnceAsync<Flight>();
+            return all.Where(a => a.Id == id).FirstOrDefault();
+        }
     }
 }

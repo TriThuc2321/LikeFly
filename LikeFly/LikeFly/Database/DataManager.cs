@@ -345,6 +345,7 @@ namespace LikeFly.Database
                 OnPropertyChanged("CurrentName");
             }
         }
+
         private bool isManager;
         public bool IsManager
         {
@@ -491,6 +492,17 @@ namespace LikeFly.Database
             set
             {
                 currentTicketType = value;
+
+            }
+        }
+
+        private DetailTicketType currentDetailTicketType;
+        public DetailTicketType CurrentDetailTicketType
+        {
+            get { return currentDetailTicketType; }
+            set
+            {
+                currentDetailTicketType = value;
 
             }
         }

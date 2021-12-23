@@ -136,5 +136,16 @@ namespace LikeFly.Model
                 OnPropertyChanged("MomoVnd");
             }
         }
+
+        private DetailTicketType ticketTypes;
+        public DetailTicketType TicketTypes
+        {
+            get { return ticketTypes; }
+            set
+            {
+                ticketTypes = value;
+                OnPropertyChanged("TicketTypes");
+            }
+        }
     }
 }

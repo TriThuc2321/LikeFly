@@ -48,6 +48,7 @@ namespace LikeFly.ViewModel
                 ListTicketTypes.Add(tt);
 
             SelectedTicketType = ListTicketTypes[0];
+            DataManager.Ins.CurrentDetailTicketType = SelectedTicketType;
         }
         bool checkValidation()
         {
@@ -116,7 +117,8 @@ namespace LikeFly.ViewModel
                     IsPaid = false,
                     Amount = "1",
                     Total = this.Total.ToString(),
-                    Price = SelectedFlight.Price.ToString()
+                    Price = SelectedFlight.Price.ToString(),
+                    TicketTypes = SelectedTicketType
                 };
 
                 DataManager.Ins.CurrentBookedTicket = new BookedTicket()
@@ -136,7 +138,7 @@ namespace LikeFly.ViewModel
                     }
                 };
 
-              //  navigation.PushAsync(new PayingMethodView());
+                navigation.PushAsync(new PayingMethodView());
             }
         }
 
