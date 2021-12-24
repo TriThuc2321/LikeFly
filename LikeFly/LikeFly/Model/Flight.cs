@@ -61,17 +61,7 @@ namespace LikeFly.Model
                 startDate = value;
                 OnPropertyChanged("StartDate");
             }
-        }
-        private string imgSource { get; set; }
-        public string ImgSource
-        {
-            get { return imgSource; }
-            set
-            {
-                imgSource = value;
-                OnPropertyChanged("ImgSource");
-            }
-        }
+        }        
         private string description { get; set; }
         public string Description
         {
@@ -82,16 +72,7 @@ namespace LikeFly.Model
                 OnPropertyChanged("Description");
             }
         }
-        private int passengerNumber { get; set; }
-        public int PassengerNumber
-        {
-            get { return passengerNumber; }
-            set
-            {
-                passengerNumber = value;
-                OnPropertyChanged("PassengerNumber");
-            }
-        }
+        
         private bool isOccured { get; set; }
         public bool IsOccured
         {
@@ -164,7 +145,16 @@ namespace LikeFly.Model
             }
         }
 
-
+        private ObservableCollection<User> listPilots;
+        public ObservableCollection<User> ListPilots
+        {
+            get { return listPilots; }
+            set
+            {
+                listPilots = value;
+                OnPropertyChanged("ListPilots");
+            }
+        }
         /*private List<string> ticketTypeIds;
         public List<string> TicketTypeIds
         {
@@ -186,22 +176,21 @@ namespace LikeFly.Model
             }
         }
 
-        public Flight(string id, string name, string duration, string startTime, string startDate, string imgSource, string description, int passengerNumber, bool isOccured, int price, Airport airportStart, Airport airportEnd, ObservableCollection<IntermediaryAirport> intermediaryAirportList, ObservableCollection<DetailTicketType> ticketTypes)
+        public Flight(string id, string name, string duration, string startTime, string startDate, string description, bool isOccured, int price, Airport airportStart, Airport airportEnd, ObservableCollection<IntermediaryAirport> intermediaryAirportList, ObservableCollection<DetailTicketType> ticketTypes, ObservableCollection<User> listPilots)
         {
             Id = id;
             Name = name;
             Duration = duration;
             StartTime = startTime;
             StartDate = startDate;
-            ImgSource = imgSource;
             Description = description;
-            PassengerNumber = passengerNumber;
             IsOccured = isOccured;
             Price = price;
             AirportStart = airportStart;
             AirportEnd = airportEnd;
             IntermediaryAirportList = intermediaryAirportList;
             TicketTypes = ticketTypes;
+            ListPilots = listPilots;
         }
     }
 }
