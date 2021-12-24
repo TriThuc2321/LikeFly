@@ -118,7 +118,7 @@ namespace LikeFly.ViewModel
                     Amount = "1",
                     Total = this.Total.ToString(),
                     Price = SelectedFlight.Price.ToString(),
-                    TicketTypes = SelectedTicketType
+                    TicketTypes = SelectedTicketType.TicketType
                 };
 
                 DataManager.Ins.CurrentBookedTicket = new BookedTicket()
@@ -348,8 +348,8 @@ namespace LikeFly.ViewModel
                 string[] arr = day[0].Split('/');
                 Birthday = new DateTime(
                     int.Parse(arr[2]),
-                    int.Parse(arr[0]),
-                    int.Parse(arr[1])
+                    int.Parse(arr[1]),
+                    int.Parse(arr[0])
                     );
             }
             else

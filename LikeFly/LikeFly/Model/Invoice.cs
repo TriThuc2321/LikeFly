@@ -115,30 +115,30 @@ namespace LikeFly.Model
             }
         }
 
-        private string photoMomo;
-        public string PhotoMomo
+        private string photo;
+        public string Photo
         {
-            get { return photoMomo; }
+            get { return photo; }
             set
             {
-                photoMomo = value;
-                OnPropertyChanged("PhotoMomo");
+                photo = value;
+                OnPropertyChanged("Photo");
             }
         }
 
-        private string momoVnd;
-        public string MomoVnd
+        private string vnd;
+        public string Vnd
         {
-            get { return momoVnd; }
+            get { return vnd; }
             set
             {
-                momoVnd = value;
-                OnPropertyChanged("MomoVnd");
+                vnd = value;
+                OnPropertyChanged("Vnd");
             }
         }
 
-        private DetailTicketType ticketTypes;
-        public DetailTicketType TicketTypes
+        private TicketType ticketTypes;
+        public TicketType TicketTypes
         {
             get { return ticketTypes; }
             set

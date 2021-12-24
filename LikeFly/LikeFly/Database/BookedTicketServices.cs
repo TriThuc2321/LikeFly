@@ -113,15 +113,15 @@ namespace LikeFly.Database
             return randomString;
         }
 
-        public double countBookTourRegulation(Flight flight)
+        public double countBookFlightRegulation(Flight flight)
         {
-            string[] tourStartTime = flight.StartTime.Split('/');
+            string[] tourStartTime = flight.StartDate.Split('/');
 
             string[] splitYear = tourStartTime[2].Split(' ');
             DateTime time = new DateTime(
                 int.Parse(splitYear[0]),
-                int.Parse(tourStartTime[0]),
-                int.Parse(tourStartTime[1])
+                int.Parse(tourStartTime[1]),
+                int.Parse(tourStartTime[0])
                 );
 
             DateTime currentTime = DateTime.Now.AddDays(0);

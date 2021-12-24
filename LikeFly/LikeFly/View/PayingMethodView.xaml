@@ -64,7 +64,7 @@
                                    FontAttributes="Italic"/>
                             
                             <RadioButton Content="Chuyển khoản qua ngân hàng" 
-                                         IsChecked="{Binding MoMo}"
+                                         IsChecked="{Binding Banking}"
                                          TextColor="#272727"
                                          FontSize="17"
                                          FontAttributes="Bold"

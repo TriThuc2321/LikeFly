@@ -1,6 +1,7 @@
 ﻿using LikeFly.Core;
 using LikeFly.Database;
 using LikeFly.Model;
+using LikeFly.View;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,8 @@ namespace LikeFly.ViewModel
         INavigation navigation;
         public Command NavigationBack { get; }
         public Command Confirm { get; }
+
+        public Command OpenRegulation { get; }
         public PayingMethodViewModel() { }
         public PayingMethodViewModel(INavigation navigation)
         {
@@ -23,6 +26,7 @@ namespace LikeFly.ViewModel
             checkDateRegulation();
             SelectedFlight = DataManager.Ins.CurrentFlight;
             NavigationBack = new Command(() => navigation.PopAsync());
+            OpenRegulation = new Command(() => navigation.PushAsync(new RuleView()));
             Confirm = new Command(confirmPress);
         }
 
@@ -33,7 +37,7 @@ namespace LikeFly.ViewModel
                 DependencyService.Get<IToast>().ShortToast("Quý khách chưa đánh dấu xác nhận đã đọc quy định");
             }
 
-            if (!MoMo && !Cash)
+            if (!Banking && !Cash)
             {
                 DependencyService.Get<IToast>().ShortToast("Quý khách hãy chọn phương thức dùng để thanh toán");
             }
@@ -47,11 +51,11 @@ namespace LikeFly.ViewModel
                 return;
             }
 
-            if (IsCheckRegulation && MoMo)
+            if (IsCheckRegulation && Banking)
             {
                 ConfirmEnable = false;
-                DataManager.Ins.CurrentBookedTicket.Invoice.Method = "MoMo";
-                navigation.PushAsync(new MoMoConfirmView());
+                DataManager.Ins.CurrentBookedTicket.Invoice.Method = "Banking";
+                navigation.PushAsync(new BankingView());
             }
             else if (IsCheckRegulation && Cash)
             {
@@ -94,7 +98,7 @@ namespace LikeFly.ViewModel
                 }
 
 
-                DependencyService.Get<IToast>().ShortToast("Booked this tour successfully!");
+                DependencyService.Get<IToast>().ShortToast("Đặt chuyến bay thành công!");
                 updateManager();
                 // await currentShell.GoToAsync($"//{nameof(HomeView)}");
                 await navigation.PushAsync(new SuccessBookView());
@@ -152,15 +156,15 @@ namespace LikeFly.ViewModel
         }
         #endregion
 
-        #region MoMo & Cash
-        private bool _momo;
-        public bool MoMo
+        #region Banking & Cash
+        private bool _banking;
+        public bool Banking
         {
-            get { return _momo; }
+            get { return _banking; }
             set
             {
-                _momo = value;
-                OnPropertyChanged("MoMo");
+                _banking = value;
+                OnPropertyChanged("Banking");
             }
         }
 
@@ -275,7 +279,7 @@ namespace LikeFly.ViewModel
             {
                 PermitCheckCash = false;
                 LaterNotice = "Chỉ còn 5 ngày nữa sễ bắt đầu chuyến bay, quý khách chỉ có thể thanh toán bằng hình thức chuyển khoản ngân hàng!";
-                MoMo = true;
+                Banking = true;
             }
         }
 

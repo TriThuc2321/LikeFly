@@ -37,6 +37,7 @@ namespace LikeFly.Database
                   Total = item.Object.Total,
                   PhotoMomo = item.Object.PhotoMomo,
                   MomoVnd = item.Object.MomoVnd,
+                  TicketTypes = item.Object.TicketTypes
                   
               }).ToList();
         }
@@ -57,7 +58,8 @@ namespace LikeFly.Database
                   Method = invoice.Method,
                   Total = invoice.Total,
                   PhotoMomo = invoice.PhotoMomo,
-                  MomoVnd = invoice.MomoVnd
+                  MomoVnd = invoice.MomoVnd,
+                  TicketTypes = invoice.TicketTypes
               });
         }
 
@@ -90,8 +92,9 @@ namespace LikeFly.Database
                   Method = invoice.Method,
                   Total = invoice.Total,
                   PhotoMomo = invoice.PhotoMomo,
-                  MomoVnd = invoice.MomoVnd
-              });
+                  MomoVnd = invoice.MomoVnd,
+                  TicketTypes = invoice.TicketTypes
+              }) ;
 
         }
 
