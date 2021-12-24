@@ -124,6 +124,8 @@ namespace LikeFly.Database
 
                 await FlightService.UpdateFlight(f);
             }*/
+            /*await UsersServices.addUser(new User("pl02@gmail.com", "e10adc3949ba59abbe56e057f20f883e", "Nguyễn Thị Công", "032111223", "22/07/1992", "23343783", "defaultUser.png", "Đồng Nai", 0, 1));
+            await UsersServices.addUser(new User("pl03@gmail.com", "e10adc3949ba59abbe56e057f20f883e", "Trần Văn Công", "056666424", "21/02/1990", "223455323", "defaultUser.png", "An Giang", 0, 1));*/
         }
         public Airport GetAirportById(string id)
         {

@@ -187,6 +187,13 @@ namespace LikeFly.ViewModel
             }
         }
         #endregion
+
+        public ICommand BackCommand => new Command<object>(async (obj) =>
+        {
+            //await currentShell.GoToAsync($"{nameof(NewAirportView)}");
+            await navigation.PopAsync();
+        });
+
         private Airport selectedAirport;
         public Airport SelectedAirport
         {

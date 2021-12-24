@@ -28,15 +28,14 @@ namespace LikeFly.Database
                   Duration = item.Object.Duration,
                   StartDate = item.Object.StartDate,
                   StartTime = item.Object.StartTime,
-                  ImgSource = item.Object.ImgSource,
                   Description = item.Object.Description,
-                  PassengerNumber = item.Object.PassengerNumber,
                   IsOccured = item.Object.IsOccured,
                   Price = item.Object.Price,
                   IntermediaryAirportList = item.Object.IntermediaryAirportList,
                   AirportStart = item.Object.AirportStart,
                   AirportEnd = item.Object.AirportEnd,
-                  TicketTypes = item.Object.TicketTypes,                  
+                  TicketTypes = item.Object.TicketTypes, 
+                  ListPilots = item.Object.ListPilots
               }).ToList();
         }
         public async Task AddFlight(Flight flight)
@@ -50,16 +49,14 @@ namespace LikeFly.Database
                     Duration = flight.Duration,
                     StartDate = flight.StartDate,
                     StartTime = flight.StartTime,
-                    ImgSource = flight.ImgSource,
                     Description = flight.Description,
-                    PassengerNumber = flight.PassengerNumber,
                     IsOccured = flight.IsOccured,
                     Price = flight.Price,
                     IntermediaryAirportList = flight.IntermediaryAirportList,
                     AirportStart = flight.AirportStart,
                     AirportEnd = flight.AirportEnd,
                     TicketTypes = flight.TicketTypes,
-
+                    ListPilots = flight.ListPilots
               });
         }
 
@@ -79,15 +76,14 @@ namespace LikeFly.Database
                   Duration = flight.Duration,
                   StartDate = flight.StartDate,
                   StartTime = flight.StartTime,
-                  ImgSource = flight.ImgSource,
                   Description = flight.Description,
-                  PassengerNumber = flight.PassengerNumber,
                   IsOccured = flight.IsOccured,
                   Price = flight.Price,
                   IntermediaryAirportList = flight.IntermediaryAirportList,
                   AirportStart = flight.AirportStart,
                   AirportEnd= flight.AirportEnd,
-                  TicketTypes = flight.TicketTypes
+                  TicketTypes = flight.TicketTypes,
+                  ListPilots = flight.ListPilots
               });
         }
         async public Task<string> saveImage(Stream imgStream, string airportId)
@@ -142,7 +138,7 @@ namespace LikeFly.Database
             catch { }
 
         }
-        public async Task DeleteAirport(Flight flight)
+        public async Task DeleteFlight(Flight flight)
         {
             var toDeleted = (await firebase
                .Child("Flights").OnceAsync<Flight>()).FirstOrDefault(p => p.Object.Id == flight.Id);

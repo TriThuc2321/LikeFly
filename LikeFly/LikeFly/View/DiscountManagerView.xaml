@@ -12,7 +12,7 @@
         <RefreshView  Command="{Binding Refresh}"
                      IsRefreshing="{Binding IsRefresh}">
             <ScrollView>
-                <Grid BackgroundColor="WhiteSmoke">
+                <Grid BackgroundColor="White">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="3*"/>

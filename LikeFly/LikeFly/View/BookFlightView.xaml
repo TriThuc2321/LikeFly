@@ -12,13 +12,9 @@
     <ContentPage.Content>
         <Grid>
             <Image Source="https://i.pinimg.com/564x/e1/c4/ef/e1c4ef856ac9decdf21eebe298a40f6e.jpg" Aspect="AspectFill" Margin="0,0,0,30"/>
-
-            <pancake:PancakeView Margin="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40" CornerRadius="25" Padding="0" BackgroundColor="#272727" >
-                <ImageButton Command="{Binding NavigationBack}" BackgroundColor="Transparent" Margin="10" Source="backIcon2.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-            </pancake:PancakeView>
-
-            <ScrollView Margin="0,55,0,0" >
-                <pancake:PancakeView Margin="0,45,0,0" CornerRadius="30, 30,0,0" BackgroundColor="White">
+            
+            <ScrollView  >
+                <pancake:PancakeView Margin="0,100,0,0" CornerRadius="30, 30,0,0" BackgroundColor="White">
                     <StackLayout Orientation="Vertical"
                                  Grid.Row="0"
                                  Margin="15, 0, 15,0" 
@@ -416,6 +412,11 @@
                     </StackLayout>
                 </pancake:PancakeView>               
             </ScrollView>
+
+            <pancake:PancakeView Margin="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40" CornerRadius="25" Padding="0" BackgroundColor="#272727" >
+                <ImageButton Command="{Binding NavigationBack}" BackgroundColor="Transparent" Margin="10" Source="backIcon2.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </pancake:PancakeView>
+
         </Grid>
 
     </ContentPage.Content>

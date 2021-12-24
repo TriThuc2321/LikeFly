@@ -6,8 +6,21 @@
         <vm:TicketTypeManagerViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <CollectionView x:Name="clview1" 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <StackLayout BackgroundColor="CadetBlue"/>
+
+            <StackLayout Orientation="Horizontal" Margin="15,15,15,0">
+                <ImageButton  HeightRequest="23" WidthRequest="23" Command="{Binding BackCommand}"  BackgroundColor="Transparent" Source="backIcon2Black.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Start"/>
+                <Label Text="Danh sách loại hạng vé" VerticalOptions="Start" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#272727" FontSize="23"/>
+            </StackLayout>
+            <Frame Grid.RowSpan="2" Margin="20,60,20,20" CornerRadius="20">
+                <StackLayout>
+                    <ImageButton Source="plusIcon.png" HeightRequest="30" Margin="0,5,15,5" BackgroundColor="Transparent" HorizontalOptions="End" Command="{Binding BackCommand2} "/>
+                    <CollectionView x:Name="clview1" 
                             Grid.Row="2"
                             ItemsSource="{Binding ListTicketType}" 
                             SelectedItem="{Binding SelectedTicketType}"
@@ -16,40 +29,41 @@
                             SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clview1}}"
                             
                             >
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
 
-                        <Frame HasShadow="True" Padding="0,0,0,0" VerticalOptions="Start" >
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup Name="CommonStates">
-                                    <VisualState Name="Selected">
-                                        <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="Transparent" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                    <VisualState Name="Normal" >
-                                        <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="Transparent" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
+                                <Frame HasShadow="True" Padding="0,0,0,0" VerticalOptions="Start" >
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState Name="Normal" >
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
 
-                            <Frame Padding="0" HasShadow="True" Margin="10,5,10,5" BackgroundColor="White" >
+                                    <Frame Padding="0" HasShadow="True" Margin="10,5,10,5" BackgroundColor="#272727" CornerRadius="16">
+                                        <StackLayout Padding="20" Orientation="Horizontal">
+                                            <Label Text="{Binding Name}" FontAttributes="Bold"  TextColor="White" FontSize="17" VerticalTextAlignment="Center"/>
+                                            <Label Text="{Binding Percent}"   TextColor="White" FontSize="17" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
-                                <StackLayout Padding="20" Orientation="Horizontal">
-                                    <Image Source="{Binding Id}" HeightRequest="50"></Image>
-                                    <Label Text="{Binding Name}" FontAttributes="Bold"  TextColor="Black" FontSize="17" VerticalTextAlignment="Center"></Label>
-                                </StackLayout>
-                            </Frame>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Button Command="{Binding BackCommand2}"/>
-        </StackLayout>
+                </StackLayout>
+            </Frame>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
