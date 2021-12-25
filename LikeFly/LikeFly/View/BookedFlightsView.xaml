@@ -4,7 +4,7 @@
              x:Class="LikeFly.View.BookedFlightsView"
              xmlns:vm="clr-namespace:LikeFly.ViewModel">
     <ContentPage.BindingContext>
-        <vm:RegisterViewModel/>
+        <vm:BookedFlightsViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
 

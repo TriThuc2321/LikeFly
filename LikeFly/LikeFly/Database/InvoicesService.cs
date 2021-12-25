@@ -35,8 +35,8 @@ namespace LikeFly.Database
                   Amount = item.Object.Amount,
                   Method = item.Object.Method,
                   Total = item.Object.Total,
-                  PhotoMomo = item.Object.PhotoMomo,
-                  MomoVnd = item.Object.MomoVnd,
+                  Photo = item.Object.Photo,
+                  Vnd = item.Object.Vnd,
                   TicketTypes = item.Object.TicketTypes
                   
               }).ToList();
@@ -57,8 +57,8 @@ namespace LikeFly.Database
                   Amount = invoice.Amount,
                   Method = invoice.Method,
                   Total = invoice.Total,
-                  PhotoMomo = invoice.PhotoMomo,
-                  MomoVnd = invoice.MomoVnd,
+                  Photo = invoice.Photo,
+                  Vnd = invoice.Vnd,
                   TicketTypes = invoice.TicketTypes
               });
         }
@@ -91,14 +91,14 @@ namespace LikeFly.Database
                   Amount = invoice.Amount,
                   Method = invoice.Method,
                   Total = invoice.Total,
-                  PhotoMomo = invoice.PhotoMomo,
-                  MomoVnd = invoice.MomoVnd,
+                  Photo = invoice.Photo,
+                  Vnd = invoice.Vnd,
                   TicketTypes = invoice.TicketTypes
               }) ;
 
         }
 
-        async public Task<string> saveMoMoImage(Stream imgStream, string invoiceId)
+        async public Task<string> savePhoto(Stream imgStream, string invoiceId)
         {
             var storageImage = await new FirebaseStorage("gs://likefly-5ec61.appspot.com")
                 .Child("Invoices").Child(invoiceId)

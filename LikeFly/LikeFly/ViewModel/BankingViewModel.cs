@@ -14,7 +14,7 @@ namespace LikeFly.ViewModel
     public class BankingViewModel: ObservableObject
     {
         INavigation navigation;
-        string Money;
+        string Money="";
 
         public Command NavigationBack { get; }
         public Command UploadPhoto { get; }
@@ -78,7 +78,7 @@ namespace LikeFly.ViewModel
 
             if (ImageVisible && currentPhoto != null)
             {
-                string url = await DataManager.Ins.InvoicesServices.saveMoMoImage(
+                string url = await DataManager.Ins.InvoicesServices.savePhoto(
                     currentPhoto.GetStream(),
                     DataManager.Ins.CurrentBookedTicket.Invoice.Id
                     );
@@ -229,18 +229,21 @@ namespace LikeFly.ViewModel
         void SetInformation()
         {
             PermitConfirmEnable = true;
-            string[] currency = DataManager.Ins.USDCurrency.Split(',');
-            string usd = currency[0] + currency[1];
-            int money = int.Parse(DataManager.Ins.CurrentInvoice.Total) * int.Parse(usd);
-            Money = money.ToString();
+            //string[] currency = DataManager.Ins.USDCurrency.Split(',');
+            //string usd = currency[0] + currency[1];
+            //int money = int.Parse(DataManager.Ins.CurrentInvoice.Total) * int.Parse(usd);
+            //Money = money.ToString();
             PermitConfirm = false;
 
             ImageLink = "";
             ImageVisible = false;
             RemovePhotoVisible = false;
 
-            money = int.Parse(DataManager.Ins.InvoicesServices.RoundMoney(money));
-            StrMoney = String.Format("{0:#,##0.##}", money);
+            Money = DataManager.Ins.CurrentInvoice.Total.ToString();
+
+            int money = int.Parse(DataManager.Ins.InvoicesServices.RoundMoney(int.Parse(Money)));
+            StrMoney = DataManager.Ins.InvoicesServices.RoundMoney(money);
+            StrMoney = DataManager.Ins.InvoicesServices.FormatMoney(StrMoney);
             SelectedFlight = DataManager.Ins.CurrentFlight;
         }
 

@@ -275,7 +275,7 @@ namespace LikeFly.ViewModel
         {
             PermitCheckCash = true;
             LaterNotice = "";
-            if (DataManager.Ins.BookedTicketsServices.countBookTourRegulation(DataManager.Ins.CurrentFlight) < 5)
+            if (DataManager.Ins.BookedTicketsServices.countBookFlightRegulation(DataManager.Ins.CurrentFlight) < 5)
             {
                 PermitCheckCash = false;
                 LaterNotice = "Chỉ còn 5 ngày nữa sễ bắt đầu chuyến bay, quý khách chỉ có thể thanh toán bằng hình thức chuyển khoản ngân hàng!";

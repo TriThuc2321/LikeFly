@@ -31,7 +31,7 @@
                                CornerRadius="10"
                                Margin="20"
                                Padding="0">
-                            <StackLayout Margin="20,10,20,10">
+                            <StackLayout Margin="20,10,20,0">
                                 <Label Text="{Binding StrMoney, StringFormat='Số tiền cần thanh toán: {0} VNĐ'}"
                                        FontAttributes="Bold"
                                        TextColor="CadetBlue"
@@ -40,16 +40,17 @@
                                 <Label Text="Thông tin tài khoản nhận thanh toán:"
                                        FontAttributes="Bold"
                                        TextColor="CadetBlue"
-                                       FontSize="17"/>
+                                       FontSize="17"
+                                       Margin="0,10,0,10"/>
 
                                 <StackLayout Orientation="Horizontal"
-                                         Margin="50, 0, 50, 50">
+                                         Margin="20, 0, 20, 0">
                                     <Image Source="https://yt3.ggpht.com/ytc/AKedOLRDwZ71XlX1CS0Bzwqs3RkzKUbbCif7INEKLwUKNA=s900-c-k-c0x00ffffff-no-rj"
-                                      WidthRequest="55"
+                                      WidthRequest="100"
                                        Aspect="AspectFill"
                                     />
                                     <StackLayout Orientation="Vertical"
-                                             Margin="10,0,0,0">
+                                             Margin="10,20,0,0">
                                         <Label Text="LIKEFLY VIETNAM"
                                            FontSize="18"
                                            Margin="10,0,0,0"
@@ -70,41 +71,43 @@
                         </Frame>
 
                         <StackLayout Orientation="Horizontal"
-                                     VerticalOptions="EndAndExpand">
+                                     Margin="20">
                             <Label Text="Tải ảnh minh chứng đã thanh toán: "
                                    FontSize="17"
                                    FontAttributes="Italic"
                                    TextColor="#272727"
+                                   VerticalOptions="Center"
                                    Margin="0,0,5,0"/>
-                            <ImageButton     
-                                    Padding="5"  
-                                    BackgroundColor="#272727" 
+                            <ImageButton  BackgroundColor="Transparent"
                                     Source="removeIcon.png"
                                      VerticalOptions="EndAndExpand"
                                     Command="{Binding RemovePhoto}"
                                         IsVisible="{Binding RemovePhotoVisible}"
+                                          WidthRequest="30"
+                                          Margin="10, 7, 0,0"
                         />
-                            <ImageButton     
-                                    Padding="5"  
-                                    BackgroundColor="#272727" 
-                                     VerticalOptions="EndAndExpand"
+                            <ImageButton VerticalOptions="EndAndExpand"
                                     Command="{Binding UploadPhoto}"
                                     Source="uploadIcon.png"
+                                    BackgroundColor="Transparent"
+                                         WidthRequest="30"
+                                         Margin="15,0,0,0"
                         />
                         </StackLayout>
 
                         <Label IsVisible="{Binding ImageVisible}"
                                FontSize="17"
                                TextColor="#272727"
-                               Margin="10"
-                               Text="Ảnh đã tải"
+                               Margin="20,0,0,0"
+                               Text="Ảnh đã tải:"
                                        />
                         
                         <Image IsVisible="{Binding ImageVisible}"
                                        Source="{Binding ImageLink}"
                                       BackgroundColor="Transparent"
-                                      WidthRequest="90"
-                                      HeightRequest="40"
+                                      WidthRequest="80"
+                                      HeightRequest="260"
+                               Margin="20"
                                        Aspect="AspectFill"
                                       
                                        />
@@ -118,7 +121,6 @@
                                     HeightRequest="50"
                                     FontAttributes="Bold"
                                     FontSize="18"
-                                     VerticalOptions="EndAndExpand"
                                     Command="{Binding Confirm}"
                             IsVisible="{Binding PermitConfirm}"
                             IsEnabled="{Binding PermitConfirmEnable}"
