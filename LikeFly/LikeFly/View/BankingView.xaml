@@ -80,18 +80,18 @@
                                    Margin="0,0,5,0"/>
                             <ImageButton  BackgroundColor="Transparent"
                                     Source="removeIcon.png"
-                                     VerticalOptions="EndAndExpand"
+                                     HorizontalOptions="EndAndExpand"
                                     Command="{Binding RemovePhoto}"
                                         IsVisible="{Binding RemovePhotoVisible}"
                                           WidthRequest="30"
                                           Margin="10, 7, 0,0"
                         />
-                            <ImageButton VerticalOptions="EndAndExpand"
+                            <ImageButton HorizontalOptions="EndAndExpand"
                                     Command="{Binding UploadPhoto}"
                                     Source="uploadIcon.png"
                                     BackgroundColor="Transparent"
                                          WidthRequest="30"
-                                         Margin="15,0,0,0"
+                                         Margin="15,5,0,0"
                         />
                         </StackLayout>
 
@@ -99,7 +99,8 @@
                                FontSize="17"
                                TextColor="#272727"
                                Margin="20,0,0,0"
-                               Text="Ảnh đã tải:"
+                               Text="Ảnh minh chứng thanh toán quý khách đã tải lên:"
+                               FontAttributes="Bold"
                                        />
                         
                         <Image IsVisible="{Binding ImageVisible}"

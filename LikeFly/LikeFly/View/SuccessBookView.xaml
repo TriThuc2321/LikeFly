@@ -18,23 +18,246 @@
             </pancake:PancakeView>
 
             <ScrollView>
-                <pancake:PancakeView Margin="0,75,0,0" CornerRadius="30, 30,0,0" BackgroundColor="White">
+                <pancake:PancakeView Margin="0,75,0,0" CornerRadius="30, 30,0,0" BackgroundColor="WhiteSmoke">
                     <StackLayout>
 
-                        <Label Text="Quy định"
+                        <Label Text="Đặt vé thành công"
                                FontSize="25"
                                TextColor="#272727"
                            FontAttributes="Bold"
                            Margin="10, 30, 0, 0"
                                HorizontalOptions="CenterAndExpand"/>
-                        <Label                                     
-                                Margin="20"                                    
-                                Text="{Binding Rule}"                                    
-                                Grid.Column="0"                                    
-                                TextColor="#272727"                                    
-                                VerticalOptions="Center"
-                                FontSize="17"/>
 
+                        <Label   Margin="20, 15, 20, 10"                                    
+                                    Text="Cảm ơn quý khách đã chọn LikeFly!"                                           
+                                    TextColor="CadetBlue"                                    
+                                    HorizontalOptions="Center"
+                                 
+                                    FontAttributes="Bold"
+                                    FontSize="20"/>
+                        
+                        <Frame HasShadow="True"
+                               Padding="0"
+                               CornerRadius="20"
+                               Margin="20, 15, 20, 0"
+                               VerticalOptions="Center"
+                              >
+                            <StackLayout Orientation="Vertical"
+                                         Margin="0,0,0,20">
+                                <Label                                     
+                                    Margin="20, 20, 20, 10"                                    
+                                    Text="Thông tin vé chuyến bay"                                           
+                                    TextColor="CadetBlue"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Bold"
+                                    FontSize="17"/>
+
+                                <BoxView HeightRequest="0.3"
+                                         BackgroundColor="CadetBlue"
+                                         HorizontalOptions="CenterAndExpand"
+                                         WidthRequest="320"/>
+
+                                <!--Mô tả-->
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <Label                                  
+                                    Text="Chuyến bay: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding Flight.Description}"                                           
+                                    TextColor="Black"                                    
+                                    VerticalOptions="Center"
+                                        Margin="60,0,0,0"
+                                        FontAttributes="Bold"
+                                    FontSize="17"/>
+                                </StackLayout>
+                                
+                                <!--Ngày khởi hành-->
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <Label                                  
+                                    Text="Thời gian khởi hành: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding StartTime}"                                           
+                                    TextColor="Black"                                    
+                                    VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                        Margin="10,0,0,0"
+                                    FontSize="17"/>
+                                </StackLayout>
+                                
+                                <!--Thời gian bay-->
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <Label                                  
+                                    Text="Thời gian chuyến bay: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding Flight.Duration}"    
+                                        FontAttributes="Bold"
+                                    TextColor="Black"                                    
+                                    VerticalOptions="Center"
+                                    FontSize="17"/>
+                                </StackLayout>
+                                
+                                <!--Hạng vé-->
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <Label                                  
+                                    Text="Hạng vé: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding Invoice.TicketTypes.Name}"                                           
+                                    TextColor="Black"        
+                                        Margin="85,0,0,0"
+                                    VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                    FontSize="17"/>
+                                </StackLayout>
+
+                                <!--Số tiền thanh toán-->
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <Label                                  
+                                    Text="Tiền thanh toán: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding StrTotal, StringFormat='{0} VND'}"                                           
+                                    TextColor="Black"        
+                                        Margin="35,0,0,0"
+                                    VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                    FontSize="17"/>
+                                </StackLayout>
+
+                                <!--Phương thức thanh toán-->
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <Label                                  
+                                    Text="Phương thức: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                    FontSize="15"/>
+                                    <Label                                          
+                                    TextColor="Black"        
+                                        Margin="55,0,0,0"
+                                    VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                    FontSize="17">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Invoice.Method}" Value="Banking">
+                                                <Setter Property="Text" Value="Chuyển khoản " />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Invoice.Method}" Value="Cash">
+                                                <Setter Property="Text" Value="Trả tiền mặt" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Frame>
+
+                        <!--<Frame HasShadow="True"
+                               Padding="0"
+                               CornerRadius="20"
+                               Margin="20"
+                              >
+                            <StackLayout Orientation="Vertical"
+                                         Margin="0,0,0,10">
+                                <Label                                     
+                                    Margin="20, 20, 20, 10"                                    
+                                    Text="Thông tin của hành khách"                                           
+                                    TextColor="CadetBlue"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Bold"
+                                    FontSize="17"/>
+
+                                <BoxView HeightRequest="0.3"
+                                         BackgroundColor="CadetBlue"
+                                         HorizontalOptions="CenterAndExpand"
+                                         WidthRequest="300"/>
+
+                                --><!--Tên--><!--
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <Label                                  
+                                    Text="Họ tên: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding Ticket.Name}"                                           
+                                    TextColor="Black"                                    
+                                    VerticalOptions="Center"
+                                        Margin="60,0,0,0"
+                                        FontAttributes="Bold"
+                                    FontSize="17"/>
+                                </StackLayout>
+
+                                --><!--Ngày sinh--><!--
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <Label                                  
+                                    Text="Ngày sinh: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding Ticket.Birthday}"                                           
+                                    TextColor="Black"                                    
+                                    VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                        Margin="70,0,0,0"
+                                    FontSize="17"/>
+                                </StackLayout>
+
+                                --><!--Thời gian bay--><!--
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <Label                                  
+                                    Text="Thời gian chuyến bay: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding Flight.Duration}"    
+                                        FontAttributes="Bold"
+                                    TextColor="Black"                                    
+                                    VerticalOptions="Center"
+                                    FontSize="17"/>
+                                </StackLayout>
+
+                                --><!--Hạng vé--><!--
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <Label                                  
+                                    Text="Hạng vé: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding Invoice.TicketTypes.Name}"                                           
+                                    TextColor="Black"        
+                                        Margin="85,0,0,0"
+                                    VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                    FontSize="17"/>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </Frame>-->
                         <Button     
                                     CornerRadius="20" 
                                     Margin="25,20,25,50"
@@ -42,7 +265,7 @@
                                     BackgroundColor="#272727" 
                                     TextColor="White"
                                     HeightRequest="50"
-                                    Text="Tôi đã đọc kĩ quy định"
+                                    Text="Trở về màn hình chính"
                                     FontAttributes="Bold"
                                     FontSize="18"
                                      VerticalOptions="EndAndExpand"

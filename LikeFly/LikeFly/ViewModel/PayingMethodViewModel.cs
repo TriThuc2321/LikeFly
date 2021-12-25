@@ -278,7 +278,7 @@ namespace LikeFly.ViewModel
             if (DataManager.Ins.BookedTicketsServices.countBookFlightRegulation(DataManager.Ins.CurrentFlight) < 5)
             {
                 PermitCheckCash = false;
-                LaterNotice = "Chỉ còn 5 ngày nữa sễ bắt đầu chuyến bay, quý khách chỉ có thể thanh toán bằng hình thức chuyển khoản ngân hàng!";
+                LaterNotice = "Chỉ còn dưới 5 ngày nữa sẽ bắt đầu chuyến bay, quý khách chỉ có thể thanh toán bằng hình thức chuyển khoản ngân hàng!";
                 Banking = true;
             }
         }

@@ -11,10 +11,10 @@ using Xamarin.Forms;
 
 namespace LikeFly.ViewModel
 {
-    public class BankingViewModel: ObservableObject
+    public class BankingViewModel : ObservableObject
     {
         INavigation navigation;
-        string Money="";
+        string Money = "";
 
         public Command NavigationBack { get; }
         public Command UploadPhoto { get; }
@@ -66,7 +66,6 @@ namespace LikeFly.ViewModel
 
         async void confirm(object obj)
         {
-            bool payLater = true;
 
             PermitConfirmEnable = false;
             if (await checkRemaining() == false)
@@ -84,28 +83,12 @@ namespace LikeFly.ViewModel
                     );
 
                 DataManager.Ins.CurrentInvoice.IsPaid = false;
-                DataManager.Ins.CurrentInvoice.PayingTime = DateTime.Now.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+                DataManager.Ins.CurrentInvoice.PayingTime = DateTime.Now.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("vi-VN"));
                 DataManager.Ins.CurrentInvoice.Photo = url;
-
-                payLater = false;
-            }
-            else
-            {
-                DataManager.Ins.CurrentInvoice.IsPaid = false;
-                DataManager.Ins.CurrentInvoice.PayingTime = "";
-                payLater = true;
-            }
-
-            if (!payLater)
-            {
-                DataManager.Ins.CurrentInvoice.Method = "Banking";
                 DataManager.Ins.CurrentInvoice.Vnd = Money;
+                DataManager.Ins.CurrentInvoice.Method = "Banking";
             }
-            else
-            {
-                DataManager.Ins.CurrentInvoice.Method = "Cash";
 
-            }
 
             DataManager.Ins.CurrentBookedTicket.BookTime = DateTime.Now.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
 
@@ -143,8 +126,8 @@ namespace LikeFly.ViewModel
 
             DependencyService.Get<IToast>().ShortToast("Đặt chuyến bay thành công!");
             updateManager();
-            // await currentShell.GoToAsync($"//{nameof(HomeView)}");
             await navigation.PushAsync(new SuccessBookView());
+
         }
 
         #region money
@@ -184,7 +167,7 @@ namespace LikeFly.ViewModel
         }
         #endregion
 
-       
+
 
         private Flight selectedFlight;
         public Flight SelectedFlight
@@ -197,7 +180,7 @@ namespace LikeFly.ViewModel
             }
         }
 
-       
+
 
         #region regulation 
         private string _regulation;
@@ -229,10 +212,6 @@ namespace LikeFly.ViewModel
         void SetInformation()
         {
             PermitConfirmEnable = true;
-            //string[] currency = DataManager.Ins.USDCurrency.Split(',');
-            //string usd = currency[0] + currency[1];
-            //int money = int.Parse(DataManager.Ins.CurrentInvoice.Total) * int.Parse(usd);
-            //Money = money.ToString();
             PermitConfirm = false;
 
             ImageLink = "";

@@ -15,7 +15,7 @@ namespace LikeFly.Database
     public class InvoicesService
     {
         FirebaseClient firebase = new FirebaseClient("https://likefly-5ec61-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        FirebaseClient storage = new FirebaseClient("gs://likefly-5ec61.appspot.com");
+        FirebaseClient storage = new FirebaseClient("likefly-5ec61.appspot.com");
 
         public List<Invoice> invoices;
 
@@ -100,9 +100,9 @@ namespace LikeFly.Database
 
         async public Task<string> savePhoto(Stream imgStream, string invoiceId)
         {
-            var storageImage = await new FirebaseStorage("gs://likefly-5ec61.appspot.com")
+            var storageImage = await new FirebaseStorage("likefly-5ec61.appspot.com")
                 .Child("Invoices").Child(invoiceId)
-                .Child("momo.png")
+                .Child("banking.png")
                 .PutAsync(imgStream);
             var imgurl = storageImage;
             return imgurl;
