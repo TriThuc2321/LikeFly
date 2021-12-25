@@ -26,15 +26,15 @@
                 <StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <StackLayout>
-                            <Label Text="Thời gian bay" Margin="0,10,0,-8"/>
+                            <Label Text="Thời gian bay" Margin="0,10,0,-8" TextColor="#272727"/>
                             <StackLayout Orientation="Horizontal">
-                                <Entry FontAttributes="Bold" Text="{Binding StopHour}" WidthRequest="40" Keyboard="Numeric"/>
-                                <Label Text="Giờ" VerticalOptions="Center" FontAttributes="Bold"/>
-                                <Entry FontAttributes="Bold" Text="{Binding StopMinute}" WidthRequest="40" Keyboard="Numeric"/>
-                                <Label Text="Phút" VerticalOptions="Center" FontAttributes="Bold"/>
+                                <Entry FontAttributes="Bold" Text="{Binding StopHour}" WidthRequest="40" Keyboard="Numeric" TextColor="#272727"/>
+                                <Label Text="Giờ" VerticalOptions="Center" FontAttributes="Bold" TextColor="#272727"/>
+                                <Entry FontAttributes="Bold" Text="{Binding StopMinute}" WidthRequest="40" TextColor="#272727" Keyboard="Numeric"/>
+                                <Label Text="Phút" VerticalOptions="Center" FontAttributes="Bold" TextColor="#272727"/>
                             </StackLayout>
                         </StackLayout>
-                        <Picker ItemsSource="{Binding Airports}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedAirport}" WidthRequest="100" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" VerticalOptions="End"/>
+                        <Picker ItemsSource="{Binding Airports}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedAirport}" TextColor="#272727" WidthRequest="100" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" VerticalOptions="End"/>
                     </StackLayout>
 
                     <Frame Padding="0" HasShadow="True" Margin="5" BackgroundColor="White" CornerRadius="15" >

@@ -211,6 +211,15 @@ namespace LikeFly.ViewModel
                 CurrentPilots.Remove(result);
             }
         });
+        public ICommand DeleteIntermediaryCommand => new Command<object>((obj) =>
+        {
+            IntermediaryAirport result = obj as IntermediaryAirport;
+
+            if (result != null)
+            {
+                Flight.IntermediaryAirportList.Remove(result);
+            }
+        });
 
         public ICommand NewIntermediaryCommand => new Command<object>((obj) =>
         {
