@@ -24,53 +24,53 @@
         <Frame Grid.RowSpan="2" Margin="20,60,20,20" CornerRadius="20">
             <ScrollView>
                 <StackLayout>
-                    <Label Text="Tên chuyến bay" Margin="0,10,0,-8"/>
-                    <Entry Placeholder="Nhập tên chuyến bay" FontAttributes="Bold" Text="{Binding Flight.Name}"/>
+                    <Label Text="Tên chuyến bay" Margin="0,10,0,-8" TextColor="#272727"/>
+                    <Entry Placeholder="Nhập tên chuyến bay" FontAttributes="Bold" TextColor="#272727" Text="{Binding Flight.Name}"/>
 
-                    <Label Text="Mô tả" Margin="0,10,0,-8"/>
-                    <Entry Placeholder="Nhập mô tả" FontAttributes="Bold" Text="{Binding Flight.Description}"/>
+                    <Label Text="Mô tả" Margin="0,10,0,-8" TextColor="#272727"/>
+                    <Entry Placeholder="Nhập mô tả" FontAttributes="Bold" TextColor="#272727" Text="{Binding Flight.Description}"/>
 
                     <Grid>
                         <StackLayout>
-                            <Label Text="Thời gian bay" Margin="0,10,0,-8"/>
+                            <Label Text="Thời gian bay" Margin="0,10,0,-8" TextColor="#272727"/>
                             <StackLayout Orientation="Horizontal">
-                                <Entry FontAttributes="Bold" Text="{Binding DurationHour}" WidthRequest="40"/>
-                                <Label Text="Giờ" VerticalOptions="Center" FontAttributes="Bold"/>
-                                <Entry FontAttributes="Bold" Text="{Binding DurationMinute}" WidthRequest="40"/>
-                                <Label Text="Phút" VerticalOptions="Center" FontAttributes="Bold"/>
+                                <Entry FontAttributes="Bold" Text="{Binding DurationHour}" TextColor="#272727" WidthRequest="40"/>
+                                <Label Text="Giờ" VerticalOptions="Center" FontAttributes="Bold" TextColor="#272727"/>
+                                <Entry FontAttributes="Bold" Text="{Binding DurationMinute}" WidthRequest="40" TextColor="#272727"/>
+                                <Label Text="Phút" VerticalOptions="Center" FontAttributes="Bold" TextColor="#272727"/>
                             </StackLayout>
                         </StackLayout>
 
                         <StackLayout Grid.Column="1">
-                            <Label Text="Giá chuyến bay" Margin="0,10,0,-8"/>
+                            <Label Text="Giá chuyến bay" Margin="0,10,0,-8" TextColor="#272727"/>
                             <StackLayout Orientation="Horizontal">
-                                <Entry  FontAttributes="Bold" Text="{Binding Flight.Price}" WidthRequest="120"/>
-                                <Label Text="VND" VerticalOptions="Center" FontAttributes="Bold"/>
+                                <Entry  FontAttributes="Bold" TextColor="#272727" Text="{Binding Flight.Price}" WidthRequest="120"/>
+                                <Label Text="VND" VerticalOptions="Center" TextColor="#272727" FontAttributes="Bold"/>
                             </StackLayout>
                         </StackLayout>
                     </Grid>
 
                     <Grid>
                         <StackLayout>
-                            <Label Text="Ngày bắt đầu" Margin="0,10,0,-8"/>
-                            <DatePicker Date="{Binding StartDatePicker}" Format="dd/MM/yyyy" WidthRequest="120" HorizontalOptions="Start"/>
+                            <Label Text="Ngày bắt đầu" Margin="0,10,0,-8" TextColor="#272727"/>
+                            <DatePicker Date="{Binding StartDatePicker}" Format="dd/MM/yyyy" TextColor="#272727" WidthRequest="120" HorizontalOptions="Start"/>
                         </StackLayout>
 
                         <StackLayout Grid.Column="1">
-                            <Label Text="Thời gian bắt đầu" Margin="0,10,0,-8" />
-                            <TimePicker Time="{Binding StartTimePicker,StringFormat='{}{0:hh\\:mm}'}" WidthRequest="120" HorizontalOptions="Start"/>
+                            <Label Text="Thời gian bắt đầu" Margin="0,10,0,-8" TextColor="#272727"/>
+                            <TimePicker Time="{Binding StartTimePicker,StringFormat='{}{0:hh\\:mm}'}" TextColor="#272727" WidthRequest="120" HorizontalOptions="Start"/>
                         </StackLayout>
                     </Grid>
 
-                    <Label Text="Sân bay đi" Margin="0,10,0,-8"/>
-                    <Picker ItemsSource="{Binding AirportsStart}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Flight.AirportStart}"/>
+                    <Label Text="Sân bay đi" Margin="0,10,0,-8" TextColor="#272727"/>
+                    <Picker ItemsSource="{Binding AirportsStart}" ItemDisplayBinding="{Binding Name}" TextColor="#272727" SelectedItem="{Binding Flight.AirportStart}"/>
 
-                    <Label Text="Sân bay đến" Margin="0,10,0,-8"/>
-                    <Picker ItemsSource="{Binding AirportsEnd}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding Flight.AirportEnd}" />
+                    <Label Text="Sân bay đến" Margin="0,10,0,-8" TextColor="#272727"/>
+                    <Picker ItemsSource="{Binding AirportsEnd}" ItemDisplayBinding="{Binding Name}" TextColor="#272727" SelectedItem="{Binding Flight.AirportEnd}" />
 
-                    <Label Text="Danh sách phi công" Margin="0,10,0,-8"/>
+                    <Label Text="Danh sách phi công" Margin="0,10,0,-8" TextColor="#272727"/>
                     <StackLayout Orientation="Horizontal">
-                        <Picker ItemsSource="{Binding Pilots}" ItemDisplayBinding="{Binding name}" SelectedItem="{Binding SelectedPilot}" WidthRequest="150"/>
+                        <Picker ItemsSource="{Binding Pilots}" ItemDisplayBinding="{Binding name}" TextColor="#272727" SelectedItem="{Binding SelectedPilot}" WidthRequest="150"/>
                         <ImageButton Source="addIcon.png" Aspect="AspectFit" BackgroundColor="Transparent" WidthRequest="22" Command="{Binding AddPilotCommand}"/>
                     </StackLayout>
                     <CollectionView x:Name="clview"
@@ -108,8 +108,8 @@
 
                                             <ImageButton CornerRadius="5" Source="{Binding profilePic}" BackgroundColor="Transparent" HeightRequest="50" WidthRequest="50" Aspect="AspectFill"/>
                                             <StackLayout >
-                                                <Label Text="{Binding name}" FontAttributes="Bold"/>
-                                                <Label Text="{Binding email}"/>
+                                                <Label TextColor="#272727" Text="{Binding name}" FontAttributes="Bold"/>
+                                                <Label Text="{Binding email}" TextColor="#272727" />
                                             </StackLayout>
                                         </StackLayout>
                                     </Frame>
@@ -121,7 +121,7 @@
 
 
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Sân bay trung gian"/>
+                        <Label Text="Sân bay trung gian" TextColor="#272727"/>
                         <ImageButton Source="addIcon.png" Aspect="AspectFit" BackgroundColor="Transparent" WidthRequest="22" Command="{Binding NewIntermediaryCommand}"/>
                     </StackLayout>
                     <CollectionView x:Name="clviewAirport"
@@ -140,7 +140,7 @@
                                         <SwipeItems>
                                             <SwipeItem Text="Remove"
                                         BackgroundColor="White"
-                                        Command="{Binding Source={x:Reference clviewAirport}, Path = BindingContext.DeleteTourGuideCommand}"
+                                        Command="{Binding Source={x:Reference clviewAirport}, Path = BindingContext.DeleteIntermediaryCommand}"
                                         CommandParameter="{Binding}" />
                                         </SwipeItems>
                                     </SwipeView.TopItems>
@@ -158,7 +158,7 @@
                                             <StackLayout Orientation="Horizontal" BackgroundColor="White">
                                                 <Image Source="{Binding Airport.ImgSource}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"></Image>
                                                 <StackLayout Margin="10, 5,0,0">
-                                                    <Label Text="{Binding Airport.Name}" FontAttributes="Bold"  TextColor="#272727" FontSize="17" VerticalTextAlignment="Center"/>
+                                                    <Label  Text="{Binding Airport.Name}" FontAttributes="Bold"  TextColor="#272727" FontSize="17" VerticalTextAlignment="Center"/>
                                                     <Label  Text="{Binding Airport.Province}"  TextColor="#272727" FontSize="17" VerticalTextAlignment="Center"/>
                                                     <Label  Text="{Binding StopTime}"  TextColor="#272727" FontSize="17" VerticalTextAlignment="Center"/>
                                                 </StackLayout>
@@ -174,7 +174,7 @@
 
 
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Loại hạng vé" />
+                        <Label Text="Loại hạng vé" TextColor="#272727" />
                     </StackLayout>
 
                     <CollectionView x:Name="clviewTicket"
@@ -189,14 +189,7 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <SwipeView>
-                                    <SwipeView.TopItems>
-                                        <SwipeItems>
-                                            <SwipeItem Text="Remove"
-                                        BackgroundColor="White"
-                                        Command="{Binding Source={x:Reference clviewTicket}, Path = BindingContext.DeleteTourGuideCommand}"
-                                        CommandParameter="{Binding}" />
-                                        </SwipeItems>
-                                    </SwipeView.TopItems>
+                                    
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup Name="CommonStates">
                                             <VisualState Name="Selected">
@@ -210,17 +203,16 @@
                                     <Frame Margin="5" HorizontalOptions="CenterAndExpand" WidthRequest="300">
                                         <Grid>
                                             <StackLayout>
-                                                <Label Text="{Binding TicketType.Name}" FontAttributes="Bold"/>
-                                                <Label Text="{Binding TicketType.Percent, StringFormat='Tỉ lệ: {0}'}" Margin="0,3,0,0" />
+                                                <Label Text="{Binding TicketType.Name}" TextColor="#272727" FontAttributes="Bold"/>
+                                                <Label Text="{Binding TicketType.Percent, StringFormat='Tỉ lệ: {0}'}" TextColor="#272727" Margin="0,3,0,0" />
                                             </StackLayout>
 
                                             <StackLayout VerticalOptions="Start" Grid.Column="1">
-                                                <Label Text="Số lượng" FontAttributes="Bold"/>
+                                                <Label Text="Số lượng" FontAttributes="Bold" TextColor="#272727"/>
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Entry Margin="0,-12,0,0" WidthRequest="30" Text="{Binding Total}" HorizontalOptions="Start" VerticalOptions="Start"/>
-                                                    <Label Margin="0,3,0,0" Text="vé"/>
+                                                    <Entry Margin="0,-12,0,0" WidthRequest="30" Text="{Binding Total}" TextColor="#272727" HorizontalOptions="Start" VerticalOptions="Start"/>
+                                                    <Label Margin="0,3,0,0" Text="vé" TextColor="#272727"/>
                                                 </StackLayout>
-
                                             </StackLayout>
 
                                         </Grid>

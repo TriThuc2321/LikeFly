@@ -50,7 +50,6 @@ namespace LikeFly.ViewModel
             {
                 if (airport.Enable) AirportsEnd.Add(airport);
             }
-            if (AirportsEnd.Count > 0) AirportsEnd.RemoveAt(0);
             DataManager.Ins.CurrentFlight.AirportEnd = AirportsEnd[0];
 
             CurrentPilots = new ObservableCollection<User>();
@@ -92,6 +91,11 @@ namespace LikeFly.ViewModel
             if (CurrentPilots.Count == 0)
             {
                 DependencyService.Get<IToast>().ShortToast("Vui lòng chọn phi công cho chuyến bay");
+                return false;
+            }
+            if(Flight.AirportStart.Id == Flight.AirportEnd.Id)
+            {
+                DependencyService.Get<IToast>().ShortToast("Sân bay đến và sân bay đi không được trùng nhau");
                 return false;
             }
 
@@ -181,7 +185,16 @@ namespace LikeFly.ViewModel
                 CurrentPilots.Remove(result);
             }
         });
-        
+        public ICommand DeleteIntermediaryCommand => new Command<object>((obj) =>
+        {
+            IntermediaryAirport result = obj as IntermediaryAirport;
+
+            if (result != null)
+            {
+                Flight.IntermediaryAirportList.Remove(result);
+            }
+        });
+
         public ICommand NewIntermediaryCommand => new Command<object>((obj) =>
         {
             navigation.PushAsync(new NewIntermediaryAirportView());
