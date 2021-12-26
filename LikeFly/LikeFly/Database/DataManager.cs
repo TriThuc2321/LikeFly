@@ -297,6 +297,18 @@ namespace LikeFly.Database
                 OnPropertyChanged("CurrentUser");
             }
         }
+
+        private User currentUserManager;
+        public User CurrentUserManager
+        {
+            get { return currentUserManager; }
+            set
+            {
+                currentUserManager = value;               
+                OnPropertyChanged("CurrentUserManager");          
+            }
+        }
+
         private Airport currentAirport;
         public Airport CurrentAirport
         {
