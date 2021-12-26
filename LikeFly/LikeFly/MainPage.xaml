@@ -80,6 +80,10 @@
         <ShellContent Route="ManagerView" ContentTemplate="{DataTemplate views:ManagerView}" Style="{DynamicResource Base1Style}" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Phần của phi công" Icon="pilotIcon.png">
+        <ShellContent Route="PilotView" ContentTemplate="{DataTemplate views:PilotView}" Style="{DynamicResource Base1Style}" />
+    </FlyoutItem>
+
     <Shell.FlyoutHeader >
         <StackLayout >
             <Frame                                         

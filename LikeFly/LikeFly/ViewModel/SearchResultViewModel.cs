@@ -62,7 +62,7 @@ namespace LikeFly.ViewModel
         async void openSortMenu()
         {
             //DependencyService.Get<IToast>().ShortToast("Here is Open Sort");
-            string action = await Application.Current.MainPage.DisplayActionSheet("Sort wwith: ", "Cancel", null, "Increasing price", "Decreasing price");
+            string action = await Application.Current.MainPage.DisplayActionSheet("Sort with: ", "Cancel", null, "Increasing price", "Decreasing price");
             switch (action)
             {
                 case "Increasing price":
