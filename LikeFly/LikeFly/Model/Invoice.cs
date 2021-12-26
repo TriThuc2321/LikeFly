@@ -126,16 +126,16 @@ namespace LikeFly.Model
             }
         }
 
-        private string vnd;
-        public string Vnd
-        {
-            get { return vnd; }
-            set
-            {
-                vnd = value;
-                OnPropertyChanged("Vnd");
-            }
-        }
+        //private string vnd;
+        //public string Vnd
+        //{
+        //    get { return vnd; }
+        //    set
+        //    {
+        //        vnd = value;
+        //        OnPropertyChanged("Vnd");
+        //    }
+        //}
 
         private TicketType ticketTypes;
         public TicketType TicketTypes

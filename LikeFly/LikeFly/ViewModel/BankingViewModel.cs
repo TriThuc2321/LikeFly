@@ -85,7 +85,7 @@ namespace LikeFly.ViewModel
                 DataManager.Ins.CurrentInvoice.IsPaid = false;
                 DataManager.Ins.CurrentInvoice.PayingTime = DateTime.Now.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("vi-VN"));
                 DataManager.Ins.CurrentInvoice.Photo = url;
-                DataManager.Ins.CurrentInvoice.Vnd = Money;
+               /// DataManager.Ins.CurrentInvoice.Vnd = Money;
                 DataManager.Ins.CurrentInvoice.Method = "Banking";
             }
 

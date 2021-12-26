@@ -1,5 +1,4 @@
-﻿using LikeFly.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,16 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace LikeFly.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BookedFlightsView : ContentPage
+    public partial class OccuringView : ContentPage
     {
-        public BookedFlightsView()
+        public OccuringView()
         {
             InitializeComponent();
-        }
-
-        protected virtual void OnAppearing()
-        {
-            this.BindingContext = new BookedFlightsViewModel(Navigation, Shell.Current);
         }
     }
 }

@@ -36,7 +36,6 @@ namespace LikeFly.Database
                   Method = item.Object.Method,
                   Total = item.Object.Total,
                   Photo = item.Object.Photo,
-                  Vnd = item.Object.Vnd,
                   TicketTypes = item.Object.TicketTypes
                   
               }).ToList();
@@ -58,7 +57,6 @@ namespace LikeFly.Database
                   Method = invoice.Method,
                   Total = invoice.Total,
                   Photo = invoice.Photo,
-                  Vnd = invoice.Vnd,
                   TicketTypes = invoice.TicketTypes
               });
         }
@@ -92,7 +90,6 @@ namespace LikeFly.Database
                   Method = invoice.Method,
                   Total = invoice.Total,
                   Photo = invoice.Photo,
-                  Vnd = invoice.Vnd,
                   TicketTypes = invoice.TicketTypes
               }) ;
 

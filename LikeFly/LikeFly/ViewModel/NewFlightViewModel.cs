@@ -28,9 +28,6 @@ namespace LikeFly.ViewModel
             this.currentShell = currentShell;
 
             Init();
-            
-
-            
         }
         void Init()
         {
