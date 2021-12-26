@@ -94,7 +94,7 @@
                                 <!--Thời gian bay-->
                                 <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
                                     <Label                                  
-                                    Text="Thời gian chuyến bay: "                                           
+                                    Text="Khoảng thời gian bay: "                                           
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
