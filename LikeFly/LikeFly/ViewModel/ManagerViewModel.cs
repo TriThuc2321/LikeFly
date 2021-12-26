@@ -33,10 +33,8 @@ namespace LikeFly.ViewModel
             FlightCommand = new Command(() => navigation.PushAsync(new FlightManagerView()));
             DiscountCommand = new Command(()=> navigation.PushAsync(new DiscountManagerView()));
             TicketTypeCommand = new Command(()=> navigation.PushAsync(new TicketTypeManagerView()));
-            //TicketTypeCommand = new Command(() =>  DataManager.Ins.TicketTypeService.AddTicket(new Model.TicketType("TT01", "Phổ thông", 1, true)));
+            StaffCommand = new Command(() => navigation.PushAsync(new StaffManagerView()));
 
-            
-            
         }
 
 

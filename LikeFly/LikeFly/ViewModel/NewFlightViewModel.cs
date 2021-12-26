@@ -95,15 +95,20 @@ namespace LikeFly.ViewModel
                 DependencyService.Get<IToast>().ShortToast("Sân bay đến và sân bay đi không được trùng nhau");
                 return false;
             }
+            if (Flight.AirportStart.Id == Flight.AirportEnd.Id)
+            {
+                DependencyService.Get<IToast>().ShortToast("Sân bay đến và sân bay đi không được trùng nhau");
+                return false;
+            }
 
             int count = 0;
             foreach(DetailTicketType detail in DetailTicketTypes)
             {
                 count += detail.Total;
             }
-            if (count == 0)
+            if (ExistIntermediaryAirport())
             {
-                DependencyService.Get<IToast>().ShortToast("Vui lòng thêm loại hạng vé cho chuyến bay");
+                DependencyService.Get<IToast>().ShortToast("Danh sách sân bay trung gian không bao gồm sân bay đi và sân bay đến");
                 return false;
             }
 
@@ -119,13 +124,12 @@ namespace LikeFly.ViewModel
             {
                 DataManager.Ins.CurrentFlight.Duration = DurationHour + "h" + DurationMinute;
             }
-
-            CultureInfo viVn = new CultureInfo("vi-VN");
             //EndDate = start.Add(duration).ToString("d", viVn);
             //EndTime = start.Add(duration).GetDateTimeFormats('t')[2];
+            CultureInfo viVn = new CultureInfo("vi-VN");
             DataManager.Ins.CurrentFlight.StartDate = StartDatePicker.ToString("d", viVn);
             DataManager.Ins.CurrentFlight.StartTime = StartTimePicker.ToString();
-            DataManager.Ins.CurrentFlight.StartTime = DataManager.Ins.CurrentFlight.StartTime.Substring(0, DataManager.Ins.CurrentFlight.StartTime.Length - 3); ;
+            DataManager.Ins.CurrentFlight.StartTime = DataManager.Ins.CurrentFlight.StartTime.Substring(0, DataManager.Ins.CurrentFlight.StartTime.Length - 3);
 
             DataManager.Ins.CurrentFlight.ListPilots = CurrentPilots;
             DataManager.Ins.CurrentFlight.IsOccured = false;
@@ -207,6 +211,14 @@ namespace LikeFly.ViewModel
             var random = new Random();
             var randomString = new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
             return randomString;
+        }
+        public bool ExistIntermediaryAirport()
+        {
+            foreach (IntermediaryAirport inter in Flight.IntermediaryAirportList)
+            {
+                if (inter.Airport.Id == Flight.AirportStart.Id || inter.Airport.Id == Flight.AirportEnd.Id) return true;
+            }
+            return false;
         }
         public ICommand TempCommand => new Command<object>(async (obj) =>
         {
