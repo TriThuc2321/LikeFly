@@ -14766,6 +14766,28 @@ namespace LikeFly.Droid
 			
 			// aapt resource value: 0x7F0700AD
 			public const int userOutlineIcon = 2131165357;
+			public const int pilotIcon = 2131165352;
+			
+			// aapt resource value: 0x7F0700A9
+			public const int plusIcon = 2131165353;
+			
+			// aapt resource value: 0x7F0700AA
+			public const int test_custom_background = 2131165354;
+			
+			// aapt resource value: 0x7F0700AB
+			public const int tickok = 2131165355;
+			
+			// aapt resource value: 0x7F0700AC
+			public const int tooltip_frame_dark = 2131165356;
+			
+			// aapt resource value: 0x7F0700AD
+			public const int tooltip_frame_light = 2131165357;
+			
+			// aapt resource value: 0x7F0700AE
+			public const int userIcon = 2131165358;
+			
+			// aapt resource value: 0x7F0700AF
+			public const int userOutlineIcon = 2131165359;
 			
 			static Drawable()
 			{
