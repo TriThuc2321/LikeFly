@@ -28,16 +28,14 @@ namespace LikeFly.Database
                   Duration = item.Object.Duration,
                   StartDate = item.Object.StartDate,
                   StartTime = item.Object.StartTime,
-                  ImgSource = item.Object.ImgSource,
                   Description = item.Object.Description,
-                  PassengerNumber = item.Object.PassengerNumber,
                   IsOccured = item.Object.IsOccured,
                   Price = item.Object.Price,
                   IntermediaryAirportList = item.Object.IntermediaryAirportList,
-                  AirportStartId = item.Object.AirportStartId,
-                  AirportEndId = item.Object.AirportEndId,
-                  TicketTypeIds = item.Object.TicketTypeIds,
-                  
+                  AirportStart = item.Object.AirportStart,
+                  AirportEnd = item.Object.AirportEnd,
+                  TicketTypes = item.Object.TicketTypes, 
+                  ListPilots = item.Object.ListPilots
               }).ToList();
         }
         public async Task AddFlight(Flight flight)
@@ -51,18 +49,14 @@ namespace LikeFly.Database
                     Duration = flight.Duration,
                     StartDate = flight.StartDate,
                     StartTime = flight.StartTime,
-                    ImgSource = flight.ImgSource,
                     Description = flight.Description,
-                    PassengerNumber = flight.PassengerNumber,
                     IsOccured = flight.IsOccured,
                     Price = flight.Price,
                     IntermediaryAirportList = flight.IntermediaryAirportList,
-                    AirportStartId = flight.AirportStartId,
-                    AirportEndId = flight.AirportEndId,
-                    TicketTypeIds = flight.TicketTypeIds,
-                    AirportEnd = null,
-                    AirportStart = null,
-                    TicketTypes = null
+                    AirportStart = flight.AirportStart,
+                    AirportEnd = flight.AirportEnd,
+                    TicketTypes = flight.TicketTypes,
+                    ListPilots = flight.ListPilots
               });
         }
 
@@ -82,18 +76,20 @@ namespace LikeFly.Database
                   Duration = flight.Duration,
                   StartDate = flight.StartDate,
                   StartTime = flight.StartTime,
-                  ImgSource = flight.ImgSource,
                   Description = flight.Description,
-                  PassengerNumber = flight.PassengerNumber,
                   IsOccured = flight.IsOccured,
                   Price = flight.Price,
                   IntermediaryAirportList = flight.IntermediaryAirportList,
-                  AirportStartId = flight.AirportStartId,
-                  AirportEndId = flight.AirportEndId
+                  AirportStart = flight.AirportStart,
+                  AirportEnd= flight.AirportEnd,
+                  TicketTypes = flight.TicketTypes,
+                  ListPilots = flight.ListPilots
               });
         }
-        async public Task<string> saveImage(Stream imgStream, string airportId, int id)
+        async public Task<string> saveImage(Stream imgStream, string airportId)
         {
+            string id = GenerateId();
+
             var stroageImage = await new FirebaseStorage("likefly-5ec61.appspot.com")
                 .Child("Flights").Child(airportId)
                 .Child(id + ".png")
@@ -101,7 +97,26 @@ namespace LikeFly.Database
             var imgurl = stroageImage;
             return imgurl;
         }
+        public string GenerateId(int length = 10)
+        {
+            var List = DataManager.Ins.ListBookedTickets;
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+            var random = new Random();
+            var randomString = new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+
+            int i = 0;
+            while (i < List.Count())
+            {
+                if (List[i].Id == randomString)
+                {
+                    i = -1;
+                    randomString = new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+                }
+                i++;
+            }
+            return randomString;
+        }
         public async Task DeleteFile(string folderAirportId, int id)
         {
             try
@@ -123,15 +138,23 @@ namespace LikeFly.Database
             catch { }
 
         }
-        public async Task DeleteAirport(Flight flight)
+        public async Task DeleteFlight(Flight flight)
         {
             var toDeleted = (await firebase
                .Child("Flights").OnceAsync<Flight>()).FirstOrDefault(p => p.Object.Id == flight.Id);
 
-            await firebase.Child("Flights").Child(toDeleted.Key).DeleteAsync();
+            await firebase.Child("Flights").Child(toDeleted.Key).DeleteAsync();            
             
-            await DeleteFile(flight.Id, 0);           
 
+        }
+
+        public async Task<Flight> FindFlightById(string id)
+        {
+            var all = await GetAllFlights();
+            await firebase
+                .Child("Flights")
+                .OnceAsync<Flight>();
+            return all.Where(a => a.Id == id).FirstOrDefault();
         }
     }
 }

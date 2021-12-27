@@ -1,10 +1,12 @@
 ﻿using LikeFly.Core;
 using LikeFly.Database;
 using LikeFly.Model;
+using LikeFly.View;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace LikeFly.ViewModel
@@ -54,7 +56,14 @@ namespace LikeFly.ViewModel
             }
             catch { }
         }
-
+        public ICommand NavigationBack => new Command<object>((obj) =>
+        {
+            navigation.PopAsync();
+        });
+        public ICommand BookCommand => new Command<object>((obj) =>
+        {
+            navigation.PushAsync(new BookFlightView());
+        });
         private Flight flight;
         public Flight Flight
         {
