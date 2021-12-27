@@ -85,6 +85,10 @@
         <ShellContent Route="OccuringView" ContentTemplate="{DataTemplate views:OccuringView}" Style="{DynamicResource Base1Style}" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Phi công" Icon="pilotIcon.png">
+        <ShellContent Route="ManagerView" ContentTemplate="{DataTemplate views:PilotView}" Style="{DynamicResource Base1Style}" />
+    </FlyoutItem>
+
     <Shell.FlyoutHeader >
         <StackLayout >
             <Frame                                         
