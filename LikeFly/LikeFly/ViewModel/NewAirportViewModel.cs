@@ -59,7 +59,7 @@ namespace LikeFly.ViewModel
             {
                 DependencyService.Get<IToast>().ShortToast("Hệ thống đang xử lý vui lòng chờ");
                 string AirPortId = GenerateId(10);
-                string url = await DataManager.Ins.AirportServices.saveImage(imgTemp, AirPortId);
+                string url = await DataManager.Ins.AirportServices.saveImage(imgTemp, AirPortId, 0);
                 Airport newAirport = new Airport(AirPortId, NewAirportName, selectedProvince, url,true);
                 await DataManager.Ins.AirportServices.AddAirport(newAirport);
                 DataManager.Ins.ListAirports.Add(newAirport);

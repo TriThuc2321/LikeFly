@@ -50,26 +50,8 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <ImageButton Command="{Binding AirportCommand}" HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
                     </StackLayout>                   
-                </Frame>                
-
-                <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" >
-                    <StackLayout Orientation="Horizontal">
-                        <StackLayout BackgroundColor="White" WidthRequest="2"/>
-                        <Label Margin="3,0,0,0">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="Quản lí loại hạng ghế" TextColor="White" FontSize="15" FontAttributes="Bold">
-                                        <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding TicketTypeCommand}"/>
-                                        </Span.GestureRecognizers>
-                                    </Span>
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <ImageButton Command="{Binding TicketTypeCommand}" HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
-                    </StackLayout>
                 </Frame>
 
                 <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" >
@@ -86,10 +68,28 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <ImageButton Command="{Binding FlightCommand}" HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
                     </StackLayout>
                 </Frame>
-                
+
+                <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" >
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout BackgroundColor="White" WidthRequest="2"/>
+                        <Label Margin="3,0,0,0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Quản lí loại hạng ghế" TextColor="White" FontSize="15" FontAttributes="Bold">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding TicketTypeCommand}"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                    </StackLayout>
+                </Frame>
+
                 <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" >
                     <StackLayout Orientation="Horizontal">
                         <StackLayout BackgroundColor="White" WidthRequest="2"/>
@@ -104,7 +104,7 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <ImageButton Command="{Binding StaffCommand}" HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
                     </StackLayout>
                 </Frame>
 
@@ -116,13 +116,13 @@
                                 <FormattedString>
                                     <Span Text="Quản lí phiếu giảm giá" TextColor="White" FontSize="15" FontAttributes="Bold">
                                         <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding DiscountCommand}"/>
+                                            <TapGestureRecognizer Command="{Binding AirportCommand}"/>
                                         </Span.GestureRecognizers>
                                     </Span>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <ImageButton Command="{Binding DiscountCommand}" HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
                     </StackLayout>
                 </Frame>
 
@@ -140,7 +140,7 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <ImageButton Command="{Binding AirportCommand}" HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
                     </StackLayout>
                 </Frame>
                 
@@ -158,7 +158,7 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <ImageButton Command="{Binding AirportCommand}" HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
+                        <ImageButton HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
                     </StackLayout>                   
                 </Frame>
 

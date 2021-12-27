@@ -23,10 +23,6 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = currentShell;
         }
-        public ICommand NavigationBack => new Command<object>((obj) =>
-        {
-            navigation.PopAsync();
-        });
         public ICommand AddCommand => new Command<object>(async (obj) =>
         {
             if (NewTicketTypeName != "" && NewTicketTypeName != "")

@@ -64,32 +64,8 @@ namespace LikeFly.Database
                   Enable = airport.Enable,
               });
         }
-
-        public string GenerateId(int length = 10)
+        async public Task<string> saveImage(Stream imgStream, string airportId, int id)
         {
-            var List = DataManager.Ins.ListBookedTickets;
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-            var random = new Random();
-            var randomString = new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
-
-            int i = 0;
-            while (i < List.Count())
-            {
-                if (List[i].Id == randomString)
-                {
-                    i = -1;
-                    randomString = new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
-                }
-                i++;
-            }
-            return randomString;
-        }
-
-        async public Task<string> saveImage(Stream imgStream, string airportId)
-        {
-            string id = GenerateId();
-
             var stroageImage = await new FirebaseStorage("likefly-5ec61.appspot.com")
                 .Child("Airports").Child(airportId)
                 .Child(id + ".png")
@@ -126,7 +102,9 @@ namespace LikeFly.Database
                .Child("Airports").OnceAsync<Airport>()).FirstOrDefault(p => p.Object.Id == airport.Id);
 
             await firebase.Child("Airports").Child(toDeleted.Key).DeleteAsync();
-           
+
+            await DeleteFile(airport.Id, 0);
+
         }
         
     }

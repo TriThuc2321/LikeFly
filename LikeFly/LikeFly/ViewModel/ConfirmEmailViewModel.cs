@@ -26,7 +26,6 @@ namespace LikeFly.ViewModel
         {
             if (VerifyCode == DataManager.Ins.VerifyCode)
             {
-                DataManager.Ins.CurrentUser.isEnable = true;
                 await DataManager.Ins.UsersServices.addUser(DataManager.Ins.CurrentUser);
                 DataManager.Ins.ListUsers.Add(DataManager.Ins.CurrentUser);
                 DataManager.Ins.users.Add(DataManager.Ins.CurrentUser);
