@@ -9,13 +9,12 @@ namespace LikeFly.Model
     {
         public IntermediaryAirport() { }
 
-        public IntermediaryAirport(Airport airport, string stopTime, string airportId)
+        public IntermediaryAirport(Airport airport, string stopTime)
         {
             Airport = airport;
             StopTime = stopTime;
-            AirportId = airportId;
         }
-        private string airportId;
+        /*private string airportId;
         public string AirportId
         {
             get { return airportId; }
@@ -24,7 +23,7 @@ namespace LikeFly.Model
                 airportId = value;
                 OnPropertyChanged("AirportId");
             }
-        }
+        }*/
 
         private Airport airport;
         public Airport Airport

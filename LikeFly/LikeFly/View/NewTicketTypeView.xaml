@@ -6,13 +6,28 @@
         <vm:NewTicketTypeViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Button Command="{Binding NavigationBack}"/>
-            <Entry Placeholder="Nhập tên hạng vé" Text="{Binding NewTicketTypeName}"></Entry>
-            <Entry Placeholder="Nhập phần trăm hạng vé" Text="{Binding NewTicketTypePercent}"></Entry>
-          
-            <Button Text="Add" Command="{Binding AddCommand}"/>
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <StackLayout BackgroundColor="CadetBlue"/>
+            <StackLayout Orientation="Horizontal" Margin="15,15,15,0">
+                <ImageButton  HeightRequest="23" WidthRequest="23" Command="{Binding NavigationBack}"  BackgroundColor="Transparent" Source="backIcon2Black.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Start"/>
+                <Label Text="Chi tiết loại hạng vé" VerticalOptions="Start" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#272727" FontSize="23"/>
+            </StackLayout>
+
+            <Frame Grid.RowSpan="2" Margin="20,60,20,20" CornerRadius="20">
+                <StackLayout>
+                    <Label Text="Tên loại hạng vé" Margin="0,10,0,-8"/>
+                    <Entry Placeholder="Nhập tên hạng vé" FontAttributes="Bold" Text="{Binding NewTicketTypeName}"/>
+                    <Label Text="Phần trăm giá" Margin="0,10,0,-8"/>
+                    <Entry Placeholder="Nhập phần trăm hạng vé" FontAttributes="Bold" Text="{Binding NewTicketTypePercent}"/>
+
+                    <Button BackgroundColor="#272727" TextColor="White" Text="Lưu" Margin="0,10,10,10" CornerRadius="10" Command="{Binding AddCommand}"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
         
     </ContentPage.Content>
 </ContentPage>

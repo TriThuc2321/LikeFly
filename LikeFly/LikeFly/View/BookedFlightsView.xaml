@@ -4,7 +4,7 @@
              x:Class="LikeFly.View.BookedFlightsView"
              xmlns:vm="clr-namespace:LikeFly.ViewModel">
     <ContentPage.BindingContext>
-        <vm:RegisterViewModel/>
+        <vm:BookedFlightsViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
 
@@ -28,202 +28,31 @@
             <StackLayout Orientation="Vertical"
                              Grid.Row="1"
                              >
-                <RefreshView Command="{Binding Refresh}"
-                     IsRefreshing="{Binding IsRefresh}">
-                    <ScrollView>
-                        <CollectionView ItemsSource="{Binding BookedTicketsList}"
+                <ScrollView>
+                    <CollectionView ItemsSource="{Binding BookedTicketsList}"
                         SelectionMode="Single" 
                         x:Name="clview"
                         SelectedItem="{Binding SelectedTicket}"
                         SelectionChangedCommand="{Binding SelectedCommand}"
                         SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clview}}"
                         >
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout>
-                                        <Frame BorderColor="LightSlateGray"
-                                   HasShadow="True"
-                                   Padding="0"
-                                   CornerRadius="5"
-                                   Margin="15, 10,15,0"
-                                   BackgroundColor="White"
-                               >
-                                            <Grid Margin="5"
-                                  Padding="0">
-                                                <!--<Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"></RowDefinition>
-                                    </Grid.RowDefinitions>-->
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Frame>
 
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                                                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                                                </Grid.ColumnDefinitions>
-
-                                                <!--Hình-->
-                                                <Image Source="{Binding tour.imgSource[0]}"
-                                               Grid.Column="0"
-                                                Grid.ColumnSpan="2"
-                                                HeightRequest="450"
-                                               Aspect="AspectFill"
-                                            />
-
-                                                <!--<Frame Grid.Column="1"
-                                           Opacity="0.8"
-                                           CornerRadius="10">
-                                        <Grid Grid.Column="1"
-                                                  BackgroundColor="White"
-                                                  />
-                                    </Frame>-->
-
-                                       
+                                    </Frame>
+                                </StackLayout>
 
 
-                                                <!--Thông tin-->
-                                                <StackLayout Orientation="Vertical"
-                                         Grid.Column="1">
-
-                                                    <Label Text="{Binding tour.name}"
-                                               TextColor="Black"
-                                               Margin="10, 0,0,0"
-                                               FontAttributes="Bold"
-                                               FontSize="Large"
-                                               Padding="10"
-                                        />
-
-
-                                                    <Label Text="{Binding tour.description}"
-                                               Padding="10"
-                                               FontSize="15"
-                                               TextColor="DarkBlue"
-                                               FontAttributes="Italic"/>
-
-                                                    <Label  Margin="20,0,0,10"
-                                                Grid.Column="1"
-                                                TextColor="DarkRed"
-                                                Grid.ColumnSpan="2"
-                                                FontSize="15"
-                                                FontAttributes="Bold">
-                                                        <Label.Triggers>
-                                                            <DataTrigger TargetType="Label" Binding="{Binding invoice.isPaid}" Value="True">
-                                                                <Setter Property="Text" Value="Paid" />
-                                                            </DataTrigger>
-
-                                                            <DataTrigger TargetType="Label" Binding="{Binding invoice.isPaid}" Value="False">
-                                                                <Setter Property="Text" Value="Not Paid" />
-                                                            </DataTrigger>
-
-                                                            <DataTrigger TargetType="Label" Binding="{Binding isCancel}" Value="True">
-                                                                <Setter Property="Text" Value="This ticket was canceled" />
-                                                            </DataTrigger>
-                                                        </Label.Triggers>
-                                                    </Label>
-
-                                                    <StackLayout Orientation="Vertical">
-                                                        <!--Thời gian khởi hành-->
-                                                        <StackLayout Orientation="Vertical" >
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                                                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                                                                </Grid.ColumnDefinitions>
-
-                                                                <Image Source="calendarIcon.png"
-                                               WidthRequest="20"
-                                               Aspect="AspectFit"
-                                               VerticalOptions="Center"
-                                               Grid.Column="0"/>
-
-                                                                <Label Text="{Binding tour.startTime}"
-                                               Grid.Column="1"
-                                               TextColor="#FFB24000"
-                                               FontSize="15"
-                                               FontAttributes="Bold"
-                               
-                                                />
-                                                            </Grid>
-                                                        </StackLayout>
-
-                                                        <StackLayout Orientation="Vertical" >
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                                                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                                                                </Grid.ColumnDefinitions>
-
-                                                                <Image Source="ticketIcon.png"
-                                               WidthRequest="20"
-                                               Aspect="AspectFit"
-                                               VerticalOptions="Center"
-                                               Grid.Column="0"/>
-
-                                                                <Label Text="{Binding invoice.amount}"
-                                               Grid.Column="1"
-                                               TextColor="#FFB24000"
-                                               FontSize="15"
-                                               FontAttributes="Bold"
-                               
-                                                />
-                                                            </Grid>
-                                                        </StackLayout>
-
-                                                        <StackLayout Orientation="Vertical" >
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                                                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                                                                </Grid.ColumnDefinitions>
-
-                                                                <Image Source="usdIcon.png"
-                                               WidthRequest="20"
-                                               Aspect="AspectFit"
-                                               VerticalOptions="Center"
-                                               Grid.Column="0"/>
-
-                                                                <Label Text="{Binding invoice.total}"
-                                               Grid.Column="1"
-                                               TextColor="#FFB24000"
-                                               FontSize="15"
-                                               FontAttributes="Bold"
-                               
-                                                />
-                                                            </Grid>
-                                                        </StackLayout>
-
-                                                        <StackLayout Orientation="Vertical">
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                                                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                                                                </Grid.ColumnDefinitions>
-
-
-                                                            </Grid>
-                                                        </StackLayout>
-                                                    </StackLayout>
-
-
-
-
-
-
-
-
-                                                </StackLayout>
-
-                                            </Grid>
-                                        </Frame>
-                                    </StackLayout>
-
-
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </ScrollView>
-                </RefreshView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </ScrollView>
 
             </StackLayout>
 
-            <Label Text="Your Tickets"
+            <Label Text="Danh sách vé đã đặt"
                    Grid.Row="0"
                    HorizontalOptions="End"
                    Margin="0,10,20,0"

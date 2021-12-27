@@ -1,55 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:LikeFly.ViewModel"
-             x:Class="LikeFly.View.AirportManagerView">
+             x:Class="LikeFly.View.AirportManagerView"
+              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentPage.BindingContext>
         <vm:AirportManagerViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <CollectionView x:Name="clview1" 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <StackLayout BackgroundColor="CadetBlue"/>
+            
+            <StackLayout Orientation="Horizontal" VerticalOptions="Fill" Margin="15,15,15,0">
+                <ImageButton  HeightRequest="25" WidthRequest="25" Command="{Binding BackCommand}"  BackgroundColor="Transparent" Source="backIcon2Black.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Start"/>
+                <Label Text="Danh sách sân bay" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#272727" FontSize="22"/>
+            </StackLayout>
+            <Frame Grid.RowSpan="2" Margin="20,60,20,20" CornerRadius="20">
+                <StackLayout>
+                    <ImageButton Source="plusIcon.png" HeightRequest="30" Margin="0,5,15,5" BackgroundColor="Transparent" HorizontalOptions="End" Command="{Binding BackCommand2} "/>
+                    <CollectionView x:Name="clview1" 
                             Grid.Row="2"
                             ItemsSource="{Binding ListAirport}" 
                             SelectedItem="{Binding SelectedAirport}"
                             SelectionMode="Single" 
                             SelectionChangedCommand="{Binding SelectedCommand}"
-                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clview1}}"
-                            
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clview1}}"                            
                             >
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="2"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
 
-                        <Frame HasShadow="True" Padding="0,0,0,0" VerticalOptions="Start" >
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup Name="CommonStates">
-                                    <VisualState Name="Selected">
-                                        <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="Transparent" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                    <VisualState Name="Normal" >
-                                        <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="Transparent" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
+                                <Frame HasShadow="True" Padding="0,0,0,0" VerticalOptions="Start" >
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState Name="Normal" >
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
 
-                            <Frame Padding="0" HasShadow="True" Margin="10,5,10,5" BackgroundColor="White" >
+                                    <Frame Padding="0" HasShadow="True" Margin="5" BackgroundColor="White" CornerRadius="15" >
+                                        <StackLayout Orientation="Horizontal" IsVisible="{Binding Enable}" BackgroundColor="#272727">
+                                            <Image Source="{Binding ImgSource}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill"></Image>
+                                            <StackLayout Margin="10, 12,0,0">
+                                                <Label Text="{Binding Name}" FontAttributes="Bold"  TextColor="White" FontSize="17" VerticalTextAlignment="Center"/>
+                                                <Label  Text="{Binding Province}"  TextColor="White" FontSize="17" VerticalTextAlignment="Center"/>
+                                            </StackLayout>
 
-                                <StackLayout Padding="20" Orientation="Horizontal" IsVisible="{Binding Enable}">
-                                    <Image Source="{Binding ImgSource}" HeightRequest="50"></Image>
-                                    <Label Text="{Binding Name}" FontAttributes="Bold"  TextColor="Black" FontSize="17" VerticalTextAlignment="Center"></Label>
-                                </StackLayout>
-                            </Frame>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Button Command="{Binding BackCommand2}"/>
-        </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Frame>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
