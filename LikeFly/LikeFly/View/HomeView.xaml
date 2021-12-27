@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LikeFly.View.HomeView"
+             xmlns:vm="clr-namespace:LikeFly.ViewModel"
+             NavigationPage.HasNavigationBar="false"
+              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             >
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel/>
+    </ContentPage.BindingContext>
+   
+    <Grid>        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+       
+        <Image BackgroundColor="CadetBlue"/>
+        <StackLayout>            
+            <Grid Margin="0,5,0,0" Padding="15,15,15,0" VerticalOptions="Start">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="1"  HorizontalOptions="End" VerticalOptions="Center" Orientation="Horizontal">
+                    <Frame                        
+                        HasShadow="False"
+                        CornerRadius="8"
+                        Margin="0, 0, 5, 0"
+                        Padding="0"                   
+                    BackgroundColor="Transparent"
+                    >
+                        <ImageButton    
+                        Source="bellIcon.png"
+                        Aspect="AspectFill"
+                        HeightRequest="30"
+                        WidthRequest="30"   
+                        BackgroundColor="Transparent"
+                        Command="{Binding NotificaitonCommand}"
+                    />
+                    </Frame>
+
+                    <Frame                        
+                        HasShadow="False"
+                        CornerRadius="8"
+                        Margin="0, 0, 5, 0"
+                        Padding="0"                   
+                        BackgroundColor="Transparent"
+                    >
+                        <ImageButton    
+                        Source="{Binding ProfilePic}"
+                        Aspect="AspectFill"
+                        HeightRequest="25"
+                        WidthRequest="25"   
+                        BackgroundColor="Transparent"
+                        
+                    />
+                    </Frame>
+                </StackLayout>
+                
+                
+                <ImageButton
+                HeightRequest="45"
+                WidthRequest="45"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Source="menuIcon.png"
+                Margin="0, -10, 0, 0"
+                Grid.Column="0"
+                BackgroundColor="Transparent"
+                Command="{Binding MenuCommand}"
+            />
+            </Grid>
+            
+        </StackLayout>
+        <ScrollView Grid.RowSpan="2" VerticalOptions="Start" Margin="0,75,0,0" >
+            <StackLayout VerticalOptions="Start" >
+                <Frame Margin="10, 0,10,0"  BackgroundColor="White" CornerRadius="25" Padding="10" VerticalOptions="Start">
+                    <StackLayout>
+                        <Frame Margin="10,10,10,0" CornerRadius="15" Padding="20,10,20,10">
+                            <StackLayout>
+                                <Label Text="Từ" FontSize="18"/>
+                                <Entry Margin="0,-10,0,0" Text="{Binding FromPlaceText}"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame Margin="10,10,10,0" CornerRadius="15" Padding="20,10,20,10">
+                            <StackLayout>
+                                <Label Text="Đến" FontSize="18"/>
+                                <Entry Margin="0,-10,0,0" Text="{Binding ToPlaceText}"/>
+                            </StackLayout>
+                        </Frame>     
+                            <Frame Margin="10,10,10,0" CornerRadius="15" Padding="20,10,20,10">
+                                <StackLayout >
+                                    <Label Text="Ngày đi:" FontSize="18"/>
+                                    <DatePicker Date="{Binding StartDate}" Margin="0,-10,0,0"/>
+                                </StackLayout>
+                            </Frame>
+              
+                        <Button 
+                    BackgroundColor="#272727"
+                    TextColor="White"
+                    Text="Tìm chuyến bay"
+                    Margin="20,10,20,10"
+                    CornerRadius="10"
+                    Command="{Binding SearchHandler}"
+                />
+                    </StackLayout>
+                </Frame>
+
+                <CollectionView 
+                    VerticalOptions="Start"
+                            x:Name="clview"
+                            ItemsSource="{Binding Airports}" 
+                            SelectionMode="Single" 
+                            SelectedItem="{Binding SelectedAirport}"
+                            SelectionChangedCommand="{Binding SelectedCommand}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clview}}"
+                    HeightRequest="230"
+                            >
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout VerticalOptions="Start" >
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Frame
+                                    BackgroundColor="White"
+                                    Margin="10"
+                                    CornerRadius="10"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Start"
+                                    Padding="0"                                  
+                                    >
+                                    <StackLayout VerticalOptions="Start">
+                                        <Image Source="{Binding ImgSource}" Aspect="AspectFill" HeightRequest="150" WidthRequest="300"/>
+                                        <StackLayout Orientation="Horizontal" Padding="15,5,15,10">
+                                            <Label Text="{Binding Name}" FontAttributes="Bold" TextColor="#272727"/>
+                                            <Label Text="{Binding Province}"  HorizontalOptions="EndAndExpand"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>        
+        </ScrollView>
+    </Grid>
+    
+</ContentPage>

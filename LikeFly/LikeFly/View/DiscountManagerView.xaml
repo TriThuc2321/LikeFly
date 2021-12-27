@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LikeFly.ViewModel"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="LikeFly.View.DiscountManagerView"
+             >
+    <ContentPage.BindingContext>
+        <vm:DiscountManagerViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <RefreshView  Command="{Binding Refresh}"
+                     IsRefreshing="{Binding IsRefresh}">
+            <ScrollView>
+                <Grid BackgroundColor="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+
+                    <ImageButton Command="{Binding NavigationBack}" 
+                                 Grid.Row="0"
+                                 Source="backbutton.png" 
+                                 HeightRequest="30" 
+                                 WidthRequest="50"
+                                 CornerRadius="10" 
+                                 HorizontalOptions="StartAndExpand" 
+                                 VerticalOptions="StartAndExpand"
+                                 BackgroundColor="White" 
+                                 Margin="10, 10 , 0, 0">
+                    </ImageButton>
+
+                    <Label HorizontalOptions="EndAndExpand"
+                           Margin="10,10,10,0"
+                                   Text="Danh sách phiếu giảm giá"
+                                   TextColor="CadetBlue" 
+                                   FontSize="25"
+                                   FontAttributes="Bold" 
+                                   VerticalOptions="Center"/>
+                    
+                    <StackLayout Grid.Row="1">
+                        <StackLayout Orientation="Horizontal">
+
+                            <ImageButton Margin="30,10,10,0" 
+                                    Command="{Binding NewDiscountCommand}"
+                                    HeightRequest="35" 
+                                    Aspect="AspectFill"
+                                    HorizontalOptions="EndAndExpand"
+                                    Source="addIcon.png"/>
+                        </StackLayout>
+                        
+                       
+                            <CollectionView x:Name="clview" 
+                                        Margin="0,20,0,0"
+                            ItemsSource="{Binding DiscountList}" 
+                            SelectionMode="Single" 
+                            SelectedItem="{Binding SelectedDiscount}"
+                            SelectionChangedCommand="{Binding SelectedCommand}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clview}}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                    <Frame Padding="0"
+                                           HasShadow="True">
+                                        <Grid Padding="10" >
+                                            <Frame BackgroundColor ="Teal"
+                                               CornerRadius="20"
+                                               Padding="0">
+                                                <Label Text="{Binding id}"
+                                                   
+                                               TextColor="White"
+                                               FontAttributes="Bold"
+                                               FontSize="20"
+                                               Margin="230, 0,0,0"
+                                               HorizontalOptions="CenterAndExpand"
+                                               VerticalOptions="CenterAndExpand"
+                                                       />
+                                            </Frame>
+
+                                            <Frame BackgroundColor ="White"
+                                               CornerRadius="20"
+                                               HorizontalOptions="StartAndExpand"
+                                               WidthRequest="200"
+                                            />
+
+                                            <StackLayout HorizontalOptions="StartAndExpand"
+                                                     WidthRequest="250"
+                                                     Margin="10"
+                                                     Orientation="Horizontal">
+                                                <Label Text="{Binding percent}"
+                                                   FontSize="40"
+                                                   VerticalOptions="CenterAndExpand"
+                                                   FontAttributes="Bold"
+                                                   Margin="10,10,0,10"/>
+
+                                                <Label Text="%"
+                                                   FontSize="20"
+                                                   FontAttributes="Bold"
+                                                   Margin="0,35,10,10"/>
+
+                                                <BoxView BackgroundColor="Black"
+                                                     WidthRequest="0.5"/>
+
+                                                <StackLayout Orientation="Vertical"
+                                                         Margin="10,0,0,0">
+                                                    <Label Text="{Binding total, StringFormat='Tổng cộng: {0}'}"
+                                                       TextColor="Black"
+                                                       Margin="10"/>
+
+                                                    <Label Text="{Binding isUsed, StringFormat='Đã áp dụng: {0}'}"
+                                                       TextColor="Black"
+                                                       Margin="10"/>
+                                                </StackLayout>
+
+
+
+                                            </StackLayout>
+
+
+
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                    </StackLayout>
+
+                </Grid>
+
+            </ScrollView>
+
+        </RefreshView>
+
+    </ContentPage.Content>
+</ContentPage>

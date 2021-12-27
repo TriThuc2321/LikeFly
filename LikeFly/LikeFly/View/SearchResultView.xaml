@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:LikeFly.ViewModel" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             NavigationPage.HasNavigationBar="false"
+             x:Class="LikeFly.View.SearchResultView">
+
+    <ContentPage.BindingContext>
+        <vm:SearchResultViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <pancake:PancakeView Margin="10,10,0,0" 
+                                 HorizontalOptions="Start" 
+                                 VerticalOptions="Start" 
+                                 HeightRequest="40" 
+                                 WidthRequest="40" 
+                                 CornerRadius="25" 
+                                 Padding="0" 
+                                 BackgroundColor="#272727" >
+                <ImageButton Margin="10"
+                             Command="{Binding BackCommand}"
+                             BackgroundColor="Transparent" 
+                             Source="backIcon2.png"  
+                             Aspect="AspectFit" 
+                             HorizontalOptions="Center" 
+                             VerticalOptions="Center"/>
+            </pancake:PancakeView>
+
+            <Label Text="Kết quả tìm kiếm" FontSize="25" FontAttributes="Bold" Margin="120,15,15,0" />
+        </StackLayout>
+        <StackLayout>
+            <Button Text="Sắp xếp" 
+                    Margin="0,5,300,0"
+                    TextColor="Black"
+                    FontAttributes="Italic"
+                    FontSize="14"
+                    CornerRadius="30"
+                    Command="{Binding SortButtonHandle}"
+                    BackgroundColor="Transparent"/>
+        </StackLayout>
+        <CollectionView 
+                    VerticalOptions="Start"
+                            x:Name="clview"
+                            ItemsSource="{Binding Flights}" 
+                            SelectionMode="Single" 
+                            SelectedItem="{Binding SelectedFlight}"
+                            SelectionChangedCommand="{Binding SelectedCommand}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clview}}"
+                    
+                            >
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout VerticalOptions="Start" >
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Frame
+                                    BackgroundColor="White"
+                                    Margin="20,10,20,10"
+                                    CornerRadius="10"
+                                    Padding="0"                                  
+                        >
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Margin="18" WidthRequest="80">
+                                    <Label Text="{Binding StartTime}" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                    <Image Source="airplaneIcon.png" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
+                                    <Label Text="{Binding StartDate}" HorizontalOptions="Center"/>
+                                </StackLayout>
+
+                                <StackLayout  BackgroundColor="#272727" HorizontalOptions="FillAndExpand" Padding="18">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" TextColor="White" FontSize="18"/>
+                                    <Label Text="{Binding Description}" TextColor="White" FontSize="15"/>
+                                    <Label Text="{Binding Price, StringFormat='{}Từ {0} VND' }" TextColor="LightSeaGreen" FontSize="15" FontAttributes="Bold"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

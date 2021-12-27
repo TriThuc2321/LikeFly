@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LikeFly.View.BookFlightView"
+             xmlns:vm="clr-namespace:LikeFly.ViewModel"
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             >
+    <ContentPage.BindingContext>
+        <vm:BookFlightViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+            <Image Source="https://i.pinimg.com/564x/e1/c4/ef/e1c4ef856ac9decdf21eebe298a40f6e.jpg" Aspect="AspectFill" Margin="0,0,0,30"/>
+            
+            <ScrollView  >
+                <pancake:PancakeView Margin="0,100,0,0" CornerRadius="30, 30,0,0" BackgroundColor="White">
+                    <StackLayout Orientation="Vertical"
+                                 Grid.Row="0"
+                                 Margin="15, 0, 15,0" 
+                         >
+
+                        <Label Text="Thông tin cá nhân"
+                               FontSize="25"
+                               TextColor="#272727"
+                           FontAttributes="Bold"
+                           Margin="10, 30, 0, 0"/>
+
+                        <Frame CornerRadius="20" Margin="5" Padding="10">
+                            <StackLayout Orientation="Vertical" Padding="20" >
+                                <Label
+                                Margin="0,0,0,0"                                    
+                                Text="Họ và tên"                                    
+                                TextColor="#272727"                                    
+                                VerticalOptions="Center"                                    
+                                FontSize="17"
+                                FontAttributes="Bold"
+                                />
+
+                                <Entry
+                                Placeholder="Họ và tên"                                    
+                                PlaceholderColor="#C0C0C0"                                    
+                                FontSize="15"                                    
+                                Margin="0,0,0,0"                                    
+                                TextColor="Black"                                 
+                                Text="{Binding Name}"
+                                />
+
+                                <Label                                     
+                                Margin="0,0,0,0"                                    
+                                Text="Ngày sinh"                                    
+                                Grid.Column="0"                                    
+                                TextColor="#272727"                                    
+                                VerticalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="17"/>
+                                <DatePicker                                                                                  
+                                    BackgroundColor="Transparent"                                        
+                                    TextColor="#272727"                                                
+                                    Margin="0, 0, 5, 0"  
+                                    Format="dd/MM/yyyy"
+                                    Date="{Binding Birthday}"
+                            />
+                                <Label                                     
+                                Margin="0,0,0,0"                                    
+                                Text="Số điện thoại"                                    
+                                Grid.Column="0"                                    
+                                TextColor="#272727"                                    
+                                VerticalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="17"/>
+                                <Entry 
+                                    Placeholder="Số điện thoại"
+                                    PlaceholderColor="#C0C0C0"                                        
+                                    Keyboard="Telephone"                                        
+                                    FontSize="15"                                        
+                                    Margin="0,0,0,0"                                        
+                                    TextColor="Black"                                         
+                                    Text="{Binding Contact}"
+                                    />
+                                <Label                                     
+                                Margin="0,0,0,0"                                    
+                                Text="Email"                                    
+                                Grid.Column="0"                                    
+                                TextColor="#272727"                                    
+                                VerticalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="17"/>
+                                <Label 
+                                    FontSize="15"                                        
+                                    Margin="0,0,0,0"                                       
+                                    TextColor="Black"
+                                    IsEnabled="False"                                        
+                                    Text="{Binding Email}"                                          
+                                    />
+                                <Label                                     
+                                Margin="0,0,0,0"                                    
+                                Text="CCCD/CMND"                                    
+                                Grid.Column="0"                                    
+                                TextColor="#272727"                                    
+                                VerticalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="17"/>
+                                <Entry 
+                                    Placeholder="CCCD/CMND"                                        
+                                    PlaceholderColor="#C0C0C0"                                        
+                                    Keyboard="Numeric"                                        
+                                    FontSize="15"                                       
+                                    Margin="0,0,0,0"                                        
+                                    TextColor="Black"                                   
+                                    Text="{Binding Cmnd}"
+                                />
+                                <Label                                     
+                                Margin="0,0,0,0"                                    
+                                Text="Địa chỉ"                                    
+                                Grid.Column="0"                                    
+                                TextColor="#272727"                                    
+                                VerticalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="17"/>
+                                <Entry                   
+                                    Placeholder="Địa chỉ"  
+                                    PlaceholderColor="#C0C0C0"                                
+                                    Keyboard="Text"                                
+                                    FontSize="15"                              
+                                    Margin="0,0,0,0"
+                                    TextColor="Black"                                
+                                    Text="{Binding Address}"
+                            />
+                                <Label                                     
+                                Margin="0,0,0,0"                                    
+                                Text="Mã giảm giá"                                    
+                                Grid.Column="0"                                    
+                                TextColor="#272727"                                    
+                                VerticalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="17"/>
+                                <Grid Margin="0, 5, 0, 5" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Frame Grid.Column="0"
+                                       CornerRadius="20"
+                                       Padding="0" 
+                                       HasShadow="False"
+                                       BackgroundColor="White" 
+                                       VerticalOptions="Center" >
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"></RowDefinition>
+                                                <RowDefinition Height="auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+
+                                            <Entry           
+                                            Placeholder="Mã giảm giá"
+                                            PlaceholderColor="#C0C0C0"
+                                            Keyboard="Text"
+                                            Grid.Row="0"
+                                            Grid.ColumnSpan="2"
+                                            FontSize="15"
+                                            TextColor="Black"
+                                            Text="{Binding DiscountId}"
+                                        />
+                                            
+                                        </Grid>
+                                    </Frame>
+
+                                    <Frame Padding="-5" Grid.Column="1" CornerRadius="20" VerticalOptions="Center" HorizontalOptions="Center"
+                                        WidthRequest="35"
+                                        HeightRequest="35">
+                                        <ImageButton                                         
+                                        Command="{Binding CheckDiscountCommand}"                                           
+                                        Aspect="AspectFill"
+                                        Source="tickok.png"
+                                        BackgroundColor="Transparent"                                     
+                                    />
+                                    </Frame>                                   
+
+                                </Grid>
+
+                                <Label                                     
+                                Margin="0,0,0,0"                                    
+                                Text="Loại hạng ghế"                                    
+                                Grid.Column="0"                                    
+                                TextColor="#272727"                                    
+                                VerticalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="17"/>
+
+                                <Picker ItemsSource="{Binding ListTicketTypes}" Title="Loại hạng ghế" ItemDisplayBinding="{Binding TicketType.Name}" SelectedItem="{Binding SelectedTicketType}" />
+
+                                <!--Số lượng-->
+                                <!--<Frame 
+                           Margin="0" 
+                           Padding="0" 
+                           HasShadow="False"
+                           BackgroundColor="White" 
+                           VerticalOptions="Center">
+                                    <StackLayout Orientation="Vertical">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"></RowDefinition>
+                                                <RowDefinition Height="auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Margin="0,0,0,0"
+                                           Text="Số lượng"
+                                               FontAttributes="Bold"
+                                           TextColor="#272727"
+                                           VerticalOptions="Center"
+                                           FontSize="17"/>
+
+                                            <StackLayout Orientation="Horizontal"
+                                                 Grid.Column="1"
+                                                 Grid.Row="0"
+                                                 HorizontalOptions="End">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Frame CornerRadius="30" VerticalOptions="Center" BackgroundColor="#272727"  Padding="3,3,3,3" Grid.Column="0">
+                                                        <ImageButton 
+                                                    WidthRequest="30"
+                                                    HeightRequest="30"
+                                                    Padding="5"                                                     
+                                                    BackgroundColor="#272727"
+                                                   Source="backIcon2.png"
+                                                       Aspect="AspectFit"
+                                                        HorizontalOptions="Center"
+                                                    Command="{Binding DescreaseAmountCommand}"/>
+                                                    </Frame>
+
+                                                    <Entry  
+                                                    PlaceholderColor="#C0C0C0"
+                                                    Keyboard="Numeric"
+                                                    FontSize="15"
+                                                    TextColor="Black"
+                                                    Text="{Binding Amount}"
+                                                    HorizontalTextAlignment="Center"
+                                                    Grid.Column="1"
+                                                />
+
+                                                    <Frame CornerRadius="30" VerticalOptions="Center" BackgroundColor="#272727"  Padding="3,3,2,3" Grid.Column="2">
+                                                        <ImageButton 
+                                                    WidthRequest="30"
+                                                    HeightRequest="30"
+                                                    Padding="5"                                                     
+                                                    BackgroundColor="#272727"
+                                                   Source="nextIcon.png"
+                                                       Aspect="AspectFit"
+                                                        HorizontalOptions="Center"
+                                                    Command="{Binding IncreaseAmountCommand}"/>
+                                                    </Frame>
+                                                    
+
+                                                </Grid>
+
+                                            </StackLayout> 
+                                        </Grid>
+                                </Frame>
+                                    </StackLayout>-->
+                            </StackLayout>
+                                
+                        </Frame>
+                        <Grid Margin="10,0,10,10">                            
+                            <Frame Grid.Row="1" Grid.Column="0" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="1" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="2" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="3" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="4" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="5" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="6" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="7" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="8" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="9" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="10" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="11" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="12" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="13" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="14" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                            <Frame Grid.Row="1" Grid.Column="15" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                        </Grid>
+
+                        <Label Text="Thông tin vé"
+                               FontSize="25"
+                               TextColor="#272727"
+                           FontAttributes="Bold"
+                           Margin="10, 10, 0, 5"/>
+                        
+                        <StackLayout Orientation="Vertical" Margin="0, 0,0,0" >
+                            <Frame CornerRadius="20" Margin="5">
+                                <StackLayout >
+                                    
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0"
+                                           Text="Giá cơ bản"
+                                           TextColor="#272727"
+                                           FontSize="16"
+                                           Padding="5"/>
+
+                                        <Label Grid.Column="1"
+                                               Text="{Binding StrTourPrice}"
+                                               TextColor="#272727"
+                                               FontSize="17"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="End"
+                                               Padding="5"/>
+
+                                    </Grid>
+
+
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0"
+                                           Text="Tạm tính"
+                                           TextColor="#272727"
+                                           FontSize="16"
+                                           Padding="5"/>
+
+                                        <Label Grid.Column="1"
+                                               Text="{Binding StrProvisional}"
+                                               TextColor="#272727"
+                                               FontSize="17"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="End"
+                                               Padding="5"/>
+
+                                    </Grid>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0"
+                                               Text="Giảm giá"
+                                               TextColor="#272727"
+                                               FontSize="16"
+                                               Padding="5"/>
+
+                                        <Label Grid.Column="1"
+                                               Text="{Binding StrDiscountMoney}"
+                                               TextColor="#272727"
+                                               FontSize="17"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="End"
+                                               Padding="5"/>
+
+                                    </Grid>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Column="0"
+                                               Text="Tổng"
+                                               TextColor="#272727"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               Padding="5"/>
+
+                                        <Label Grid.Column="1"
+                                               Text="{Binding StrTotal}"
+                                               TextColor="#272727"
+                                               FontSize="22"
+                                               FontAttributes="Bold"
+                                               HorizontalOptions="End"
+                                               Padding="5"/>
+
+                                    </Grid>
+
+                                </StackLayout>
+                            </Frame>
+                            
+
+                            <Button 
+                                    Grid.Row="5"
+                                    CornerRadius="20" 
+                                    Margin="25,20,25,50"
+                                    Padding="5"  
+                                    BackgroundColor="#272727" 
+                                    TextColor="White"
+                                    VerticalOptions="Center"
+                                    HeightRequest="50"
+                                    Text="Đặt vé"
+                                    FontAttributes="Bold"
+                                    FontSize="20"
+                                    Command="{Binding PayingMethodCommand}"
+                        />
+
+                        </StackLayout>
+                    </StackLayout>
+                </pancake:PancakeView>               
+            </ScrollView>
+
+            <pancake:PancakeView Margin="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40" CornerRadius="25" Padding="0" BackgroundColor="#272727" >
+                <ImageButton Command="{Binding NavigationBack}" BackgroundColor="Transparent" Margin="10" Source="backIcon2.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </pancake:PancakeView>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>
