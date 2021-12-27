@@ -90,7 +90,7 @@ namespace LikeFly.ViewModel
             }
 
 
-            DataManager.Ins.CurrentBookedTicket.BookTime = DateTime.Now.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+            DataManager.Ins.CurrentBookedTicket.BookTime = DateTime.Now.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("vi-VN"));
 
             await DataManager.Ins.InvoicesServices.AddInvoice(DataManager.Ins.CurrentInvoice);
             await DataManager.Ins.BookedTicketsServices.AddBookedTicket(DataManager.Ins.CurrentBookedTicket);

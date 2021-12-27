@@ -16,6 +16,7 @@ namespace LikeFly.View
         public BookedFlightsView()
         {
             InitializeComponent();
+            this.BindingContext = new BookedFlightsViewModel(Navigation, Shell.Current);
         }
 
         protected virtual void OnAppearing()

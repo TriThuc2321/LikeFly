@@ -163,8 +163,8 @@ namespace LikeFly.Database
             bookedTicketsList = await BookedTicketsServices.GetAllBookedTicket();
             foreach (BookedTicket booked in bookedTicketsList)
             {
-                // booked.flight = tourList.Find(e => (e.id == booked.tour.id));
-                //  booked.invoice = invoicesList.Find(e => (e.id == booked.invoice.id));
+                 booked.Flight = flights.Find(e => (e.Id == booked.Flight.Id));
+                 booked.Invoice = invoicesList.Find(e => (e.Id == booked.Invoice.Id));
                 ListBookedTickets.Add(booked);
             }
         }

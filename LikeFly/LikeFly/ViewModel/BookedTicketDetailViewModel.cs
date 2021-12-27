@@ -42,14 +42,10 @@ namespace LikeFly.ViewModel
             this.Invoice = DataManager.Ins.CurrentInvoice;
             this.Flight = DataManager.Ins.CurrentFlight;
 
+            float provisional = Invoice.TicketTypes.Percent * int.Parse(Invoice.Price);
+            StrProvisional = provisional.ToString();
 
-            if (!this.Invoice.IsPaid)
-            {
-                // PayingVisible = false;
-                DisplayUpload = true;
-            }
-            else
-                DisplayUpload = false;
+            PayingVisible = Invoice.IsPaid ? true : false;
 
             checkFlightStatus(Flight);
 
@@ -185,14 +181,14 @@ namespace LikeFly.ViewModel
             }
         }
 
-        private bool displayUpload;
-        public bool DisplayUpload
+        private bool payingVisible;
+        public bool PayingVisible
         {
-            get { return displayUpload; }
+            get { return payingVisible; }
             set
             {
-                displayUpload = value;
-                OnPropertyChanged("DisplayUpload");
+                payingVisible = value;
+                OnPropertyChanged("PayingVisible");
             }
         }
 
@@ -252,16 +248,6 @@ namespace LikeFly.ViewModel
             }
         }
 
-        private string _strVnd;
-        public string StrVnd
-        {
-            get { return _strVnd; }
-            set
-            {
-                _strVnd = value;
-                OnPropertyChanged("StrVnd");
-            }
-        }
 
         void FormatMoney()
         {
@@ -280,11 +266,13 @@ namespace LikeFly.ViewModel
                 StrDiscountMoney = service.FormatMoney(StrDiscountMoney);
             }
 
+            StrProvisional = service.FormatMoney(StrProvisional);
+
         }
 
         public void checkFlightStatus(Flight flight)
         {
-            /// CancelVisible = true;
+            CancelVisible = true;
 
             string[] flightStartDate = flight.StartDate.Split('/');
             string[] duration = flight.Duration.Split('h');

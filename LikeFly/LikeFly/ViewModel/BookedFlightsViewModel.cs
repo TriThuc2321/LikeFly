@@ -5,6 +5,7 @@ using LikeFly.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -35,10 +36,10 @@ namespace LikeFly.ViewModel
 
             SortingTicket();
 
-            checkFlightStatus(SelectedTicket.Flight);
+           /// checkFlightStatus(SelectedTicket.Flight);
 
-            if (SelectedTicket != null && SelectedTicket.IsCancel)
-                Occured = Occured + " (Quý khách đã huỷ vé này)";
+            //if (SelectedTicket != null && SelectedTicket.IsCancel)
+            //    Occured = Occured + " (Quý khách đã huỷ vé này)";
 
         }
 
@@ -110,7 +111,12 @@ namespace LikeFly.ViewModel
                     string datetimeI = BookedTicketsList[i].BookTime;
                     string datetimeJ = BookedTicketsList[j].BookTime;
 
-                    if (DateTime.Parse(datetimeI) < DateTime.Parse(datetimeJ))
+                    CultureInfo viVn = new CultureInfo("vi-VN");
+
+                    DateTime dtI = DateTime.ParseExact(datetimeI, "dd/MM/yyyy hh:mm:ss tt", viVn);
+                    DateTime dtJ = DateTime.ParseExact(datetimeJ, "dd/MM/yyyy hh:mm:ss tt", viVn);
+
+                    if (dtI < dtJ)
                     {
                         BookedTicket tmp = new BookedTicket();
                         tmp = BookedTicketsList[i];

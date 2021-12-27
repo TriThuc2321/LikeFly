@@ -39,8 +39,33 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
-                                    <Frame>
+                                    <Frame Margin="20" CornerRadius="10">
+                                        <StackLayout>
+                                            <Label Text="{Binding Flight.Name}"/>
+                                            <Label Text="{Binding Flight.Description}"/>
+                                            <Label Text="{Binding BookTime, StringFormat='Thời gian đặt vé: {0}'}"/>
+                                            
+                                            <Label Text="{Binding Invoice.Total, StringFormat='Tổng: {0}'}"/>
+                                            <Label  FontAttributes="Bold"
+                                                        TextColor="Black"
+                                                        >
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding Invoice.IsPaid}" Value="True">
+                                                        <Setter Property="Text" Value="Đã thanh toán" />
+                                                    </DataTrigger>
 
+                                                    <DataTrigger TargetType="Label" Binding="{Binding Invoice.IsPaid}" Value="False">
+                                                        <Setter Property="Text" Value="Chưa thanh toán" />
+                                                    </DataTrigger>
+
+                                                    <DataTrigger TargetType="Label" Binding="{Binding IsCancel}" Value="True">
+                                                        <Setter Property="Text" Value="Quý khách đã huỷ" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                            <Label Text="{Binding Flight.StartDate}"/>
+                                            <Label Text="{Binding Flight.StartTime}"/>
+                                        </StackLayout>
                                     </Frame>
                                 </StackLayout>
 
@@ -54,7 +79,7 @@
 
             <Label Text="Danh sách vé đã đặt"
                    Grid.Row="0"
-                   HorizontalOptions="End"
+                   HorizontalOptions="Center"
                    Margin="0,10,20,0"
                    VerticalOptions="Center"
                    FontAttributes="Bold"

@@ -107,7 +107,8 @@ namespace LikeFly.ViewModel
             if (checkValidation())
             {
                 string[] birth;
-                birth = Birthday.ToString().Split(' ');
+                birth = Birthday.ToString("dd/MM/yyyy HH:mm:ss",System.Globalization.CultureInfo.CreateSpecificCulture("vi-VN")).Split(' ');
+
 
                 DataManager.Ins.CurrentInvoice = new Invoice()
                 {
