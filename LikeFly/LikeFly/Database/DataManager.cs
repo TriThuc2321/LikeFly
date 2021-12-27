@@ -38,6 +38,7 @@ namespace LikeFly.Database
             notiServices = new NotificationServices();
             TicketTypeService = new TicketTypeServices();
             Search = new SearchService();
+            RuleServices = new RuleServices();
 
             ListNotification = new ObservableCollection<Notification>();
             ListFlights = new ObservableCollection<Flight>();
@@ -53,13 +54,12 @@ namespace LikeFly.Database
             BookedTicketsServices = new BookedTicketServices();
             ListInvoice = new ObservableCollection<Invoice>();
             InvoicesServices = new InvoicesService();
+            ListRule = new ObservableCollection<Rule>();
 
             CurrentDiscount = new Discount();
             CurrentInvoice = new Invoice();
             CurrentBookedTicket = new BookedTicket();
             getAllList();
-
-           
         }
         async Task GetUsers()
         {
@@ -67,6 +67,14 @@ namespace LikeFly.Database
             foreach (User p in users)
             {
                 ListUsers.Add(p);
+            }
+        }
+        async Task GetRule()
+        {
+            List<Rule> temp = await RuleServices.GetRule();
+            foreach (Rule p in temp)
+            {
+                ruleList.Add(p);
             }
         }
         async Task GetAirports()
@@ -80,6 +88,7 @@ namespace LikeFly.Database
         }
         async Task GetTicketTypes()
         {
+            int a = 7;
             ticketTypes = await TicketTypeService.GetAllTickets();
             foreach (TicketType p in ticketTypes)
             {
@@ -89,6 +98,26 @@ namespace LikeFly.Database
         async Task GetFlights()
         {
             flights = await FlightService.GetAllFlights();
+
+            for(int i =0; i< flights.Count; i++)
+            {
+                flights[i].AirportStart = GetAirportById(flights[i].AirportStartId);
+                flights[i].AirportEnd = GetAirportById(flights[i].AirportEndId);
+
+                flights[i].TicketTypes = new ObservableCollection<TicketType>();
+                for (int k = 0; k< flights[i].TicketTypeIds.Count; k++)
+                {
+                    flights[i].TicketTypes.Add(GetTicketTypeById(flights[i].TicketTypeIds[k]));
+                }
+               
+
+                for (int k =0; k< flights[i].IntermediaryAirportList.Count; k++)
+                {
+                    flights[i].IntermediaryAirportList[k].Airport = GetAirportById(flights[i].IntermediaryAirportList[k].AirportId);
+                }
+                
+            }
+
             foreach (Flight p in flights)
             {
                 ListFlights.Add(p);
@@ -104,7 +133,8 @@ namespace LikeFly.Database
             }
         }
         async Task getAllList()
-        {            
+        {
+            await GetRule();
             await GetUsers();
             await GetAirports();
             await GetTicketTypes();
@@ -113,19 +143,7 @@ namespace LikeFly.Database
             await GetAllDiscounts();
             await GetAllInvoices();
             await GetAllBookedTicket();
-
-            /*foreach (var f in ListFlights)
-            {
-                f.TicketTypes = new ObservableCollection<DetailTicketType>();
-                f.TicketTypes.Add(new DetailTicketType(new TicketType("TT01", "Phổ thông", 1, true), 100, 100));
-                f.TicketTypes.Add(new DetailTicketType(new TicketType("TT02", "Phổ thông đặc biệt", (float)1.2, true), 100, 100));
-                f.TicketTypes.Add(new DetailTicketType(new TicketType("TT03", "Thương gia", (float)1.3, true), 100, 100));
-                f.TicketTypes.Add(new DetailTicketType(new TicketType("TT04", "Hạng nhất", (float)1.5, true), 100, 100));
-
-                await FlightService.UpdateFlight(f);
-            }*/
-            /*await UsersServices.addUser(new User("pl02@gmail.com", "e10adc3949ba59abbe56e057f20f883e", "Nguyễn Thị Công", "032111223", "22/07/1992", "23343783", "defaultUser.png", "Đồng Nai", 0, 1));
-            await UsersServices.addUser(new User("pl03@gmail.com", "e10adc3949ba59abbe56e057f20f883e", "Trần Văn Công", "056666424", "21/02/1990", "223455323", "defaultUser.png", "An Giang", 0, 1));*/
+            
         }
         public Airport GetAirportById(string id)
         {
@@ -134,7 +152,8 @@ namespace LikeFly.Database
                 if (a.Id == id) return a; 
             }
             return null;
-        }       
+        }
+       
 
         async Task GetAllDiscounts()
         {
@@ -153,6 +172,7 @@ namespace LikeFly.Database
                 // booked.flight = tourList.Find(e => (e.id == booked.tour.id));
                 //  booked.invoice = invoicesList.Find(e => (e.id == booked.invoice.id));
                 ListBookedTickets.Add(booked);
+
             }
         }
 
@@ -161,8 +181,8 @@ namespace LikeFly.Database
             invoicesList = await InvoicesServices.GetAllInvoice();
             foreach (Invoice invoice in invoicesList)
             {
-                if (invoice.Discount != null)
-                    invoice.Discount = discountsList.Find(e => (e.id == invoice.Discount.id));
+                if (invoice.discount != null)
+                    invoice.discount = discountsList.Find(e => (e.id == invoice.discount.id));
                 ListInvoice.Add(invoice);
             }
         }
@@ -297,18 +317,6 @@ namespace LikeFly.Database
                 OnPropertyChanged("CurrentUser");
             }
         }
-
-        private User currentUserManager;
-        public User CurrentUserManager
-        {
-            get { return currentUserManager; }
-            set
-            {
-                currentUserManager = value;               
-                OnPropertyChanged("CurrentUserManager");          
-            }
-        }
-
         private Airport currentAirport;
         public Airport CurrentAirport
         {
@@ -359,7 +367,6 @@ namespace LikeFly.Database
                 OnPropertyChanged("CurrentName");
             }
         }
-
         private bool isManager;
         public bool IsManager
         {
@@ -410,6 +417,15 @@ namespace LikeFly.Database
             }
             set { discountServices = value; }
         }
+        private RuleServices ruleServices;
+        public RuleServices RuleServices
+        {
+            get
+            {
+                return ruleServices;
+            }
+            set { ruleServices = value; }
+        }
 
         private ObservableCollection<Invoice> invoiceList;
         public ObservableCollection<Invoice> ListInvoice
@@ -421,6 +437,18 @@ namespace LikeFly.Database
                 OnPropertyChanged("ListInvoice");
             }
         }
+
+        private ObservableCollection<Rule> ruleList;
+        public ObservableCollection<Rule> ListRule
+        {
+            get { return ruleList; }
+            set
+            {
+                ruleList = value;
+                OnPropertyChanged("ListRule");
+            }
+        }
+
 
 
         private InvoicesService invoiceServices;
@@ -509,19 +537,6 @@ namespace LikeFly.Database
 
             }
         }
-
-        private DetailTicketType currentDetailTicketType;
-        public DetailTicketType CurrentDetailTicketType
-        {
-            get { return currentDetailTicketType; }
-            set
-            {
-                currentDetailTicketType = value;
-
-            }
-        }
-
-
 
     }
 }

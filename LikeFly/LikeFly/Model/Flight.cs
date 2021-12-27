@@ -61,7 +61,17 @@ namespace LikeFly.Model
                 startDate = value;
                 OnPropertyChanged("StartDate");
             }
-        }        
+        }
+        private string imgSource { get; set; }
+        public string ImgSource
+        {
+            get { return imgSource; }
+            set
+            {
+                imgSource = value;
+                OnPropertyChanged("ImgSource");
+            }
+        }
         private string description { get; set; }
         public string Description
         {
@@ -72,7 +82,16 @@ namespace LikeFly.Model
                 OnPropertyChanged("Description");
             }
         }
-        
+        private int passengerNumber { get; set; }
+        public int PassengerNumber
+        {
+            get { return passengerNumber; }
+            set
+            {
+                passengerNumber = value;
+                OnPropertyChanged("PassengerNumber");
+            }
+        }
         private bool isOccured { get; set; }
         public bool IsOccured
         {
@@ -93,7 +112,7 @@ namespace LikeFly.Model
                 OnPropertyChanged("Price");
             }
         }
-        /*private string airportStartId;
+        private string airportStartId;
         public string AirportStartId
         {
             get { return airportStartId; }
@@ -102,7 +121,7 @@ namespace LikeFly.Model
                 airportStartId = value;
                 OnPropertyChanged("AirportStartId");
             }
-        }*/
+        }
         private Airport airportStart;
         public Airport AirportStart
         {
@@ -113,7 +132,7 @@ namespace LikeFly.Model
                 OnPropertyChanged("AirportStart");
             }
         }
-        /*private string airportEndId;
+        private string airportEndId;
         public string AirportEndId
         {
             get { return airportEndId; }
@@ -122,7 +141,7 @@ namespace LikeFly.Model
                 airportEndId = value;
                 OnPropertyChanged("AirportEnd");
             }
-        }*/
+        }
         private Airport airportEnd;
         public Airport AirportEnd
         {
@@ -145,17 +164,8 @@ namespace LikeFly.Model
             }
         }
 
-        private ObservableCollection<User> listPilots;
-        public ObservableCollection<User> ListPilots
-        {
-            get { return listPilots; }
-            set
-            {
-                listPilots = value;
-                OnPropertyChanged("ListPilots");
-            }
-        }
-        /*private List<string> ticketTypeIds;
+
+        private List<string> ticketTypeIds;
         public List<string> TicketTypeIds
         {
             get { return ticketTypeIds; }
@@ -164,9 +174,9 @@ namespace LikeFly.Model
                 ticketTypeIds = value;
                 OnPropertyChanged("TicketTypeIds");
             }
-        }*/
-        private ObservableCollection<DetailTicketType> ticketTypes;
-        public ObservableCollection<DetailTicketType> TicketTypes
+        }
+        private ObservableCollection<TicketType> ticketTypes;
+        public ObservableCollection<TicketType> TicketTypes
         {
             get { return ticketTypes; }
             set
@@ -176,21 +186,22 @@ namespace LikeFly.Model
             }
         }
 
-        public Flight(string id, string name, string duration, string startTime, string startDate, string description, bool isOccured, int price, Airport airportStart, Airport airportEnd, ObservableCollection<IntermediaryAirport> intermediaryAirportList, ObservableCollection<DetailTicketType> ticketTypes, ObservableCollection<User> listPilots)
+        public Flight(string id, string name, string duration, string startTime, string startDate, string imgSource, string description, int passengerNumber, bool isOccured, int price, string airportStartId, string airportEndId, ObservableCollection<IntermediaryAirport> intermediaryAirportList, List<string> ticketTypeIds)
         {
             Id = id;
             Name = name;
             Duration = duration;
             StartTime = startTime;
             StartDate = startDate;
+            ImgSource = imgSource;
             Description = description;
+            PassengerNumber = passengerNumber;
             IsOccured = isOccured;
             Price = price;
-            AirportStart = airportStart;
-            AirportEnd = airportEnd;
+            AirportStartId = airportStartId;
+            AirportEndId = airportEndId;
             IntermediaryAirportList = intermediaryAirportList;
-            TicketTypes = ticketTypes;
-            ListPilots = listPilots;
+            TicketTypeIds = ticketTypeIds;
         }
     }
 }
