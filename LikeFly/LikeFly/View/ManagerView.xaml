@@ -152,7 +152,7 @@
                                 <FormattedString>
                                     <Span Text="Tham số quy định" TextColor="White" FontSize="15" FontAttributes="Bold">
                                         <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding AirportCommand}"/>
+                                            <TapGestureRecognizer Command="{Binding RuleCommand}"/>
                                         </Span.GestureRecognizers>
                                     </Span>
                                 </FormattedString>

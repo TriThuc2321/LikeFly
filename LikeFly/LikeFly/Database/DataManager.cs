@@ -44,6 +44,7 @@ namespace LikeFly.Database
             ListUsers = new ObservableCollection<User>();
             ListAirports = new ObservableCollection<Airport>();
             ListTicketTypes = new ObservableCollection<TicketType>();
+            ListRule = new ObservableCollection<Rule>();
 
             CurrentUser = new User();
             CurrentFlight = new Flight();
@@ -53,6 +54,7 @@ namespace LikeFly.Database
             BookedTicketsServices = new BookedTicketServices();
             ListInvoice = new ObservableCollection<Invoice>();
             InvoicesServices = new InvoicesService();
+            RuleServices = new RuleServices();
 
             CurrentDiscount = new Discount();
             CurrentInvoice = new Invoice();
@@ -61,6 +63,7 @@ namespace LikeFly.Database
 
            
         }
+
         async Task GetUsers()
         {
             users = await UsersServices.GetAllUsers();
@@ -102,7 +105,17 @@ namespace LikeFly.Database
             {
                 ListNotification.Add(p);
             }
+        }        
+
+        async Task GetRule()
+        {
+            List<Rule> temp = await RuleServices.GetRule();
+            foreach (Rule p in temp)
+            {
+                ruleList.Add(p);
+            }
         }
+
         async Task getAllList()
         {            
             await GetUsers();
@@ -113,7 +126,7 @@ namespace LikeFly.Database
             await GetAllDiscounts();
             await GetAllInvoices();
             await GetAllBookedTicket();
-
+            await GetRule();
             /*foreach (var f in ListFlights)
             {
                 f.TicketTypes = new ObservableCollection<DetailTicketType>();
@@ -230,6 +243,16 @@ namespace LikeFly.Database
                 return ticketTypeService;
             }
             set { ticketTypeService = value; }
+        }        
+
+        private RuleServices ruleServices;
+        public RuleServices RuleServices
+        {
+            get
+            {
+                return ruleServices;
+            }
+            set { ruleServices = value; }
         }
 
         private ObservableCollection<Flight> _flights;
@@ -275,6 +298,16 @@ namespace LikeFly.Database
             set
             {
                 _notifications = value;
+            }
+        }
+        private ObservableCollection<Rule> ruleList;
+        public ObservableCollection<Rule> ListRule
+        {
+            get { return ruleList; }
+            set
+            {
+                ruleList = value;
+                OnPropertyChanged("ListRule");
             }
         }
         private User currentUser;
