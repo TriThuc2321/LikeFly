@@ -79,6 +79,7 @@
     <FlyoutItem Title="Quản lí" Icon="manager.png">
         <ShellContent Route="ManagerView" ContentTemplate="{DataTemplate views:ManagerView}" Style="{DynamicResource Base1Style}" />
     </FlyoutItem>
+ 
 
     <Shell.FlyoutHeader >
         <StackLayout >
