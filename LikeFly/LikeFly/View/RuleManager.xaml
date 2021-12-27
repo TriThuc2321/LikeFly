@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:LikeFly.ViewModel"
+             x:Class="LikeFly.View.RuleManager">
+    <ContentPage.BindingContext>
+        <vm:RuleManagerViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Image Source="backgroundLogin.jpg" Aspect="AspectFill" Opacity="0.8"></Image>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal"  VerticalOptions="Start" HorizontalOptions="Fill" Padding="5" BackgroundColor="Transparent">
+
+                    <ImageButton Command="{Binding NavigationBack}" 
+                                 Source="backbutton.png" 
+                                 HeightRequest="40" 
+                                 WidthRequest="50"
+                                 CornerRadius="10" 
+                                 HorizontalOptions="StartAndExpand" 
+                                 VerticalOptions="CenterAndExpand"
+                                 BackgroundColor="Transparent" 
+                                 Margin="10, 0 , 0, 0">
+
+                    </ImageButton>
+                    <Label Margin="0,6,10,0" Text="Rule Manager" FontSize="Large" TextColor="Black" FontAttributes="Bold"></Label>
+                </StackLayout>
+
+                <CollectionView 
+                    VerticalOptions="Start"
+                            x:Name="clview"
+                            ItemsSource="{Binding RuleList}" 
+                            SelectionMode="None"                            
+                            >
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout VerticalOptions="Start" >
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Frame
+                                    BackgroundColor="White"
+                                    Margin="20,10,20,10"
+                                    CornerRadius="10"
+                                    Padding="0"                                  
+                        >
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10">
+                                        <Label Text="Khấu hao hủy vé sau " VerticalOptions="Center" FontAttributes="Bold"/>
+                                        <Entry Placeholder="{Binding DayNum, StringFormat='{}{0}' }" Keyboard="Numeric" Text="{Binding DayNum}" WidthRequest="30" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                        <Label Text="Ngày là: "  VerticalOptions="Center" FontAttributes="Bold"/>
+                                        <Entry Placeholder="{Binding Deduct }" Text="{Binding Deduct}" Keyboard="Numeric" VerticalOptions="Center" WidthRequest="40" HorizontalOptions="Start"/>
+                                        <Label Text=" %"  VerticalOptions="Center" FontAttributes="Bold"/>
+                                        <ImageButton Source="delete.png" HeightRequest="30" WidthRequest="30" HorizontalOptions="End" 
+                                                      Command="{Binding Source={x:Reference clview}, Path = BindingContext.DeleteCommand}"
+                                        CommandParameter="{Binding}"
+                                                     ></ImageButton>
+                                        
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Button Text="Thêm" Command="{Binding AddCommand}"></Button>
+                <Button Text="Lưu" Command="{Binding SaveCommand}"></Button>
+                
+                
+
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

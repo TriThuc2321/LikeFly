@@ -36,7 +36,7 @@ namespace LikeFly.ViewModel
         });
         public ICommand BackCommand2 => new Command<object>(async (obj) =>
         {
-            await navigation.PushAsync(new NewAirportView());
+            navigation.PushAsync(new NewAirportView());
         });
 
         

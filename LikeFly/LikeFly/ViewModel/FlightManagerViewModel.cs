@@ -4,7 +4,6 @@ using LikeFly.Model;
 using LikeFly.View;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -21,7 +20,6 @@ namespace LikeFly.ViewModel
         {
             this.navigation = navigation;
             this.currentShell = currentShell;
-            Flights = DataManager.Ins.ListFlights;
         }
         public ICommand NavigationBack => new Command<object>((obj) =>
         {
@@ -33,36 +31,5 @@ namespace LikeFly.ViewModel
             navigation.PushAsync(new NewFlightView());
         });
 
-        private ObservableCollection<Flight> flights;
-        public ObservableCollection<Flight> Flights
-        {
-            get { return flights; }
-            set
-            {
-                flights = value;
-                OnPropertyChanged("Flights");
-            }
-        }
-        private Flight selectedFlight;
-        public Flight SelectedFlight
-        {
-            get { return selectedFlight; }
-            set
-            {
-                selectedFlight = value;
-                OnPropertyChanged("SelectedFlight");
-            }
-        }
-
-        public ICommand SelectedCommand => new Command<object>((obj) =>
-        {
-            Flight result = obj as Flight;
-            if (result != null)
-            {
-                DataManager.Ins.CurrentFlight = result;
-                navigation.PushAsync(new EditFlightView());
-                SelectedFlight = null;
-            }
-        });
     }
 }

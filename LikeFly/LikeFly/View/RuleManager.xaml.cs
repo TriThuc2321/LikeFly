@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LikeFly.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,13 @@ using Xamarin.Forms.Xaml;
 namespace LikeFly.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CancelFlightView : ContentPage
+    public partial class RuleManager : ContentPage
     {
-        public CancelFlightView()
+        public RuleManager()
         {
             InitializeComponent();
+            this.BindingContext = new RuleManagerViewModel(Navigation, Shell.Current);
+
         }
     }
 }

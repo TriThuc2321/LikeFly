@@ -9,7 +9,6 @@ using System.Text;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Globalization;
 
 namespace LikeFly.ViewModel
 {
@@ -69,7 +68,7 @@ namespace LikeFly.ViewModel
         {
             if(String.IsNullOrWhiteSpace(FromPlaceText) || String.IsNullOrWhiteSpace(ToPlaceText))
             {
-                DependencyService.Get<IToast>().ShortToast("Bạn muốn tìm chuyến bay nào?");
+                DependencyService.Get<IToast>().ShortToast("Bạn muốn tìm chuyến bay nào ?");
                 return;
             }
             else
@@ -77,9 +76,7 @@ namespace LikeFly.ViewModel
                 DataManager.Ins.Search.RefreshDataSearch();
                 DataManager.Ins.Search.FromPlaceText = FromPlaceText;
                 DataManager.Ins.Search.ToPlaceText = ToPlaceText;
-
-                CultureInfo viVn = new CultureInfo("vi-VN");
-                DataManager.Ins.Search.StartDate = StartDate.ToString("d", viVn);
+                DataManager.Ins.Search.StartDate = StartDate.ToString("d");
                 DataManager.Ins.Search.GetSearchResult();
                 if (DataManager.Ins.Search.ResultList.Count > 0)
                 {
@@ -88,7 +85,7 @@ namespace LikeFly.ViewModel
                 }
                 else
                 {
-                    DependencyService.Get<IToast>().ShortToast("Xin lỗi! Hiện tại chưa có chuyến bay bạn cần tìm");
+                    DependencyService.Get<IToast>().ShortToast("Xin lỗi ! Hiện tại chưa có chuyến bay bạn cần tìm");
                     return;
                 }
 

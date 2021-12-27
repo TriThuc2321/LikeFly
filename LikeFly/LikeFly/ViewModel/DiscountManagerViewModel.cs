@@ -113,15 +113,17 @@ namespace LikeFly.ViewModel
             // Xep giam dan
             for (int i = 0; i < DiscountList.Count - 1; i++)
             {
+                Discount I = DiscountList[i];
+
                 for (int j = i + 1; j < DiscountList.Count; j++)
                 {
-                    if (int.Parse(DiscountList[i].isUsed) > int.Parse(DiscountList[j].isUsed))
+                    Discount J = DiscountList[j];
+                    if (int.Parse(I.isUsed) > int.Parse(J.isUsed))
                     {
-                        Discount tmp = DiscountList[i];
-                        DiscountList[i] = DiscountList[j];
-                        DiscountList[j] = tmp;
-
-
+                        Discount tmp = new Discount();
+                        DiscountList[j] = I;
+                        DiscountList[i] = J;
+                        J = tmp;
                     }
                 }
             }

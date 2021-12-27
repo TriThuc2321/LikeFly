@@ -46,8 +46,7 @@ namespace LikeFly.Database
                   profilePic = user.profilePic,
                   address = user.address,
                   score = user.score,
-                  rank = user.rank,
-                  isEnable = user.isEnable
+                  rank = user.rank
               });
         }
         public async Task<List<User>> GetAllUsers()
@@ -65,8 +64,7 @@ namespace LikeFly.Database
                   profilePic = item.Object.profilePic,
                   address = item.Object.address,
                   score = item.Object.score,
-                  rank = item.Object.rank,
-                  isEnable = item.Object.isEnable
+                  rank = item.Object.rank
               }).ToList();
         }
         public async Task UpdateUser(User user)
@@ -89,8 +87,7 @@ namespace LikeFly.Database
                   profilePic = user.profilePic,
                   address = user.address,
                   score = user.score,
-                  rank = user.rank,
-                  isEnable = user.isEnable
+                  rank = user.rank
               });
         }
 
