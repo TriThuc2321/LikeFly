@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LikeFly.View.FlightView"
              xmlns:vm="clr-namespace:LikeFly.ViewModel"
-             NavigationPage.HasNavigationBar="false"
-              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             NavigationPage.HasNavigationBar="false"             
              >
     <ContentPage.BindingContext>
         <vm:FlightViewModel/>
