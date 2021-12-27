@@ -67,7 +67,7 @@ namespace LikeFly.ViewModel
 
                 if (imgTemp != null)
                 {
-                 url =  await DataManager.Ins.AirportServices.saveImage(imgTemp, SelectedAirport.Id);
+                 url =  await DataManager.Ins.AirportServices.saveImage(imgTemp, SelectedAirport.Id, 0);
                 DataManager.Ins.CurrentAirport.ImgSource = url;
                 }
                 SelectedAirport = DataManager.Ins.CurrentAirport;
@@ -187,13 +187,6 @@ namespace LikeFly.ViewModel
             }
         }
         #endregion
-
-        public ICommand BackCommand => new Command<object>(async (obj) =>
-        {
-            //await currentShell.GoToAsync($"{nameof(NewAirportView)}");
-            await navigation.PopAsync();
-        });
-
         private Airport selectedAirport;
         public Airport SelectedAirport
         {
