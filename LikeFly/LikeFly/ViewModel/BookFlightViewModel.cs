@@ -8,11 +8,10 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Linq;
-using System.Collections.ObjectModel;
 
 namespace LikeFly.ViewModel
 {
-    public class BookFlightViewModel : ObservableObject
+    public class BookFlightViewModel: ObservableObject
     {
         INavigation navigation;
         Shell currentShell;
