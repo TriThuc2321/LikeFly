@@ -15,15 +15,17 @@ namespace LikeFly.ViewModel
     public class BookFlightViewModel : ObservableObject
     {
         INavigation navigation;
+        Shell currentShell;
         public Command PayingMethodCommand { get; }
         public Command NavigationBack { get; }
         public BookFlightViewModel() { }
 
         float Price, Provisional, DiscountMoney, Total;
 
-        public BookFlightViewModel(INavigation navigation)
+        public BookFlightViewModel(INavigation navigation, Shell current)
         {
             this.navigation = navigation;
+            this.currentShell = current;
             SelectedFlight = DataManager.Ins.CurrentFlight;
 
             PayingMethodCommand = new Command(openPayingMethodView);

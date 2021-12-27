@@ -4,7 +4,7 @@
              x:Class="LikeFly.View.DetailFlightView"
              xmlns:vm="clr-namespace:LikeFly.ViewModel"
              NavigationPage.HasNavigationBar="false"
-              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+              
              >
     <ContentPage.BindingContext>
         <vm:DetailFlightViewModel/>
@@ -16,14 +16,14 @@
         
         <ScrollView>
             <Grid>
-                <pancake:PancakeView Margin="0,100,0,0" CornerRadius="30, 30,0,0" Padding="30" BackgroundColor="White">
+                <Frame Margin="0,100,0,0" CornerRadius="30" Padding="30" BackgroundColor="White">
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Chi tiết chuyến bay" FontSize="25" FontAttributes="Bold"/>
                             <Frame Padding="0" HorizontalOptions="EndAndExpand" CornerRadius="15" BackgroundColor="LightSeaGreen">
                                 <Grid>
                                     <Button Command="{Binding BookCommand}" Margin="0,0,8,0" HeightRequest="40" TextColor="White" FontAttributes="Bold" Text="Đặt vé" BackgroundColor="LightSeaGreen" HorizontalOptions="Fill"/>
-                                    <ImageButton Command="{Binding BookCommand}" Source="nextIcon.png" BackgroundColor="Transparent" HeightRequest="15" WidthRequest="15" Aspect="AspectFill" Margin="0,0,8,0" HorizontalOptions="End" VerticalOptions="Center"/>
+                                    <ImageButton Source="nextIcon.png" BackgroundColor="Transparent" HeightRequest="15" WidthRequest="15" Aspect="AspectFill" Margin="0,0,8,0" HorizontalOptions="End" VerticalOptions="Center"/>
                                 </Grid>
                                 
                             </Frame>
@@ -111,12 +111,12 @@
                         </CollectionView>
                     </StackLayout>
                     
-                </pancake:PancakeView>
+                </Frame>
             </Grid>
         </ScrollView>
 
-        <pancake:PancakeView Margin="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40" CornerRadius="25" Padding="0" BackgroundColor="#272727" >
+        <Frame Margin="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40" CornerRadius="25" Padding="0" BackgroundColor="#272727" >
             <ImageButton Command="{Binding NavigationBack}" Margin="10" BackgroundColor="Transparent" Source="backIcon2.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-        </pancake:PancakeView>
+        </Frame>
     </Grid>
 </ContentPage>

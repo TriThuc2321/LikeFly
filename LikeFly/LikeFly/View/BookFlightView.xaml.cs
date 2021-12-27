@@ -16,7 +16,7 @@ namespace LikeFly.View
         public BookFlightView()
         {
             InitializeComponent();
-            this.BindingContext = new BookFlightViewModel(Navigation);
+            this.BindingContext = new BookFlightViewModel(Navigation, Shell.Current);
         }
     }
 }
