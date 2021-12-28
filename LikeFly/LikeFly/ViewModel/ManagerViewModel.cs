@@ -20,6 +20,7 @@ namespace LikeFly.ViewModel
         public Command RevenueCommand { get; }
         public Command DiscountCommand { get; }
         public Command RuleCommand { get; }
+        public Command InvoiceCommand { get; }
 
         public ManagerViewModel() { }
         public ManagerViewModel(INavigation navigation, Shell curentShell)
@@ -35,6 +36,7 @@ namespace LikeFly.ViewModel
             TicketTypeCommand = new Command(()=> navigation.PushAsync(new TicketTypeManagerView()));
             StaffCommand = new Command(() => navigation.PushAsync(new StaffManagerView()));
             RuleCommand = new Command(() => navigation.PushAsync(new RuleManagerView()));
+            InvoiceCommand = new Command(() => navigation.PushAsync(new ComfirmInvoiceView()));
         }
 
        

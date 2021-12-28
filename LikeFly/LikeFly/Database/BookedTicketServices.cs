@@ -25,7 +25,8 @@ namespace LikeFly.Database
               .OnceAsync<BookedTicket>()).Select(item => new BookedTicket
               {
                   Id = item.Object.Id,
-                  FlightId = item.Object.FlightId,
+                  FlightId = item.Object.Flight.Id,
+                  Flight = item.Object.Flight,
                   Name = item.Object.Name,
                   Birthday = item.Object.Birthday,
                   Contact = item.Object.Contact,
@@ -45,7 +46,8 @@ namespace LikeFly.Database
               .PostAsync(new BookedTicket()
               {
                   Id = bookedTicket.Id,
-                  FlightId = bookedTicket.FlightId,
+                  FlightId = bookedTicket.Flight.Id,
+                  Flight = bookedTicket.Flight,
                   Name = bookedTicket.Name,
                   Birthday = bookedTicket.Birthday,
                   Contact = bookedTicket.Contact,
@@ -71,7 +73,8 @@ namespace LikeFly.Database
               .PutAsync(new BookedTicket
               {
                   Id = bookedTicket.Id,
-                  FlightId = bookedTicket.FlightId,
+                  FlightId = bookedTicket.Flight.Id,
+                  Flight = bookedTicket.Flight,
                   Name = bookedTicket.Name,
                   Birthday = bookedTicket.Birthday,
                   Contact = bookedTicket.Contact,
@@ -84,6 +87,7 @@ namespace LikeFly.Database
               });
 
         }
+
         public async Task DeleteBookedTicket(string id)
         {
             var toDelete = (await firebase
