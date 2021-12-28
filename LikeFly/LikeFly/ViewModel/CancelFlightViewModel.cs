@@ -26,7 +26,6 @@ namespace LikeFly.ViewModel
             NavigationBack = new Command(() => navigation.PopAsync());
 
             SetInformation();
-            FormatMoney();
 
         }
 
@@ -53,6 +52,15 @@ namespace LikeFly.ViewModel
 
                 if (DataManager.Ins.CurrentFlight != null)
                 {
+                    foreach (var type in DataManager.Ins.CurrentFlight.TicketTypes)
+                    {
+                        if (SelectedTicket.Invoice.TicketTypes.Id == type.TicketType.Id)
+                        {
+                            DataManager.Ins.CurrentDetailTicketType = type;
+                            break;
+                        }    
+                    }    
+
                     int remaining = DataManager.Ins.CurrentDetailTicketType.Remain;
                     remaining = remaining + int.Parse(DataManager.Ins.CurrentInvoice.Amount);
 
@@ -65,7 +73,6 @@ namespace LikeFly.ViewModel
                         }
                     }
 
-
                     await DataManager.Ins.FlightService.UpdateFlight(DataManager.Ins.CurrentFlight);
                 }
 
@@ -75,6 +82,8 @@ namespace LikeFly.ViewModel
                 await navigation.PopAsync();
                 //await currentShell.GoToAsync($"//{nameof(HomeView)}");
             }
+            else DependencyService.Get<IToast>().ShortToast("Quý khách chưa đánh dấu xác nhận đã đọc quy định");
+
         }
 
         async Task updateManager()
@@ -173,13 +182,6 @@ namespace LikeFly.ViewModel
             }
         }
 
-        void FormatMoney()
-        {
-            var service = DataManager.Ins.InvoicesServices;
-
-            Deduct = service.FormatMoney(Deduct);
-        }
-
         public List<string> GetDeductInformation(BookedTicket cancelledTicket)
         {
             List<string> result = new List<string>();
@@ -231,12 +233,16 @@ namespace LikeFly.ViewModel
             string amount = ((int.Parse(cancelledTicket.Invoice.Total) - ((int.Parse(cancelledTicket.Invoice.Total) * int.Parse(deductPercent)) / 100))).ToString();
             deductPercent = (100 - int.Parse(deductPercent)).ToString();
 
-            Deduct = "Quý khách sẽ được hoàn tiền " + amount + "VND, với khấu hao là " + deductPercent + "%";
+            var services = DataManager.Ins.InvoicesServices;
+
+            amount = services.FormatMoney(amount);
+
+            Deduct = "Thời gian huỷ vé trước khi khởi hành là " + count + " ngày. Quý khách sẽ được hoàn tiền " + amount + "VND, với khấu hao là " + deductPercent + "%";
 
             string notificationBody = "Kính gửi khách hàng, " + cancelledTicket.Name + "\n" +
                 "Quý khách vừa huỷ chuyến bay: '" + cancelledTicket.Flight.Name + "' khởi hành vào lúc " + cancelledTicket.Flight.StartDate + cancelledTicket.Flight.StartTime + ". Theo quy định của chúng tôi, quý khách sẽ được nhận hoàn tiền "
                 + deductPercent + " % trên hoá đơn đã thanh toán. Số tiền quý khách được hoàn là: " + amount + "VND. Cảm ơn vì đã chọn LikeFly!\n"
-   + "Để nhận lại khấu hao, xin hãy liên hệ với văn phòng của chúng tôi qua: 0383303061 (Nguyễn Khánh Linh)." + "\n---------------\n" + "Nếu có câu hỏi, xin liên hệ hotline: 0787960456 (Trần Trí Thức)";
+   + "Để nhận lại khấu hao, xin hãy liên hệ với văn phòng của chúng tôi qua: 0383303061 (Nguyễn Khánh Linh)." + "\n---------------\n" + "Nếu có câu hỏi, xin liên hệ hotline: 0787960456";
 
             result.Add(notificationBody);
             result.Add(amount);

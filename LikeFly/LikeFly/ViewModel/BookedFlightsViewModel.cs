@@ -34,6 +34,8 @@ namespace LikeFly.ViewModel
                     BookedTicketsList.Add(tk);
             }
 
+            DataManager.Ins.CurrentDiscount = null;
+
             SortingTicket();
 
            /// checkFlightStatus(SelectedTicket.Flight);
@@ -53,6 +55,7 @@ namespace LikeFly.ViewModel
                 if (result.Invoice.Discount != null)
                     DataManager.Ins.CurrentDiscount = result.Invoice.Discount;
                 DataManager.Ins.CurrentFlight = result.Flight;
+                DataManager.Ins.CurrentTicketType = result.Invoice.TicketTypes;
 
 
                 navigation.PushAsync(new BookedTicketDetailView());

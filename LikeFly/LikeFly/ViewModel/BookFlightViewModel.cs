@@ -47,8 +47,8 @@ namespace LikeFly.ViewModel
             foreach (DetailTicketType tt in SelectedFlight.TicketTypes)
                 ListTicketTypes.Add(tt);
 
-            SelectedTicketType = ListTicketTypes[0];
-            DataManager.Ins.CurrentDetailTicketType = SelectedTicketType;
+            SelectedDetailTicketType = ListTicketTypes[0];
+            DataManager.Ins.CurrentDetailTicketType = SelectedDetailTicketType;
         }
         bool checkValidation()
         {
@@ -119,7 +119,7 @@ namespace LikeFly.ViewModel
                     Amount = "1",
                     Total = this.Total.ToString(),
                     Price = SelectedFlight.Price.ToString(),
-                    TicketTypes = SelectedTicketType.TicketType
+                    TicketTypes = SelectedDetailTicketType.TicketType
                 };
 
                 DataManager.Ins.CurrentBookedTicket = new BookedTicket()
@@ -313,19 +313,20 @@ namespace LikeFly.ViewModel
             }
         }
         #endregion
-        private DetailTicketType selectedTicketType;
-        public DetailTicketType SelectedTicketType
+        private DetailTicketType selectedDetailTicketType;
+        public DetailTicketType SelectedDetailTicketType
         {
-            get { return selectedTicketType; }
+            get { return selectedDetailTicketType; }
             set
             {
-                selectedTicketType = value;
+                selectedDetailTicketType = value;
 
-                Provisional = Price * SelectedTicketType.TicketType.Percent;
+                Provisional = Price * SelectedDetailTicketType.TicketType.Percent;
                 Total = Provisional - DiscountMoney;
                 FormatMoney();
 
-                OnPropertyChanged("SelectedTicketType");
+                DataManager.Ins.CurrentDetailTicketType = SelectedDetailTicketType;
+                OnPropertyChanged("SelectedDetailTicketType");
             }
         }
 
@@ -362,7 +363,7 @@ namespace LikeFly.ViewModel
             
 
             Price = SelectedFlight.Price;
-            Provisional = Price * SelectedTicketType.TicketType.Percent;
+            Provisional = Price * SelectedDetailTicketType.TicketType.Percent;
             DiscountMoney = 0;
             Total = Provisional - DiscountMoney;
             FormatMoney();

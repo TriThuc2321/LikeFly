@@ -45,13 +45,13 @@ namespace LikeFly.ViewModel
             float provisional = Invoice.TicketTypes.Percent * int.Parse(Invoice.Price);
             StrProvisional = provisional.ToString();
 
-            PayingVisible = Invoice.IsPaid ? true : false;
+            PayingVisible = Invoice.Method == "Banking" ? true : false;
 
             checkFlightStatus(Flight);
 
             if (Ticket != null && Ticket.IsCancel)
             {
-                Occured = Occured + " - This ticket was canceled";
+                Occured = Occured + " (Đã huỷ chuyến bay này)";
                 CancelVisible = false;
             }
 
@@ -291,7 +291,7 @@ namespace LikeFly.ViewModel
 
             /// string maxDuration = int.Parse(duration[0]) > int.Parse(duration[1]) ? duration[0] : duration[1];
 
-            string maxDuration = duration[1] == null ?
+            string maxDuration = duration[1] == "" ?
                 (int.Parse(duration[0]) * 60 * 60).ToString() :
                 (int.Parse(duration[0]) * 60 * 60 + int.Parse(duration[1]) * 60).ToString();
 
