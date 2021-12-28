@@ -26,9 +26,11 @@ namespace LikeFly.ViewModel
             NavigationBack = new Command(() => navigation.PopAsync());
 
             SetInformation();
+            FormatMoney();
 
         }
 
+        List<string> NotificationContent;
         async void cancelTicket(object obj)
         {
             if (IsCheckRegulation)
@@ -123,6 +125,8 @@ namespace LikeFly.ViewModel
             SelectedTicket = DataManager.Ins.CurrentBookedTicket;
             IsCheckRegulation = false;
             Deduct = "";
+            NotificationContent = GetDeductInformation(SelectedTicket);
+           
         }
 
         private string _regulation;
@@ -167,6 +171,77 @@ namespace LikeFly.ViewModel
                 deduct = value;
                 OnPropertyChanged("Deduct");
             }
+        }
+
+        void FormatMoney()
+        {
+            var service = DataManager.Ins.InvoicesServices;
+
+            Deduct = service.FormatMoney(Deduct);
+        }
+
+        public List<string> GetDeductInformation(BookedTicket cancelledTicket)
+        {
+            List<string> result = new List<string>();
+            string deductPercent = "100";
+
+            string[] flightStartDate = DataManager.Ins.CurrentFlight.StartDate.Split('/');
+            string[] duration = DataManager.Ins.CurrentFlight.Duration.Split('h');
+            string[] flightStartTime = DataManager.Ins.CurrentFlight.StartTime.Split(':');
+            DateTime timeStart = new DateTime(
+                int.Parse(flightStartDate[2]),
+                int.Parse(flightStartDate[1]),
+                int.Parse(flightStartDate[0]),
+                int.Parse(flightStartTime[0]),
+                int.Parse(flightStartTime[1]),
+                0
+                );
+
+            DateTime currentTime = DateTime.Now.AddDays(0);
+            TimeSpan interval = timeStart.Subtract(currentTime);
+
+            double count = interval.Days;
+
+            var rules = DataManager.Ins.ListRule;
+
+
+            // Xếp ngày tăng dần
+            for (int i = 0; i < rules.Count -1; i++)
+            {
+                for (int j = i + 1; j < rules.Count; j++)
+                {
+                    if (int.Parse(rules[i].DayNum) > int.Parse(rules[j].DayNum))
+                    {
+                        Rule tmp = new Rule();
+                        tmp = rules[i];
+                        rules[i] = rules[j];
+                        rules[j] = tmp;
+                    } 
+                }
+            }    
+
+            for (int i = 0; i < rules.Count -1; i++)
+            {
+                if (count >= int.Parse(rules[i].DayNum) &&  count < int.Parse(rules[i+1].DayNum))
+                {
+                    deductPercent = rules[i].Deduct;
+                }    
+            }    
+
+            string amount = ((int.Parse(cancelledTicket.Invoice.Total) - ((int.Parse(cancelledTicket.Invoice.Total) * int.Parse(deductPercent)) / 100))).ToString();
+            deductPercent = (100 - int.Parse(deductPercent)).ToString();
+
+            Deduct = "Quý khách sẽ được hoàn tiền " + amount + "VND, với khấu hao là " + deductPercent + "%";
+
+            string notificationBody = "Kính gửi khách hàng, " + cancelledTicket.Name + "\n" +
+                "Quý khách vừa huỷ chuyến bay: '" + cancelledTicket.Flight.Name + "' khởi hành vào lúc " + cancelledTicket.Flight.StartDate + cancelledTicket.Flight.StartTime + ". Theo quy định của chúng tôi, quý khách sẽ được nhận hoàn tiền "
+                + deductPercent + " % trên hoá đơn đã thanh toán. Số tiền quý khách được hoàn là: " + amount + "VND. Cảm ơn vì đã chọn LikeFly!\n"
+   + "Để nhận lại khấu hao, xin hãy liên hệ với văn phòng của chúng tôi qua: 0383303061 (Nguyễn Khánh Linh)." + "\n---------------\n" + "Nếu có câu hỏi, xin liên hệ hotline: 0787960456 (Trần Trí Thức)";
+
+            result.Add(notificationBody);
+            result.Add(amount);
+
+            return result;
         }
     }
 }
