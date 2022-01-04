@@ -1,6 +1,7 @@
 ﻿using LikeFly.Core;
 using LikeFly.Database;
 using LikeFly.Model;
+using LikeFly.View;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,7 @@ namespace LikeFly.ViewModel
         public CancelFlightViewModel() { }
         public Command NavigationBack { get; }
         public Command CancelTicket { get; }
+        public Command OpenRegulation { get; }
 
         public CancelFlightViewModel(INavigation navigation, Shell currentShell)
         {
@@ -23,6 +25,7 @@ namespace LikeFly.ViewModel
             this.currentShell = currentShell;
 
             CancelTicket = new Command(cancelTicket);
+            OpenRegulation = new Command(() => navigation.PushAsync(new RuleView()));
             NavigationBack = new Command(() => navigation.PopAsync());
 
             SetInformation();

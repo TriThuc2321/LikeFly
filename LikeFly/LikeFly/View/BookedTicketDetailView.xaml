@@ -487,21 +487,32 @@
                                         </Label>
                                     </StackLayout>
 
-                                    <!--Giờ đặt-->
+                                    <!--Giờ thanh toán-->
 
-                                    <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0" IsVisible="{Binding PayingTimeVisible}">
+                                       
                                         <Label                                  
                                     Text="Thời gian thanh toán: "                                           
                                     TextColor="#272727"   
                                     FontAttributes="Italic"
                                     FontSize="15"/>
-                                        <Label                                  
-                                    Text="{Binding Invoice.PayingTime}"                                           
-                                    TextColor="Black"                                    
+                                    <Label TextColor="Black"                                    
                                     VerticalOptions="Center"
                                             Margin="10, 0,0,0"
                                         FontAttributes="Bold"
-                                    FontSize="17"/>
+                                    FontSize="17">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Invoice.PayingTime}" Value="">
+                                                <Setter Property="Text" Value="Chưa thanh toán" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Invoice.PayingTime}" Value="a">
+                                                <Setter Property="Text" Value="" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                        <Label                                  
+                                    Text="{Binding Invoice.PayingTime}"                                           
+                                    />
                                     </StackLayout>
 
                                     <!--Ảnh-->

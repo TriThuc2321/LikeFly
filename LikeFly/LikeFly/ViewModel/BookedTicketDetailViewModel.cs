@@ -35,6 +35,7 @@ namespace LikeFly.ViewModel
 
         void SetInformation()
         {
+            PayingTimeVisible = true;
 
             this.Ticket = DataManager.Ins.CurrentBookedTicket;
             if (DataManager.Ins.CurrentDiscount != null)
@@ -73,6 +74,9 @@ namespace LikeFly.ViewModel
                 DiscountVisible = false;
 
             FormatMoney();
+
+            if (Invoice.PayingTime == "")
+                PayingTimeVisible = false;
 
         }
 
@@ -189,6 +193,17 @@ namespace LikeFly.ViewModel
             {
                 payingVisible = value;
                 OnPropertyChanged("PayingVisible");
+            }
+        }
+
+        private bool payingTimeVisible;
+        public bool PayingTimeVisible
+        {
+            get { return payingTimeVisible; }
+            set
+            {
+                payingTimeVisible = value;
+                OnPropertyChanged("PayingTimeVisible");
             }
         }
 
