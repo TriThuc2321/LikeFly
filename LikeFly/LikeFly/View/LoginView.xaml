@@ -34,7 +34,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label Text="LOGIN" Grid.Row="0" FontSize="25" Margin="35,45,0,0" TextColor="Black" FontAttributes="Bold"/>
+                <Label Text="ĐĂNG NHẬP" Grid.Row="0" FontSize="25" Margin="35,45,0,0" TextColor="Black" FontAttributes="Bold"/>
                 <Frame Grid.Row="1" CornerRadius="20" Margin="15, 5, 20, 5" Padding="5" HasShadow="False" BackgroundColor="White" VerticalOptions="Center" >
                     <Grid>
                         <Entry                    
@@ -53,7 +53,7 @@
                 <Frame Grid.Row="2" CornerRadius="20" Margin="15, 5, 20, 5" Padding="5" HasShadow="False" BackgroundColor="White" VerticalOptions="Center" >
                     <StackLayout Orientation="Horizontal">
                         <Entry                    
-                        Placeholder="Password"
+                        Placeholder="Mật khẩu"
                         PlaceholderColor="#C0C0C0"
                         FontSize="15"
                         Margin="15,-10,0,0"
@@ -74,13 +74,13 @@
 
                     <StackLayout VerticalOptions="End" Orientation="Horizontal" Margin="25,-5,0,0" >
                         <CheckBox VerticalOptions="Center"  Color="Black" IsChecked="{Binding RememberAccount}"/>
-                        <Label Text="Remeber me" VerticalOptions="Center" Margin="-5,0,0,0" TextColor="Black"/>
+                        <Label Text="Nhớ tài khoản" VerticalOptions="Center" Margin="-5,0,0,0" TextColor="Black"/>
                     </StackLayout>
 
                     <Label Margin="0,-5,25,0" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Forgot password?" TextColor="Black" FontAttributes="Italic">
+                                <Span Text="Quên mật khẩu?" TextColor="Black" FontAttributes="Italic">
                                     <Span.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
                                     </Span.GestureRecognizers>
@@ -98,7 +98,7 @@
                     BackgroundColor="LightSeaGreen" 
                     VerticalOptions="Center"
                     HeightRequest="45"
-                    Text="LOGIN"
+                    Text="Đăng nhập"
                     TextColor="White"
                     FontSize="15"
                     FontAttributes="Bold"
@@ -108,12 +108,12 @@
                 <Label Grid.Row="7" VerticalOptions="End"  HorizontalOptions="Center" Margin="0,0,0,10">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="You don't have account?" TextColor="Black">
+                            <Span Text="Bạn chưa có tài khoản?" TextColor="Black">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
                                 </Span.GestureRecognizers>
                             </Span>
-                            <Span Text=" Sign Up" TextColor="LightSeaGreen" FontAttributes="Bold">
+                            <Span Text=" Đăng ký" TextColor="LightSeaGreen" FontAttributes="Bold">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
                                 </Span.GestureRecognizers>

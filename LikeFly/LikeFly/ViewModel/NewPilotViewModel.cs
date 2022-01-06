@@ -1,9 +1,13 @@
 ﻿using LikeFly.Core;
+using LikeFly.Database;
 using LikeFly.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace LikeFly.ViewModel
@@ -18,8 +22,144 @@ namespace LikeFly.ViewModel
         {
             this.navigation = navigation;
             this.currentShell = curentShell;
+
+            CurrUser = new User();
+            init();
+        }
+        void init()
+        {
+            ListTypes = new ObservableCollection<string>();
+
+            ListTypes.Add("Phi công");
+            ListTypes.Add("Quản lí");
+
+            SelectedType = "Phi công";
+        }
+        public ICommand NavigationBack => new Command<object>((obj) =>
+        {
+            navigation.PopAsync();
+        });
+        public ICommand AddCommand => new Command<object>(async (obj) =>
+        {
+            if (checkInfo())
+            {
+                await updateDatabaseAsync();
+                await navigation.PopAsync();
+            }
+        });
+
+        private async Task updateDatabaseAsync()
+        {
+            CurrUser.password = DataManager.Ins.UsersServices.Encode(CurrUser.password);
+            CurrUser.profilePic = "defaultUser.png";
+            CurrUser.address = "";
+            CurrUser.birthday = "";
+            CurrUser.score = 0;
+            CurrUser.rank = 2;
+            CurrUser.isEnable = true;
+
+            if(SelectedType == "Phi công")
+            {
+                CurrUser.rank = 2;
+            }
+            else
+            {
+                CurrUser.rank = 1;
+            }
+
+            await DataManager.Ins.UsersServices.addUser(CurrUser);
+            DataManager.Ins.users.Add(CurrUser);
+            DataManager.Ins.ListUsers.Add(CurrUser);
+
+            DependencyService.Get<IToast>().ShortToast("Thêm nhân viên thành công");
         }
 
+        private bool checkInfo()
+        {
+            if (string.IsNullOrWhiteSpace(CurrUser.name) || string.IsNullOrWhiteSpace(CurrUser.contact) || string.IsNullOrWhiteSpace(CurrUser.cmnd) || string.IsNullOrWhiteSpace(CurrUser.email) || string.IsNullOrWhiteSpace(CurrUser.password))
+            {
+                DependencyService.Get<IToast>().ShortToast("Hãy điền đầy đủ thông tin");
+                return false;
+            }
+
+            if (!DataManager.Ins.UsersServices.checkEmail(CurrUser.email))
+            {
+                DependencyService.Get<IToast>().ShortToast("Email không đúng định dạng");
+                return false;
+            }
+
+            foreach (User user in DataManager.Ins.ListUsers)
+            {
+                if (user.email == CurrUser.email)
+                {
+                    DependencyService.Get<IToast>().ShortToast("Tài khoản đã tồn tại");
+                    return false;
+                }
+            }
+
+            if (CurrUser.password.Length < 6)
+            {
+                DependencyService.Get<IToast>().ShortToast("Mật khẩu dài hơn 5 kí tự");
+                return false;
+            }
+
+            if (ContactValidation(CurrUser.contact) == false)
+            {
+                DependencyService.Get<IToast>().ShortToast("Số điện thoại cần có 10 chữ số và bắt đầu bằng 0");
+                return false;
+            }
+
+            if (IDCardValidation(CurrUser.cmnd) == false)
+            {
+                DependencyService.Get<IToast>().ShortToast("CMND/CCCD cần có 9 chữ số hoặc 12 chữ số");
+                return false;
+            }
+            return true;
+        }
+        
+        private bool ContactValidation(string contact)
+        {
+            if (contact.Length == 10 && contact[0].ToString() == "0" && contact.All(char.IsDigit))
+            {
+                return true;
+            }
+            return false;
+        }
+        private bool IDCardValidation(string vcmnd)
+        {
+            bool ex;
+            if (!vcmnd.All(char.IsDigit))
+            {
+                ex = false;
+            }
+            else
+            {
+                if (vcmnd.Length < 9)
+                {
+                    ex = false;
+                }
+                else if (vcmnd.Length > 9)
+                {
+                    if (vcmnd.Length < 12)
+                    {
+                        ex = false;
+                    }
+                    else if (vcmnd.Length > 12)
+                    {
+                        ex = false;
+                    }
+                    else
+                    {
+                        ex = true;
+                    }
+                }
+                else
+                {
+                    ex = true;
+                }
+            }
+            return ex;
+        }
         private User currUser;
         public User CurrUser
         {
@@ -30,127 +170,25 @@ namespace LikeFly.ViewModel
                 OnPropertyChanged("CurrUser");
             }
         }
-
-        private int selectedRank;
-        public int SelectedRank
+        public ObservableCollection<string> listTypes;
+        public ObservableCollection<string> ListTypes
         {
-            get { return selectedRank; }
+            get { return listTypes; }
             set
             {
-                selectedRank = value;
-                OnPropertyChanged("SelectedRank");
+                listTypes = value;
+                OnPropertyChanged("ListTypes");
             }
         }
-        private string name;
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-        private string email;
-        public string Email
-        {
-            get { return email; }
-            set
-            {
-                email = value;
-                OnPropertyChanged("Email");
-            }
-        }
-
-        private string contact;
-        public string Contact
-        {
-            get { return contact; }
-            set
-            {
-                contact = value;
-                OnPropertyChanged("Contact");
-            }
-        }
-        private string address;
-        public string Address
-        {
-            get { return address; }
-            set
-            {
-                address = value;
-                OnPropertyChanged("Address");
-            }
-        }
-        private string cmnd;
-        public string CMND
-        {
-            get { return cmnd; }
-            set
-            {
-                cmnd = value;
-                OnPropertyChanged("CMND");
-            }
-        }
-        private string birthday;
-        public string Birthday
-        {
-            get { return birthday; }
-            set
-            {
-                birthday = value;
-                OnPropertyChanged("Birthday");
-            }
-        }
-        private ImageSource profilePic;
-        public ImageSource ProfilePic
-        {
-            get { return profilePic; }
-            set
-            {
-                profilePic = value;
-                OnPropertyChanged("ProfilePic");
-            }
-        }
-
-        private ObservableCollection<string> types;
-        public ObservableCollection<string> Types
-        {
-            get { return types; }
-            set
-            {
-                types = value;
-                OnPropertyChanged("Types");
-            }
-        }
-        private string selectedType;
+        public string selectedType;
         public string SelectedType
         {
             get { return selectedType; }
             set
             {
                 selectedType = value;
-
-                if (value == "Admin")
-                {
-                    CurrUser.rank = 0;
-                }
-                else if (value == "Management")
-                {
-                    CurrUser.rank = 1;
-                }
-                else if (value == "Tour Guide")
-                {
-                    CurrUser.rank = 2;
-                }
-                else if (value == "Customer")
-                {
-                    CurrUser.rank = 3;
-                }
                 OnPropertyChanged("SelectedType");
             }
         }
-    }
-
-    
+    }        
 }
