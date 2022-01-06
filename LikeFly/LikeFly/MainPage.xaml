@@ -81,8 +81,8 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Vé đã đặt" Icon="manager.png">
-        <ShellContent  Route="BookedFlightsView" ContentTemplate="{DataTemplate views:BookedFlightsView}" Style="{DynamicResource Base1Style}" />
-        <ShellContent Route="OccuringView" ContentTemplate="{DataTemplate views:OccuringView}" Style="{DynamicResource Base1Style}" />
+        <ShellContent Icon="flightTicketIcon.png" Route="BookedFlightsView" ContentTemplate="{DataTemplate views:BookedFlightsView}" Style="{DynamicResource Base1Style}" />
+        <ShellContent Icon="occuringIcon.png" Route="OccuringView" ContentTemplate="{DataTemplate views:OccuringView}" Style="{DynamicResource Base1Style}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Phi công" Icon="pilotIcon.png">

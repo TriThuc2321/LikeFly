@@ -45,7 +45,7 @@ namespace LikeFly.Database
               .PostAsync(new BookedTicket()
               {
                   Id = bookedTicket.Id,
-                  Flight = bookedTicket.Flight,
+                  Flight = new Flight { Id = bookedTicket.Flight.Id },
                   Name = bookedTicket.Name,
                   Birthday = bookedTicket.Birthday,
                   Contact = bookedTicket.Contact,
@@ -71,7 +71,7 @@ namespace LikeFly.Database
               .PutAsync(new BookedTicket
               {
                   Id = bookedTicket.Id,
-                  Flight = bookedTicket.Flight,
+                  Flight = new Flight { Id = bookedTicket.Flight.Id },
                   Name = bookedTicket.Name,
                   Birthday = bookedTicket.Birthday,
                   Contact = bookedTicket.Contact,

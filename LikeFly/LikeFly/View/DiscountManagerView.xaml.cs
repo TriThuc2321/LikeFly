@@ -16,6 +16,11 @@ namespace LikeFly.View
         public DiscountManagerView()
         {
             InitializeComponent();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
             this.BindingContext = new DiscountManagerViewModel(Navigation, Shell.Current);
         }
     }

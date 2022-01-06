@@ -48,9 +48,9 @@ namespace LikeFly.ViewModel
 
             for (int i =0;i<rules.Count; i++)
             {
-                if (i == 0) Rule = "\t\t\t\tNgay sau khi thanh toán hoặc trước " + rules[0].DayNum + " ngày: phí hủy " + rules[0].Deduct + "% tiền vé.\n";
+                if (i == 0) Rule = "Ngay sau khi thanh toán hoặc trước " + rules[0].DayNum + " ngày: phí hủy " + rules[0].Deduct + "% tiền vé.\n";
                 else
-                    Rule += "\t\t\t\tHuỷ " + rules[i].DayNum + " trước khởi hành: Phí huỷ " + rules[i].Deduct + "% tiền vé\n";
+                    Rule += "Huỷ " + rules[i].DayNum + " trước khởi hành: Phí huỷ " + rules[i].Deduct + "% tiền vé\n";
             }    
 
 

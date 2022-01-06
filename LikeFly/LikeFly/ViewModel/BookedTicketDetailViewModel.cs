@@ -75,7 +75,7 @@ namespace LikeFly.ViewModel
 
             FormatMoney();
 
-            if (Invoice.PayingTime == "")
+            if (Invoice.PayingTime == "" || Invoice.PayingTime == null)
                 PayingTimeVisible = false;
 
         }

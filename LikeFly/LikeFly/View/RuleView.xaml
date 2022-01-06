@@ -47,7 +47,7 @@
                             <Label Text="{Binding Rule}"
                                    FontSize="16"
                                    TextColor="Maroon"
-                                   Margin="10, 5, 5, -10"/>
+                                   Margin="20, 5, 5, -15"/>
 
                             <Label Text="Việc huỷ bỏ vé bằng điện thoại được chấp nhận.
 Quý khách có thể thanh toán đặt vé ngay bằng ví điện tử MoMo, tổng hóa đơn sẽ được chuyển thành VND. Nếu chọn thanh toán bằng tiền mặt, xin vui lòng thanh toán trước 5 ngày tính từ thời điểm vé khởi hành.

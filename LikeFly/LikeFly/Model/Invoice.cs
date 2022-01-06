@@ -18,17 +18,6 @@ namespace LikeFly.Model
             }
         }
 
-        private string discountId;
-        public string DiscountId
-        {
-            get { return discountId; }
-            set
-            {
-                discountId = value;
-                OnPropertyChanged("DiscountId");
-            }
-        }
-
         private Discount discount;
         public Discount Discount
         {
