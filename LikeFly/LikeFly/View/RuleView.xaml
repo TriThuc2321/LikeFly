@@ -26,13 +26,62 @@
                            FontAttributes="Bold"
                            Margin="10, 30, 0, 0"
                                HorizontalOptions="CenterAndExpand"/>
-                        <Label                                     
-                                Margin="20"                                    
-                                Text="{Binding Rule}"                                    
-                                Grid.Column="0"                                    
-                                TextColor="#272727"                                    
-                                VerticalOptions="Center"
-                                FontSize="17"/>
+                        <StackLayout Orientation="Vertical" Margin="20">
+                            <Label Text="QUY ĐỊNH CHUNG"
+                               FontSize="18"
+                               TextColor="CadetBlue"
+                           FontAttributes="Bold"
+                               HorizontalOptions="Start"/>
+
+                            <Label Text="Trường hợp hủy bỏ dịch vụ từ Quý khách hàng: Trong trường hợp không thể tiếp tục sử dụng dịch vụ/ vé, Quý khách phải thông báo cho Công ty bằng văn bản hoặc email (Không giải quyết các trường hợp liên hệ chuyển/ hủy vé qua điện thoại). Đồng thời Quý khách vui lòng mang Biên bản đăng ký vé/ dịch vụ và biên lai đóng tiền đến văn phòng Vietnam Booking để làm thủ tục hủy/ chuyển vé."
+                                   FontSize="16"
+                                   TextColor="Black"
+                                   Margin="10, 5, 5, 5"/>
+
+                            <Label
+                                Text="Trường hợp hủy dịch vụ/ vé: Quý khách phải chịu chi phí hủy vé/ dịch vụ theo quy định của Vietnam Booking và toàn bộ phí ngân hàng cho việc thanh toán trực tuyến. Phí hủy được quy định như sau: "
+                                   FontSize="16"
+                                   TextColor="Black"
+                                   Margin="10, 5, 5, 5"/>
+
+                            <Label Text="{Binding Rule}"
+                                   FontSize="16"
+                                   TextColor="Maroon"
+                                   Margin="20, 5, 5, -15"/>
+
+                            <Label Text="Việc huỷ bỏ vé bằng điện thoại được chấp nhận.
+Quý khách có thể thanh toán đặt vé ngay bằng ví điện tử MoMo, tổng hóa đơn sẽ được chuyển thành VND. Nếu chọn thanh toán bằng tiền mặt, xin vui lòng thanh toán trước 5 ngày tính từ thời điểm vé khởi hành.
+"
+                                   FontSize="16"
+                                   TextColor="Black"
+                                   Margin="10, 5, 5, 5"/>
+
+                            <Label Text="NHỮNG LƯU Ý KHÁC"
+                               FontSize="18"
+                               TextColor="CadetBlue"
+                           FontAttributes="Bold"
+                               HorizontalOptions="Start"/>
+
+                            <Label Text="Ngày khởi hành, Quý khách vui lòng tập trung tại điểm đón theo quy định. Nếu đến trễ, Công ty không chịu bất kỳ trách nhiệm liên quan nào.Khi kết thúc vé, LikeFly sẽ trả khách tại một điểm duy nhất là Nhà hát lớn Hà Nội. Quý khách vui lòng tự bắt taxi về khách sạn hoặc nơi ở của mình.
+"
+                                   FontSize="16"
+                                   TextColor="Black"
+                                   Margin="10, 5, 5, 5"/>
+                            <Label Text="Quý khách phải mang theo: giấy tờ tùy thân hợp pháp (CMTND hoặc Passport). Quý khách là người ăn chay vui lòng mang thêm đồ ăn chay theo để đảm bảo khẩu vị của mình.Bất cứ dịch vụ nào trong vé nếu Quý khách không sử dụng cũng không được hoàn lại. Quý khách nên mang theo: thuốc chống côn trùng, thuốc cảm sốt thông thường hoặc các thuốc đã được kê đơn riêng theo chỉ định của bác sỹ."
+                                   FontSize="16"
+                                   TextColor="Black"
+                                   Margin="10, 5, 5, 5"/>
+                            <Label Text="Trách nhiệm của khách hàng: Khách hàng tự chịu trách nhiệm về sức khỏe và các bệnh mãn tính (tim mạch, huyết áp, tiểu đường, xương khớp…), bệnh bẩm sinh, bệnh tiềm ẩn, bệnh HIV AIDS, bệnh rối loạn tinh thần và thần kinh, phụ nữ đang mang thai... là những bệnh không nằm trong phạm vi được bảo hiểm. Khi cần thiết Quý khách phải viết cam kết về bệnh tật của bản thân khi tham gia vé. Bên tổ chức không chịu trách nhiệm đối với những trường hợp Quý khách không khai báo bệnh, khai báo không trung thực cũng như các trường hợp nằm ngoài phạm vi bảo hiểm. Khách hàng tự bảo quản tài sản riêng của mình trong mọi trường hợp và ở tất cả các nơi trong suốt chuyến đi. Bên tổ chức không chịu trách nhiệm về những mất mát về tiền bạc, tư trang quý, vé máy bay, và tài sản riêng của khách hàng trong chuyến đi. "
+                                   FontSize="16"
+                                   TextColor="Black"
+                                   Margin="10, 5, 5, 5"/>
+                            <Label Text="Trong những trường hợp khách quan như: khủng bố, thiên tai…hoặc do có sự cố, có sự thay đổi lịch trình của các phương tiện vận chuyển công cộng như: máy bay, tàu hỏa…thì LikeFly sẽ giữ quyền thay đổi lộ trình bất cứ lúc nào vì sự thuận tiện, an toàn cho khách hàng và sẽ không chịu trách nhiệm bồi thường những thiệt hại phát sinh. Nếu số khách tham gia không đủ số lượng tối thiểu để khởi hành, Công ty sẽ hỗ trợ dời sang ngày khởi hành gần nhất và thông báo trước cho quý khách hoặc hoàn lại phí vé như đã đặt cọc cho quý khách"
+                                   FontSize="16"
+                                   TextColor="Black"
+                                   Margin="10, 5, 5, 5"/>
+
+
+                        </StackLayout>
 
                         <Button     
                                     CornerRadius="20" 

@@ -9,9 +9,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
-            <pancake:PancakeView Margin="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40" CornerRadius="25" Padding="0" BackgroundColor="#272727" >
-                <ImageButton Command="{Binding NavigationBack}" BackgroundColor="Transparent" Margin="10" Source="backIcon2.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-            </pancake:PancakeView>
+            <Image Source="https://i.pinimg.com/564x/e1/c4/ef/e1c4ef856ac9decdf21eebe298a40f6e.jpg" Aspect="AspectFill" Margin="0,0,0,30"/>
 
             <ScrollView>
                 <pancake:PancakeView Margin="0,75,0,0" CornerRadius="30, 30,0,0" BackgroundColor="WhiteSmoke">
@@ -44,6 +42,7 @@
                                     <ImageButton WidthRequest="35"
                                              Source="infoIcon.png"
                                              Command="{Binding ViewDetail}"
+                                             BackgroundColor="Transparent"
                                              HorizontalOptions="EndAndExpand"/>
                                 </StackLayout>
 
@@ -60,13 +59,14 @@
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
                                     Text="{Binding Flight.Description}"                                           
                                     TextColor="Black"                                    
                                     VerticalOptions="Center"
-                                        Margin="60,0,0,0"
                                         FontAttributes="Bold"
+                                        WidthRequest="170"
                                     FontSize="17"/>
                                 </StackLayout>
 
@@ -77,13 +77,14 @@
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
                                     Text="{Binding Flight.StartDate}"                                           
                                     TextColor="Black"                                    
                                     VerticalOptions="Center"
                                         FontAttributes="Bold"
-                                        Margin="10,0,0,0"
+                                        WidthRequest="170"
                                     FontSize="17"/>
                                 </StackLayout>
 
@@ -94,13 +95,14 @@
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
                                     Text="{Binding Flight.StartTime}"                                           
                                     TextColor="Black"                                    
                                     VerticalOptions="Center"
                                         FontAttributes="Bold"
-                                        Margin="10,0,0,0"
+                                        WidthRequest="170"
                                     FontSize="17"/>
                                 </StackLayout>
 
@@ -111,15 +113,24 @@
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
-                                    Text="{Binding Flight.Duration}"    
+                                    Text="{Binding Flight.Duration, StringFormat='{0}'}"    
                                         FontAttributes="Bold"
                                     TextColor="Black"                                    
                                     VerticalOptions="Center"
+                                        WidthRequest="170"
                                     FontSize="17"/>
                                 </StackLayout>
 
+                                <Label                                  
+                                    Text="{Binding Occured}"    
+                                        FontAttributes="Bold"
+                                    TextColor="Maroon"     
+                                    Margin="30, 10,30,0"
+                                    VerticalOptions="Center"
+                                    FontSize="17"/>
 
 
                             </StackLayout>
@@ -154,12 +165,13 @@
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
                                     Text="{Binding Ticket.Name}"                                           
                                     TextColor="Black"                                    
                                     VerticalOptions="Center"
-                                        Margin="60,0,0,0"
+                                        WidthRequest="170"
                                         FontAttributes="Bold"
                                     FontSize="17"/>
                                 </StackLayout>
@@ -173,13 +185,14 @@
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
                                     Text="{Binding Ticket.Birthday}"                                           
                                     TextColor="Black"                                    
                                     VerticalOptions="Center"
                                         FontAttributes="Bold"
-                                        Margin="70,0,0,0"
+                                        WidthRequest="170"
                                     FontSize="17"/>
                                 </StackLayout>
 
@@ -188,16 +201,19 @@
 
                                 <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
                                     <Label                                  
-                                    Text="Eamil liên hệ: "                                           
+                                    Text="Email: "                                           
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
-                                    Text="{Binding Ticket.Email}"    
-                                        FontAttributes="Bold"
+                                    Text="{Binding Ticket.Email}"                                            
                                     TextColor="Black"                                    
                                     VerticalOptions="Center"
+                                        WidthRequest="170"
+                                        Margin="0,0,0,0"
+                                        FontAttributes="Bold"
                                     FontSize="17"/>
                                 </StackLayout>
 
@@ -206,15 +222,16 @@
 
                                 <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
                                     <Label                                  
-                                    Text="Số điện thoại liên hệ: "                                           
+                                    Text="Số điện thoại: "                                           
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
                                     Text="{Binding Ticket.Contact}"                                           
                                     TextColor="Black"        
-                                        Margin="85,0,0,0"
+                                       WidthRequest="170"
                                     VerticalOptions="Center"
                                         FontAttributes="Bold"
                                     FontSize="17"/>
@@ -228,12 +245,13 @@
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
                                     Text="{Binding Ticket.Cmnd}"                                           
                                     TextColor="Black"        
-                                        Margin="85,0,0,0"
                                     VerticalOptions="Center"
+                                        WidthRequest="170"
                                         FontAttributes="Bold"
                                     FontSize="17"/>
                                 </StackLayout>
@@ -246,11 +264,12 @@
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
                                     Text="{Binding Ticket.Address}"                                           
                                     TextColor="Black"        
-                                        Margin="85,0,0,0"
+                                    WidthRequest="170"
                                     VerticalOptions="Center"
                                         FontAttributes="Bold"
                                     FontSize="17"/>
@@ -283,15 +302,17 @@
                                 <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
                                     <Label                                  
                                     Text="Thời gian đặt vé: "                                           
-                                    TextColor="#272727"                                    
+                                    TextColor="#272727"     
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
                                     Text="{Binding Ticket.BookTime}"                                           
                                     TextColor="Black"                                    
                                     VerticalOptions="Center"
-                                        Margin="60,0,0,0"
+                                        WidthRequest="100"
+                                        Margin="0,0,0,0"
                                         FontAttributes="Bold"
                                     FontSize="17"/>
                                 </StackLayout>
@@ -304,86 +325,13 @@
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
-                                    Text="{Binding Invoice.Price}"                                           
+                                    Text="{Binding Invoice.Price, StringFormat='{0} VND'}"                                           
                                     TextColor="Black"                                    
                                     VerticalOptions="Center"
-                                        Margin="60,0,0,0"
-                                        FontAttributes="Bold"
-                                    FontSize="17"/>
-                                </StackLayout>
-
-
-                                <!--Giá hạng vé-->
-
-                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
-                                    <Label                                  
-                                    Text="Giá hạng vé: "                                           
-                                    TextColor="#272727"                                    
-                                    VerticalOptions="Center"
-                                    FontAttributes="Italic"
-                                    FontSize="15"/>
-                                    <Label                                  
-                                    Text=""                                           
-                                    TextColor="Black"                                    
-                                    VerticalOptions="Center"
-                                        FontAttributes="Bold"
-                                        Margin="70,0,0,0"
-                                    FontSize="17"/>
-                                </StackLayout>
-
-
-                                <!--Mã giảm giá-->
-
-                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
-                                    <Label                                  
-                                    Text="Mã giảm giá: "                                           
-                                    TextColor="#272727"                                    
-                                    VerticalOptions="Center"
-                                    FontAttributes="Italic"
-                                    FontSize="15"/>
-                                    <Label                                  
-                                    Text="{Binding Invoice.Discount.id}"    
-                                        FontAttributes="Bold"
-                                    TextColor="Black"                                    
-                                    VerticalOptions="Center"
-                                    FontSize="17"/>
-                                </StackLayout>
-
-
-                                <!--% giảm-->
-
-                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
-                                    <Label                                  
-                                    Text="Giá trị giảm giá: "                                           
-                                    TextColor="#272727"                                    
-                                    VerticalOptions="Center"
-                                    FontAttributes="Italic"
-                                    FontSize="15"/>
-                                    <Label                                  
-                                    Text="{Binding Invoice.Discount.percent, StringFormat='{0} %'}"                                           
-                                    TextColor="Black"        
-                                        Margin="85,0,0,0"
-                                    VerticalOptions="Center"
-                                        FontAttributes="Bold"
-                                    FontSize="17"/>
-                                </StackLayout>
-
-                                <!--tiền giảm-->
-
-                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
-                                    <Label                                  
-                                    Text="Tiền được giảm: "                                           
-                                    TextColor="#272727"                                    
-                                    VerticalOptions="Center"
-                                    FontAttributes="Italic"
-                                    FontSize="15"/>
-                                    <Label                                  
-                                    Text="{Binding StrDiscountMoney}"                                           
-                                    TextColor="Black"        
-                                        Margin="85,0,0,0"
-                                    VerticalOptions="Center"
+                                     WidthRequest="170"
                                         FontAttributes="Bold"
                                     FontSize="17"/>
                                 </StackLayout>
@@ -395,15 +343,99 @@
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
                                     Text="{Binding Invoice.TicketTypes.Name}"                                           
                                     TextColor="Black"        
-                                        Margin="85,0,0,0"
+                                        WidthRequest="170"
                                     VerticalOptions="Center"
                                         FontAttributes="Bold"
                                     FontSize="17"/>
                                 </StackLayout>
+
+                                <!--Giá hạng vé-->
+
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <Label                                  
+                                    Text="Giá hạng vé: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                        WidthRequest="140"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding StrProvisional, StringFormat='{0} VND'}"                                           
+                                    TextColor="Black"                                    
+                                    VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                        WidthRequest="170"
+                                    FontSize="17"/>
+                                </StackLayout>
+
+
+                                <!--Mã giảm giá-->
+
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0" IsVisible="{Binding DiscountVisible}">
+                                    <Label                                  
+                                    Text="Mã giảm giá: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                        WidthRequest="140"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding Invoice.Discount.id}"    
+                                        FontAttributes="Bold"
+                                    TextColor="Black" 
+                                        Margin="55,0,0,0"
+                                    VerticalOptions="Center"
+                                        WidthRequest="170"
+                                    FontSize="17"/>
+                                </StackLayout>
+
+
+                                <!--% giảm-->
+
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0" IsVisible="{Binding DiscountVisible}">
+                                    <Label                                  
+                                    Text="Giá trị giảm giá: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                        WidthRequest="140"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding Invoice.Discount.percent, StringFormat='{0} %'}"                                           
+                                    TextColor="Black"        
+                                        Margin="40,0,0,0"
+                                    VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                        WidthRequest="170"
+                                    FontSize="17"/>
+                                </StackLayout>
+
+                                <!--tiền giảm-->
+
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0" IsVisible="{Binding DiscountVisible}">
+                                    <Label                                  
+                                    Text="Tiền được giảm: "                                           
+                                    TextColor="#272727"                                    
+                                    VerticalOptions="Center"
+                                    FontAttributes="Italic"
+                                        WidthRequest="140"
+                                    FontSize="15"/>
+                                    <Label                                  
+                                    Text="{Binding StrDiscountMoney, StringFormat='{0} VND'}"                                           
+                                    TextColor="Black"        
+                                        Margin="35,0,0,0"
+                                    VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                        WidthRequest="170"
+                                    FontSize="17"/>
+                                </StackLayout>
+
+
 
                                 <!--Tổng tiền-->
 
@@ -413,13 +445,14 @@
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                  
-                                    Text="{Binding StrTotal}"                                           
+                                    Text="{Binding StrTotal, StringFormat='{0} VND'}"                                           
                                     TextColor="Black"        
-                                        Margin="85,0,0,0"
                                     VerticalOptions="Center"
                                         FontAttributes="Bold"
+                                        WidthRequest="170"
                                     FontSize="17"/>
                                 </StackLayout>
 
@@ -430,12 +463,13 @@
                                     TextColor="#272727"                                    
                                     VerticalOptions="Center"
                                     FontAttributes="Italic"
+                                        WidthRequest="140"
                                     FontSize="15"/>
                                     <Label                                          
-                                    TextColor="Black"        
-                                        Margin="55,0,0,0"
+                                    TextColor="Black"    
                                     VerticalOptions="Center"
                                         FontAttributes="Bold"
+                                        WidthRequest="170"
                                     FontSize="17">
                                         <Label.Triggers>
                                             <DataTrigger TargetType="Label" Binding="{Binding Invoice.Method}" Value="Banking">
@@ -446,57 +480,75 @@
                                             </DataTrigger>
                                         </Label.Triggers>
                                     </Label>
+                                </StackLayout>
 
-                                    <!--Xác nhận thanh toán-->
+                                <!--Xác nhận thanh toán-->
 
-                                    <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
-                                        <Label                                  
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
+                                    <Label                                  
                                     Text="Xác nhận thanh toán: "                                           
-                                    TextColor="#272727"                                    
-                                    VerticalOptions="Center"
+                                    TextColor="#272727"  
                                     FontAttributes="Italic"
-                                    FontSize="15">
-                                            <Label.Triggers>
-                                                <DataTrigger TargetType="Label" Binding="{Binding Invoice.IsPaid}" Value="True">
-                                                    <Setter Property="Text" Value="Đã xác nhận" />
-                                                    <Setter Property="TextColor" Value="Maroon"/>
-                                                </DataTrigger>
-                                                <DataTrigger TargetType="Label" Binding="{Binding Invoice.Method}" Value="False">
-                                                    <Setter Property="Text" Value="Chưa xác nhận" />
-                                                </DataTrigger>
-                                            </Label.Triggers>
-                                        </Label>
-                                    </StackLayout>
-
-                                    <!--Giờ đặt-->
-
-                                    <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0">
-                                        <Label                                  
-                                    Text="Thời gian thanh toán: "                                           
-                                    TextColor="#272727"                                    
-                                    VerticalOptions="Center"
-                                    FontAttributes="Italic"
+                                            WidthRequest="140"
                                     FontSize="15"/>
-                                        <Label                                  
-                                    Text="{Binding Invoice.PayingTime}"                                           
-                                    TextColor="Black"                                    
-                                    VerticalOptions="Center"
-                                        Margin="60,0,0,0"
+                                    <Label                                          
+                                    TextColor="Black"  
                                         FontAttributes="Bold"
-                                    FontSize="17"/>
-                                    </StackLayout>
+                                            WidthRequest="170"
+                                    FontSize="17">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Invoice.IsPaid}" Value="true">
+                                                <Setter Property="Text" Value="Đã xác nhận" />
+                                                <Setter Property="TextColor" Value="Maroon"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Invoice.IsPaid}" Value="false">
+                                                <Setter Property="Text" Value="Chưa xác nhận" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </StackLayout>
 
-                                    <!--Ảnh-->
-                                    <StackLayout IsVisible="{Binding PayingPhotoVisible}" Orientation="Vertical">
-                                        <Label                                  
+                                <!--Giờ thanh toán-->
+
+                                <StackLayout Orientation="Horizontal" Margin="30, 10, 20, 0" IsVisible="{Binding PayingTimeVisible}">
+
+                                    <Label                                  
+                                    Text="Thời gian thanh toán: "                                           
+                                    TextColor="#272727"   
+                                    FontAttributes="Italic"
+                                            WidthRequest="140"
+                                    FontSize="15"/>
+                                    <Label TextColor="Black"                                    
+                                    VerticalOptions="Center"
+                                            Margin="10, 0,0,0"
+                                        FontAttributes="Bold"
+                                           WidthRequest="170"
+                                    FontSize="17">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Invoice.PayingTime}" Value="">
+                                                <Setter Property="Text" Value="Chưa thanh toán" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Invoice.PayingTime}" Value="a">
+                                                <Setter Property="Text" Value="" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <Label                                  
+                                    Text="{Binding Invoice.PayingTime}"                                           
+                                    />
+                                </StackLayout>
+
+                                <!--Ảnh-->
+                                <StackLayout IsVisible="{Binding PayingVisible}" Orientation="Vertical">
+                                    <Label                                  
                                     Text="Ảnh minh chứng thanh toán: "                                           
                                     TextColor="Black"        
-                                        Margin="20,0,0,0"
+                                        Margin="20,20,0,0"
                                     VerticalOptions="Center"
                                         FontAttributes="Bold"
                                     FontSize="17"/>
 
-                                        <Image 
+                                    <Image 
                                        Source="{Binding Invoice.Photo}"
                                       BackgroundColor="Transparent"
                                       WidthRequest="80"
@@ -505,7 +557,6 @@
                                        Aspect="AspectFill"
                                       
                                        />
-                                    </StackLayout>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
@@ -527,6 +578,11 @@
                     </StackLayout>
                 </pancake:PancakeView>
             </ScrollView>
+
+            <pancake:PancakeView Margin="10,10,0,0" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40" CornerRadius="25" Padding="0" BackgroundColor="#272727" >
+                <ImageButton Command="{Binding NavigationBack}" BackgroundColor="Transparent" Margin="10" Source="backIcon2.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </pancake:PancakeView>
+
         </Grid>
 
     </ContentPage.Content>

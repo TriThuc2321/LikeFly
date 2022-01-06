@@ -54,7 +54,7 @@
                                 VerticalOptions="Center"
                                 FontAttributes="Bold"
                                 FontSize="17"/>
-                                <DatePicker                                                                                  
+                                <DatePicker                                                                           
                                     BackgroundColor="Transparent"                                        
                                     TextColor="#272727"                                                
                                     Margin="0, 0, 5, 0"  
@@ -189,85 +189,19 @@
                                 FontAttributes="Bold"
                                 FontSize="17"/>
 
-                                <Picker ItemsSource="{Binding ListTicketTypes}" Title="Loại hạng ghế" ItemDisplayBinding="{Binding TicketType.Name}" SelectedItem="{Binding SelectedTicketType}" />
+                                <Picker ItemsSource="{Binding ListTicketTypes}" 
+                                        Title="Loại hạng ghế" 
+                                        ItemDisplayBinding="{Binding TicketType.Name}" 
+                                        SelectedItem="{Binding SelectedDetailTicketType}" />
+                                <Label                                     
+                                Margin="5,0,0,0"                                    
+                                Text="{Binding SelectedDetailTicketType.Remain, StringFormat='Còn lại {0} vé'}"                                    
+                                Grid.Column="0"                                    
+                                TextColor="Maroon"                                    
+                                VerticalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="15"/>
 
-                                <!--Số lượng-->
-                                <!--<Frame 
-                           Margin="0" 
-                           Padding="0" 
-                           HasShadow="False"
-                           BackgroundColor="White" 
-                           VerticalOptions="Center">
-                                    <StackLayout Orientation="Vertical">
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                                <RowDefinition Height="auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="auto"></ColumnDefinition>
-                                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                                            </Grid.ColumnDefinitions>
-
-                                            <Label Margin="0,0,0,0"
-                                           Text="Số lượng"
-                                               FontAttributes="Bold"
-                                           TextColor="#272727"
-                                           VerticalOptions="Center"
-                                           FontSize="17"/>
-
-                                            <StackLayout Orientation="Horizontal"
-                                                 Grid.Column="1"
-                                                 Grid.Row="0"
-                                                 HorizontalOptions="End">
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <Frame CornerRadius="30" VerticalOptions="Center" BackgroundColor="#272727"  Padding="3,3,3,3" Grid.Column="0">
-                                                        <ImageButton 
-                                                    WidthRequest="30"
-                                                    HeightRequest="30"
-                                                    Padding="5"                                                     
-                                                    BackgroundColor="#272727"
-                                                   Source="backIcon2.png"
-                                                       Aspect="AspectFit"
-                                                        HorizontalOptions="Center"
-                                                    Command="{Binding DescreaseAmountCommand}"/>
-                                                    </Frame>
-
-                                                    <Entry  
-                                                    PlaceholderColor="#C0C0C0"
-                                                    Keyboard="Numeric"
-                                                    FontSize="15"
-                                                    TextColor="Black"
-                                                    Text="{Binding Amount}"
-                                                    HorizontalTextAlignment="Center"
-                                                    Grid.Column="1"
-                                                />
-
-                                                    <Frame CornerRadius="30" VerticalOptions="Center" BackgroundColor="#272727"  Padding="3,3,2,3" Grid.Column="2">
-                                                        <ImageButton 
-                                                    WidthRequest="30"
-                                                    HeightRequest="30"
-                                                    Padding="5"                                                     
-                                                    BackgroundColor="#272727"
-                                                   Source="nextIcon.png"
-                                                       Aspect="AspectFit"
-                                                        HorizontalOptions="Center"
-                                                    Command="{Binding IncreaseAmountCommand}"/>
-                                                    </Frame>
-                                                    
-
-                                                </Grid>
-
-                                            </StackLayout> 
-                                        </Grid>
-                                </Frame>
-                                    </StackLayout>-->
                             </StackLayout>
                                 
                         </Frame>

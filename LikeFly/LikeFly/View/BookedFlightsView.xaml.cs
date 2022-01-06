@@ -18,8 +18,9 @@ namespace LikeFly.View
             InitializeComponent();
         }
 
-        protected virtual void OnAppearing()
+        protected override async void OnAppearing()
         {
+            base.OnAppearing();
             this.BindingContext = new BookedFlightsViewModel(Navigation, Shell.Current);
         }
     }

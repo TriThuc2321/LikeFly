@@ -16,10 +16,11 @@ namespace LikeFly.View
         public BookedTicketDetailView()
         {
             InitializeComponent();
-        }
 
-        protected virtual void OnAppearing()
+        }
+        protected override async void OnAppearing()
         {
+            base.OnAppearing();
             this.BindingContext = new BookedTicketDetailViewModel(Navigation, Shell.Current);
         }
     }

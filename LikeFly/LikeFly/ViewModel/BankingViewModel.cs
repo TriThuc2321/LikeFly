@@ -83,14 +83,14 @@ namespace LikeFly.ViewModel
                     );
 
                 DataManager.Ins.CurrentInvoice.IsPaid = false;
-                DataManager.Ins.CurrentInvoice.PayingTime = DateTime.Now.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("vi-VN"));
+                DataManager.Ins.CurrentInvoice.PayingTime = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt", System.Globalization.CultureInfo.CreateSpecificCulture("vi-VN"));
                 DataManager.Ins.CurrentInvoice.Photo = url;
                /// DataManager.Ins.CurrentInvoice.Vnd = Money;
                 DataManager.Ins.CurrentInvoice.Method = "Banking";
             }
 
 
-            DataManager.Ins.CurrentBookedTicket.BookTime = DateTime.Now.ToString(System.Globalization.CultureInfo.CreateSpecificCulture("en-US"));
+            DataManager.Ins.CurrentBookedTicket.BookTime = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt", System.Globalization.CultureInfo.CreateSpecificCulture("vi-VN"));
 
             await DataManager.Ins.InvoicesServices.AddInvoice(DataManager.Ins.CurrentInvoice);
             await DataManager.Ins.BookedTicketsServices.AddBookedTicket(DataManager.Ins.CurrentBookedTicket);

@@ -4,6 +4,7 @@ using LikeFly.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -48,12 +49,12 @@ namespace LikeFly.ViewModel
 
             /// string maxDuration = int.Parse(duration[0]) > int.Parse(duration[1]) ? duration[0] : duration[1];
 
-            string maxDuration = duration[1] == null ?
+            string maxDuration = duration[1] == "" ?
                 (int.Parse(duration[0]) * 60 * 60).ToString() :
                 (int.Parse(duration[0]) * 60 * 60 + int.Parse(duration[1]) * 60).ToString();
 
             // Thoi gian bat dau flight den current time
-            double count = interval.Days * 60 * 60;
+            double count = interval.Seconds;
             if (count > 0)
             {
                 
@@ -125,7 +126,15 @@ namespace LikeFly.ViewModel
             {
                 for (int j = i + 1; j < TicketList.Count; j++)
                 {
-                    if (DateTime.Parse(TicketList[i].BookTime) < DateTime.Parse(TicketList[j].BookTime))
+                    string datetimeI = TicketList[i].BookTime;
+                    string datetimeJ = TicketList[j].BookTime;
+
+                    CultureInfo viVn = new CultureInfo("vi-VN");
+
+                    DateTime dtI = DateTime.ParseExact(datetimeI, "dd/MM/yyyy hh:mm:ss tt", viVn);
+                    DateTime dtJ = DateTime.ParseExact(datetimeJ, "dd/MM/yyyy hh:mm:ss tt", viVn);
+
+                    if (dtI < dtJ)
                     {
                         BookedTicket tmp = new BookedTicket();
                         tmp = TicketList[i];

@@ -35,6 +35,7 @@ namespace LikeFly.ViewModel
 
         void SetInformation()
         {
+            PayingTimeVisible = true;
 
             this.Ticket = DataManager.Ins.CurrentBookedTicket;
             if (DataManager.Ins.CurrentDiscount != null)
@@ -42,20 +43,16 @@ namespace LikeFly.ViewModel
             this.Invoice = DataManager.Ins.CurrentInvoice;
             this.Flight = DataManager.Ins.CurrentFlight;
 
+            float provisional = Invoice.TicketTypes.Percent * int.Parse(Invoice.Price);
+            StrProvisional = provisional.ToString();
 
-            if (!this.Invoice.IsPaid)
-            {
-                // PayingVisible = false;
-                DisplayUpload = true;
-            }
-            else
-                DisplayUpload = false;
+            PayingVisible = Invoice.Method == "Banking" ? true : false;
 
             checkFlightStatus(Flight);
 
             if (Ticket != null && Ticket.IsCancel)
             {
-                Occured = Occured + " - This ticket was canceled";
+                Occured = Occured + " (Đã huỷ chuyến bay này)";
                 CancelVisible = false;
             }
 
@@ -77,6 +74,9 @@ namespace LikeFly.ViewModel
                 DiscountVisible = false;
 
             FormatMoney();
+
+            if (Invoice.PayingTime == "" || Invoice.PayingTime == null)
+                PayingTimeVisible = false;
 
         }
 
@@ -185,14 +185,25 @@ namespace LikeFly.ViewModel
             }
         }
 
-        private bool displayUpload;
-        public bool DisplayUpload
+        private bool payingVisible;
+        public bool PayingVisible
         {
-            get { return displayUpload; }
+            get { return payingVisible; }
             set
             {
-                displayUpload = value;
-                OnPropertyChanged("DisplayUpload");
+                payingVisible = value;
+                OnPropertyChanged("PayingVisible");
+            }
+        }
+
+        private bool payingTimeVisible;
+        public bool PayingTimeVisible
+        {
+            get { return payingTimeVisible; }
+            set
+            {
+                payingTimeVisible = value;
+                OnPropertyChanged("PayingTimeVisible");
             }
         }
 
@@ -252,16 +263,6 @@ namespace LikeFly.ViewModel
             }
         }
 
-        private string _strVnd;
-        public string StrVnd
-        {
-            get { return _strVnd; }
-            set
-            {
-                _strVnd = value;
-                OnPropertyChanged("StrVnd");
-            }
-        }
 
         void FormatMoney()
         {
@@ -280,11 +281,13 @@ namespace LikeFly.ViewModel
                 StrDiscountMoney = service.FormatMoney(StrDiscountMoney);
             }
 
+            StrProvisional = service.FormatMoney(StrProvisional);
+
         }
 
         public void checkFlightStatus(Flight flight)
         {
-            /// CancelVisible = true;
+            CancelVisible = true;
 
             string[] flightStartDate = flight.StartDate.Split('/');
             string[] duration = flight.Duration.Split('h');
@@ -303,12 +306,12 @@ namespace LikeFly.ViewModel
 
             /// string maxDuration = int.Parse(duration[0]) > int.Parse(duration[1]) ? duration[0] : duration[1];
 
-            string maxDuration = duration[1] == null ?
+            string maxDuration = duration[1] == "" ?
                 (int.Parse(duration[0]) * 60 * 60).ToString() :
                 (int.Parse(duration[0]) * 60 * 60 + int.Parse(duration[1]) * 60).ToString();
 
             // Thoi gian bat dau flight den current time
-            double count = interval.Days * 60 * 60;
+            double count = interval.Seconds;
             if (count > 0)
             {
                 Occured = "Chưa bay";

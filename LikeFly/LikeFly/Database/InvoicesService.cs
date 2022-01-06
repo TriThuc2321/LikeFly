@@ -27,7 +27,7 @@ namespace LikeFly.Database
               .OnceAsync<Invoice>()).Select(item => new Invoice
               {
                   Id = item.Object.Id,
-                  DiscountId = item.Object.DiscountId,
+                  Discount = item.Object.Discount,
                   DiscountMoney = item.Object.DiscountMoney,
                   Price = item.Object.Price,
                   IsPaid = item.Object.IsPaid,
@@ -48,7 +48,7 @@ namespace LikeFly.Database
               .PostAsync(new Invoice()
               {
                   Id = invoice.Id,
-                  DiscountId = invoice.DiscountId,
+                  Discount = new Discount { id = invoice.Discount.id },
                   DiscountMoney = invoice.DiscountMoney,
                   Price = invoice.Price,
                   IsPaid = invoice.IsPaid,
@@ -81,7 +81,7 @@ namespace LikeFly.Database
               .PutAsync(new Invoice
               {
                   Id = invoice.Id,
-                  DiscountId = invoice.DiscountId,
+                  Discount = new Discount { id = invoice.Discount.id },
                   DiscountMoney = invoice.DiscountMoney,
                   Price = invoice.Price,
                   IsPaid = invoice.IsPaid,

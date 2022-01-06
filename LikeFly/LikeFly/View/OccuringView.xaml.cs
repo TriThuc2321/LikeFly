@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LikeFly.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,12 @@ namespace LikeFly.View
         public OccuringView()
         {
             InitializeComponent();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            this.BindingContext = new OccuringViewModel(Navigation, Shell.Current);
         }
     }
 }
