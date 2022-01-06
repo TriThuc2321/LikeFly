@@ -41,23 +41,23 @@ namespace LikeFly.ViewModel
         {
             if (Account == null || Password == null || ConfirmPassword == null || Name == null || Account == "" || Password == "" || ConfirmPassword == "" || Name == "")
             {
-                DependencyService.Get<IToast>().ShortToast("Please fill out your information");
+                DependencyService.Get<IToast>().ShortToast("Vui lòng nhập đầy đủ thông tin");
             }
             else if (!DataManager.Ins.UsersServices.checkEmail(Account))
             {
-                DependencyService.Get<IToast>().ShortToast("Email invalid");
+                DependencyService.Get<IToast>().ShortToast("Email không đúng định dạng");
             }
             else if (Password.Length < 6)
             {
-                DependencyService.Get<IToast>().ShortToast("Password must be more than 6 characters");
+                DependencyService.Get<IToast>().ShortToast("Mật khẩu dài hơn 5 kí tự");
             }
             else if (Password != ConfirmPassword)
             {
-                DependencyService.Get<IToast>().ShortToast("Confirm password is incorrect");
+                DependencyService.Get<IToast>().ShortToast("Xác nhận mật khẩu không trùng khớp");
             }
             else if (DataManager.Ins.UsersServices.ExistEmail(Account, DataManager.Ins.users))
             {
-                DependencyService.Get<IToast>().ShortToast("Email is existed");
+                DependencyService.Get<IToast>().ShortToast("Email đã được sử dụng");
             }
             else
             {
@@ -79,8 +79,8 @@ namespace LikeFly.ViewModel
                     rank = 3
                 };
 
-                await SendEmail("VERIFY CODE", "Thank you for using LikeFly, this is your verify code: " + randomCode, Account);
-                DependencyService.Get<IToast>().ShortToast("Verify code has been sent to your email");
+                await SendEmail("Mã xác nhận", "Cảm ơn bạn đã sử dụng LikeFly, đây là mã xác nhận của bạn: " + randomCode, Account);
+                DependencyService.Get<IToast>().ShortToast("Mã xác nhận đã được gửi đến email của bạn");
                 DataManager.Ins.users.Add(DataManager.Ins.CurrentUser);
                 DataManager.Ins.ListUsers.Add(DataManager.Ins.CurrentUser);
                 //navigation.PushAsync(new ConfirmEmailView());

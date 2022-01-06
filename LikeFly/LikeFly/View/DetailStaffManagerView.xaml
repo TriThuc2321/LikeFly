@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LikeFly.View.DetailStaffManagerView"
+             xmlns:vm="clr-namespace:LikeFly.ViewModel"
+             NavigationPage.HasNavigationBar="false"             
+             >
+
+    <ContentPage.BindingContext>
+        <vm:DetailStaffManagerViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="CadetBlue"/>
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="Fill" Margin="15,15,15,0">
+            <ImageButton  HeightRequest="25" WidthRequest="25" Command="{Binding NavigationBack}"  BackgroundColor="Transparent" Source="backIcon2Black.png"  Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Start"/>
+            <Label Text="Thêm phi công" HorizontalOptions="EndAndExpand" FontAttributes="Bold" TextColor="#272727" FontSize="22"/>
+        </StackLayout>
+
+        <Frame Grid.RowSpan="2" Margin="20,60,20,20" CornerRadius="20">
+            <ScrollView>
+                <StackLayout>
+                    <Image Source="{Binding CurrUser.profilePic}"/>
+
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout>
+                            <Label Text="Tài khoản" Margin="0,15,0,0" TextColor="#272727" FontAttributes="Bold"/>
+                            <Label Text="{Binding CurrUser.email}" TextColor="#272727"/>
+                        </StackLayout>
+
+                        <Frame CornerRadius="30" Padding="0" VerticalOptions="Start" HorizontalOptions="EndAndExpand" Margin="0,15,0,0">
+                            <Grid BackgroundColor="{Binding Status.Color}" HeightRequest="38" VerticalOptions="Start">
+                                <Image Source="{Binding Status.Icon}" HeightRequest="17" WidthRequest="17" Aspect="AspectFit" Margin="0,0,9,0" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                                <Button Command="{Binding BlockedCommand}" Margin="0,0,25,0" Text="{Binding Status.Text}" TextColor="White" FontAttributes="Bold" BackgroundColor="Transparent" VerticalOptions="Center" FontSize="13"/>                                
+                            </Grid>
+                        </Frame>
+                        
+                    </StackLayout>  
+
+                    <Label Text="Họ tên" Margin="0,10,0,0" TextColor="#272727" FontAttributes="Bold"/>
+                    <Label Text="{Binding CurrUser.name}" TextColor="#272727"/>
+
+                    <Label Text="Số điện thoại" Margin="0,10,0,0" TextColor="#272727" FontAttributes="Bold"/>
+                    <Label Text="{Binding CurrUser.contact}" TextColor="#272727"/>
+
+                    <Label Text="CCCD/CMND" TextColor="#272727" Margin="0,10,0,0" FontAttributes="Bold"/>
+                    <Label Text="{Binding CurrUser.cmnd}" TextColor="#272727"/>
+
+                    <Label Text="Loại tài khoản" Margin="0,10,0,0" TextColor="#272727" FontAttributes="Bold"/>
+                    <Label Text="{Binding CurrUser.rank}" TextColor="#272727">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding CurrUser.rank}" Value="0">
+                                <Setter Property="Text" Value="Admin" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Label" Binding="{Binding CurrUser.rank}" Value="1">
+                                <Setter Property="Text" Value="Quản lí" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Label" Binding="{Binding CurrUser.rank}" Value="2">
+                                <Setter Property="Text" Value="Phi công" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Label" Binding="{Binding CurrUser.rank}" Value="3">
+                                <Setter Property="Text" Value="Người dùng" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+
+                    <Button BackgroundColor="#272727" TextColor="White" Text="Lưu" Margin="0,10,10,10" CornerRadius="10" Command="{Binding SaveCommand}"/>
+                </StackLayout>
+            </ScrollView>
+
+
+        </Frame>
+    </Grid>
+
+</ContentPage>

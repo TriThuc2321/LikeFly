@@ -21,7 +21,7 @@
                                  BackgroundColor="Transparent" 
                                  Margin="10, 10 , 0, 0"/>
 
-            <Label Text="Chuyến bay" FontSize="25" FontAttributes="Bold" Margin="15,15,15,0" />
+            <Label Text="Chuyến bay" FontSize="25" FontAttributes="Bold" Margin="15,15,15,0" TextColor="#272727"/>
         </StackLayout>
         
         <CollectionView 
@@ -57,9 +57,9 @@
                         >
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout Margin="18" WidthRequest="80">
-                                    <Label Text="{Binding StartTime}" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                    <Label Text="{Binding StartTime}" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#272727"/>
                                     <Image Source="airplaneIcon.png" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
-                                    <Label Text="{Binding StartDate}" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding StartDate}" HorizontalOptions="Center" TextColor="#272727"/>
                                 </StackLayout>
                                 
                                 <StackLayout  BackgroundColor="#272727" HorizontalOptions="FillAndExpand" Padding="18">

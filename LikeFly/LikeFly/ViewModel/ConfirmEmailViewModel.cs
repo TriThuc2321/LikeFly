@@ -31,14 +31,14 @@ namespace LikeFly.ViewModel
                 DataManager.Ins.ListUsers.Add(DataManager.Ins.CurrentUser);
                 DataManager.Ins.users.Add(DataManager.Ins.CurrentUser);
 
-                DependencyService.Get<IToast>().ShortToast("Register successfully");
+                DependencyService.Get<IToast>().ShortToast("Đăng ký thành công");
                 await currentShell.GoToAsync($"//{nameof(LoginView)}");
                 //navigation.PushAsync(new HomeView());
             }
 
             else
             {
-                DependencyService.Get<IToast>().ShortToast("Verify code is incorrect");
+                DependencyService.Get<IToast>().ShortToast("Mã xác nhận không đúng");
             }
 
         }
