@@ -1,4 +1,5 @@
-﻿using LikeFly.Database;
+﻿using LikeFly.Core;
+using LikeFly.Database;
 using LikeFly.View;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using Xamarin.Forms;
 
 namespace LikeFly.ViewModel
 {
-    class ManagerViewModel
+    class ManagerViewModel: ObservableObject
     {
         public INavigation navigation;
         public Shell currentShell;
@@ -26,6 +27,12 @@ namespace LikeFly.ViewModel
         {
             this.navigation = navigation;
             this.currentShell = curentShell;
+            if (DataManager.Ins.CurrentUser.rank == 0)
+            {
+                IsAdmin = true;
+            }
+            else IsAdmin = false;
+            
 
             MenuCommand = new Command(() => currentShell.FlyoutIsPresented = !currentShell.FlyoutIsPresented);
 
@@ -38,6 +45,15 @@ namespace LikeFly.ViewModel
             RevenueCommand = new Command(() => navigation.PushAsync(new RevenueView()));
         }
 
-       
+        private bool isAdmin;
+        public bool IsAdmin
+        {
+            get { return isAdmin; }
+            set
+            {
+                isAdmin = value;
+                OnPropertyChanged("IsAdmin");
+            }
+        }
     }
 }

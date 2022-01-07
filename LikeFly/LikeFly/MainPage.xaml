@@ -76,8 +76,8 @@
         <ShellContent Route="UserView" ContentTemplate="{DataTemplate views:UserView}" Style="{DynamicResource Base1Style}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Quản lí" Icon="manager.png">
-        <ShellContent Route="ManagerView" ContentTemplate="{DataTemplate views:ManagerView}" Style="{DynamicResource Base1Style}" />
+    <FlyoutItem Title="Quản lí" Icon="manager.png"  IsVisible="{Binding IsAdmin}">
+        <ShellContent Route="ManagerView" ContentTemplate="{DataTemplate views:ManagerView}" Style="{DynamicResource Base1Style}"  />
     </FlyoutItem>
 
     <FlyoutItem Title="Vé đã đặt" Icon="manager.png">
@@ -85,7 +85,7 @@
         <ShellContent Icon="occuringIcon.png" Route="OccuringView" ContentTemplate="{DataTemplate views:OccuringView}" Style="{DynamicResource Base1Style}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Phi công" Icon="pilotIcon.png">
+    <FlyoutItem Title="Phi công" Icon="pilotIcon.png" IsVisible="{Binding IsAdmin}">
         <ShellContent Route="ManagerView" ContentTemplate="{DataTemplate views:PilotView}" Style="{DynamicResource Base1Style}" />
     </FlyoutItem>
 
@@ -115,10 +115,10 @@
 
     <Shell.FlyoutFooter>
         <StackLayout>
-            <!--<Label Text="Like Fly"
-               TextColor="#777777"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" /> -->
+            <StackLayout Orientation="Horizontal" Margin="20,0,0,0">
+                <ImageButton x:Name="LogOutBtn" Command="{Binding LogOutCommand}" Source="logoutIcon.png" Aspect="AspectFit" HeightRequest="20" BackgroundColor="Transparent" />
+                <Label Text="Log Out" FontAttributes="Bold" FontSize="15"/>
+            </StackLayout>
             <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:MM/dd/yyyy H:mm }'}"                  
                TextColor="#cfcfcf"
                HorizontalOptions="Center" 
