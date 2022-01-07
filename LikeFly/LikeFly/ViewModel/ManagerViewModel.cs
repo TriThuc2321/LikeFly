@@ -35,6 +35,7 @@ namespace LikeFly.ViewModel
             TicketTypeCommand = new Command(()=> navigation.PushAsync(new TicketTypeManagerView()));
             StaffCommand = new Command(() => navigation.PushAsync(new StaffManagerView()));
             RuleCommand = new Command(() => navigation.PushAsync(new RuleManagerView()));
+            RevenueCommand = new Command(() => navigation.PushAsync(new RevenueView()));
         }
 
        

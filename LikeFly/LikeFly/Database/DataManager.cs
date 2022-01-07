@@ -64,6 +64,25 @@ namespace LikeFly.Database
            
         }
 
+        private async Task SetupAsync(ObservableCollection<Flight> list)
+        {
+            DateTime current_time = DateTime.Now.AddDays(0);
+            double count;
+            foreach (Flight ite in list)
+            {
+                string[] temp = ite.StartDate.Split(' ');
+                string[] TourStartTime = temp[0].Split('/');
+                DateTime TourStartTime1 = new DateTime(int.Parse(TourStartTime[2]), int.Parse(TourStartTime[1]), int.Parse(TourStartTime[0]));
+                TimeSpan interval = current_time.Subtract(TourStartTime1);
+                count = interval.Days * 24 + interval.Hours + ((interval.Minutes * 100) / 60) * 0.01;
+                if (count > 0)
+                {
+                    ite.IsOccured = true;
+                    await DataManager.Ins.FlightService.UpdateFlight(ite);
+                }
+            }
+        }
+
         async Task GetUsers()
         {
             users = await UsersServices.GetAllUsers();
@@ -122,11 +141,13 @@ namespace LikeFly.Database
             await GetAirports();
             await GetTicketTypes();
             await GetFlights();
+            await SetupAsync(ListFlights);
             await GetNotifications();
             await GetAllDiscounts();
             await GetAllInvoices();
             await GetAllBookedTicket();
             await GetRule();
+           
             /*foreach (var f in ListFlights)
             {
                 f.TicketTypes = new ObservableCollection<DetailTicketType>();

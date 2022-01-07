@@ -134,7 +134,7 @@
                                 <FormattedString>
                                     <Span Text="Doanh thu" TextColor="White" FontSize="15" FontAttributes="Bold">
                                         <Span.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding AirportCommand}"/>
+                                            <TapGestureRecognizer Command="{Binding RevenueCommand}"/>
                                         </Span.GestureRecognizers>
                                     </Span>
                                 </FormattedString>
