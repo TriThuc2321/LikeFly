@@ -55,8 +55,8 @@
 
                             <StackLayout Orientation="Vertical">
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="10,0,10,5" >
-                                    <Label Text="{Binding host.Name}" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Margin="-15,0,0,0" FontSize="Medium" TextColor="White"></Label>
-                                    <Label Text="{Binding Rank,StringFormat='{}Top {0}'}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"  FontAttributes="Bold" FontSize="Small" IsVisible="False" TextColor="White">
+                                    <Label Text="{Binding host.Name}" VerticalOptions="CenterAndExpand" FontAttributes="Bold" Margin="-10,0,0,0" FontSize="Medium" TextColor="White"></Label>
+                                    <Label Text="{Binding Rank,StringFormat='{}Top {0}'}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"  FontAttributes="Bold" FontSize="Small" IsVisible="False" TextColor="Gold">
                                         <Label.Triggers>
                                             <DataTrigger TargetType="Label"  Binding="{Binding Rank}" Value="99">
                                                 <Setter Property="IsVisible" Value="False"/>
@@ -74,9 +74,9 @@
                                     </Label>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Label Text="{Binding totalPrice ,StringFormat='{} Tổng doanh thu: {0} $'}" FontSize="Small" TextColor="WhiteSmoke"></Label>
+                                    <Label Text="{Binding totalPrice ,StringFormat='{}Tổng doanh thu: {0} $'}" FontSize="Small" TextColor="WhiteSmoke"></Label>
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                                        <Label Text="{Binding totalticket,StringFormat='{} Số vé đã bán: {0}'}" FontSize="Small" TextColor="{Binding color}"></Label>
+                                        <Label Text="{Binding totalticket,StringFormat='{}Số vé đã bán: {0}'}" FontSize="Small" TextColor="{Binding color}"></Label>
                                     </StackLayout>
 
                                 </StackLayout>
