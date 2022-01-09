@@ -71,7 +71,7 @@ namespace LikeFly.ViewModel
 
         private void SortByYear()
         {
-            if (selectedYear == "None") return;
+            if (selectedYear == "Không") return;
             ObservableCollection<SupportRevenue> newResult = new ObservableCollection<SupportRevenue>();
             foreach (SupportRevenue ite in ListRevenue)
             {
@@ -84,33 +84,33 @@ namespace LikeFly.ViewModel
         private void InitList()
         {
             //init hashtable and list month for picker
-            monthHashtable.Add("January", "1");
-            monthHashtable.Add("February", "2");
-            monthHashtable.Add("March", "3");
-            monthHashtable.Add("April", "4");
-            monthHashtable.Add("May", "5");
-            monthHashtable.Add("June", "6");
-            monthHashtable.Add("July", "7");
-            monthHashtable.Add("August", "8");
-            monthHashtable.Add("September", "9");
-            monthHashtable.Add("Octorber", "10");
-            monthHashtable.Add("November", "11");
-            monthHashtable.Add("December", "12");
-            monthHashtable.Add("None", "None");
+            monthHashtable.Add("1", "1");
+            monthHashtable.Add("2", "2");
+            monthHashtable.Add("3", "3");
+            monthHashtable.Add("4", "4");
+            monthHashtable.Add("5", "5");
+            monthHashtable.Add("6", "6");
+            monthHashtable.Add("7", "7");
+            monthHashtable.Add("8", "8");
+            monthHashtable.Add("9", "9");
+            monthHashtable.Add("10", "10");
+            monthHashtable.Add("11", "11");
+            monthHashtable.Add("12", "12");
+            monthHashtable.Add("Không", "None");
             listMonth = new List<string>();
-            listMonth.Add("January");
-            listMonth.Add("February");
-            listMonth.Add("March");
-            listMonth.Add("April");
-            listMonth.Add("May");
-            listMonth.Add("June");
-            listMonth.Add("July");
-            listMonth.Add("August");
-            listMonth.Add("September");
-            listMonth.Add("Octorber");
-            listMonth.Add("November");
-            listMonth.Add("December");
-            listMonth.Add("None");
+            listMonth.Add("1");
+            listMonth.Add("2");
+            listMonth.Add("3");
+            listMonth.Add("4");
+            listMonth.Add("5");
+            listMonth.Add("6");
+            listMonth.Add("7");
+            listMonth.Add("8");
+            listMonth.Add("9");
+            listMonth.Add("10");
+            listMonth.Add("11");
+            listMonth.Add("12");
+            listMonth.Add("Không");
 
             /// init hashtable list year 
             ListYear = new List<string>();
@@ -118,7 +118,7 @@ namespace LikeFly.ViewModel
             {
                 listYear.Add(i.ToString());
             }
-            listYear.Add("None");
+            listYear.Add("Không");
 
             ListFlight = DataManager.Ins.ListFlights;
             ListRevenue = new ObservableCollection<SupportRevenue>();
