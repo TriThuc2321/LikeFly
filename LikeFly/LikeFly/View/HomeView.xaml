@@ -61,7 +61,7 @@
                 
                 
                 <ImageButton
-                HeightRequest="45"
+                HeightRequest="35"
                 WidthRequest="45"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"

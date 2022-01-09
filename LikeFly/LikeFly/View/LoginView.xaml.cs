@@ -1,4 +1,5 @@
-﻿using LikeFly.ViewModel;
+﻿using LikeFly.Database;
+using LikeFly.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace LikeFly.View
         {
             InitializeComponent();
             this.BindingContext = new LoginViewModel(Navigation, Shell.Current);
+            DataManager.Ins.currentShell = Shell.Current;
+            DataManager.Ins.navigation = Navigation;
         }
     }
 }

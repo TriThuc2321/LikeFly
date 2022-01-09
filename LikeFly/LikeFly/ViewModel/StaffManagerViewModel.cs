@@ -1,6 +1,7 @@
 ﻿using LikeFly.Core;
 using LikeFly.Database;
 using LikeFly.Model;
+using LikeFly.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,7 +28,7 @@ namespace LikeFly.ViewModel
         public ICommand NewCommand => new Command<object>((obj) =>
         {
             DataManager.Ins.CurrentUserManager = null;
-            //navigation.PushAsync(new EditStaffManagerView());
+            navigation.PushAsync(new NewPilotView());
         });
         void Init()
         {
@@ -62,37 +63,15 @@ namespace LikeFly.ViewModel
         });
         public ICommand SelectedCommand => new Command<object>((obj) =>
         {
-            /*User result = obj as User;
+            User result = obj as User;
             if (result != null)
             {
-                DataManager.Ins.currentUserManager = result;
-                DataManager.Ins.IsNewUser = false;
-                navigation.PushAsync(new EditStaffManagerView());
+                DataManager.Ins.CurrentUserManager = result;
+                navigation.PushAsync(new DetailStaffManagerView());
                 SelectedUser = null;
-            }*/
+            }
         });
-        public ICommand DeleteCommand => new Command<object>(async (obj) =>
-        {
-            /*User result = obj as User;
-            if (result != null)
-            {
-                if (result.email == DataManager.Ins.CurrentUser.email)
-                {
-                    DependencyService.Get<IToast>().ShortToast("Your account cannot be deleted");
-                    return;
-                }
-
-                AllList.Remove(result);
-
-                if (result.rank == 0) DataManager.Ins.admins.Remove(result);
-                else if (result.rank == 1) DataManager.Ins.managements.Remove(result);
-                else if (result.rank == 2) DataManager.Ins.tourGuides.Remove(result);
-                else if (result.rank == 3) DataManager.Ins.customers.Remove(result);
-
-                result.isEnable = false;
-                await DataManager.Ins.UsersServices.UpdateUser(result);
-            }*/
-        });
+        
         private User selectedUser;
         public User SelectedUser
         {

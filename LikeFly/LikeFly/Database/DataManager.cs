@@ -1,10 +1,13 @@
 ﻿using LikeFly.Core;
 using LikeFly.Model;
+using LikeFly.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace LikeFly.Database
 {
@@ -20,6 +23,12 @@ namespace LikeFly.Database
             }
             set { _ins = value; }
         }
+        public Shell currentShell;
+        public INavigation navigation;
+        public ICommand LogOutCommand => new Command<object>((obj) =>
+        {
+            currentShell.GoToAsync($"//{nameof(LoginView)}");
+        });
 
         public bool LoadData = true;
         public List<User> users;
@@ -62,6 +71,25 @@ namespace LikeFly.Database
             getAllList();
 
            
+        }
+
+        private async Task SetupAsync(ObservableCollection<Flight> list)
+        {
+            DateTime current_time = DateTime.Now.AddDays(0);
+            double count;
+            foreach (Flight ite in list)
+            {
+                string[] temp = ite.StartDate.Split(' ');
+                string[] TourStartTime = temp[0].Split('/');
+                DateTime TourStartTime1 = new DateTime(int.Parse(TourStartTime[2]), int.Parse(TourStartTime[1]), int.Parse(TourStartTime[0]));
+                TimeSpan interval = current_time.Subtract(TourStartTime1);
+                count = interval.Days * 24 + interval.Hours + ((interval.Minutes * 100) / 60) * 0.01;
+                if (count > 0)
+                {
+                    ite.IsOccured = true;
+                    await DataManager.Ins.FlightService.UpdateFlight(ite);
+                }
+            }
         }
 
         async Task GetUsers()
@@ -122,11 +150,13 @@ namespace LikeFly.Database
             await GetAirports();
             await GetTicketTypes();
             await GetFlights();
+            await SetupAsync(ListFlights);
             await GetNotifications();
             await GetAllDiscounts();
             await GetAllInvoices();
             await GetAllBookedTicket();
             await GetRule();
+           
             /*foreach (var f in ListFlights)
             {
                 f.TicketTypes = new ObservableCollection<DetailTicketType>();
@@ -319,13 +349,13 @@ namespace LikeFly.Database
                 currentUser = value;
                 ProfilePic = value.profilePic;
                 CurrentName = value.name;
-                if (value.rank == 0)
+                if (value.rank == 0 || value.rank == 1)
                 {
-                    IsManager = true;
+                    IsAdmin = true;
                 }
                 else
                 {
-                    IsManager = false;
+                    IsAdmin = false;
                 }
                 OnPropertyChanged("CurrentUser");
             }
@@ -392,15 +422,16 @@ namespace LikeFly.Database
                 OnPropertyChanged("CurrentName");
             }
         }
-
-        private bool isManager;
-        public bool IsManager
+       
+        
+        private bool isAdmin;
+        public bool IsAdmin
         {
-            get { return isManager; }
+            get { return isAdmin; }
             set
             {
-                isManager = value;
-                OnPropertyChanged("IsManager");
+                isAdmin = value;
+                OnPropertyChanged("IsAdmin");
             }
         }
         private string USDcurrency;

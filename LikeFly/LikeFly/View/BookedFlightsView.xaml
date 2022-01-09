@@ -8,7 +8,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
 
-        <Grid>
+        <Grid BackgroundColor="Snow">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -39,32 +39,84 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
-                                    <Frame Margin="20" CornerRadius="10">
+                                    <Frame Margin="20,10,20,10" CornerRadius="10" >
                                         <StackLayout>
-                                            <Label Text="{Binding Flight.Name}"/>
-                                            <Label Text="{Binding Flight.Description}"/>
-                                            <Label Text="{Binding BookTime, StringFormat='Thời gian đặt vé: {0}'}"/>
                                             
-                                            <Label Text="{Binding Invoice.Total, StringFormat='Tổng: {0}'}"/>
-                                            <Label  FontAttributes="Bold"
-                                                        TextColor="Black"
+                                            <StackLayout>
+                                                <Label Text="{Binding BookTime}" HorizontalOptions="EndAndExpand" />
+                                                <Grid>
+                                                    <Label FontAttributes="Bold" FontSize="17" VerticalOptions="Center" Text="{Binding Flight.AirportStart.Name}" Grid.ColumnSpan="4" />
+                                                    <Label TextColor="LightSeaGreen" FontAttributes="Bold" FontSize="17" Text="{Binding Flight.Duration}" VerticalOptions="Center" Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center"/>
+                                                    <Label FontAttributes="Bold" FontSize="17" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding Flight.AirportEnd.Name}" Grid.Column="7"  Grid.ColumnSpan="6" />
+
+                                                    <Frame Grid.Row="1"  Padding="0" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="8" WidthRequest="8" CornerRadius="4" BackgroundColor="LightSeaGreen"/>
+                                                    <Frame Grid.Row="1" Grid.Column="1" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="LightSeaGreen"/>
+                                                    <Frame Grid.Row="1" Grid.Column="2" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="LightSeaGreen"/>
+                                                    <Frame Grid.Row="1" Grid.Column="3" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="LightSeaGreen"/>
+                                                    <Frame Grid.Row="1" Grid.Column="4" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="LightSeaGreen"/>
+                                                    <Frame Grid.Row="1" Grid.Column="5" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="LightSeaGreen"/>
+                                                    <Image Grid.Row="1" Grid.Column="6" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Transparent" Source="airplane.png"/>
+                                                    <Frame Grid.Row="1" Grid.Column="7" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                                                    <Frame Grid.Row="1" Grid.Column="8" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                                                    <Frame Grid.Row="1" Grid.Column="9" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                                                    <Frame Grid.Row="1" Grid.Column="10" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                                                    <Frame Grid.Row="1" Grid.Column="11" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="2" WidthRequest="20" BackgroundColor="#CFCFCF"/>
+                                                    <Frame Grid.Row="1" Grid.Column="12" Padding="0" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="8" WidthRequest="8" CornerRadius="4" BackgroundColor="#272727"/>
+
+                                                    <Label Text="{Binding Flight.AirportStart.Province}" VerticalOptions="Center" Grid.ColumnSpan="4" Grid.Row="2"/>
+                                                    <Label HorizontalTextAlignment="End" VerticalOptions="Center" Text="{Binding Flight.AirportEnd.Province}" Grid.Column="7"  Grid.ColumnSpan="6" Grid.Row="2"/>
+
+                                                    <Label FontAttributes="Bold" FontSize="17" VerticalOptions="Center" Text="{Binding Flight.StartTime}" Grid.ColumnSpan="4" Grid.Row="3"/>
+                                                    <Label FontAttributes="Bold" FontSize="17" VerticalOptions="Center" HorizontalTextAlignment="End" Text="{Binding Flight.StartDate}" Grid.Column="7"  Grid.ColumnSpan="6" Grid.Row="3"/>
+
+                                                   
+                                                </Grid>
+                                                <Grid Margin="-10,0,-10,0">
+                                                    <Frame Grid.Row="1" Grid.Column="0" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="1" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="2" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="3" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="4" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="5" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="6" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="7" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="8" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="9" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="10" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="11" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="12" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="13" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="14" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="15" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="16" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="17" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                    <Frame Grid.Row="1" Grid.Column="18" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" HeightRequest="1" WidthRequest="20" BackgroundColor="#CFCFCF" HasShadow="False"/>
+                                                </Grid>
+                                            </StackLayout>
+
+                                            <StackLayout Orientation="Horizontal" Padding="0,10,0,0" >
+                                                <Label Text="{Binding Invoice.Total, StringFormat='Tổng: {0}'}" FontSize="18"/>
+                                                <Label  FontAttributes="Bold"
+                                                        TextColor="#272727"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        FontSize="18"
                                                         >
-                                                <Label.Triggers>
-                                                    <DataTrigger TargetType="Label" Binding="{Binding Invoice.IsPaid}" Value="True">
-                                                        <Setter Property="Text" Value="Đã thanh toán" />
-                                                    </DataTrigger>
+                                                    <Label.Triggers>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding Invoice.IsPaid}" Value="True">
+                                                            <Setter Property="Text" Value="Đã thanh toán" />
+                                                        </DataTrigger>
 
-                                                    <DataTrigger TargetType="Label" Binding="{Binding Invoice.IsPaid}" Value="False">
-                                                        <Setter Property="Text" Value="Chưa thanh toán" />
-                                                    </DataTrigger>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding Invoice.IsPaid}" Value="False">
+                                                            <Setter Property="Text" Value="Chưa thanh toán" />
+                                                        </DataTrigger>
 
-                                                    <DataTrigger TargetType="Label" Binding="{Binding IsCancel}" Value="True">
-                                                        <Setter Property="Text" Value="Quý khách đã huỷ" />
-                                                    </DataTrigger>
-                                                </Label.Triggers>
-                                            </Label>
-                                            <Label Text="{Binding Flight.StartDate}"/>
-                                            <Label Text="{Binding Flight.StartTime}"/>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding IsCancel}" Value="True">
+                                                            <Setter Property="Text" Value="Quý khách đã huỷ" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
+                                            </StackLayout>
+                                            
                                         </StackLayout>
                                     </Frame>
                                 </StackLayout>
@@ -79,7 +131,7 @@
 
             <Label Text="Danh sách vé đã đặt"
                    Grid.Row="0"
-                   HorizontalOptions="Center"
+                   HorizontalOptions="EndAndExpand"
                    Margin="0,10,20,0"
                    VerticalOptions="Center"
                    FontAttributes="Bold"

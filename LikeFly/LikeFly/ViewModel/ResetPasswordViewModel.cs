@@ -37,15 +37,15 @@ namespace LikeFly.ViewModel
         {
             if (VerifyCode == null || Password == null || ConfirmPassword == null || VerifyCode == "" || Password == "" || ConfirmPassword == "")
             {
-                DependencyService.Get<IToast>().ShortToast("Please fill out your information");
+                DependencyService.Get<IToast>().ShortToast("Vui lòng nhập đầy đủ thông tin");
             }
             else if (Password.Length < 6)
             {
-                DependencyService.Get<IToast>().ShortToast("Password must be more than 6 characters");
+                DependencyService.Get<IToast>().ShortToast("Mật khẩu hơn 5 kí tự");
             }
             else if (Password != ConfirmPassword)
             {
-                DependencyService.Get<IToast>().ShortToast("Confirm password is incorrect");
+                DependencyService.Get<IToast>().ShortToast("Xác nhận mật khẩu không trùng khớp");
             }
             else if (VerifyCode == DataManager.Ins.VerifyCode)
             {
@@ -60,13 +60,13 @@ namespace LikeFly.ViewModel
                         break;
                     }
                 }
-                DependencyService.Get<IToast>().ShortToast("Reset password successfully");
+                DependencyService.Get<IToast>().ShortToast("Đổi mật khẩu thành công");
                 //navigation.PushAsync(new HomeView());
                 await currentShell.GoToAsync($"//{nameof(LoginView)}");
             }
             else
             {
-                DependencyService.Get<IToast>().ShortToast("Verify code is incorrect");
+                DependencyService.Get<IToast>().ShortToast("Mã xác nhận không đúng");
             }
         }
         void eyeHandle(object obj)

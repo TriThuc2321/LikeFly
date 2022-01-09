@@ -88,17 +88,28 @@ namespace LikeFly.ViewModel
             int i = 0;
             if (Account == null || Account == "" || !DataManager.Ins.UsersServices.checkEmail(Account) || Password == null || Password == "")
             {
-                DependencyService.Get<IToast>().ShortToast("Email invalid");
+                DependencyService.Get<IToast>().ShortToast("Email không hợp lệ");
+                return;
+            }
+            if (Password == null || Password == "")
+            {
+                DependencyService.Get<IToast>().ShortToast("Vui lòng nhập mật khẩu");
                 return;
             }
             for (i = 0; i < DataManager.Ins.ListUsers.Count(); i++)
             {
                 if (DataManager.Ins.ListUsers[i].email == Account)
                 {
+                    if (!DataManager.Ins.ListUsers[i].isEnable)
+                    {
+                        DependencyService.Get<IToast>().ShortToast("Tài khoản đã bị khóa, vui lòng liên hệ công ty để biết thêm thông tin");
+                        return;
+                    }
                     if (DataManager.Ins.ListUsers[i].password == DataManager.Ins.UsersServices.Encode(Password))
                     {
-                        DataManager.Ins.CurrentUser = DataManager.Ins.ListUsers[i];
-                        DependencyService.Get<IToast>().ShortToast("Login successfully");
+                        DataManager.Ins.CurrentUser = DataManager.Ins.ListUsers[i];                        
+
+                        DependencyService.Get<IToast>().ShortToast("Đăng nhập thành công");
 
                         if (RememberAccount)
                         {
@@ -118,7 +129,7 @@ namespace LikeFly.ViewModel
                     }
                     else
                     {
-                        DependencyService.Get<IToast>().ShortToast("Password is incorrect");
+                        DependencyService.Get<IToast>().ShortToast("Mật khẩu không chính xác");
                         break;
                     }
 
@@ -126,7 +137,7 @@ namespace LikeFly.ViewModel
             }
             if (i == (DataManager.Ins.ListUsers.Count()))
             {
-                DependencyService.Get<IToast>().ShortToast("Email is not registered");
+                DependencyService.Get<IToast>().ShortToast("Email chưa được đăng kí");
             }
 
 
@@ -136,11 +147,11 @@ namespace LikeFly.ViewModel
         {
             if (Account == null || Account == "" || !DataManager.Ins.UsersServices.checkEmail(Account))
             {
-                DependencyService.Get<IToast>().ShortToast("Enter your email to continue");
+                DependencyService.Get<IToast>().ShortToast("Nhập email để tiếp tục");
             }
             else if (!DataManager.Ins.UsersServices.ExistEmail(Account, DataManager.Ins.users))
             {
-                DependencyService.Get<IToast>().ShortToast("Email is not registed");
+                DependencyService.Get<IToast>().ShortToast("Email chưa được đăng ký");
             }
             else
             {
@@ -161,8 +172,8 @@ namespace LikeFly.ViewModel
                     rank = 3
                 };
 
-                await SendEmail("VERIFY CODE", "Thank you for using LikeFly, this is your verify code: " + randomCode, Account);
-                DependencyService.Get<IToast>().ShortToast("Verify code has been sent to your email");
+                await SendEmail("Mã xác nhận", "Cảm ơn bạn đã sử dụng LikeFly, đây là mã xác nhận của bạn: " + randomCode, Account);
+                DependencyService.Get<IToast>().ShortToast("Mã xác nhận đã được gửi đến email của bạn");
                 //navigation.PushAsync(new ResetPassword());
                 await curentShell.GoToAsync($"{nameof(ResetPasswordView)}");
             }
