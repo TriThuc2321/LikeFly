@@ -223,18 +223,32 @@ namespace LikeFly.ViewModel
                         rules[j] = tmp;
                     } 
                 }
-            }    
+            }
 
-            for (int i = 0; i < rules.Count -1; i++)
+            if (count >= int.Parse(rules[rules.Count - 1].DayNum))
+            {
+                deductPercent = rules[rules.Count - 1].Deduct;
+            }
+
+            else if (count <= int.Parse(rules[0].DayNum))
+            {
+                deductPercent = rules[0].Deduct;
+            }
+
+            else for (int i = 0; i < rules.Count -1; i++)
             {
                 if (count >= int.Parse(rules[i].DayNum) &&  count < int.Parse(rules[i+1].DayNum))
                 {
                     deductPercent = rules[i].Deduct;
                 }    
-            }    
+            }
 
-            string amount = ((int.Parse(cancelledTicket.Invoice.Total) - ((int.Parse(cancelledTicket.Invoice.Total) * int.Parse(deductPercent)) / 100))).ToString();
-            deductPercent = (100 - int.Parse(deductPercent)).ToString();
+            int total = int.Parse(cancelledTicket.Invoice.Total);
+            int dedct = int.Parse(deductPercent);
+
+            string amount = ((float)total - ((float)(total * dedct) / 100)).ToString();
+
+         ///   deductPercent = (100 - dedct).ToString();
 
             var services = DataManager.Ins.InvoicesServices;
 
