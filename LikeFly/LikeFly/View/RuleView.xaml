@@ -75,7 +75,7 @@ Quý khách có thể thanh toán đặt vé ngay bằng ví điện tử MoMo, 
                                    FontSize="16"
                                    TextColor="Black"
                                    Margin="10, 5, 5, 5"/>
-                            <Label Text="Trong những trường hợp khách quan như: khủng bố, thiên tai…hoặc do có sự cố, có sự thay đổi lịch trình của các phương tiện vận chuyển công cộng như: máy bay, tàu hỏa…thì LikeFly sẽ giữ quyền thay đổi lộ trình bất cứ lúc nào vì sự thuận tiện, an toàn cho khách hàng và sẽ không chịu trách nhiệm bồi thường những thiệt hại phát sinh. Nếu số khách tham gia không đủ số lượng tối thiểu để khởi hành, Công ty sẽ hỗ trợ dời sang ngày khởi hành gần nhất và thông báo trước cho quý khách hoặc hoàn lại phí vé như đã đặt cọc cho quý khách"
+                            <Label Text="Trong những trường hợp khách quan như: khủng bố, thiên tai…hoặc do có sự cố, có sự thay đổi lịch trình của các phương tiện vận chuyển công cộng như: máy bay, tàu hỏa…thì LikeFly sẽ giữ quyền thay đổi lộ trình bất cứ lúc nào vì sự thuận tiện, an toàn cho khách hàng và sẽ không chịu trách nhiệm bồi thường những thiệt hại phát sinh. Nếu số khách tham gia không đủ số lượng tối thiểu để khởi hành, Công ty sẽ hỗ trợ dời sang ngày khởi hành gần nhất và thông báo trước cho quý khách hoặc hoàn lại phí vé như đã đặt cọc cho quý khách."
                                    FontSize="16"
                                    TextColor="Black"
                                    Margin="10, 5, 5, 5"/>
