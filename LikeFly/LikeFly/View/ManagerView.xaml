@@ -89,8 +89,8 @@
                         <ImageButton Command="{Binding FlightCommand}" HorizontalOptions="EndAndExpand" Source="nextIcon.png" HeightRequest="20" WidthRequest="20" Aspect="AspectFill" BackgroundColor="Transparent"/>
                     </StackLayout>
                 </Frame>
-                
-                <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" >
+
+                <Frame HasShadow="True"  Margin="0, 10,0,0" CornerRadius="10" BackgroundColor="#272727" IsVisible="{Binding IsAdmin}" >
                     <StackLayout Orientation="Horizontal">
                         <StackLayout BackgroundColor="White" WidthRequest="2"/>
                         <Label Margin="3,0,0,0">

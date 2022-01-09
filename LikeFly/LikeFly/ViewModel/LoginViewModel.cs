@@ -100,9 +100,15 @@ namespace LikeFly.ViewModel
             {
                 if (DataManager.Ins.ListUsers[i].email == Account)
                 {
+                    if (!DataManager.Ins.ListUsers[i].isEnable)
+                    {
+                        DependencyService.Get<IToast>().ShortToast("Tài khoản đã bị khóa, vui lòng liên hệ công ty để biết thêm thông tin");
+                        return;
+                    }
                     if (DataManager.Ins.ListUsers[i].password == DataManager.Ins.UsersServices.Encode(Password))
                     {
-                        DataManager.Ins.CurrentUser = DataManager.Ins.ListUsers[i];
+                        DataManager.Ins.CurrentUser = DataManager.Ins.ListUsers[i];                        
+
                         DependencyService.Get<IToast>().ShortToast("Đăng nhập thành công");
 
                         if (RememberAccount)
