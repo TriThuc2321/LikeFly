@@ -388,7 +388,6 @@
                                     Text="{Binding Invoice.Discount.id}"    
                                         FontAttributes="Bold"
                                     TextColor="Black" 
-                                        Margin="55,0,0,0"
                                     VerticalOptions="Center"
                                         WidthRequest="170"
                                     FontSize="17"/>
@@ -408,7 +407,6 @@
                                     <Label                                  
                                     Text="{Binding Invoice.Discount.percent, StringFormat='{0} %'}"                                           
                                     TextColor="Black"        
-                                        Margin="40,0,0,0"
                                     VerticalOptions="Center"
                                         FontAttributes="Bold"
                                         WidthRequest="170"
@@ -428,7 +426,6 @@
                                     <Label                                  
                                     Text="{Binding StrDiscountMoney, StringFormat='{0} VND'}"                                           
                                     TextColor="Black"        
-                                        Margin="35,0,0,0"
                                     VerticalOptions="Center"
                                         FontAttributes="Bold"
                                         WidthRequest="170"
@@ -516,11 +513,11 @@
                                     Text="Thời gian thanh toán: "                                           
                                     TextColor="#272727"   
                                     FontAttributes="Italic"
+                                        VerticalOptions="Center"
                                             WidthRequest="140"
                                     FontSize="15"/>
-                                    <Label TextColor="Black"                                    
+                                    <!--<Label TextColor="Black"                                    
                                     VerticalOptions="Center"
-                                            Margin="10, 0,0,0"
                                         FontAttributes="Bold"
                                            WidthRequest="170"
                                     FontSize="17">
@@ -532,8 +529,12 @@
                                                 <Setter Property="Text" Value="" />
                                             </DataTrigger>
                                         </Label.Triggers>
-                                    </Label>
-                                    <Label                                  
+                                    </Label>-->
+                                    <Label TextColor="Black"                                    
+                                    VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                           WidthRequest="130"
+                                    FontSize="17"           
                                     Text="{Binding Invoice.PayingTime}"                                           
                                     />
                                 </StackLayout>
