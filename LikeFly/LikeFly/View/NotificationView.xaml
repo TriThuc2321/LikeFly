@@ -73,7 +73,7 @@
                                             <!--<Line BackgroundColor="Gray" HeightRequest="1"></Line>-->
                                             <StackLayout Orientation="Horizontal" HorizontalOptions="Fill"  >
                                                 <Label Text="{Binding title}" FontAttributes="Bold"  TextColor="Black" FontSize="17"></Label>
-                                                <Label  Text="Mới" FontAttributes="Bold" TextColor="LightSeaGreen" HorizontalOptions="EndAndExpand"  >
+                                                <Label  Text="Mới" FontAttributes="Bold" TextColor="LightSeaGreen" WidthRequest="40" HorizontalOptions="EndAndExpand"  >
                                                     <Label.Triggers>
                                                         <DataTrigger TargetType="Label" Binding="{Binding IsChecked}" Value="True">
                                                             <Setter Property="IsVisible" Value="False" />
