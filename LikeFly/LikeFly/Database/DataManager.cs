@@ -38,6 +38,7 @@ namespace LikeFly.Database
         public List<Discount> discountsList;
         public List<BookedTicket> bookedTicketsList;
         public List<Invoice> invoicesList;
+        public List<Review> reviews;
 
         private DataManager()
         {
@@ -47,6 +48,7 @@ namespace LikeFly.Database
             notiServices = new NotificationServices();
             TicketTypeService = new TicketTypeServices();
             Search = new SearchService();
+            ReviewServices = new ReviewServices();
 
             ListNotification = new ObservableCollection<Notification>();
             ListFlights = new ObservableCollection<Flight>();
@@ -156,6 +158,7 @@ namespace LikeFly.Database
             await GetAllInvoices();
             await GetAllBookedTicket();
             await GetRule();
+            await GetReviews();
            
             /*foreach (var f in ListFlights)
             {
@@ -218,7 +221,16 @@ namespace LikeFly.Database
             }
             return null;
         }
-            
+        async Task GetReviews()
+        {
+            ListReview = new ObservableCollection<Review>();
+            reviews = await ReviewServices.GetAllReviews();
+            foreach (Review p in reviews)
+            {
+                ListReview.Add(p);
+            }
+        }
+
         private SearchService search;
         public SearchService Search
         {
@@ -464,6 +476,16 @@ namespace LikeFly.Database
             }
         }
 
+        public ReviewServices reviewServices;
+        public ReviewServices ReviewServices
+        {
+            get { return reviewServices; }
+            set
+            {
+                reviewServices = value;
+                OnPropertyChanged("ReviewServices");
+            }
+        }
 
         private DiscountsService discountServices;
         public DiscountsService DiscountsServices
@@ -519,8 +541,16 @@ namespace LikeFly.Database
             }
         }
 
-        
 
+        private ObservableCollection<Review> listReview;
+        public ObservableCollection<Review> ListReview
+        {
+            get { return listReview; }
+            set
+            {
+                listReview = value;
+            }
+        }
 
         private ObservableCollection<BookedTicket> bookedTicketList;
         public ObservableCollection<BookedTicket> ListBookedTickets
