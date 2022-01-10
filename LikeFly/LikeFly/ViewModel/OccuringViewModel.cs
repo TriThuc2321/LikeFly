@@ -1,6 +1,7 @@
 ﻿using LikeFly.Core;
 using LikeFly.Database;
 using LikeFly.Model;
+using LikeFly.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,7 +55,7 @@ namespace LikeFly.ViewModel
                 (int.Parse(duration[0]) * 60 * 60 + int.Parse(duration[1]) * 60).ToString();
 
             // Thoi gian bat dau flight den current time
-            double count = interval.Seconds;
+            var count = interval.TotalSeconds;
             if (count > 0)
             {
                 
@@ -90,7 +91,7 @@ namespace LikeFly.ViewModel
                 DataManager.Ins.CurrentBookedTicket = result;
                 DataManager.Ins.CurrentFlight = result.Flight;
                 DataManager.Ins.CurrentInvoice = result.Invoice;
-             ///   navigation.PushAsync(new TourScheduleView());
+                navigation.PushAsync(new DetailFlightView2());
                 SelectedTicket = null;
             }
         });

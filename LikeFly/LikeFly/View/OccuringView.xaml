@@ -67,14 +67,14 @@
                         >
                                     <StackLayout Orientation="Horizontal">
                                         <StackLayout Margin="18" WidthRequest="80">
-                                            <Label Text="{Binding StartTime}" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#272727"/>
+                                            <Label Text="{Binding Flight.StartTime}" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#272727"/>
                                             <Image Source="airplaneIcon.png" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
-                                            <Label Text="{Binding StartDate}" HorizontalOptions="Center" TextColor="#272727"/>
+                                            <Label Text="{Binding Flight.StartDate}" HorizontalOptions="Center" TextColor="#272727"/>
                                         </StackLayout>
 
                                         <StackLayout  BackgroundColor="#272727" HorizontalOptions="FillAndExpand" Padding="18">
-                                            <Label Text="{Binding Name}" FontAttributes="Bold" TextColor="White" FontSize="18"/>
-                                            <Label Text="{Binding Description}" TextColor="White" FontSize="15"/>
+                                            <Label Text="{Binding Flight.Description}" FontAttributes="Bold" TextColor="White" FontSize="18"/>
+                                            <Label Text="{Binding Flight.Duration}" TextColor="White" FontSize="15"/>
                                             <Label Text="{Binding Invoice.Total, StringFormat='{0} VND' }" TextColor="LightSeaGreen" FontSize="15" FontAttributes="Bold"/>
                                         </StackLayout>
                                     </StackLayout>

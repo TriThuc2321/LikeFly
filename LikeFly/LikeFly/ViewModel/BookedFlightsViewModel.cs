@@ -156,7 +156,7 @@ namespace LikeFly.ViewModel
                 (int.Parse(duration[0]) * 60 * 60 + int.Parse(duration[1]) * 60).ToString();
 
             // Thoi gian bat dau flight den current time
-            double count = interval.Seconds;
+            double count = interval.TotalSeconds;
             if (count > 0)
             {
                 Occured = "Chưa bay";
