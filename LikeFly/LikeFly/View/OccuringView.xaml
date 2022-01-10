@@ -29,16 +29,15 @@
 
             <Label Text="Chuyến bay đang diễn ra"
                    Grid.Row="0"
-                   HorizontalOptions="Center"
-                   Margin="40,10,20,0"
+                   HorizontalOptions="EndAndExpand"
+                   Margin="00,10,20,0"
                    VerticalOptions="Start"
                    FontAttributes="Bold"
                    TextColor="Black"
                    FontSize="25"/>
 
-            <StackLayout Orientation="Vertical" Grid.RowSpan="1">
-                <ScrollView >
-                    <CollectionView x:Name="clview"
+            <StackLayout Orientation="Vertical" Grid.RowSpan="2" Margin="0,60,0,0">
+                <CollectionView x:Name="clview"
                                    
                             ItemsSource="{Binding TicketList}"
                             SelectionMode="Single" 
@@ -46,47 +45,46 @@
                             SelectionChangedCommand="{Binding SelectedCommand}"
                             SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clview}}"
                             >
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout VerticalOptions="Start" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout VerticalOptions="Start" >
 
-                                    <VisualStateManager.VisualStateGroups>
-                                        <VisualStateGroup Name="CommonStates">
-                                            <VisualState Name="Selected">
-                                                <VisualState.Setters>
-                                                    <Setter Property="BackgroundColor" Value="Transparent" />
-                                                </VisualState.Setters>
-                                            </VisualState>
-                                        </VisualStateGroup>
-                                    </VisualStateManager.VisualStateGroups>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
 
-                                    <Frame
+                                <Frame
                                     BackgroundColor="White"
                                     Margin="20,10,20,10"
                                     CornerRadius="10"
                                     Padding="0"                                  
                         >
-                                        <StackLayout Orientation="Horizontal">
-                                            <StackLayout Margin="18" WidthRequest="80">
-                                                <Label Text="{Binding StartTime}" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#272727"/>
-                                                <Image Source="airplaneIcon.png" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
-                                                <Label Text="{Binding StartDate}" HorizontalOptions="Center" TextColor="#272727"/>
-                                            </StackLayout>
-
-                                            <StackLayout  BackgroundColor="#272727" HorizontalOptions="FillAndExpand" Padding="18">
-                                                <Label Text="{Binding Name}" FontAttributes="Bold" TextColor="White" FontSize="18"/>
-                                                <Label Text="{Binding Description}" TextColor="White" FontSize="15"/>
-                                                <Label Text="{Binding Invoice.Total, StringFormat='{0} VND' }" TextColor="LightSeaGreen" FontSize="15" FontAttributes="Bold"/>
-                                            </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout Margin="18" WidthRequest="80">
+                                            <Label Text="{Binding StartTime}" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#272727"/>
+                                            <Image Source="airplaneIcon.png" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
+                                            <Label Text="{Binding StartDate}" HorizontalOptions="Center" TextColor="#272727"/>
                                         </StackLayout>
-                                    </Frame>
-                                </StackLayout>
 
-                            </DataTemplate>
+                                        <StackLayout  BackgroundColor="#272727" HorizontalOptions="FillAndExpand" Padding="18">
+                                            <Label Text="{Binding Name}" FontAttributes="Bold" TextColor="White" FontSize="18"/>
+                                            <Label Text="{Binding Description}" TextColor="White" FontSize="15"/>
+                                            <Label Text="{Binding Invoice.Total, StringFormat='{0} VND' }" TextColor="LightSeaGreen" FontSize="15" FontAttributes="Bold"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
 
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </ScrollView>
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

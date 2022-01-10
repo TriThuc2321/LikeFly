@@ -89,6 +89,10 @@
         <ShellContent Route="ManagerView" ContentTemplate="{DataTemplate views:PilotView}" Style="{DynamicResource Base1Style}" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Review" Icon="report.png" >
+        <ShellContent Route="Review" ContentTemplate="{DataTemplate views:ReviewView}" Style="{DynamicResource Base1Style}" />
+    </FlyoutItem>
+
     <Shell.FlyoutHeader >
         <StackLayout >
             <Frame                                         
