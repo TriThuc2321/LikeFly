@@ -35,7 +35,7 @@
                             Grid.Row="1"
                             ItemsSource="{Binding ListBookedTicket}" 
                             SelectedItem="{Binding SelectedBookedTicket}"
-                            SelectionMode="Single"                                                         
+                            SelectionMode="None"                                                         
                             SelectionChangedCommand="{Binding SelectedCommand}"
                             SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference clview}}"
                             >

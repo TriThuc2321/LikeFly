@@ -73,7 +73,7 @@ namespace LikeFly.ViewModel
 
                 DataManager.Ins.CurrentNoti = selected;
 
-                /*OnPropertyChanged("ListNotification");*/
+                OnPropertyChanged("ListNotification");
                 await navigation.PushAsync(new DetailNotificationView());
                 SelectedNoti = null;
             }

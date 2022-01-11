@@ -65,11 +65,10 @@ namespace LikeFly.ViewModel
 
         private void InitList()
         {
-
             ListBookedTicket = new ObservableCollection<BookedTicket>();
             foreach (BookedTicket ite in DataManager.Ins.ListBookedTickets)
             {
-                if (ite.Invoice.IsPaid == false) ListBookedTicket.Add(ite);
+                if (ite.IsCancel == false && ite.Invoice.IsPaid == false) ListBookedTicket.Add(ite);
             }
         }
         public ICommand AcceptCommand => new Command<object>((obj) =>
