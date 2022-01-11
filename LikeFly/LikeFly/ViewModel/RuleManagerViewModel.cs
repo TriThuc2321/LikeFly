@@ -27,43 +27,79 @@ namespace LikeFly.ViewModel
         private void Init()
         {
             RuleList = new ObservableCollection<Rule>();
+            BackupRuleList = new ObservableCollection<Rule>();
             foreach (Rule ite in DataManager.Ins.ListRule)
             {
                 RuleList.Add(ite);
+                backupruleList.Add(ite);
+            }
+        }
+        private void Backup()
+        {
+            RuleList = new ObservableCollection<Rule>();
+            foreach (Rule ite in BackupRuleList)
+            {
+                RuleList.Add(ite);
+               
             }
         }
 
         public ICommand SaveCommand => new Command<object>(async (obj) =>
         {
-            UpdateRule();
-            DependencyService.Get<IToast>().ShortToast("Lưu thành công!");
+            int flag = 0;
+            foreach ( Rule itee in DataManager.Ins.ListRule)
+            {
+                if (int.Parse(itee.DayNum) < 0 || int.Parse(itee.Deduct) < 0 || int.Parse(itee.Deduct) >= 100)
+                {
+                    DependencyService.Get<IToast>().ShortToast("Thông tin không hợp lệ !");
+                    Backup();
+                    flag = 1;
+                }
+
+            }
+            if (flag == 0)
+            {
+                UpdateRule();
+                DependencyService.Get<IToast>().ShortToast("Lưu thành công!");
+            }
+                
+           
+           
         });
         public ICommand DeleteCommand => new Command<object>(async (obj) =>
         {
             DataManager.Ins.RuleServices.DeleteRule((Rule)obj);
             DataManager.Ins.ListRule.Remove((Rule)obj);
             RuleList = DataManager.Ins.ListRule;
+            BackupRuleList = DataManager.Ins.ListRule;
             DependencyService.Get<IToast>().ShortToast("Xóa thành công!");
         });
         public ICommand AddCommand => new Command<object>(async (obj) =>
         {
+           
             var rand = new Random();
             string id = rand.Next(50, 1000).ToString();
             Rule newRule = new Rule("0", id, "0");
-            DataManager.Ins.RuleServices.SendNewRule(id, "0", "0");
-            DataManager.Ins.ListRule.Add(newRule);
-            RuleList = DataManager.Ins.ListRule;
-            DependencyService.Get<IToast>().ShortToast("Thêm thành công!");
+                DataManager.Ins.RuleServices.SendNewRule(id, "0", "0");
+                DataManager.Ins.ListRule.Add(newRule);
+                RuleList = DataManager.Ins.ListRule;
+                BackupRuleList = DataManager.Ins.ListRule;
+                DependencyService.Get<IToast>().ShortToast("Thêm thành công!");
+         
+          
 
         });
 
 
         private async void UpdateRule()
         {
+            BackupRuleList = new ObservableCollection<Rule>();
             foreach (Rule ite in DataManager.Ins.ListRule)
             {
                 await DataManager.Ins.RuleServices.UpdateRule(ite);
+                BackupRuleList.Add(ite);
             }
+           
         }
 
         private ObservableCollection<Rule> ruleList;
@@ -74,6 +110,17 @@ namespace LikeFly.ViewModel
             {
                 ruleList = value;
                 OnPropertyChanged("RuleList");
+            }
+        }
+
+        private ObservableCollection<Rule> backupruleList;
+        public ObservableCollection<Rule> BackupRuleList
+        {
+            get { return backupruleList; }
+            set
+            {
+                backupruleList = value;
+                OnPropertyChanged("BackupRuleList");
             }
         }
     }

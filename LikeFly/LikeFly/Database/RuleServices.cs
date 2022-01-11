@@ -14,14 +14,14 @@ namespace LikeFly.Database
     {
         FirebaseClient firebase = new FirebaseClient("https://likefly-5ec61-default-rtdb.asia-southeast1.firebasedatabase.app/");
         FirebaseStorage storage = new FirebaseStorage("likefly-5ec61.appspot.com");
-        public List<Rule> Rule { get; set; }
+        public List<Rule> RuleList { get; set; }
 
         public RuleServices()
         {
         }
         public async Task<List<Rule>> GetRule()
         {
-            Rule = (await firebase
+            RuleList = (await firebase
              .Child("Rule")
              .OnceAsync<Rule>()).Select(item => new Rule
              {
@@ -30,8 +30,20 @@ namespace LikeFly.Database
                  Id = item.Object.Id,
              }).ToList();
 
+           for (int i = 0; i < RuleList.Count - 1; i++)
+            {
+                for (int j = i + 1; j < RuleList.Count; j ++)
+                {
+                    if (int.Parse(RuleList[i].DayNum.Trim()) > int.Parse(RuleList[j].DayNum.Trim()))
+                    {
+                        var temp = RuleList[j];
+                        RuleList[j] = RuleList[i];
+                        RuleList[i] = temp;
+                    }
+                }
+            }
 
-            return Rule;
+            return RuleList;
         }
 
         public async Task UpdateRule(Rule rule)

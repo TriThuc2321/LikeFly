@@ -115,20 +115,13 @@ namespace LikeFly.ViewModel
                 }
             }
 
-            //string notiId = DataManager.Ins.GeneratePlaceId(10);
-            //string noti = DataManager.Ins.GetDeductInformation(DataManager.Ins.CurrentBookedTicket)[0];
+            // Thien
+            string notiId = DataManager.Ins.FlightService.GenerateId(10);
+            string noti = DataManager.Ins.GetDeductInformation(DataManager.Ins.CurrentBookedTicket)[0];
 
-            //DataManager.Ins.NotiServices.ListMyNoti_System.Add(new Notification(notiId, "System", DataManager.Ins.CurrentUser.email, "False", 1, noti, DateTime.Now, "True", DataManager.Ins.currentTour.id, "Canceled Ticket: " + DataManager.Ins.currentTour.name));
-
-            //await DataManager.Ins.NotiServices.SendNoti(
-            //    DataManager.Ins.GeneratePlaceId(10),
-            //    "System",
-            //    DataManager.Ins.CurrentUser.email,
-            //    1,
-            //    noti,
-            //    "Canceled Ticket: " + DataManager.Ins.currentTour.name,
-            //    DataManager.Ins.currentTour.id
-            //    );
+            DataManager.Ins.NotiServices.ListAllNoti.Add(new Notification(notiId, "False", "False", DataManager.Ins.CurrentUser.email, "Canceled Ticket: " + DataManager.Ins.CurrentFlight.Name, noti, DateTime.Now, DataManager.Ins.CurrentBookedTicket.FlightId));
+            await DataManager.Ins.NotiServices.SendNoti(
+               notiId, DataManager.Ins.CurrentUser.email,noti, "Canceled Ticket: " + DataManager.Ins.CurrentFlight.Name,  DataManager.Ins.CurrentBookedTicket.FlightId);
 
         }
 

@@ -24,8 +24,8 @@ namespace LikeFly.ViewModel
             {
                 if (ite.id == SelectedNoti.id)
                 {
-                    ite.IsChecked = "true";
-                    SelectedNoti.isChecked = "true";
+                    ite.IsChecked = "True";
+                    SelectedNoti.IsChecked = "True";
                     break;
                 }
             }
