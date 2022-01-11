@@ -88,26 +88,32 @@
                                                    FontSize="40"
                                                    VerticalOptions="CenterAndExpand"
                                                    FontAttributes="Bold"
-                                                   Margin="10,10,0,10"/>
+                                                   Margin="10,10,0,10">
+                                                
+                                            </Label>
 
                                             <Label Text="%"
                                                    FontSize="20"
                                                    FontAttributes="Bold"
                                                    Margin="0,35,10,10"/>
 
-                                            <BoxView BackgroundColor="Black"
+                                            <StackLayout Orientation="Horizontal">
+                                                <BoxView BackgroundColor="Black"
                                                      WidthRequest="0.5"/>
 
-                                            <StackLayout Orientation="Vertical"
+                                                <StackLayout Orientation="Vertical"
                                                          Margin="10,0,0,0">
-                                                <Label Text="{Binding total, StringFormat='Tổng cộng: {0}'}"
+                                                    <Label Text="{Binding total, StringFormat='Tổng cộng: {0}'}"
                                                        TextColor="Black"
                                                        Margin="10"/>
 
-                                                <Label Text="{Binding isUsed, StringFormat='Đã áp dụng: {0}'}"
+                                                    <Label Text="{Binding isUsed, StringFormat='Đã áp dụng: {0}'}"
                                                        TextColor="Black"
                                                        Margin="10"/>
+                                                </StackLayout>
                                             </StackLayout>
+
+                                            
 
 
 

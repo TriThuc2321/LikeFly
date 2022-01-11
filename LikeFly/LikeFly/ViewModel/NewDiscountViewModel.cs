@@ -95,9 +95,9 @@ namespace LikeFly.ViewModel
                 return false;
             }
 
-            if (int.Parse(Percent) > 100)
+            if (int.Parse(Percent) > 100 ||int.Parse(Percent) <=0)
             {
-                Notice += "Phần trăm giảm giá tối đa là 100%. Hãy thử lại ";
+                Notice += "Phần trăm giảm giá tối đa là 100% và phải lớn hơn 0%. Hãy thử lại ";
                 NoticeVisible = true;
                 return false;
             }
