@@ -364,11 +364,23 @@ namespace LikeFly.Database
                 if (value.rank == 0 || value.rank == 1)
                 {
                     IsAdmin = true;
+                    IsPilot = false;
+                    IsUser = false;
                 }
-                else
+                else if(value.rank == 2)
                 {
                     IsAdmin = false;
+                    IsPilot = true;
+                    IsUser = false;
                 }
+
+                else if(value.rank == 3)
+                {
+                    IsAdmin = false;
+                    IsPilot = false;
+                    IsUser = true;
+                }
+                
                 OnPropertyChanged("CurrentUser");
             }
         }
@@ -446,6 +458,29 @@ namespace LikeFly.Database
                 OnPropertyChanged("IsAdmin");
             }
         }
+
+        private bool isPilot;
+        public bool IsPilot
+        {
+            get { return isPilot; }
+            set
+            {
+                isPilot = value;
+                OnPropertyChanged("IsPilot");
+            }
+        }
+
+        private bool isUser;
+        public bool IsUser
+        {
+            get { return isUser; }
+            set
+            {
+                isUser = value;
+                OnPropertyChanged("IsUser");
+            }
+        }
+
         private string USDcurrency;
         public string USDCurrency
         {

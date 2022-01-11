@@ -5,48 +5,47 @@
              xmlns:vm="clr-namespace:LikeFly.ViewModel"
              NavigationPage.HasNavigationBar="False"
              Shell.FlyoutBehavior="Disabled"
-             >
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
 
     <ContentPage.BindingContext>
         <vm:ConfirmEmailViewModel/>
     </ContentPage.BindingContext>
 
-    <Grid BackgroundColor="LightSeaGreen">
-        
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition />
+    <Grid BackgroundColor="#50C7C7">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
 
-            </Grid.RowDefinitions>
+        <Frame BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="70">
+            <Image Source="logo.png" HeightRequest="100" Aspect="AspectFill" />
+        </Frame>
 
-            <Label Text="XÁC NHẬN EMAIL" Grid.Row="1" FontSize="25" Margin="25,0,0,0" TextColor="White" FontAttributes="Bold"/>
-            <Frame Grid.Row="2" CornerRadius="20" Margin="20, 5, 20, 5" Padding="5" HasShadow="False" BackgroundColor="White" VerticalOptions="Center" >
-                <Grid>
-                    <Entry                    
+        <pancake:PancakeView CornerRadius="0,70,0,0"  Grid.Row="1">
+            <StackLayout BackgroundColor="White">
+                
+                <Label Text="XÁC NHẬN EMAIL" Grid.Row="1" FontSize="25" Margin="25,40,0,0" TextColor="#272727" FontAttributes="Bold"/>
+                <Frame Grid.Row="2" CornerRadius="20" Margin="20, 5, 20, 5" Padding="5" HasShadow="False" BackgroundColor="White" VerticalOptions="Center" >
+                    <Grid>
+                        <Entry                    
                         Placeholder="Mã xác nhận"
                         PlaceholderColor="#C0C0C0"
                         FontSize="15"
-                        Margin="15,0,0,0"
+                        Margin="0,0,0,0"
                         TextColor="Black"
                         Text="{Binding VerifyCode}"
                 />
-                </Grid>
-            </Frame>
+                    </Grid>
+                </Frame>
 
-            <Button 
+                <Button 
                 Grid.Row="3"
                 CornerRadius="20" 
                 Margin="25,20,25,0"
                 Padding="20,5,20,5"
-                BackgroundColor="White" 
+                BackgroundColor="#50C7C7" 
                 FontAttributes="Bold"
-                TextColor="LightSeaGreen"
+                TextColor="White"
                 HorizontalOptions="End"
                 HeightRequest="40"
                 Text="xác nhận"
@@ -54,7 +53,10 @@
                 Command="{Binding ConfirmCommand}"
                 />
 
-        </Grid>
+            </StackLayout>
+        </pancake:PancakeView>
+
+       
 
     </Grid>
 </ContentPage>

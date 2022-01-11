@@ -37,8 +37,8 @@
 
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="20,0,20,0" >
-                <Label Text="Lọc theo:" FontSize="Small" FontAttributes="Bold" VerticalOptions="CenterAndExpand" Margin="10"></Label>
-                <Button Text="Tổng" Command="{Binding SortByTotalPrice}" HorizontalOptions="Start" CornerRadius="10" BackgroundColor="DimGray" TextColor="White" FontAttributes="Bold"></Button>
+                
+                <Button Text="Sắp xếp" Command="{Binding SortByTotalPrice}" HorizontalOptions="Start" CornerRadius="10" BackgroundColor="DimGray" TextColor="White" FontAttributes="Bold"></Button>
                 <!--<Button Text="Percent" Command="{Binding SortByPercent}" HorizontalOptions="StartAndExpand" CornerRadius="10" BackgroundColor="DimGray"  TextColor="White" FontAttributes="Bold"></Button>-->
 <Button Text="Lọc" Command="{Binding Filter}" HorizontalOptions="EndAndExpand" Margin="0,0,10,0" CornerRadius="10" BackgroundColor="#272727" TextColor="White" FontAttributes="Bold"></Button>
             </StackLayout>
@@ -74,7 +74,7 @@
                                     </Label>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Label Text="{Binding totalPrice ,StringFormat='{}Tổng doanh thu: {0} $'}" FontSize="Small" TextColor="WhiteSmoke"></Label>
+                                    <Label Text="{Binding totalPrice ,StringFormat='{}Tổng doanh thu: {0} VNĐ'}" FontSize="Small" TextColor="WhiteSmoke"></Label>
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                                         <Label Text="{Binding totalticket,StringFormat='{}Số vé đã bán: {0}'}" FontSize="Small" TextColor="{Binding color}"></Label>
                                     </StackLayout>

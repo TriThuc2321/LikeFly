@@ -304,7 +304,7 @@ namespace LikeFly.ViewModel
                     {
                         if (imgStream == null)
                         {
-                            User user = new User { name = Name, address = Address, birthday = Birthday, cmnd = CMND, contact = Contact, email = Email, rank = CurrUser.rank, score = CurrUser.score, profilePic = CurrUser.profilePic, password = CurrUser.password };
+                            User user = new User { name = Name, address = Address, birthday = Birthday, cmnd = CMND, contact = Contact, email = Email, rank = CurrUser.rank, score = CurrUser.score, profilePic = CurrUser.profilePic, password = CurrUser.password, isEnable = true };
                             var toUpdateUser = (await firebase
                          .Child("Users")
                          .OnceAsync<User>()).Where(a => a.Object.email == user.email).FirstOrDefault();
@@ -323,7 +323,8 @@ namespace LikeFly.ViewModel
                                   profilePic = user.profilePic,
                                   address = user.address,
                                   score = user.score,
-                                  rank = user.rank
+                                  rank = user.rank,
+                                  isEnable = user.isEnable
                               });
                             DependencyService.Get<IToast>().ShortToast("Lưu hồ sơ thành công");
                             IsEdit = false;
