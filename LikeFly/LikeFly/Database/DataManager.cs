@@ -74,38 +74,38 @@ namespace LikeFly.Database
 
            
         }
-        public List<string> GetDeductInformation(BookedTicket cancelledTicket)
-        {
-            List<string> result = new List<string>();
-            string deductPercent = "100";
+   //     public List<string> GetDeductInformation(BookedTicket cancelledTicket)
+   //     {
+   //         List<string> result = new List<string>();
+   //         string deductPercent = "100";
             
-            string[] TourStartTime = DataManager.Ins.currentFlight.StartDate.Split('/');
-            DateTime time = new DateTime(int.Parse(TourStartTime[2]), int.Parse(TourStartTime[0]), int.Parse(TourStartTime[1]));
-            DateTime currrent_time = DateTime.Now.AddDays(0);
-            TimeSpan interval = time.Subtract(currrent_time);
-            double count = interval.Days;
+   //         string[] TourStartTime = DataManager.Ins.currentFlight.StartDate.Split('/');
+   //         DateTime time = new DateTime(int.Parse(TourStartTime[2]), int.Parse(TourStartTime[0]), int.Parse(TourStartTime[1]));
+   //         DateTime currrent_time = DateTime.Now.AddDays(0);
+   //         TimeSpan interval = time.Subtract(currrent_time);
+   //         double count = interval.Days;
 
-            foreach (Rule ite in ListRule)
-            {
-                if (count <= int.Parse(ite.DayNum))
-                {
-                    deductPercent = ite.Deduct;
-                    break;
-                }
-            }
-            string amount = ((int.Parse(cancelledTicket.Invoice.Total) - ((int.Parse(cancelledTicket.Invoice.Total) * int.Parse(deductPercent)) / 100))).ToString();
-            deductPercent = (100 - int.Parse(deductPercent)).ToString();
+   //         foreach (Rule ite in ListRule)
+   //         {
+   //             if (count <= int.Parse(ite.DayNum))
+   //             {
+   //                 deductPercent = ite.Deduct;
+   //                 break;
+   //             }
+   //         }
+   //         string amount = ((int.Parse(cancelledTicket.Invoice.Total) - ((int.Parse(cancelledTicket.Invoice.Total) * int.Parse(deductPercent)) / 100))).ToString();
+   //         deductPercent = (100 - int.Parse(deductPercent)).ToString();
 
-            string notificationBody = "Dear, " + cancelledTicket.Name + "\n" +
-                "You have just canceled your tour ticket: '" + cancelledTicket.Flight.Name + "' departing on " + cancelledTicket.Flight.StartDate + " " + cancelledTicket.Flight.StartTime + ". According to our policy, you will receive a refund of "
-                + deductPercent + " % of the bill paid. The amount you will be refunded is: " + amount + "$. Thank you for using the service.\n"
-   + "Transactions will be made when you connect to our transaction office: 0383303061 - Vong Minh Huynh." + "\n---------------\n" + "For any questions and feedback, please contact the hotline: 0834344655 - Pham Vo Di Thien";
+   //         string notificationBody = "Dear, " + cancelledTicket.Name + "\n" +
+   //             "You have just canceled your tour ticket: '" + cancelledTicket.Flight.Name + "' departing on " + cancelledTicket.Flight.StartDate + " " + cancelledTicket.Flight.StartTime + ". According to our policy, you will receive a refund of "
+   //             + deductPercent + " % of the bill paid. The amount you will be refunded is: " + amount + "$. Thank you for using the service.\n"
+   //+ "Transactions will be made when you connect to our transaction office: 0383303061 - Vong Minh Huynh." + "\n---------------\n" + "For any questions and feedback, please contact the hotline: 0834344655 - Pham Vo Di Thien";
 
-            result.Add(notificationBody);
-            result.Add(amount);
+   //         result.Add(notificationBody);
+   //         result.Add(amount);
 
-            return result;
-        }
+   //         return result;
+   //     }
 
         private async Task SetupAsync(ObservableCollection<Flight> list)
         {

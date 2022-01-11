@@ -95,7 +95,7 @@ namespace LikeFly.ViewModel
             {
                 DataManager.Ins.CurrentBookedTicket.Invoice.Discount = DataManager.Ins.CurrentDiscount;
 
-                for (int i = 0; i < DataManager.Ins.ListDiscount.Count - 1; i++)
+                for (int i = 0; i < DataManager.Ins.ListDiscount.Count ; i++)
                 {
                     if (DataManager.Ins.ListDiscount[i].id == DataManager.Ins.CurrentDiscount.id)
                     {
@@ -106,7 +106,7 @@ namespace LikeFly.ViewModel
             }
 
 
-            for (int i = 0; i < DataManager.Ins.ListFlights.Count - 1; i++)
+            for (int i = 0; i < DataManager.Ins.ListFlights.Count ; i++)
             {
                 if (DataManager.Ins.ListFlights[i].Id == DataManager.Ins.CurrentFlight.Id)
                 {
@@ -115,13 +115,13 @@ namespace LikeFly.ViewModel
                 }
             }
 
-            // Thien
+            // Gui thong bao
             string notiId = DataManager.Ins.FlightService.GenerateId(10);
-            string noti = DataManager.Ins.GetDeductInformation(DataManager.Ins.CurrentBookedTicket)[0];
+            string noti = GetDeductInformation(DataManager.Ins.CurrentBookedTicket)[0];
 
-            DataManager.Ins.NotiServices.ListAllNoti.Add(new Notification(notiId, "False", "False", DataManager.Ins.CurrentUser.email, "Canceled Ticket: " + DataManager.Ins.CurrentFlight.Name, noti, DateTime.Now, DataManager.Ins.CurrentBookedTicket.FlightId));
+            DataManager.Ins.NotiServices.ListAllNoti.Add(new Notification(notiId, "False", "False", DataManager.Ins.CurrentUser.email, "Huỷ chuyến bay: " + SelectedTicket.Flight.Name, noti, DateTime.Now, DataManager.Ins.CurrentBookedTicket.FlightId));
             await DataManager.Ins.NotiServices.SendNoti(
-               notiId, DataManager.Ins.CurrentUser.email,noti, "Canceled Ticket: " + DataManager.Ins.CurrentFlight.Name,  DataManager.Ins.CurrentBookedTicket.FlightId);
+               notiId, DataManager.Ins.CurrentUser.email,noti, "Huỷ chuyến bay " + DataManager.Ins.CurrentFlight.Name,  DataManager.Ins.CurrentBookedTicket.FlightId);
 
         }
 
@@ -255,7 +255,7 @@ namespace LikeFly.ViewModel
    + "Để nhận lại khấu hao, xin hãy liên hệ với văn phòng của chúng tôi qua: 0383303061 (Nguyễn Khánh Linh)." + "\n---------------\n" + "Nếu có câu hỏi, xin liên hệ hotline: 0787960456";
 
             result.Add(notificationBody);
-            result.Add(amount);
+          ///  result.Add(amount);
 
             return result;
         }
