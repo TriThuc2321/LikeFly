@@ -52,7 +52,8 @@ namespace LikeFly.ViewModel
             {
                 DataManager.Ins.CurrentBookedTicket = result;
                 DataManager.Ins.CurrentInvoice = result.Invoice;
-                if (result.Invoice.Discount != null)
+
+                if (result.Invoice.Discount != null && result.Invoice.Discount.id != null && result.Invoice.Discount.id !="")
                     DataManager.Ins.CurrentDiscount = result.Invoice.Discount;
                 DataManager.Ins.CurrentFlight = result.Flight;
                 DataManager.Ins.CurrentTicketType = result.Invoice.TicketTypes;

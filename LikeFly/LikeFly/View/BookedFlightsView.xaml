@@ -111,7 +111,7 @@
                                                         </DataTrigger>
 
                                                         <DataTrigger TargetType="Label" Binding="{Binding IsCancel}" Value="True">
-                                                            <Setter Property="Text" Value="Quý khách đã huỷ" />
+                                                            <Setter Property="Text" Value="Đã huỷ" />
                                                         </DataTrigger>
                                                     </Label.Triggers>
                                                 </Label>

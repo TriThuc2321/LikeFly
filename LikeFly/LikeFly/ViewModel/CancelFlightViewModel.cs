@@ -43,15 +43,15 @@ namespace LikeFly.ViewModel
 
                 await DataManager.Ins.BookedTicketsServices.UpdateBookedTicket(booked);
 
-                //if (DataManager.Ins.CurrentDiscount != null)
-                //{
-                //    int isUsed = int.Parse(DataManager.Ins.CurrentDiscount.isUsed);
-                //    isUsed--;
-                //    DataManager.Ins.CurrentDiscount.isUsed = isUsed.ToString();
+                if (DataManager.Ins.CurrentDiscount != null)
+                {
+                    int isUsed = int.Parse(DataManager.Ins.CurrentDiscount.isUsed);
+                    isUsed--;
+                    DataManager.Ins.CurrentDiscount.isUsed = isUsed.ToString();
 
-                //    await DataManager.Ins.DiscountsServices.UpdateDiscount(DataManager.Ins.CurrentDiscount);
+                    await DataManager.Ins.DiscountsServices.UpdateDiscount(DataManager.Ins.CurrentDiscount);
 
-                //}
+                }
 
                 if (DataManager.Ins.CurrentFlight != null)
                 {
