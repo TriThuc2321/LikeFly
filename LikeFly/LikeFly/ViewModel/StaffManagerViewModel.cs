@@ -46,13 +46,13 @@ namespace LikeFly.ViewModel
             }
 
             types = new ObservableCollection<string>();
-            types.Add("All");
+            types.Add("Tất cả");
             types.Add("Admins");
-            types.Add("Managers");
-            types.Add("Pilots");
-            types.Add("Customers");
+            types.Add("Quản lí");
+            types.Add("Phi công");
+            types.Add("Khách hàng");
 
-            SelectedType = "All";
+            SelectedType = "Tất cả";
 
            
         }
@@ -154,7 +154,7 @@ namespace LikeFly.ViewModel
             {
                 selectedType = value;
                 AllList = new ObservableCollection<User>();
-                if (value == "All")
+                if (value == "Tất cả")
                 {
                     foreach (var ite in DataManager.Ins.users)
                     {
@@ -168,28 +168,27 @@ namespace LikeFly.ViewModel
                         AllList.Add(ite);
                     }
                 }
-                else if (value == "Managers")
+                else if (value == "Quản lí")
                 {
                     foreach (var ite in ListManagers)
                     {
                         AllList.Add(ite);
                     }
                 }
-                else if (value == "Pilots")
+                else if (value == "Phi công")
                 {
                     foreach (var ite in ListPilots)
                     {
                         AllList.Add(ite);
                     }
                 }
-                else if (value == "Customers")
+                else if (value == "Khách hàng")
                 {
                     foreach (var ite in ListCustomers)
                     {
                         AllList.Add(ite);
                     }
                 }
-
 
                 OnPropertyChanged("SelectedType");
             }

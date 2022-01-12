@@ -10,26 +10,36 @@
         <vm:ReviewViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout >
-            <StackLayout Padding="10" Orientation="Horizontal">
-                <ImageButton Command="{Binding NavigationBack}" 
-                                 Source="menuIcon.png" 
-                                 HeightRequest="30" 
-                                 WidthRequest="50"
-                                 CornerRadius="10" 
-                                 HorizontalOptions="StartAndExpand" 
-                                 VerticalOptions="StartAndExpand"
-                                 BackgroundColor="White" 
-                                 >
-                </ImageButton>
-                <Label Text="Reviews" FontSize="Large" TextColor="Black" FontAttributes="Bold" HorizontalOptions="End"></Label>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackLayout BackgroundColor="CadetBlue"/>
+
+            <StackLayout >
+                <Label Text="Đánh giá" Margin="0,20,25,0" FontSize="25" FontAttributes="Bold" HorizontalTextAlignment="End" TextColor="White"/>
             </StackLayout>
 
+            <ImageButton
+                HeightRequest="40"
+                WidthRequest="40"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                Source="menuIcon.png"
+                Margin="20, 15, 0, 0"
+                Grid.Column="0"
+                BackgroundColor="Transparent"
+                Command="{Binding NavigationBack}"
+            />
 
-            <StackLayout Orientation="Horizontal">
-                <Label Text="{Binding StarAverage}" Margin="15,0,0,0" FontAttributes="Bold" VerticalOptions="Center"/>
-                <Image Source="scoreicon.png" Margin="0,0,0,0" HeightRequest="20" WidthRequest="20"/>
-                <ImageButton Command="{Binding OpenAddReview}" 
+            <Frame Grid.RowSpan="2" Margin="25,70,25,30" CornerRadius="20" >
+                <StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding StarAverage, StringFormat='{}Trung bình: {0} sao'}" Margin="15,0,0,0" FontAttributes="Bold" VerticalOptions="Center"/>
+                        <Image Source="scoreicon.png" Margin="0,0,0,0" HeightRequest="20" WidthRequest="20"/>
+                        <ImageButton Command="{Binding OpenAddReview}" 
                                  Source="plusIcon.png" 
                                  HeightRequest="30" 
                                  WidthRequest="50"
@@ -38,56 +48,53 @@
                              Margin="0,0,5,0"
                                  HorizontalOptions="EndAndExpand" 
                                  >
-                </ImageButton>
-            </StackLayout>
+                        </ImageButton>
+                    </StackLayout>
 
-
-            <CollectionView x:Name="clview" 
+                    <CollectionView x:Name="clview" 
                             ItemsSource="{Binding ReviewList}" 
                             SelectionMode="None" 
                             VerticalOptions="Center"
                            >
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Frame CornerRadius="5" Padding="10" Margin="10,10,10,0" BackgroundColor="WhiteSmoke" >
-                                <StackLayout>
-                                    <Label Text="{Binding email}" 
-                                                   Margin="5,0,0,0" 
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Frame CornerRadius="5" Padding="10" Margin="10,10,10,10" BackgroundColor="White" >
+                                        <StackLayout >
+                                            <Label Text="{Binding message}"
+                                                       Margin="0, 0,0,0"
+                                                   TextColor="#272727"
+                                              FontSize="Large"
+                                                       FontAttributes="Bold"/>
+                                            <Label Text="{Binding email}" 
+                                                   Margin="0,0,0,0" 
                                                    FontSize="Medium" 
                                                    FontAttributes="Bold" 
-                                                   TextColor="SteelBlue"/>
-
-
-                                    <Label Text="{Binding message ,StringFormat='{} Message: {0}'}"
-                                                       Margin="0, 0,0,0"
-                                                   TextColor="Black"
-                                              FontSize="Small"
-                                                       FontAttributes="Bold"/>
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                                        <Label Text="{Binding time, StringFormat='{} Date: {0}' }" 
+                                                   TextColor="#272727"/>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                                                <Label Text="{Binding time}" 
                                                        Margin="0,0,0,0"
                                                    FontSize="Small" 
                                                     HorizontalOptions="StartAndExpand"
                                                    TextColor="Gray"/>
-                                        <Label Text="{Binding starNumber, StringFormat='{} Vote: {0}' }" 
+                                                <Label Text="{Binding starNumber, StringFormat='{}{0} sao' }" 
                                                        Margin="0,0,0,0"
-                                                   FontSize="Small" 
-                                                   TextColor="Gold" 
+                                                   FontSize="17" 
+                                                   TextColor="LightSeaGreen" 
                                                    HorizontalOptions="End"
                                                    FontAttributes="Bold"/>
-                                        <Image Source="scoreicon.png" Margin="0,-3,0,0" HeightRequest="20" WidthRequest="20"></Image>
-                                    </StackLayout>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
 
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Frame>
 
-                                </StackLayout>
-                            </Frame>
-                        </Grid>
-
-
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
+            
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
