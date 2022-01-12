@@ -27,6 +27,8 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = currentShell;
 
+            CantEdit = DataManager.Ins.CurrentFlight.IsOccured;
+            
             Init();
         }
         void Init()
@@ -104,6 +106,11 @@ namespace LikeFly.ViewModel
         
         bool checkInfo()
         {
+            if (DataManager.Ins.CurrentFlight.IsOccured)
+            {
+                DependencyService.Get<IToast>().ShortToast("Không thể sửa chuyến bay đã đi");
+                return false;
+            }
             if (DataManager.Ins.CurrentFlight.Name == null || DataManager.Ins.CurrentFlight.Name == "")
             {
                 DependencyService.Get<IToast>().ShortToast("Tên chuyến bay không được để trống");
@@ -128,7 +135,7 @@ namespace LikeFly.ViewModel
             {
                 DependencyService.Get<IToast>().ShortToast("Vui lòng chọn phi công cho chuyến bay");
                 return false;
-            }
+            }           
 
             int count = 0;
             foreach (DetailTicketType detail in DetailTicketTypes)
@@ -182,7 +189,7 @@ namespace LikeFly.ViewModel
                 try
                 {
                     await UpdateFlightAsync();
-                    DependencyService.Get<IToast>().ShortToast("Thêm chuyến bay thành công");
+                    DependencyService.Get<IToast>().ShortToast("Cập nhật chuyến bay thành công");
                 }
                 catch
                 {
@@ -256,7 +263,16 @@ namespace LikeFly.ViewModel
             Flight temp = new Flight("01", "HN-TSN", "5h", "8:30", "30/12/2021", "Hà Nội - TP Hồ Chí Minh", false, 2000000, a, a, intermediary, ticket, pilots);
             await DataManager.Ins.FlightService.AddFlight(temp);
         });
-
+        private bool cantEdit;
+        public bool CantEdit
+        {
+            get { return cantEdit; }
+            set
+            {
+                cantEdit = value;
+                OnPropertyChanged("CantEdit");
+            }
+        }
         private Flight flight;
         public Flight Flight
         {

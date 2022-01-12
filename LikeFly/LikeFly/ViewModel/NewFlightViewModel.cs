@@ -53,7 +53,7 @@ namespace LikeFly.ViewModel
             Pilots = new ObservableCollection<User>();
             foreach (User pilot in DataManager.Ins.ListUsers)
             {
-                if (pilot.isEnable && pilot.rank==1) Pilots.Add(pilot);
+                if (pilot.isEnable && pilot.rank == 2) Pilots.Add(pilot);
             }
             SelectedPilot = Pilots[0];
 

@@ -29,8 +29,22 @@ namespace LikeFly.ViewModel
         });
         public ICommand AddCommand => new Command<object>(async (obj) =>
         {
-            if (NewTicketTypeName != "" && NewTicketTypeName != "")
+            if (NewTicketTypeName == null || NewTicketTypeName == "" || NewTicketTypePercent == null || NewTicketTypePercent == "")
             {
+                DependencyService.Get<IToast>().ShortToast("Vui lòng điền đầy đủ thông tin");
+                return;
+            }
+
+            try
+            {
+                float.Parse(NewTicketTypePercent);
+            }
+            catch (Exception e)
+            {
+                DependencyService.Get<IToast>().ShortToast("Phần trăm phải là số thập phân");
+                return;
+            }
+
                 DependencyService.Get<IToast>().ShortToast("Hệ thống đang xử lý vui lòng chờ");
                 string TicketTypeId = GenerateId(10);
                
@@ -39,12 +53,8 @@ namespace LikeFly.ViewModel
                 DataManager.Ins.ListTicketTypes.Add(newTicketType);
                 DependencyService.Get<IToast>().ShortToast("Thêm thành công hạng vé");
                 await navigation.PopAsync();
-            }
-            else if (NewTicketTypeName == "" || selectedProvince == null)
-            {
-                DependencyService.Get<IToast>().ShortToast("Vui lòng điền đầy đủ thông tin");
-
-            }
+            
+            
 
 
         });
