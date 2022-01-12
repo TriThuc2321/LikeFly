@@ -43,15 +43,15 @@ namespace LikeFly.ViewModel
 
                 await DataManager.Ins.BookedTicketsServices.UpdateBookedTicket(booked);
 
-                if (DataManager.Ins.CurrentDiscount != null)
-                {
-                    int isUsed = int.Parse(DataManager.Ins.CurrentDiscount.isUsed);
-                    isUsed--;
-                    DataManager.Ins.CurrentDiscount.isUsed = isUsed.ToString();
+                //if (DataManager.Ins.CurrentDiscount != null)
+                //{
+                //    int isUsed = int.Parse(DataManager.Ins.CurrentDiscount.isUsed);
+                //    isUsed--;
+                //    DataManager.Ins.CurrentDiscount.isUsed = isUsed.ToString();
 
-                    await DataManager.Ins.DiscountsServices.UpdateDiscount(DataManager.Ins.CurrentDiscount);
+                //    await DataManager.Ins.DiscountsServices.UpdateDiscount(DataManager.Ins.CurrentDiscount);
 
-                }
+                //}
 
                 if (DataManager.Ins.CurrentFlight != null)
                 {
@@ -117,11 +117,14 @@ namespace LikeFly.ViewModel
 
             // Gui thong bao
             string notiId = DataManager.Ins.FlightService.GenerateId(10);
-            string noti = GetDeductInformation(DataManager.Ins.CurrentBookedTicket)[0];
+            //string noti = GetDeductInformation(DataManager.Ins.CurrentBookedTicket)[0];
+            string noti = DataManager.Ins.GetDeductInformation(DataManager.Ins.CurrentBookedTicket)[0];
 
-            DataManager.Ins.NotiServices.ListAllNoti.Add(new Notification(notiId, "False", "False", DataManager.Ins.CurrentUser.email, "Huỷ chuyến bay: " + SelectedTicket.Flight.Name, noti, DateTime.Now, DataManager.Ins.CurrentBookedTicket.FlightId));
+            DataManager.Ins.NotiServices.ListAllNoti.Add(new Notification(notiId, "False", "True", DataManager.Ins.CurrentUser.email, "Huỷ chuyến bay: " + SelectedTicket.Flight.Name, noti, DateTime.Now, DataManager.Ins.CurrentBookedTicket.Flight.Id));
+            //DataManager.Ins.ListNotification.Add(new Notification(notiId, "False", "True", DataManager.Ins.CurrentUser.email, "Huỷ chuyến bay: " + SelectedTicket.Flight.Name, noti, DateTime.Now, DataManager.Ins.CurrentBookedTicket.Flight.Id));
+            DataManager.Ins.ListNotification.Insert(0, new Notification(notiId, "False", "True", DataManager.Ins.CurrentUser.email, "Huỷ chuyến bay: " + SelectedTicket.Flight.Name, noti, DateTime.Now, DataManager.Ins.CurrentBookedTicket.Flight.Id));
             await DataManager.Ins.NotiServices.SendNoti(
-               notiId, DataManager.Ins.CurrentUser.email,noti, "Huỷ chuyến bay " + DataManager.Ins.CurrentFlight.Name,  DataManager.Ins.CurrentBookedTicket.FlightId);
+               notiId, DataManager.Ins.CurrentUser.email,noti, "Huỷ chuyến bay " + DataManager.Ins.CurrentFlight.Name,  DataManager.Ins.CurrentBookedTicket.Flight.Id);
 
         }
 
