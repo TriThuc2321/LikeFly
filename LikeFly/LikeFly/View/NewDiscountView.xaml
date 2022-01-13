@@ -97,7 +97,6 @@
                                FontSize="15"
                                FontAttributes="Italic"/>
                         <Entry   
-                                   Keyboard="Numeric"
                                    WidthRequest="150" 
                                    FontSize="20"
                                    TextColor="CadetBlue"

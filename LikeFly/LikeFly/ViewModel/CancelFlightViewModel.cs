@@ -248,6 +248,9 @@ namespace LikeFly.ViewModel
 
             var services = DataManager.Ins.InvoicesServices;
 
+            amount = (total - int.Parse(amount)).ToString();
+            deductPercent = (100 - int.Parse(deductPercent)).ToString();
+
             amount = services.FormatMoney(amount);
 
             Deduct = "Thời gian huỷ vé trước khi khởi hành là " + count + " ngày. Quý khách sẽ được hoàn tiền " + amount + "VND, với khấu hao là " + deductPercent + "%";

@@ -27,7 +27,12 @@ namespace LikeFly.ViewModel
 
             MenuCommand = new Command(() => currentShell.FlyoutIsPresented = !currentShell.FlyoutIsPresented);
 
-            Flights = DataManager.Ins.ListFlights;
+            Flights = new ObservableCollection<Flight>();
+            foreach (var f in DataManager.Ins.ListFlights)
+            {
+                if (!f.IsOccured)
+                    Flights.Add(f);
+            }    
         }
 
         private ObservableCollection<Flight> flights;

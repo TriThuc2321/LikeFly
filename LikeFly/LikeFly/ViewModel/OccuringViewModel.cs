@@ -72,7 +72,7 @@ namespace LikeFly.ViewModel
         {
             foreach (var ticket in DataManager.Ins.ListBookedTickets)
             {
-                if (ticket.Email == DataManager.Ins.CurrentUser.email && checkFlightStatus(ticket.Flight))
+                if (ticket.Email == DataManager.Ins.CurrentUser.email && checkFlightStatus(ticket.Flight) && !ticket.IsCancel)
                 {
                     TicketList.Add(ticket);
                 }
