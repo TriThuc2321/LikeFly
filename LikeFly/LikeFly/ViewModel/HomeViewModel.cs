@@ -34,6 +34,8 @@ namespace LikeFly.ViewModel
 
             ProfilePic = DataManager.Ins.CurrentUser.profilePic;
             Airports = DataManager.Ins.ListAirports;
+
+            StartDate = DateTime.Now;
         }
         private Airport selectedAirport;
         public Airport SelectedAirport

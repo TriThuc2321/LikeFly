@@ -62,8 +62,42 @@ namespace LikeFly.ViewModel
         });
         public ICommand BookCommand => new Command<object>((obj) =>
         {
+            if(IsOccured(DataManager.Ins.CurrentFlight))
+            {
+                DependencyService.Get<IToast>().ShortToast("Chuyến bay đã đi, không thể đặt");
+                return;
+            }
             navigation.PushAsync(new BookFlightView());
         });
+
+        public bool IsOccured(Flight flight)
+        {         
+
+            string[] flightStartDate = flight.StartDate.Split('/');
+            string[] flightStartTime = flight.StartTime.Split(':');
+            DateTime timeStart = new DateTime(
+                int.Parse(flightStartDate[2]),
+                int.Parse(flightStartDate[1]),
+                int.Parse(flightStartDate[0]),
+                int.Parse(flightStartTime[0]),
+                int.Parse(flightStartTime[1]),
+                0
+                );
+
+            DateTime currentTime = DateTime.Now.AddDays(0);
+            TimeSpan interval = timeStart.Subtract(currentTime);
+
+            /// string maxDuration = int.Parse(duration[0]) > int.Parse(duration[1]) ? duration[0] : duration[1];           
+
+            // Thoi gian bat dau flight den current time
+            double count = interval.TotalSeconds;
+            if (count > 0)
+            {
+                return false;
+            }           
+            return true;
+        }
+
         private Flight flight;
         public Flight Flight
         {
