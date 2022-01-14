@@ -109,7 +109,7 @@ namespace LikeFly.ViewModel
             if (result != null)
             {
                 DataManager.Ins.CurrentFlight = result;
-                navigation.PushAsync(new DetailFlightView());
+                navigation.PushAsync(new DetailFlightView2());
                 SelectedFlight = null;
             }
         });

@@ -27,7 +27,7 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = currentShell;
 
-            CantEdit = DataManager.Ins.CurrentFlight.IsOccured;
+            CantEdit = !DataManager.Ins.CurrentFlight.IsOccured;
             
             Init();
         }

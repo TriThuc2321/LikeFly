@@ -53,14 +53,14 @@ namespace LikeFly.ViewModel
                 EndDate = start.Add(duration).ToString("d", viVn);
                 EndTime = start.Add(duration).GetDateTimeFormats('t')[2];
                 TimeSpan check = DateTime.Now - start;
-                if (check.Hours > 0 && check.Hours < duration.Hours)
+                if (check.TotalSeconds > 0 && check.TotalSeconds < duration.TotalSeconds)
                     StartCountDownTimer();
-                else if (check.Hours > 0 && check.Hours >= duration.Hours)
+                else if (check.TotalSeconds > 0 && check.TotalSeconds >= duration.TotalSeconds)
                 {
                     Percent = "1";
                     RemainingTime = "Đã đến nơi";
                 }
-                else if (check.Hours < 0)
+                else if (check.TotalSeconds < 0)
                 {
                     Percent = "0";
                     RemainingTime = "Chưa khởi hành";

@@ -89,6 +89,10 @@
         <ShellContent Route="ManagerView" ContentTemplate="{DataTemplate views:PilotView}" Style="{DynamicResource Base1Style}" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Xác nhận đơn hàng" Icon="invoice.png" IsVisible="{Binding IsAdmin}">
+        <ShellContent Route="ManagerView" ContentTemplate="{DataTemplate views:ComfirmInvoiceView}" Style="{DynamicResource Base1Style}" />
+    </FlyoutItem>
+
     <FlyoutItem Title="Đánh giá" Icon="feedback.png" >
         <ShellContent Route="Review" ContentTemplate="{DataTemplate views:ReviewView}" Style="{DynamicResource Base1Style}" />
     </FlyoutItem>

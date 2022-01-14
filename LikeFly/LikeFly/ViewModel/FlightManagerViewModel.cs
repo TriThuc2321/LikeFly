@@ -22,6 +22,7 @@ namespace LikeFly.ViewModel
             this.navigation = navigation;
             this.currentShell = currentShell;
             Flights = DataManager.Ins.ListFlights;
+            
         }
         public ICommand NavigationBack => new Command<object>((obj) =>
         {
